@@ -10,7 +10,7 @@ function App() {
         <p>A squatting platform </p>
         <p>
           This platform allows people to accommodate others for an agreed period
-          of time.
+          of time..
         </p>
       </header>
     </div>
