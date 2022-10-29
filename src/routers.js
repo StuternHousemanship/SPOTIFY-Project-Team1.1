@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { NonAuthRoutes } from "./url";
-// import { ReactComponent as LoadingIcon } from "./assets/svg/loading-icon.svg";
+import { ReactComponent as LoadingIcon } from "./assets/svg/loading-icon.svg";
 import LandingPage from "./pages/landingPage";
 import SignUp from "./pages/signUp";
 import Login from "./pages/login";
@@ -12,7 +12,7 @@ function Routers() {
       <Suspense
         fallback={
           <div className="flex justify-center mt-60">
-            {/* <LoadingIcon className="suspense-loading-icon" /> */}
+            <LoadingIcon className="suspense-loading-icon" />
             <p className="text-center">Is Loading...</p>
           </div>
         }

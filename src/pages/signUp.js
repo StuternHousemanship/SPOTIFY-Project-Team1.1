@@ -14,6 +14,7 @@ const signUp = () => {
     setShowPassword(!showPassword);
   };
 
+  /** handles show Re-enter Password text */
   const handleShowReEnterPassword = () => {
     setShowReEnterPassword(!showReEnterPassword);
   };
@@ -185,7 +186,7 @@ const signUp = () => {
           <div className="text-center">
             <button
               type="button"
-              className="bg-squazzle-grey-text-color h-14 text-gray-100 rounded block w-full mt-1 mb-5"
+              className="bg-squazzle-grey-text-color h-14 text-white text-xl rounded block w-full mt-1 mb-5"
             >
               Continue
             </button>
