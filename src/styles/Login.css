@@ -1,0 +1,21 @@
+/* styles for login page eye icons */
+
+.eye-slash{
+  display: block;
+  font-size: 16px;
+  cursor: pointer;
+}
+.eye-slash-active{
+  display: none;
+}
+
+.eye{
+  display: none;
+}
+.eye-active{
+  font-size: 16px;
+  display: block;
+  cursor: pointer;
+}
+
+/* styles for login page eye icons */

@@ -13,6 +13,7 @@ module.exports = {
             colors: {
                 "squazzle-background-grey-color": "#F0F0F0",
                 "squazzle-grey-text-color": "#424242",
+                "squazzle-white-background-color": "#FFFFFF",
             },
             fontFamily: {
                 Inter: ["Inter"],

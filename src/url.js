@@ -8,6 +8,7 @@ const NonAuthRoutes = {
   landingPage: "/",
   signUp: "/sign-up",
   login: "/login",
+  forgotPassword: "/forgotPassword",
 };
 
 export { AuthRoutes, NonAuthRoutes };
