@@ -1,14 +1,33 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PhoneInput from "react-phone-input-2";
+import validator from "validator";
+import "react-phone-input-2/lib/style.css";
 import { ReactComponent as PasswordShow } from "../assets/svg/password-eye-show-icon.svg";
 import { ReactComponent as PasswordHide } from "../assets/svg/password-eye-hide-icon.svg";
 import { NonAuthRoutes } from "../url";
 
 const signUp = () => {
   const navigate = useNavigate();
+  const [pwdCorrect, setPwdCorrect] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showReEnterPassword, setShowReEnterPassword] = useState(false);
 
+  const validate = (value) => {
+    if (
+      validator.isStrongPassword(value, {
+        minLength: 8,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+    ) {
+      setPwdCorrect(true);
+    } else {
+      setPwdCorrect(false);
+    }
+  };
   /** handles show Password text */
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -20,9 +39,9 @@ const signUp = () => {
   };
 
   return (
-    <div className="grid place-items-center bg-squazzle-background-grey-color py-70">
+    <div className="grid place-items-center bg-squazzle-background-grey-color py-70 max-[640px]:bg-white">
       <div
-        className="py-12 px-20 box-border bg-white"
+        className="py-12 px-20 box-border bg-white max-[640px]:px-14"
         style={{ width: "min(100vw, 609px)" }}
       >
         <h2 className="text-4xl font-bold text-squazzle-grey-text-color">
@@ -95,26 +114,25 @@ const signUp = () => {
               required
             />
           </label>
-          <label htmlFor="Mobile" className="block">
+          <label htmlFor="mobile" className="relative block">
             <span className="text-squazzle-grey-text-color text-base">
               Mobile
             </span>
-            <input
-              id="mobile"
-              type="tel"
-              className="
-                mt-1
-                h-14
-                px-2.5
-                py-1.5
-                block
-                w-full
-                rounded
-                border
-              border-squazzle-grey-text-color
-                focus:outline-none
-                "
-              required
+            <input />
+            <PhoneInput
+              pattern="[0-9]{10}"
+              country="ng"
+              containerStyle={{
+                marginTop: "4px",
+              }}
+              inputStyle={{
+                width: "100%",
+                height: "3.5rem",
+                border: "1px solid #424242",
+              }}
+              buttonStyle={{
+                border: "1px solid #424242",
+              }}
             />
           </label>
           <label htmlFor="password" className="relative block">
@@ -137,6 +155,7 @@ const signUp = () => {
                 focus:outline-none
                 "
               required
+              onChange={(e) => validate(e.target.value)}
             />
             {showPassword ? (
               <PasswordShow
@@ -150,6 +169,11 @@ const signUp = () => {
               />
             )}
           </label>
+          {pwdCorrect ? null : (
+            <p className="text-rose-700 border border-rose-700 text-center rounded">
+              Not strong enough
+            </p>
+          )}
           <label htmlFor="password" className="relative block">
             <span className="text-squazzle-grey-text-color text-base">
               Re-enter password
