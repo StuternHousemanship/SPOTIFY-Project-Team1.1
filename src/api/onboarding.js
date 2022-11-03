@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { squazzleOnboarding } from "../config";
 
 export default {
