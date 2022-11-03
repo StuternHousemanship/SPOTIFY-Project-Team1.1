@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import validator from "validator";
 import "react-phone-input-2/lib/style.css";
+import Cookies from "js-cookie";
 import { ReactComponent as PasswordShow } from "../assets/svg/password-eye-show-icon.svg";
 import { ReactComponent as PasswordHide } from "../assets/svg/password-eye-hide-icon.svg";
+import onboarding from "../api/onboarding";
 import { NonAuthRoutes } from "../url";
 
 const signUp = () => {
@@ -12,8 +14,13 @@ const signUp = () => {
   const [pwdCorrect, setPwdCorrect] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showReEnterPassword, setShowReEnterPassword] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
 
-  const validate = (value) => {
+  const handlePasswordOnChange = (value) => {
     if (
       validator.isStrongPassword(value, {
         minLength: 8,
@@ -27,7 +34,10 @@ const signUp = () => {
     } else {
       setPwdCorrect(false);
     }
+
+    setPassword(value);
   };
+
   /** handles show Password text */
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -36,6 +46,21 @@ const signUp = () => {
   /** handles show Re-enter Password text */
   const handleShowReEnterPassword = () => {
     setShowReEnterPassword(!showReEnterPassword);
+  };
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    // setButtonIsLoading(true);
+    onboarding
+      .SignUp(firstName, lastName, email, phoneNumber, password)
+      .then((response) => {
+        if (response.status === 200) {
+          const accessToken = response.access_token;
+          const refreshToken = response.refresh_token;
+          Cookies.set("accessToken", accessToken);
+          localStorage.setItem("token", refreshToken);
+        }
+      });
   };
 
   return (
@@ -55,6 +80,8 @@ const signUp = () => {
             <input
               id="firstname"
               type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
               className="
                 mt-1
                 h-14
@@ -77,6 +104,8 @@ const signUp = () => {
             <input
               id="lastname"
               type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
               className="
                 mt-1
                 h-14
@@ -99,6 +128,8 @@ const signUp = () => {
             <input
               id="email"
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="
                 mt-1
                 h-14
@@ -118,7 +149,10 @@ const signUp = () => {
             <span className="text-squazzle-grey-text-color text-base">
               Mobile
             </span>
-            <input />
+            <input
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
             <PhoneInput
               pattern="[0-9]{10}"
               country="ng"
@@ -141,6 +175,7 @@ const signUp = () => {
             </span>
             <input
               id="password"
+              value={password}
               type={showPassword ? "text" : "password"}
               className="
                 mt-1
@@ -155,7 +190,7 @@ const signUp = () => {
                 focus:outline-none
                 "
               required
-              onChange={(e) => validate(e.target.value)}
+              onChange={(e) => handlePasswordOnChange(e.target.value)}
             />
             {showPassword ? (
               <PasswordShow
@@ -210,6 +245,7 @@ const signUp = () => {
           <div className="text-center">
             <button
               type="button"
+              onClick={handleSignUp}
               className="bg-squazzle-grey-text-color h-14 text-white text-xl rounded block w-full mt-1 mb-5"
             >
               Continue
