@@ -1,3 +1,5 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
@@ -11,7 +13,7 @@ import { NonAuthRoutes } from "../url";
 
 const signUp = () => {
   const navigate = useNavigate();
-  const [pwdCorrect, setPwdCorrect] = useState(true);
+  const [passwordStrong, setPasswordStrong] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showReEnterPassword, setShowReEnterPassword] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -20,6 +22,7 @@ const signUp = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
 
+  /** handles password validation and password state */
   const handlePasswordOnChange = (value) => {
     if (
       validator.isStrongPassword(value, {
@@ -30,9 +33,9 @@ const signUp = () => {
         minSymbols: 1,
       })
     ) {
-      setPwdCorrect(true);
+      setPasswordStrong(true);
     } else {
-      setPwdCorrect(false);
+      setPasswordStrong(false);
     }
 
     setPassword(value);
@@ -72,7 +75,10 @@ const signUp = () => {
         <h2 className="text-4xl font-bold text-squazzle-grey-text-color">
           Create Account
         </h2>
-        <div className="grid grid-cols-1 gap-6 mt-4">
+        <form
+          onSubmit={() => handleSignUp()}
+          className="grid grid-cols-1 gap-6 mt-4"
+        >
           <label htmlFor="firstname" className="block">
             <span className="text-squazzle-grey-text-color text-base">
               First name
@@ -149,13 +155,14 @@ const signUp = () => {
             <span className="text-squazzle-grey-text-color text-base">
               Mobile
             </span>
-            <input
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-            />
             <PhoneInput
-              pattern="[0-9]{10}"
               country="ng"
+              inputProps={{
+                id: "mobile",
+                value: { phoneNumber },
+                required: true,
+              }}
+              onChange={(e) => setPhoneNumber(e.target.value)}
               containerStyle={{
                 marginTop: "4px",
               }}
@@ -204,7 +211,7 @@ const signUp = () => {
               />
             )}
           </label>
-          {pwdCorrect ? null : (
+          {passwordStrong ? null : (
             <p className="text-rose-700 border border-rose-700 text-center rounded">
               Not strong enough
             </p>
@@ -258,7 +265,7 @@ const signUp = () => {
               Log into existing account
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
