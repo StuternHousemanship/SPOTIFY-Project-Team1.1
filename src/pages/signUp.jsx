@@ -159,9 +159,9 @@ const signUp = () => {
               country="ng"
               inputProps={{
                 id: "mobile",
-                value: { phoneNumber },
                 required: true,
               }}
+              value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
               containerStyle={{
                 marginTop: "4px",
