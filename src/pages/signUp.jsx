@@ -76,7 +76,7 @@ const signUp = () => {
           Create Account
         </h2>
         <form
-          onSubmit={() => handleSignUp()}
+          // onSubmit={() => handleSignUp()}
           className="grid grid-cols-1 gap-6 mt-4"
         >
           <label htmlFor="firstname" className="block">

@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { useNavigate } from "react-router-dom";
 import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "../styles/Login.css";
+import { NonAuthRoutes } from "../url";
 
 const login = () => {
+  const navigate = useNavigate();
   const [eyeToggle, setEyeToggle] = useState(false);
 
   const handleEyeToggle = () => {
@@ -27,7 +30,6 @@ const login = () => {
             Log in
           </h1>
         </header>
-
         <Formik
           initialValues={{ email: "", password: "" }}
           validationSchema={Yup.object({
@@ -112,10 +114,13 @@ const login = () => {
             </button>
           </Form>
         </Formik>
-
-        <Link to="/" className="underline self-center">
-          Already have an account
-        </Link>
+        <button
+          type="button"
+          className="bg-white text-base px-0 mx-0 text-squazzle-grey-text-color border-b border-squazzle-grey-text-color cursor-pointer"
+          onClick={() => navigate(NonAuthRoutes.signUp)}
+        >
+          Back to login
+        </button>
       </div>
     </main>
   );
