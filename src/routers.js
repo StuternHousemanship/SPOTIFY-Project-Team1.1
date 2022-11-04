@@ -6,6 +6,7 @@ import LandingPage from "./pages/landingPage";
 import SignUp from "./pages/signUp";
 import Login from "./pages/login";
 import ForgotPassword from "./pages/ForgotPassword";
+import Reset from "./pages/alert";
 
 function Routers() {
   return (
@@ -26,6 +27,7 @@ function Routers() {
             path={NonAuthRoutes.forgotPassword}
             element={<ForgotPassword />}
           />
+          <Route path={NonAuthRoutes.alert} element={<Reset />} />
         </Routes>
       </Suspense>
     </div>

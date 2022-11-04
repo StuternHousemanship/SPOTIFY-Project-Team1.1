@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -5,11 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import Cookies from "js-cookie";
+import onboarding from "../api/onboarding";
 import "../styles/Login.css";
 import { NonAuthRoutes } from "../url";
 
 const login = () => {
-  const navigate = useNavigate();
   const [eyeToggle, setEyeToggle] = useState(false);
 
   const handleEyeToggle = () => {
@@ -20,6 +22,19 @@ const login = () => {
     if (eyeToggle) {
       setEyeToggle(!eyeToggle);
     }
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // setButtonIsLoading(true);
+    onboarding.Login(email, password).then((response) => {
+      if (response.status === 200) {
+        const accessToken = response.access_token;
+        const refreshToken = response.refresh_token;
+        Cookies.set("accessToken", accessToken);
+        localStorage.setItem("token", refreshToken);
+      }
+    });
   };
 
   return (
@@ -54,7 +69,10 @@ const login = () => {
             resetEye();
           }}
         >
-          <Form className="flex flex-col my-8 gap-4">
+          <Form
+            onSubmit={() => handleLogin()}
+            className="flex flex-col my-8 gap-4"
+          >
             <section className="">
               <label htmlFor="email" className="text-base font-normal">
                 <span>Email</span>
@@ -63,6 +81,8 @@ const login = () => {
                   name="email"
                   id="email"
                   className="border border-squazzle-grey-text-color w-full py-3 px-2 rounded"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <ErrorMessage name="email">
                   {(msg) => (
@@ -80,6 +100,8 @@ const login = () => {
                   name="password"
                   id="password"
                   className="border border-squazzle-grey-text-color w-full py-3 px-2 rounded"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <ErrorMessage name="password">
                   {(msg) => (

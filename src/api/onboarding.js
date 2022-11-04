@@ -15,4 +15,14 @@ export default {
 
     return squazzleOnboarding.post("/users/signUp", stringifiedData);
   },
+
+  async Login(email, password) {
+    const data = {
+      email,
+      password,
+    };
+    const stringifiedData = JSON.stringify(data);
+
+    return squazzleOnboarding.post("/users/login", stringifiedData);
+  },
 };
