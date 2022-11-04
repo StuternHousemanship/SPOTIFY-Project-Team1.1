@@ -12,6 +12,9 @@ import "../styles/Login.css";
 import { NonAuthRoutes } from "../url";
 
 const login = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [eyeToggle, setEyeToggle] = useState(false);
 
   const handleEyeToggle = () => {
