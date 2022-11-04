@@ -52,6 +52,7 @@ const signUp = () => {
   };
 
   const handleSignUp = (e) => {
+    navigate(NonAuthRoutes.verifyEmail);
     e.preventDefault();
     // setButtonIsLoading(true);
     onboarding

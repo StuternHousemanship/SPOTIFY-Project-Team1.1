@@ -10,6 +10,8 @@ const NonAuthRoutes = {
   login: "/login",
   forgotPassword: "/forgotPassword",
   alert: "/password-reset",
+  verifyEmail: "/verify-email",
+  enterResetPassword: "/reset-password",
 };
 
 export { AuthRoutes, NonAuthRoutes };

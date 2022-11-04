@@ -1,13 +1,16 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable import/no-cycle */
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import { NonAuthRoutes } from "./url";
+import VerifyEmail from "pages/VerifyEmail";
+import EnterResetPassword from "pages/EnterResetPassword";
 import { ReactComponent as LoadingIcon } from "./assets/svg/loading-icon.svg";
 import LandingPage from "./pages/landingPage";
 import SignUp from "./pages/signUp";
 import Login from "./pages/login";
 import ForgotPassword from "./pages/ForgotPassword";
 import Reset from "./pages/alert";
+import { NonAuthRoutes } from "./url";
 
 function Routers() {
   return (
@@ -29,6 +32,11 @@ function Routers() {
             element={<ForgotPassword />}
           />
           <Route path={NonAuthRoutes.alert} element={<Reset />} />
+          <Route path={NonAuthRoutes.verifyEmail} element={<VerifyEmail />} />
+          <Route
+            path={NonAuthRoutes.enterResetPassword}
+            element={<EnterResetPassword />}
+          />
         </Routes>
       </Suspense>
     </div>
