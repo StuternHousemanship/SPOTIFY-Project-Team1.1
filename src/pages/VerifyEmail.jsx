@@ -8,7 +8,7 @@ const VerifyEmail = () => {
 
   /** handles email verification */
   const handleVerifyEmail = (e) => {
-    navigate(NonAuthRoutes.enterResetPassword);
+    navigate(NonAuthRoutes.verifyAccount);
     e.preventDefault();
   };
 
@@ -23,7 +23,7 @@ const VerifyEmail = () => {
                 <p className="text-4xl font-bold mb-[56px] max-w-[297px]">
                   Verify your email
                 </p>
-                <p className="font-Inter max-w-[418px] mb-[87px] text-[16px] leading-5">
+                <p className="max-w-[418px] mb-[87px] text-base leading-5">
                   Kindly go to your email box or spam folder to confirm and
                   verify your email address
                 </p>
@@ -31,7 +31,7 @@ const VerifyEmail = () => {
               <button
                 type="submit"
                 className="bg-squazzle-grey-text-color h-14 text-white text-xl rounded block w-full mb-[61px]"
-                onClick={handleVerifyEmail}
+                onClick={() => handleVerifyEmail()}
               >
                 Verify
               </button>
@@ -54,7 +54,7 @@ const VerifyEmail = () => {
             <button
               type="submit"
               className="bg-squazzle-grey-text-color text-white text-base rounded block w-full h-10 font-bold"
-              onClick={handleVerifyEmail}
+              onClick={() => handleVerifyEmail()}
             >
               Verify
             </button>

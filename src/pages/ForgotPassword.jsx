@@ -1,9 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { NonAuthRoutes } from "../url";
 
 function ForgotPassword() {
+  const navigate = useNavigate();
+
   return (
     <main className="min-h-screen flex items-center justify-center">
       <div className="flex flex-col w-full max-w-[620px] py-8 px-20">
@@ -43,19 +46,24 @@ function ForgotPassword() {
                 </ErrorMessage>
               </label>
             </section>
-            <Link to="/password-reset">
-              <button
-                type="submit"
-                className="bg-squazzle-grey-text-color  w-full py-3 text-squazzle-white-background-color "
-              >
-                Continue
-              </button>
-            </Link>
+            <button
+              type="submit"
+              className="bg-squazzle-grey-text-color  w-full py-3 text-squazzle-white-background-color "
+              onClick={() => navigate(NonAuthRoutes.alertForgotPassword)}
+            >
+              Continue
+            </button>
           </Form>
         </Formik>
-        <Link to="/login" className="underline self-center">
-          Back to login
-        </Link>
+        <div className="flex justify-center">
+          <button
+            type="button"
+            className="bg-white w-fit text-base py-0 text-squazzle-grey-text-color border-b border-squazzle-grey-text-color cursor-pointer"
+            onClick={() => navigate(NonAuthRoutes.login)}
+          >
+            Back to login
+          </button>
+        </div>
       </div>
     </main>
   );

@@ -1,8 +1,7 @@
 /* eslint-disable import/no-cycle */
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { useNavigate } from "react-router-dom";
 import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -126,10 +125,13 @@ const login = () => {
                 </div>
               </label>
             </section>
-
-            <Link to="/forgotPassword" className="self-end underline">
+            <button
+              type="button"
+              className="self-end underline"
+              onClick={() => navigate(NonAuthRoutes.forgotPassword)}
+            >
               Forgot Password
-            </Link>
+            </button>
 
             <button
               type="submit"
@@ -139,13 +141,15 @@ const login = () => {
             </button>
           </Form>
         </Formik>
-        <button
-          type="button"
-          className="bg-white text-base px-0 mx-0 text-squazzle-grey-text-color border-b border-squazzle-grey-text-color cursor-pointer"
-          onClick={() => navigate(NonAuthRoutes.signUp)}
-        >
-          Back to login
-        </button>
+        <div className="flex justify-center">
+          <button
+            type="button"
+            className="bg-white w-fit text-base text-squazzle-grey-text-color border-b border-squazzle-grey-text-color cursor-pointer"
+            onClick={() => navigate(NonAuthRoutes.signUp)}
+          >
+            Back to sign-up
+          </button>
+        </div>
       </div>
     </main>
   );

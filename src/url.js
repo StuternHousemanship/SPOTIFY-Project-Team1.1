@@ -8,10 +8,10 @@ const NonAuthRoutes = {
   landingPage: "/",
   signUp: "/sign-up",
   login: "/login",
-  forgotPassword: "/forgotPassword",
-  alert: "/password-reset",
+  forgotPassword: "/forgot-password",
+  alertForgotPassword: "/alert-forgot-password",
   verifyEmail: "/verify-email",
-  enterResetPassword: "/reset-password",
+  verifyAccount: "/verify-account",
 };
 
 export { AuthRoutes, NonAuthRoutes };

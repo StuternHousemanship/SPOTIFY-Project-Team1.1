@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-function Reset() {
+function AlertForgotPassword() {
   return (
     <div className="grid place-items-center bg-squazzle-background-grey-color py-60">
       <div
@@ -16,17 +15,15 @@ function Reset() {
           password.
         </div>
         <div>
-          <Link to="/">
-            <button
-              type="button"
-              className="bg-squazzle-grey-text-color w-full py-3 text-squazzle-white-background-color"
-            >
-              Okay
-            </button>
-          </Link>
+          <button
+            type="button"
+            className="bg-squazzle-grey-text-color w-full py-3 text-squazzle-white-background-color"
+          >
+            Okay
+          </button>
         </div>
       </div>
     </div>
   );
 }
-export default Reset;
+export default AlertForgotPassword;

@@ -52,9 +52,9 @@ const signUp = () => {
   };
 
   const handleSignUp = (e) => {
-    navigate(NonAuthRoutes.verifyEmail);
     e.preventDefault();
     // setButtonIsLoading(true);
+    navigate(NonAuthRoutes.verifyEmail);
     onboarding
       .SignUp(firstName, lastName, email, phoneNumber, password)
       .then((response) => {
@@ -77,7 +77,7 @@ const signUp = () => {
           Create Account
         </h2>
         <form
-          // onSubmit={() => handleSignUp()}
+          onSubmit={() => handleSignUp()}
           className="grid grid-cols-1 gap-6 mt-4"
         >
           <label htmlFor="firstname" className="block">

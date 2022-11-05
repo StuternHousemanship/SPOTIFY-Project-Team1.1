@@ -1,8 +1,11 @@
 /* eslint-disable react/function-component-definition */
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { NonAuthRoutes } from "../url";
 
-const EnterResetPassword = () => {
+const VerifyAccount = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className=" max-w-[348px]">
@@ -68,16 +71,17 @@ const EnterResetPassword = () => {
               Continue
             </button>
           </form>
-          <Link
-            to="/login"
+          <button
+            type="button"
             className="underline underline-offset-4 text-center"
+            onClick={() => navigate(NonAuthRoutes.login)}
           >
-            Back to login
-          </Link>
+            Back to Login
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default EnterResetPassword;
+export default VerifyAccount;
