@@ -1,6 +1,6 @@
 import React from "react";
 
-function AlertForgotPassword() {
+function alertForgotPassword() {
   return (
     <div className="grid place-items-center bg-squazzle-background-grey-color py-60">
       <div
@@ -26,4 +26,4 @@ function AlertForgotPassword() {
     </div>
   );
 }
-export default AlertForgotPassword;
+export default alertForgotPassword;

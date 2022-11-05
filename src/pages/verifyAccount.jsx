@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { NonAuthRoutes } from "../url";
 
-const VerifyAccount = () => {
+const verifyAccount = () => {
   const navigate = useNavigate();
 
   return (
@@ -84,4 +84,4 @@ const VerifyAccount = () => {
   );
 };
 
-export default VerifyAccount;
+export default verifyAccount;

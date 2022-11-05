@@ -2,13 +2,13 @@
 /* eslint-disable import/no-cycle */
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import VerifyEmail from "pages/verifyEmail";
+import VerifyEmail from "pages/VerifyEmail";
 import VerifyAccount from "pages/verifyAccount";
 import { ReactComponent as LoadingIcon } from "./assets/svg/loading-icon.svg";
 import LandingPage from "./pages/landingPage";
 import SignUp from "./pages/signUp";
 import Login from "./pages/login";
-import ForgotPassword from "./pages/forgotPassword";
+import ForgotPassword from "./pages/ForgotPassword";
 import Reset from "./pages/alertForgotPassword";
 import { NonAuthRoutes } from "./url";
 

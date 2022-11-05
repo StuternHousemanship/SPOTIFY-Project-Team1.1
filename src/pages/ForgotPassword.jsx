@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { NonAuthRoutes } from "../url";
 
-function ForgotPassword() {
+function forgotPassword() {
   const navigate = useNavigate();
 
   return (
@@ -69,4 +69,4 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword;
+export default forgotPassword;

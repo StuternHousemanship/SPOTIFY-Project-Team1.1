@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { NonAuthRoutes } from "../url";
 
-const VerifyEmail = () => {
+const verifyEmail = () => {
   const navigate = useNavigate();
 
   /** handles email verification */
@@ -65,4 +65,4 @@ const VerifyEmail = () => {
   );
 };
 
-export default VerifyEmail;
+export default verifyEmail;
