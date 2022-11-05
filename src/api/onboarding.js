@@ -25,4 +25,28 @@ export default {
 
     return squazzleOnboarding.post("/users/login", stringifiedData);
   },
+
+  async EnterPasswordResetCode(otp) {
+    const data = {
+      otp,
+    };
+    const stringifiedData = JSON.stringify(data);
+
+    return squazzleOnboarding.post(
+      "/users/enterpasswordresetcode",
+      stringifiedData
+    );
+  },
+
+  async EnterEmailVerificationCode(otp) {
+    const data = {
+      otp,
+    };
+    const stringifiedData = JSON.stringify(data);
+
+    return squazzleOnboarding.post(
+      "/users/enterpasswordresetcode",
+      stringifiedData
+    );
+  },
 };

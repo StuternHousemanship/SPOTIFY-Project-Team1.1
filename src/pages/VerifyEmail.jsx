@@ -8,7 +8,7 @@ const verifyEmail = () => {
 
   /** handles email verification */
   const handleVerifyEmail = (e) => {
-    navigate(NonAuthRoutes.verifyAccount);
+    navigate(NonAuthRoutes.enterEmailVerificationCode);
     e.preventDefault();
   };
 
@@ -47,7 +47,7 @@ const verifyEmail = () => {
             <p className="font-bold text-2xl squazzle-grey-text-color mb-10 ">
               Verify your email
             </p>
-            <p className="font-Inter font-normal text=[16px] leading-5 text-[#000000] max-h-[38px] max-w-[349px] mb-14">
+            <p className="font-normal text=[16px] leading-5 text-[#000000] max-h-[38px] max-w-[349px] mb-14">
               Kindly go to your email box or spam folder to confirm and verify
               your email address
             </p>
