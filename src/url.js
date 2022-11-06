@@ -13,6 +13,8 @@ const NonAuthRoutes = {
   enterEmailVerificationCode: "/enter-email-verification-code",
   enterPasswordResetCode: "/enter-password-reset-code",
   verifyEmail: "/verify-email",
+  resetPassword: "/reset-password",
+  alertResetPassword: "/alert-reset-password",
 };
 
 export { AuthRoutes, NonAuthRoutes };

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable react/function-component-definition */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +18,6 @@ const enterEmailVerificationCode = () => {
   /** hanldes enter password reset code submit button */
   const handleEnterEmailVerificationCode = (e) => {
     e.preventDefault();
-
     const emailVerificationCode = `${digit1}${digit2}${digit3}${digit4}${digit5}${digit6}`;
     onboarding
       .EnterEmailVerificationCode(emailVerificationCode)
