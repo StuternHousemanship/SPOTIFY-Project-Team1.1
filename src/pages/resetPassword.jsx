@@ -52,19 +52,6 @@ const resetPassword = () => {
           Reset password
         </h2>
 
-        {/* <label htmlFor="mobile" className="relative block">
-          <span className="text-squazzle-grey-text-color text-base"></span>
-          inputStyle=
-          {{
-            width: "100%",
-            height: "3.5rem",
-            border: "1px solid #424242",
-          }}
-          buttonStyle=
-          {{
-            border: "1px solid #424242",
-          }}
-        </label> */}
         <label htmlFor="password" className="relative block">
           <span className="text-squazzle-grey-text-color text-base">
             Password
@@ -138,79 +125,7 @@ const resetPassword = () => {
             />
           )}
         </label>
-        {/* <label htmlFor="password" className="relative block">
-          <span className="text-squazzle-grey-text-color text-base">
-            Password
-          </span>
-          <input
-            id="password"
-            value={password}
-            type={showPassword ? "text" : "password"}
-            className="
-                mt-1
-                h-14
-                px-2.5
-                py-2.5
-                block
-                w-full
-                rounded
-                border
-              border-squazzle-grey-text-color
-                focus:outline-none
-                "
-            required
-            onChange={(e) => handlePasswordOnChange(e.target.value)}
-          />
-          {showPassword ? (
-            <PasswordShow
-              className="absolute top-11 right-4"
-              onClick={() => handleShowPassword()}
-            />
-          ) : (
-            <PasswordHide
-              className="absolute top-11 right-4"
-              onClick={() => handleShowPassword()}
-            />
-          )}
-        </label>
-        {passwordStrong ? null : (
-          <p className="text-rose-700 border border-rose-700 text-center rounded">
-            Not strong enough
-          </p>
-        )}
-        <label htmlFor="password" className="relative block">
-          <span className="text-squazzle-grey-text-color text-base">
-            Re-enter new password
-          </span>
-          <input
-            id="re-enter-new-password"
-            type={showReEnterNewPassword ? "text" : "password"}
-            className="
-                mt-1
-                h-14
-                px-2.5
-                py-.5
-                block
-                w-full
-                rounded
-                border
-              border-squazzle-grey-text-color
-                focus:outline-none
-                "
-            required
-          />
-          {showReEnterNewPassword ? (
-            <PasswordShow
-              className="absolute top-11 right-4"
-              onClick={() => handleShowReEnterNewPassword()}
-            />
-          ) : (
-            <PasswordHide
-              className="absolute top-11 right-4"
-              onClick={() => handleShowReEnterNewPassword()}
-            />
-          )}
-        </label> */}
+
         <button
           type="submit"
           className="bg-squazzle-grey-text-color  w-full py-3 text-squazzle-white-background-color mt-6 "
