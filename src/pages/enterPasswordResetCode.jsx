@@ -18,14 +18,13 @@ const enterPasswordResetCode = () => {
   /** hanldes enter password reset code submit button */
   // const handleEnterPasswordResetCode = (e) => {
   //   e.preventDefault();
-  //   navigate(NonAuthRoutes.resetPassword);
 
-  // const passwordResetCode = `${digit1}${digit2}${digit3}${digit4}${digit5}${digit6}`;
-  // onboarding.EnterPasswordResetCode(passwordResetCode).then((response) => {
-  //   if (response.status === 200) {
-  //     //
-  //   }
-  // });
+  //   const passwordResetCode = `${digit1}${digit2}${digit3}${digit4}${digit5}${digit6}`;
+  //   onboarding.EnterPasswordResetCode(passwordResetCode).then((response) => {
+  //     if (response.status === 200) {
+  //       //
+  //     }
+  //   });
   // };
 
   return (
