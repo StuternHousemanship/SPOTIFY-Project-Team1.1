@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
+  const navigate = useNavigate();
   const logOut = () => {
-    window.location = window.location.origin;
+    navigate("/login");
   };
 
   return (
