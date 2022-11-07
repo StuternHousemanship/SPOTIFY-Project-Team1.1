@@ -129,7 +129,7 @@ const signUp = () => {
             />
           </label>
           <label htmlFor="email" className="block">
-            <span className="ttext-squazzle-grey-text-color text-base">
+            <span className="text-squazzle-grey-text-color text-base">
               Email
             </span>
             <input

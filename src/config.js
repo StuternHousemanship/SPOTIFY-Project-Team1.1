@@ -2,6 +2,7 @@
 /* eslint-disable no-param-reassign */
 import axios from "axios";
 import Cookies from "js-cookie";
+// eslint-disable-next-line import/no-cycle
 import TokenValidate from "./tokenvalidate";
 
 /** Base Url for api PRODUCTION */

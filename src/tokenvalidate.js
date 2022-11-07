@@ -2,8 +2,9 @@
 /* eslint-disable no-else-return */
 /* eslint-disable camelcase */
 import axios from "axios";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
+import Cookies from "js-cookie";
 import moment from "moment";
 import { history } from "./index";
 import { NonAuthRoutes } from "./url";

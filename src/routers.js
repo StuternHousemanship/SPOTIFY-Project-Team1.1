@@ -2,7 +2,7 @@
 /* eslint-disable import/no-cycle */
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import VerifyEmail from "./pages/verifyEmail";
+import VerifyEmail from "./pages/VerifyEmail";
 import EnterEmailVerificationCode from "./pages/enterEmailVerificationCode";
 import EnterPasswordResetCode from "./pages/enterPasswordResetCode";
 import { ReactComponent as LoadingIcon } from "./assets/svg/loading-icon.svg";
@@ -13,7 +13,8 @@ import ForgotPassword from "./pages/ForgotPassword";
 import AlertForgotPassword from "./pages/alertForgotPassword";
 import ResetPassword from "./pages/resetPassword";
 import AlertResetPassword from "./pages/alertResetPassword";
-import { NonAuthRoutes } from "./url";
+import Dashboard from "./pages/Dashboard";
+import { NonAuthRoutes, AuthRoutes } from "./url";
 
 function Routers() {
   return (
@@ -55,6 +56,7 @@ function Routers() {
             path={NonAuthRoutes.enterPasswordResetCode}
             element={<EnterPasswordResetCode />}
           />
+          <Route path={AuthRoutes.dashboard} element={<Dashboard />} />
         </Routes>
       </Suspense>
     </div>

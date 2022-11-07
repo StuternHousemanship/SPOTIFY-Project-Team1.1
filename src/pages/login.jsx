@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import Cookies from "js-cookie";
 import onboarding from "../api/onboarding";
 import "../styles/Login.css";
-import { NonAuthRoutes } from "../url";
+import { NonAuthRoutes, AuthRoutes } from "../url";
 
 const login = () => {
   const navigate = useNavigate();
@@ -136,6 +136,7 @@ const login = () => {
             <button
               type="submit"
               className="bg-squazzle-grey-text-color w-full py-3 text-squazzle-white-background-color"
+              onClick={() => navigate(AuthRoutes.dashboard)}
             >
               Continue
             </button>
