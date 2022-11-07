@@ -2,18 +2,18 @@
 /* eslint-disable import/no-cycle */
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import VerifyEmail from "./pages/VerifyEmail";
+import VerifyEmail from "./pages/verifyEmail";
 import EnterEmailVerificationCode from "./pages/enterEmailVerificationCode";
 import EnterPasswordResetCode from "./pages/enterPasswordResetCode";
 import { ReactComponent as LoadingIcon } from "./assets/svg/loading-icon.svg";
 import LandingPage from "./pages/landingPage";
 import SignUp from "./pages/signUp";
 import Login from "./pages/login";
-import ForgotPassword from "./pages/ForgotPassword";
+import ForgotPassword from "./pages/forgotPassword";
 import AlertForgotPassword from "./pages/alertForgotPassword";
 import ResetPassword from "./pages/resetPassword";
 import AlertResetPassword from "./pages/alertResetPassword";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/dashboard";
 import { NonAuthRoutes, AuthRoutes } from "./url";
 
 function Routers() {
