@@ -2,19 +2,28 @@
 /* eslint-disable import/no-cycle */
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import VerifyEmail from "./pages/verifyEmail";
-import EnterEmailVerificationCode from "./pages/enterEmailVerificationCode";
-import EnterPasswordResetCode from "./pages/enterPasswordResetCode";
-import { ReactComponent as LoadingIcon } from "./assets/svg/loading-icon.svg";
-import LandingPage from "./pages/landingPage";
-import SignUp from "./pages/signUp";
-import Login from "./pages/login";
-import ForgotPassword from "./pages/forgotPassword";
-import AlertForgotPassword from "./pages/alertForgotPassword";
-import ResetPassword from "./pages/resetPassword";
-import AlertResetPassword from "./pages/alertResetPassword";
-import Dashboard from "./pages/dashboard";
 import { NonAuthRoutes, AuthRoutes } from "./url";
+import { ReactComponent as LoadingIcon } from "./assets/svg/loading-icon.svg";
+
+const LandingPage = React.lazy(() => import("./pages/landingPage"));
+const SignUp = React.lazy(() => import("./pages/signUp"));
+const Login = React.lazy(() => import("./pages/login"));
+const VerifyEmail = React.lazy(() => import("./pages/verifyEmail"));
+const EnterEmailVerificationCode = React.lazy(() =>
+  import("./pages/enterPasswordResetCode")
+);
+const EnterPasswordResetCode = React.lazy(() =>
+  import("./pages/enterPasswordResetCode")
+);
+const ForgotPassword = React.lazy(() => import("./pages/forgotPassword"));
+const AlertForgotPassword = React.lazy(() =>
+  import("./pages/alertForgotPassword")
+);
+const ResetPassword = React.lazy(() => import("./pages/resetPassword"));
+const AlertResetPassword = React.lazy(() =>
+  import("./pages/alertResetPassword")
+);
+const Dashboard = React.lazy(() => import("./pages/dashboard"));
 
 function Routers() {
   return (
