@@ -16,6 +16,7 @@ export default {
     return squazzleOnboarding.post("/users/signUp", stringifiedData);
   },
 
+  /** Send a POST request to Login Users */
   async Login(email, password) {
     const data = {
       email,
@@ -26,27 +27,29 @@ export default {
     return squazzleOnboarding.post("/users/login", stringifiedData);
   },
 
-  async EnterPasswordResetCode(otp) {
+  /** Send a POST request to verify users email verification code */
+  async EnterEmailVerificationCode(emailVerificationCode) {
     const data = {
-      otp,
+      code: emailVerificationCode,
     };
     const stringifiedData = JSON.stringify(data);
 
-    return squazzleOnboarding.post(
-      "/users/enterpasswordresetcode",
-      stringifiedData
-    );
+    return squazzleOnboarding.post("/activateAccount", stringifiedData);
   },
 
-  async EnterEmailVerificationCode(otp) {
+  /** Send a POST request to verify users password reset code */
+  async EnterPasswordResetCode(
+    passwordResetCode,
+    newpassword,
+    confirmNewPassword
+  ) {
     const data = {
-      otp,
+      code: passwordResetCode,
+      password: newpassword,
+      confirmPassword: confirmNewPassword,
     };
     const stringifiedData = JSON.stringify(data);
 
-    return squazzleOnboarding.post(
-      "/users/enterpasswordresetcode",
-      stringifiedData
-    );
+    return squazzleOnboarding.patch("/resetPassword", stringifiedData);
   },
 };

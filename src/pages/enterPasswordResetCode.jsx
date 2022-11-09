@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { NonAuthRoutes } from "../url";
-// import onboarding from "../api/onboarding";
+import onboarding from "../api/onboarding";
 
 const enterPasswordResetCode = () => {
   const navigate = useNavigate();
@@ -15,17 +15,17 @@ const enterPasswordResetCode = () => {
   const [digit5, setDigit5] = useState("");
   const [digit6, setDigit6] = useState("");
 
-  /** hanldes enter password reset code submit button */
-  // const handleEnterPasswordResetCode = (e) => {
-  //   e.preventDefault();
+  /** handles enter password reset code submit button */
+  const handleEnterPasswordResetCode = () => {
+    navigate(NonAuthRoutes.resetPassword);
 
-  //   const passwordResetCode = `${digit1}${digit2}${digit3}${digit4}${digit5}${digit6}`;
-  //   onboarding.EnterPasswordResetCode(passwordResetCode).then((response) => {
-  //     if (response.status === 200) {
-  //       //
-  //     }
-  //   });
-  // };
+    const passwordResetCode = `${digit1}${digit2}${digit3}${digit4}${digit5}${digit6}`;
+    onboarding.EnterPasswordResetCode(passwordResetCode).then((response) => {
+      if (response.status === 200) {
+        //
+      }
+    });
+  };
 
   return (
     <div className="grid place-items-center h-screen bg-squazzle-background-grey-color py-70 max-[640px]:bg-white">
@@ -98,7 +98,7 @@ const enterPasswordResetCode = () => {
           <button
             type="submit"
             className="bg-squazzle-grey-text-color h-14 text-white text-xl rounded block w-full cursor-pointer mt-7"
-            onClick={() => navigate(NonAuthRoutes.resetPassword)}
+            onClick={() => handleEnterPasswordResetCode()}
           >
             Continue
           </button>
