@@ -24,6 +24,15 @@ function App() {
         >
           SIGN UP NOW!
         </button>
+
+        <button
+          type="button"
+          title="Login"
+          className="bg-blue-500 text-xl h-12 px-16 mt-4 rounded font-bold cursor-pointer"
+          onClick={() => navigate(NonAuthRoutes.login)}
+        >
+          LOGIN
+        </button>
       </header>
     </div>
   );

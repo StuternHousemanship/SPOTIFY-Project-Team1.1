@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { NonAuthRoutes } from "../url";
 
-function Dashboard() {
+function dashboard() {
   const navigate = useNavigate();
   const logout = () => {
     navigate(NonAuthRoutes.login);
@@ -23,4 +23,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default dashboard;
