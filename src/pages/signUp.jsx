@@ -321,7 +321,7 @@ const signUp = () => {
             <p className="text-squazzle-text-deep-grey1-color text-sm lg:text-base font-semibold mt-5">
               Already have an account?
               <span className="text-squazzle-button-bg-deep-green-color pl-[5px] cursor-pointer">
-                Sign in
+                <a href="/login">Sign in</a>
               </span>
             </p>
           </div>
