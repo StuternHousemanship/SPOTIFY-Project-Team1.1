@@ -49,7 +49,7 @@ const signUp = () => {
   });
 
   useEffect(() => {
-    // confirms over all password is valid
+    // confirms all criterias of password are met
     if (
       hasLowerCase &&
       hasUpperCase &&
@@ -102,7 +102,7 @@ const signUp = () => {
     }
   }, [confirmPassword]);
 
-  /** handles Validate Email text */
+  /** handles Validate Email input */
   const validateEmail = (userEmail) => {
     setEmail(userEmail);
     const regex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/;
@@ -113,7 +113,7 @@ const signUp = () => {
     }
   };
 
-  /** handles show Password text */
+  /** handles show and hide Password text */
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -123,7 +123,7 @@ const signUp = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  /** handles sign up */
+  /** handles Sign Up */
   const handleSignUp = () => {
     // e.preventDefault();
     // setButtonIsLoading(true);
@@ -320,9 +320,12 @@ const signUp = () => {
           <div className="grid place-items-center">
             <p className="text-squazzle-text-deep-grey1-color text-sm lg:text-base font-semibold mt-5">
               Already have an account?
-              <span className="text-squazzle-button-bg-deep-green-color pl-[5px] cursor-pointer">
+              <a
+                className="text-squazzle-button-bg-deep-green-color pl-[5px] cursor-pointer"
+                href={NonAuthRoutes.login}
+              >
                 Sign in
-              </span>
+              </a>
             </p>
           </div>
         </div>
