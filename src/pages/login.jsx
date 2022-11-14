@@ -234,7 +234,7 @@ const login = () => {
               </span>
               <button
                 type="button"
-                className="ml-2 w-fit text-squazzle-success-green-color cursor-pointer font-semibold text-lg"
+                className="ml-2 w-fit text-squazzle-success-green-color cursor-pointer font-semibold text-sm md:text-lg"
                 onClick={() => navigate(NonAuthRoutes.signUp)}
               >
                 Sign up
