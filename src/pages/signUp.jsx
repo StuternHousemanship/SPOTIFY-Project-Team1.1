@@ -320,9 +320,12 @@ const signUp = () => {
           <div className="grid place-items-center">
             <p className="text-squazzle-text-deep-grey1-color text-sm lg:text-base font-semibold mt-5">
               Already have an account?
-              <span className="text-squazzle-button-bg-deep-green-color pl-[5px] cursor-pointer">
+              <a
+                className="text-squazzle-button-bg-deep-green-color pl-[5px] cursor-pointer"
+                href={NonAuthRoutes.login}
+              >
                 Sign in
-              </span>
+              </a>
             </p>
           </div>
         </div>
