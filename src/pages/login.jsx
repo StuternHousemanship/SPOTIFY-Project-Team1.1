@@ -43,7 +43,7 @@ const login = () => {
   };
 
   return (
-    <main className="min-h-screen grid md:grid-cols-2 grid-cols-1">
+    <main className="min-h-screen grid md:grid-cols-2 grid-cols-1 font-sans">
       <section
         className="hidden md:block"
         style={{
@@ -82,7 +82,7 @@ const login = () => {
               Welcome back!
             </h1>
             <p className="font-normal text-sm md:text-xl">
-              We are thriled to see you.
+              We are thrilled to see you.
             </p>
           </header>
           <Formik
@@ -126,7 +126,7 @@ const login = () => {
                     name="email"
                     id="email"
                     placeholder="Email"
-                    className="border border-squazzle-grey-text-color w-full py-3 px-2 rounded"
+                    className="border border-squazzle-grey-text-color w-full py-3 px-2 rounded focus:outline-none hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color "
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -151,7 +151,8 @@ const login = () => {
                     name="password"
                     id="password"
                     placeholder="Password"
-                    className="border border-squazzle-grey-text-color w-full py-3 px-2 rounded"
+                    className="border border-squazzle-grey-text-color w-full py-3 px-2 rounded
+                    hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color "
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
@@ -187,7 +188,7 @@ const login = () => {
                     type="checkbox"
                     name="remember"
                     id="remember"
-                    className="mr-2 "
+                    className="border-squazzle-checkbox-border-color border-2 accent-squazzle-button-bg-deep-green-color w-[12px] h-[12px] mr-[6px] lg:w-[16px] lg:h-[16px] lg:mr-[11px] "
                   />
                   Remember me
                 </label>
