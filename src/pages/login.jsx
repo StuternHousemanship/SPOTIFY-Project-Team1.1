@@ -1,14 +1,12 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable import/no-cycle */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
 import Cookies from "js-cookie";
 import onboarding from "../api/onboarding";
 import { NonAuthRoutes, AuthRoutes } from "../url";
-import "../styles/Login.css";
+import { ReactComponent as PasswordShow } from "../assets/svg/password-eye-show-icon.svg";
+import { ReactComponent as PasswordHide } from "../assets/svg/password-eye-hide-icon.svg";
 import { ReactComponent as SquazzleDesktopLogo } from "../assets/svg/squazzle-desktop-logo.svg";
 import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
 import squazzleBackground from "../assets/img/squazzle-login-background.png";
@@ -17,18 +15,42 @@ const login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [eyeToggle, setEyeToggle] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(false);
 
-  const handleEyeToggle = () => {
-    setEyeToggle(!eyeToggle);
+  useEffect(() => {
+    // These logic clear error messages when page loads
+    if (email.length < 1) {
+      setIsEmailValid(true);
+    }
+  });
+
+  /** handles show and hide Password text */
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
-  const resetEye = () => {
-    if (eyeToggle) {
-      setEyeToggle(!eyeToggle);
+  /** handles Validate Email input */
+  const validateEmail = (userEmail) => {
+    setEmail(userEmail);
+    const regex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/;
+    if (regex.test(email)) {
+      setIsEmailValid(true);
+    } else {
+      setIsEmailValid(false);
     }
   };
 
+  /** displays email error text */
+  const displayEmailErrorText = () => {
+    return (
+      <p className="text-squazzle-text-error-red-color text-xs font-semibold mt-2">
+        Please enter a valid email address
+      </p>
+    );
+  };
+
+  /** handles login submit */
   const handleLogin = (e) => {
     e.preventDefault();
     // setButtonIsLoading(true);
@@ -38,6 +60,7 @@ const login = () => {
         const refreshToken = response.refresh_token;
         Cookies.set("accessToken", accessToken);
         localStorage.setItem("token", refreshToken);
+        navigate(AuthRoutes.dashboard);
       }
     });
   };
@@ -60,9 +83,9 @@ const login = () => {
           }}
         >
           <SquazzleDesktopLogo />
-          <div className="text-black mt-6">
+          <div className="text-squazzle-text-deep-grey2-color mt-6">
             <h1 className="text-4xl font-semibold">Welcome to Squazzle</h1>
-            <p className="text-xl font-normal mt-3">
+            <p className="text-squazzle-text-deep-grey2-color text-xl font-normal mt-3">
               Lets help you find a home you&apos;ll love
             </p>
           </div>
@@ -76,159 +99,114 @@ const login = () => {
 
         <hr className="block md:hidden" />
 
-        <div className="mt-8 md:mt-0 py-3 px-10 md:p-0">
+        <div className="mt-8 md:mt-16 py-3 px-10 md:p-0">
           <header>
-            <h1 className="font-bold text-base md:text-4xl text-squazzle-grey-text-color mb-4">
+            <h1 className="font-bold text-base md:text-4xl text-squazzle-grey-text-color mb-2">
               Welcome back!
             </h1>
-            <p className="font-normal text-sm md:text-xl">
+            <p className="font-normal text-squazzle-text-deep-grey1-color text-sm md:text-xl">
               We are thrilled to see you.
             </p>
           </header>
-          <Formik
-            initialValues={{ email: "", password: "" }}
-            validationSchema={Yup.object({
-              email: Yup.string()
-                .email("Invalid email address")
-                .required("Email is required"),
-
-              password: Yup.string()
-                .required("Password is required")
-                .min(8, "Password is too short. Minimum of 8 characters.")
-                .matches(
-                  /^.*(?=.{8,})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-                  "Password must contain at least one number, one uppercase, one lowercase letter."
-                ),
-            })}
-            onSubmit={(values, { resetForm }) => {
-              // eslint-disable-next-line
-              console.log(
-                `Email:${values.email}, Password: ${values.password}`
-              );
-              resetForm({ values: "" });
-
-              // reset-eye
-              resetEye();
-            }}
-          >
-            <Form
-              onSubmit={() => handleLogin()}
-              className="flex flex-col my-8 gap-4"
-            >
-              <section className="">
-                <label htmlFor="email">
-                  <span className="text-sm font-semibold">Email Address</span>
-                  <span className="text-squazzle-text-error-red-color ml-[3px]">
+          <form className="mt-8" onSubmit={() => handleLogin()}>
+            <div>
+              <label htmlFor="email">
+                <span className="text-squazzle-text-deep-grey1-color text-sm font-[600]">
+                  Email Address
+                  <span className="text-squazzle-text-error-red-color pl-[5px]">
                     *
                   </span>
-                  <Field
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Email"
-                    className="border border-squazzle-grey-text-color w-full py-3 px-2 rounded focus:outline-none hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color "
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <ErrorMessage name="email">
-                    {(msg) => (
-                      <div className="text-squazzle-text-error-red-color text-sm">
-                        &#x2757;{msg}
-                      </div>
-                    )}
-                  </ErrorMessage>
-                </label>
-              </section>
-
-              <section className="relative">
-                <label htmlFor="password">
-                  <span className="text-sm font-semibold">Password</span>
-                  <span className="text-squazzle-text-error-red-color ml-[3px]">
+                </span>
+                <input
+                  id="email"
+                  type="text"
+                  value={email}
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                  placeholder="Email"
+                  className="block border bg-white border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm  lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
+                  onChange={(e) => validateEmail(e.target.value)}
+                />
+              </label>
+            </div>
+            {isEmailValid ? null : displayEmailErrorText()}
+            <div className="mt-6">
+              <label htmlFor="password" className="relative block">
+                <span className="text-squazzle-text-deep-grey1-color text-sm font-[600]">
+                  Password
+                  <span className="text-squazzle-text-error-red-color pl-[5px]">
                     *
                   </span>
-                  <Field
-                    type={eyeToggle ? "text" : "password"}
-                    name="password"
-                    id="password"
-                    placeholder="Password"
-                    className="border border-squazzle-grey-text-color w-full py-3 px-2 rounded
-                    hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color "
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                </span>
+                <input
+                  id="password"
+                  value={password}
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  className="block border bg-white border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                {showPassword ? (
+                  <PasswordShow
+                    className="absolute top-[49px] right-5"
+                    onClick={() => handleShowPassword()}
                   />
-                  <ErrorMessage name="password">
-                    {(msg) => (
-                      <div className="text-squazzle-text-error-red-color text-sm">
-                        &#x2757;{msg}
-                      </div>
-                    )}
-                  </ErrorMessage>
-                  <div id="password-toggle" className="absolute right-5 top-10">
-                    <FontAwesomeIcon
-                      icon={faEye}
-                      className={eyeToggle ? "eye-active" : "eye"}
-                      onClick={handleEyeToggle}
-                    />
-
-                    <FontAwesomeIcon
-                      icon={faEyeSlash}
-                      className={eyeToggle ? "eye-slash-active" : "eye-slash"}
-                      onClick={handleEyeToggle}
-                    />
-                  </div>
-                </label>
-              </section>
-
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="remember"
-                  className="text-squazzle-password-light-grey-color text-sm md:text-lg font-normal"
-                >
-                  <input
-                    type="checkbox"
-                    name="remember"
-                    id="remember"
-                    className="border-squazzle-checkbox-border-color border-2 accent-squazzle-button-bg-deep-green-color w-[12px] h-[12px] mr-[6px] lg:w-[16px] lg:h-[16px] lg:mr-[11px] "
+                ) : (
+                  <PasswordHide
+                    className="absolute top-[49px] right-5"
+                    onClick={() => handleShowPassword()}
                   />
-                  Remember me
-                </label>
-
-                <button
-                  type="button"
-                  className="underline text-sm md:text-lg text-squazzle-success-green-color font-normal"
-                  onClick={() => navigate(NonAuthRoutes.forgotPassword)}
-                >
-                  Forgot Password
-                </button>
-              </div>
-
-              <button
-                type="submit"
-                className="hidden md:block bg-squazzle-button-bg-deep-green-color w-full py-3 text-squazzle-white-background-color rounded-md font-bold text-lg"
-                onClick={() => navigate(AuthRoutes.dashboard)}
+                )}
+              </label>
+            </div>
+            <div className="flex items-center justify-between mt-2">
+              <label
+                htmlFor="remember"
+                className="text-squazzle-password-light-grey-color text-sm md:text-lg font-normal"
               >
-                Sign in
-              </button>
-
-              <button
-                type="submit"
-                className="block md:hidden bg-squazzle-button-bg-deep-green-color w-full py-3 text-squazzle-white-background-color rounded-md font-bold text-sm"
-                onClick={() => navigate(AuthRoutes.dashboard)}
-              >
-                Continue
-              </button>
+                <input
+                  type="checkbox"
+                  name="remember"
+                  id="remember"
+                  className="border-squazzle-checkbox-border-color border-2 accent-squazzle-button-bg-deep-green-color w-[12px] h-[12px] mr-[6px] lg:w-[16px] lg:h-[16px] lg:mr-[11px] "
+                />
+                Remember me
+              </label>
 
               <button
                 type="button"
-                className="bg-squazzle-background-white-color font-bold text-sm md:text-lg w-full py-3 rounded-md text-squazzle-button-bg-deep-green-color border-2 border-squazzle-button-bg-deep-green-color"
-                onClick={() => navigate(NonAuthRoutes.landingPage)}
+                className="text-sm md:text-lg text-squazzle-success-green-color font-normal"
+                onClick={() => navigate(NonAuthRoutes.forgotPassword)}
               >
-                Cancel
+                Forgot Password
               </button>
-            </Form>
-          </Formik>
+            </div>
+          </form>
 
-          <div className="flex justify-center">
+          <button
+            type="submit"
+            className="hidden md:block bg-squazzle-button-bg-deep-green-color w-full py-4 text-squazzle-white-background-color rounded-md font-bold text-lg mt-12 mb-6"
+            onClick={() => navigate(AuthRoutes.dashboard)}
+          >
+            Sign in
+          </button>
+
+          <button
+            type="submit"
+            className="block md:hidden bg-squazzle-button-bg-deep-green-color w-full py-4 text-squazzle-white-background-color rounded-xl font-bold text-sm mt-8 mb-4"
+            onClick={() => handleLogin()}
+          >
+            Continue
+          </button>
+
+          <button
+            type="button"
+            className="bg-squazzle-background-white-color font-bold text-sm md:text-lg w-full py-4 rounded-xl text-squazzle-button-bg-deep-green-color border-2 border-squazzle-button-bg-deep-green-color"
+            onClick={() => navigate(NonAuthRoutes.landingPage)}
+          >
+            Cancel
+          </button>
+          <div className="flex justify-center mt-8">
             <p>
               <span className="font-semibold text-sm md:text-lg">
                 New to squazzle account?

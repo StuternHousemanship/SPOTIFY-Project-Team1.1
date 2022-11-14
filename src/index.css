@@ -27,3 +27,19 @@ code {
         transform: rotate(360deg);
     }
 }
+
+select {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.select-wrapper {
+    position: relative;
+    display: block;
+}
+
+.arrow-down {
+    position: absolute;
+    top: 33px;
+    left: 60px;
+}

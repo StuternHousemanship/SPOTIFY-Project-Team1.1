@@ -3,17 +3,17 @@ import { squazzleOnboarding } from "../config";
 
 export default {
   /** Send a POST request to Sign Up Users */
-  async SignUp(firstName, lastName, email, phoneNumber, password) {
+  async SignUp(email, firstName, lastName, phoneNumber, password) {
     const data = {
+      email,
       firstName,
       lastName,
-      email,
       phoneNumber,
       password,
     };
     const stringifiedData = JSON.stringify(data);
 
-    return squazzleOnboarding.post("/users/signUp", stringifiedData);
+    return squazzleOnboarding.post("/signUp", stringifiedData);
   },
 
   /** Send a POST request to Login Users */
@@ -24,7 +24,7 @@ export default {
     };
     const stringifiedData = JSON.stringify(data);
 
-    return squazzleOnboarding.post("/users/login", stringifiedData);
+    return squazzleOnboarding.post("/signIn", stringifiedData);
   },
 
   /** Send a POST request to verify users email verification code */

@@ -10,7 +10,6 @@ import TokenValidate from "./tokenvalidate";
 
 /** Base Url for Images STAGING */
 const apiUrl = "https://squazzle.beargaze.com/api";
-// const megalectricsImageUrl = "https://deliverycog.beargaze.com/";
 
 /** creating an Axios Base Url for all Onboarding Request */
 const squazzleOnboarding = axios.create({
@@ -26,7 +25,7 @@ const squazzleApi = axios.create({
 });
 squazzleApi.interceptors.request.use(
   async (config) => {
-    if (config.url.includes("/login")) return config;
+    if (config.url.includes("/signIn")) return config;
     if (config.url.includes("/refresh-token")) return config;
 
     TokenValidate();

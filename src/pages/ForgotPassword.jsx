@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import * as Yup from "yup";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+// import * as Yup from "yup";
+// import { Formik, Field, Form, ErrorMessage } from "formik";
 import { NonAuthRoutes } from "../url";
 
 function forgotPassword() {
@@ -16,7 +16,7 @@ function forgotPassword() {
           </h1>
         </header>
 
-        <Formik
+        {/* <Formik
           initialValues={{ email: "" }}
           validationSchema={Yup.object({
             email: Yup.string()
@@ -54,7 +54,7 @@ function forgotPassword() {
               Continue
             </button>
           </Form>
-        </Formik>
+        </Formik> */}
         <div className="flex justify-center">
           <button
             type="button"
