@@ -24,6 +24,9 @@ const AlertResetPassword = React.lazy(() =>
   import("./pages/alertResetPassword")
 );
 const Dashboard = React.lazy(() => import("./pages/dashboard"));
+const EmailVerificationSuccess = React.lazy(() =>
+  import("./pages/emailVerificationSuccess")
+);
 
 function Routers() {
   return (
@@ -63,6 +66,10 @@ function Routers() {
           <Route
             path={NonAuthRoutes.enterPasswordResetCode}
             element={<EnterPasswordResetCode />}
+          />{" "}
+          <Route
+            path={NonAuthRoutes.emailVerificationSuccess}
+            element={<EmailVerificationSuccess />}
           />{" "}
           <Route path={AuthRoutes.dashboard} element={<Dashboard />} />{" "}
         </Routes>{" "}
