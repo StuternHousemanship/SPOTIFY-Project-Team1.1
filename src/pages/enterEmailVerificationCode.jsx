@@ -1,13 +1,13 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable react/function-component-definition */
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
-// import { NonAuthRoutes } from "../url";
+import { NonAuthRoutes } from "../url";
 import onboarding from "../api/onboarding";
 
 const enterEmailVerificationCode = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [digit1, setDigit1] = useState("");
   const [digit2, setDigit2] = useState("");
@@ -18,6 +18,8 @@ const enterEmailVerificationCode = () => {
 
   /** handles enter password reset code submit button */
   const handleEnterEmailVerificationCode = () => {
+    navigate(NonAuthRoutes.emailVerificationSuccess);
+
     const emailVerificationCode = `${digit1}${digit2}${digit3}${digit4}${digit5}${digit6}`;
     onboarding
       .EnterEmailVerificationCode(emailVerificationCode)
@@ -51,12 +53,12 @@ const enterEmailVerificationCode = () => {
         </p>
         <form className="grid place-items-center">
           <label htmlFor="6-digit-code">
-            <div className="flex gap-4">
+            <div className="flex gap-2 md:gap-4 lg:gap-4 ">
               <input
                 type="text"
                 id="digit-1"
                 value={digit1}
-                className="w-[60px] h-[60px] font-[600] items-center border text-squazzle-text-deep-grey1-color border-squazzle-border-grey-color text-center focus:outline-none"
+                className="w-[38px] h-[38px] md:w-[60px] md:h-[60px] lg:w-[60px] lg:h-[60px] text-sm md:text-lg lg:text-lg  font-[600] items-center border text-squazzle-text-deep-grey1-color border-squazzle-border-grey-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
                 onChange={(e) => setDigit1(e.target.value)}
               />
@@ -64,7 +66,7 @@ const enterEmailVerificationCode = () => {
                 type="text"
                 id="digit-2"
                 value={digit2}
-                className="w-[60px] h-[60px] text-lg font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color text-center focus:outline-none"
+                className="w-[38px] h-[38px] md:w-[60px] md:h-[60px] lg:w-[60px] lg:h-[60px] text-sm md:text-lg lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
                 onChange={(e) => setDigit2(e.target.value)}
               />
@@ -72,7 +74,7 @@ const enterEmailVerificationCode = () => {
                 type="text"
                 id="digit-3"
                 value={digit3}
-                className="w-[60px] h-[60px] text-lg font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color text-center focus:outline-none"
+                className="w-[38px] h-[38px] md:w-[60px] md:h-[60px] lg:w-[60px] lg:h-[60px] text-sm md:text-lg lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
                 onChange={(e) => setDigit3(e.target.value)}
               />
@@ -80,7 +82,7 @@ const enterEmailVerificationCode = () => {
                 type="text"
                 id="digit-4"
                 value={digit4}
-                className="w-[60px] h-[60px] text-lg font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color text-center focus:outline-none"
+                className="w-[38px] h-[38px] md:w-[60px] md:h-[60px] lg:w-[60px] lg:h-[60px] text-sm md:text-lg lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
                 onChange={(e) => setDigit4(e.target.value)}
               />
@@ -88,7 +90,7 @@ const enterEmailVerificationCode = () => {
                 type="text"
                 id="digit-5"
                 value={digit5}
-                className="w-[60px] h-[60px] text-lg font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color text-center focus:outline-none"
+                className="w-[38px] h-[38px] md:w-[60px] md:h-[60px] lg:w-[60px] lg:h-[60px] text-sm md:text-lg lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
                 onChange={(e) => setDigit5(e.target.value)}
               />
@@ -96,7 +98,7 @@ const enterEmailVerificationCode = () => {
                 type="text"
                 id="digit-6"
                 value={digit6}
-                className="w-[60px] h-[60px] text-lg font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color text-center focus:outline-none"
+                className="w-[38px] h-[38px] md:w-[60px] md:h-[60px] lg:w-[60px] lg:h-[60px] text-sm md:text-lg lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
                 onChange={(e) => setDigit6(e.target.value)}
               />

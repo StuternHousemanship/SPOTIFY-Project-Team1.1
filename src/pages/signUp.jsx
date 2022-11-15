@@ -5,15 +5,15 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as PasswordShow } from "../../assets/svg/password-eye-show-icon.svg";
-import { ReactComponent as PasswordHide } from "../../assets/svg/password-eye-hide-icon.svg";
-import { ReactComponent as SquazzleDesktopLogo } from "../../assets/svg/squazzle-desktop-logo.svg";
-import { ReactComponent as SquazzleMobileLogo } from "../../assets/svg/squazzle-mobile-logo.svg";
-import { ReactComponent as MobileReturnButton } from "../../assets/svg/return-button.svg";
-import CountryDropDown from "./countryCodeDropDown";
-import onboarding from "../../api/onboarding";
-import { NonAuthRoutes } from "../../url";
-import backgroundimage from "../../assets/img/squazzle-background.png";
+import { ReactComponent as PasswordShow } from "../assets/svg/password-eye-show-icon.svg";
+import { ReactComponent as PasswordHide } from "../assets/svg/password-eye-hide-icon.svg";
+import { ReactComponent as SquazzleDesktopLogo } from "../assets/svg/squazzle-desktop-logo.svg";
+import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
+import { ReactComponent as MobileReturnButton } from "../assets/svg/return-button.svg";
+import { ReactComponent as ArrowDownIcon } from "../assets/svg/arrow-down-icon.svg";
+import onboarding from "../api/onboarding";
+import { NonAuthRoutes } from "../url";
+import backgroundimage from "../assets/img/squazzle-background.png";
 
 const signUp = () => {
   const navigate = useNavigate();
@@ -127,7 +127,7 @@ const signUp = () => {
   const handleSignUp = () => {
     // e.preventDefault();
     // setButtonIsLoading(true);
-    navigate(NonAuthRoutes.verifyEmail);
+    navigate(NonAuthRoutes.enterEmailVerificationCode);
     onboarding
       .SignUp(email, firstName, lastName, phoneNumber, password)
       .then((response) => {
@@ -278,7 +278,20 @@ const signUp = () => {
                 </span>
               </span>
               <div className="flex">
-                <CountryDropDown />
+                <div className="select-wrapper">
+                  <ArrowDownIcon className="arrow-down" />
+                  <select
+                    name="country-code"
+                    id="country-code"
+                    className="w-[90px] pl-3 border border-y-squazzle-border-grey-color border-l-squazzle-border-grey-color border-r-white text-squazzle-placeholder-grey-color text-sm  lg:text-lg font-[400] rounded-tl-lg rounded-bl-lg h-[62px] mt-[6px] w-focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
+                  >
+                    <option value="234">+234</option>
+                    <option value="213">+213</option>
+                    <option value="256">+256</option>
+                    <option value="260">+260</option>
+                    <option value="263">+263</option>
+                  </select>
+                </div>
                 <input
                   id="phone-number"
                   type="tel"
