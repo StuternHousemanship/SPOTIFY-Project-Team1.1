@@ -7,9 +7,9 @@ const verifyEmail = () => {
   const navigate = useNavigate();
 
   /** handles email verification */
-  const handleVerifyEmail = (e) => {
+  const handleVerifyEmail = () => {
     navigate(NonAuthRoutes.enterEmailVerificationCode);
-    e.preventDefault();
+    // e.preventDefault();
   };
 
   return (
@@ -43,8 +43,8 @@ const verifyEmail = () => {
       {/* Mobile */}
       <div className="md:hidden lg:hidden">
         <div className="min-h-screen flex items-center justify-center">
-          <div className="bg-squazzle-white-background-color max-h-[329px] max-w-[457.45px] flex flex-col py-12 px-10">
-            <p className="font-bold text-2xl squazzle-grey-text-color mb-10 ">
+          <div className="bg-squazzle-white-background-color max-h-[329px] max-w-[457.45px] flex flex-col py-10 px-10">
+            <p className="font-[600] text-4xl text-squazzle-text-deep-grey2-color mb-10 ">
               Verify your email
             </p>
             <p className="font-normal text=[16px] leading-5 text-[#000000] max-h-[38px] max-w-[349px] mb-14">

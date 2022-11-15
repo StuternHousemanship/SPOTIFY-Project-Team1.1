@@ -37,7 +37,7 @@ const enterPasswordResetCode = () => {
           Reset password
         </h2>
         <p className="mb-6 text-xl max-w-[400px] text-squazzle-grey-text-color">
-          Change your email password by using the code received via email
+          Change your password by using the code received via email
         </p>
         <form>
           <label htmlFor="6-digit-code">

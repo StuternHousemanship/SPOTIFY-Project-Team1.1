@@ -10,7 +10,7 @@ const SignUp = React.lazy(() => import("./pages/signUp/signUp"));
 const Login = React.lazy(() => import("./pages/login"));
 const VerifyEmail = React.lazy(() => import("./pages/verifyEmail"));
 const EnterEmailVerificationCode = React.lazy(() =>
-  import("./pages/enterPasswordResetCode")
+  import("./pages/enterEmailVerificationCode")
 );
 const EnterPasswordResetCode = React.lazy(() =>
   import("./pages/enterPasswordResetCode")
