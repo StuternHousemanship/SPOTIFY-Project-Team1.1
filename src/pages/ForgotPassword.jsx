@@ -1,11 +1,9 @@
 /* eslint-disable import/no-cycle */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import * as Yup from "yup";
-// import { Formik, Field, Form, ErrorMessage } from "formik";
+import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
 import { NonAuthRoutes } from "../url";
 import mail from "../assets/img/mail.png";
-import desktop from "../assets/img/desktop.png";
 import onboarding from "../api/onboarding";
 
 function forgotPassword() {
@@ -48,17 +46,17 @@ function forgotPassword() {
   };
 
   return (
-    <div>
-      <img src={desktop} className="App-logo h-9" alt="logo" />
+    <div className="font-sans">
+      <SquazzleMobileLogo className="h-8 md:h-14 lg:h-14 w-[146.33px] md:w-[222.22px] lg:w-[222.33px] my-2 md:my-5 lg:my-5 ml-5 md:ml-[86px] lg:ml-[86px]" />
 
-      <main className="min-h-screen flex items-center justify-center bg-squazzle-background-white-color rounded-xl">
-        <div className="flex flex-col w-full max-w-[620px] py-8 px-20 bg-white">
-          <header>
+      <main className="min-h-screen flex justify-center bg-white md:bg-squazzle-background-white-color rounded-xl">
+        <div className="flex flex-col max-w-[620px] py-0 px-5 md:px-10 lg:px-10 bg-white">
+          <header className="grid place-items-center ">
             <img src={mail} alt="mail" className="h-12 justify-items-center" />
-            <h1 className="font-bold text-4xl text-center text-squazzle-grey-text-color">
-              Forgot Password
+            <h1 className="font-bold text-2xl md:text-4xl lg:text-4xl text-center text-squazzle-grey-text-color mt-8">
+              Forgot Password?
             </h1>
-            <h3 className="text-sm md:text-lg py-4 text-center text-squazzle-grey-text-color">
+            <h3 className="text-sm md:text-lg lg:text-lg py-4 text-center text-squazzle-grey-text-color mt-4 md:mt-[24px] lg:mt-[24px]">
               Enter your registered email address below to recieve password
               reset instructions.
             </h3>
@@ -69,9 +67,6 @@ function forgotPassword() {
               <label htmlFor="email">
                 <span className="text-squazzle-text-deep-grey1-color text-sm font-[600]">
                   Email Address
-                  <span className="text-squazzle-text-error-red-color pl-[5px]">
-                    *
-                  </span>
                 </span>
                 <input
                   id="email"
@@ -89,7 +84,7 @@ function forgotPassword() {
 
           <button
             type="submit"
-            className="hidden md:block bg-squazzle-button-bg-deep-green-color w-full py-4 text-squazzle-white-background-color rounded-xl font-bold text-lg mt-12 mb-6"
+            className="hidden md:block bg-squazzle-button-bg-deep-green-color w-full py-4 text-squazzle-white-background-color rounded-xl font-bold text-lg mt-8 md:mt-12 lg:mt-12 mb-6"
             onClick={() => handleGetCode()}
           >
             Get code
@@ -105,51 +100,11 @@ function forgotPassword() {
 
           <button
             type="button"
-            className="bg-squazzle-background-white-color font-bold text-sm md:text-lg w-full py-4 rounded-xl text-squazzle-button-bg-deep-green-color border-2 border-squazzle-button-bg-deep-green-color"
+            className="bg-squazzle-background-white-color font-bold text-sm md:text-lg w-full py-4 rounded-xl text-squazzle-button-bg-deep-green-color border-2 border-squazzle-button-bg-deep-green-color mb-5"
             onClick={() => navigate(NonAuthRoutes.dashboard)}
           >
             Cancel
           </button>
-
-          {/* <Formik
-          initialValues={{ email: "" }}
-          validationSchema={Yup.object({
-            email: Yup.string()
-              .email("Invalid email address")
-              .required("Email is required"),
-          })}
-          onSubmit={(values, { resetForm }) => {
-            // eslint-disable-next-line
-            console.log(`Email:${values.email}`);
-            resetForm({ values: "" });
-          }}
-        >
-          <Form className="flex flex-col my-8 gap-4">
-            <section className="">
-              <label htmlFor="email" className="text-base font-normal">
-                <span>Email</span>
-                <Field
-                  type="email"
-                  name="email"
-                  id="email"
-                  className="border border-squazzle-grey-text-color w-full py-3 px-2 rounded"
-                />
-                <ErrorMessage name="email">
-                  {(msg) => (
-                    <div className="text-red-700 text-sm">&#x2757;{msg}</div>
-                  )}
-                </ErrorMessage>
-              </label>
-            </section>
-            <button
-              type="submit"
-              className="bg-squazzle-grey-text-color  w-full py-3 text-squazzle-white-background-color "
-              onClick={() => navigate(NonAuthRoutes.alertForgotPassword)}
-            >
-              Continue
-            </button>
-          </Form>
-        </Formik> */}
         </div>
       </main>
     </div>
