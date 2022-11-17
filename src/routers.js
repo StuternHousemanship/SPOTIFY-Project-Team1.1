@@ -8,14 +8,14 @@ import { ReactComponent as LoadingIcon } from "./assets/svg/loading-icon.svg";
 const LandingPage = React.lazy(() => import("./pages/landingPage"));
 const SignUp = React.lazy(() => import("./pages/signUp/signUp"));
 const Login = React.lazy(() => import("./pages/login"));
-const VerifyEmail = React.lazy(() => import("./pages/verifyEmail"));
+const VerifyEmail = React.lazy(() => import("./pages/VerifyEmail"));
 const EnterEmailVerificationCode = React.lazy(() =>
   import("./pages/enterPasswordResetCode")
 );
 const EnterPasswordResetCode = React.lazy(() =>
   import("./pages/enterPasswordResetCode")
 );
-const ForgotPassword = React.lazy(() => import("./pages/forgotPassword"));
+const ForgotPassword = React.lazy(() => import("./pages/ForgotPassword"));
 const AlertForgotPassword = React.lazy(() =>
   import("./pages/alertForgotPassword")
 );
@@ -23,7 +23,7 @@ const ResetPassword = React.lazy(() => import("./pages/resetPassword"));
 const AlertResetPassword = React.lazy(() =>
   import("./pages/alertResetPassword")
 );
-const Dashboard = React.lazy(() => import("./pages/dashboard"));
+const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 
 function Routers() {
   return (

@@ -52,4 +52,14 @@ export default {
 
     return squazzleOnboarding.patch("/resetPassword", stringifiedData);
   },
+
+  /** Send a POST request to verify users password reset code */
+  async passwordCode(email) {
+    const data = {
+      email,
+    };
+    const stringifiedData = JSON.stringify(data);
+
+    return squazzleOnboarding.patch("/forgotPassword", stringifiedData);
+  },
 };

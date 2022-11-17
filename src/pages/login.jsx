@@ -185,7 +185,7 @@ const login = () => {
 
           <button
             type="submit"
-            className="hidden md:block bg-squazzle-button-bg-deep-green-color w-full py-4 text-squazzle-white-background-color rounded-md font-bold text-lg mt-12 mb-6"
+            className="hidden md:block bg-squazzle-button-bg-deep-green-color w-full py-2 text-squazzle-white-background-color rounded-md font-bold text-lg mt-12 mb-6"
             onClick={() => navigate(AuthRoutes.dashboard)}
           >
             Sign in
