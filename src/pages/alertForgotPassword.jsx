@@ -1,8 +1,20 @@
+/* eslint-disable import/no-cycle */
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { NonAuthRoutes } from "../url";
 import desktop from "../assets/img/desktop.png";
 import mail from "../assets/img/mail.png";
+import onboarding from "../api/onboarding";
+
+const handleGetCode = () => {
+  // eslint-disable-next-line no-undef
+  onboarding.passwordCode(email).then((response) => {
+    if (response.status === 200) {
+      // eslint-disable-next-line no-undef
+      navigate(NonAuthRoutes.alertForgotPassword);
+    }
+  });
+};
 
 function alertForgotPassword() {
   const navigate = useNavigate();
@@ -29,7 +41,7 @@ function alertForgotPassword() {
           <button
             type="submit"
             className="hidden md:block bg-squazzle-button-bg-deep-green-color w-full py-4 text-squazzle-white-background-color rounded-md font-bold text-lg mt-12 mb-6"
-            onClick={() => navigate(NonAuthRoutes.alertForgotPassword)}
+            onClick={() => navigate(NonAuthRoutes.enterPasswordResetCode)}
           >
             Get a reset link
           </button>
@@ -45,7 +57,7 @@ function alertForgotPassword() {
           <button
             type="button"
             className="bg-squazzle-background-white-color font-bold text-sm md:text-lg w-full py-4 rounded-xl text-squazzle-button-bg-deep-green-color border-2 border-squazzle-button-bg-deep-green-color"
-            onClick={() => navigate(NonAuthRoutes.dashboard)}
+            onClick={() => handleGetCode()}
           >
             Resend link
           </button>
