@@ -2,6 +2,7 @@
 /* eslint-disable react/function-component-definition */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
 import { NonAuthRoutes } from "../url";
 import onboarding from "../api/onboarding";
 
@@ -28,28 +29,34 @@ const enterPasswordResetCode = () => {
   };
 
   return (
-    <div className="grid place-items-center h-screen bg-squazzle-background-grey-color py-70 max-[640px]:bg-white">
+    <div className="font-sans grid place-items-center h-screen bg-squazzle-background-white-color py-70 max-[640px]:bg-white">
+      <nav
+        className="bg-white fixed top-0 right-0 left-0 py-2 pl-5 md:py-5 md:pl-[86px] lg:py-5 lg:pl-[86px]"
+        style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
+      >
+        <SquazzleMobileLogo className="h-8 w-[146.33px] md:h-14 md:w-[222.33px] lg:h-14 lg:w-[222.33px]" />
+      </nav>
       <div
-        className="w-[610px] py-12 px-20 box-border bg-white max-[640px]:px-10"
+        className="w-[610px] mt-12 py-[44px] px-20 box-border bg-white max-[640px]:px-10 text-center"
         style={{ width: "min(100vw, 609px)" }}
       >
-        <h2 className="text-4xl font-bold text-squazzle-grey-text-color mb-10">
-          Reset password
+        <h2 className="text-2xl md:text-4xl lg:text-4xl font-bold text-squazzle-grey-text-color mb-7">
+          Password Reset
         </h2>
-        <p className="mb-6 text-xl max-w-[400px] text-squazzle-grey-text-color">
-          Change your email password by using the code received via email
+        <p className="font-normal text-sm md:text-lg lg:text-lg  text-squazzle-text-deep-grey1-color">
+          Please enter the 6-digit code sent to
         </p>
-        <form>
+        <p className="font-normal text-sm md:text-lg lg:text-lg text-squazzle-button-bg-deep-green-color mb-[26px]">
+          zhara@gmail.com
+        </p>
+        <form className="grid place-items-center">
           <label htmlFor="6-digit-code">
-            <span className="text-xl text-squazzle-grey-text-color">
-              Enter 6-digit code
-            </span>
-            <div className="flex gap-4 mt-5">
+            <div className="flex gap-2 md:gap-4 lg:gap-4 ">
               <input
                 type="text"
                 id="digit-1"
                 value={digit1}
-                className="w-14 h-14 text-xl items-center border border-squazzle-grey-text-color rounded p-[7px] text-center focus:outline-none"
+                className="w-[38px] h-[38px] md:w-[60px] md:h-[60px] lg:w-[60px] lg:h-[60px] text-sm md:text-lg lg:text-lg  font-[600] items-center border text-squazzle-text-deep-grey1-color border-squazzle-border-grey-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
                 onChange={(e) => setDigit1(e.target.value)}
               />
@@ -57,7 +64,7 @@ const enterPasswordResetCode = () => {
                 type="text"
                 id="digit-2"
                 value={digit2}
-                className="w-14 h-14 text-xl items-center border border-squazzle-grey-text-color rounded p-[7px] text-center focus:outline-none"
+                className="w-[38px] h-[38px] md:w-[60px] md:h-[60px] lg:w-[60px] lg:h-[60px] text-sm md:text-lg lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
                 onChange={(e) => setDigit2(e.target.value)}
               />
@@ -65,7 +72,7 @@ const enterPasswordResetCode = () => {
                 type="text"
                 id="digit-3"
                 value={digit3}
-                className="w-14 h-14 text-xl items-center border border-squazzle-grey-text-color rounded p-[7px] text-center focus:outline-none"
+                className="w-[38px] h-[38px] md:w-[60px] md:h-[60px] lg:w-[60px] lg:h-[60px] text-sm md:text-lg lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
                 onChange={(e) => setDigit3(e.target.value)}
               />
@@ -73,7 +80,7 @@ const enterPasswordResetCode = () => {
                 type="text"
                 id="digit-4"
                 value={digit4}
-                className="w-14 h-14 text-xl items-center border border-squazzle-grey-text-color rounded p-[7px] text-center focus:outline-none"
+                className="w-[38px] h-[38px] md:w-[60px] md:h-[60px] lg:w-[60px] lg:h-[60px] text-sm md:text-lg lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
                 onChange={(e) => setDigit4(e.target.value)}
               />
@@ -81,7 +88,7 @@ const enterPasswordResetCode = () => {
                 type="text"
                 id="digit-5"
                 value={digit5}
-                className="w-14 h-14 text-xl items-center border border-squazzle-grey-text-color rounded p-[7px] text-center focus:outline-none"
+                className="w-[38px] h-[38px] md:w-[60px] md:h-[60px] lg:w-[60px] lg:h-[60px] text-sm md:text-lg lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
                 onChange={(e) => setDigit5(e.target.value)}
               />
@@ -89,7 +96,7 @@ const enterPasswordResetCode = () => {
                 type="text"
                 id="digit-6"
                 value={digit6}
-                className="w-14 h-14 text-xl items-center border border-squazzle-grey-text-color rounded p-[7px] text-center focus:outline-none"
+                className="w-[38px] h-[38px] md:w-[60px] md:h-[60px] lg:w-[60px] lg:h-[60px] text-sm md:text-lg lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
                 onChange={(e) => setDigit6(e.target.value)}
               />
@@ -97,7 +104,7 @@ const enterPasswordResetCode = () => {
           </label>
           <button
             type="submit"
-            className="bg-squazzle-grey-text-color h-14 text-white text-xl rounded block w-full cursor-pointer mt-7"
+            className="bg-squazzle-button-bg-light-green-color h-12 w-[350px] md:h-16 md:w-[420px] lg:h-16 lg:w-[420px] text-squazzle-button-font-deep-green-color text-sm md:text-xl lg:text-xl font-bold rounded-xl block cursor-pointer mt-[46px]"
             onClick={() => handleEnterPasswordResetCode()}
           >
             Continue
@@ -106,10 +113,9 @@ const enterPasswordResetCode = () => {
         <div className="flex justify-center">
           <button
             type="button"
-            className="bg-white text-base py-0 text-squazzle-grey-text-color border-b border-squazzle-grey-text-color cursor-pointer mt-6"
-            onClick={() => navigate(NonAuthRoutes.login)}
+            className="bg-white text-sm md:text-xl lg:text-xl font-bold py-0 text-squazzle-button-font-deep-green-color cursor-pointer mt-[44px]"
           >
-            Back to Login
+            Resend code
           </button>
         </div>
       </div>
