@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { NonAuthRoutes } from "../url";
 import logo from "../logo.svg";
@@ -6,6 +6,16 @@ import "../App.css";
 
 function App() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const ac = new AbortController();
+
+    navigate(NonAuthRoutes.login);
+
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
 
   return (
     <div className="App">
