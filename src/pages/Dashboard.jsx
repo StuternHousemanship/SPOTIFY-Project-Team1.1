@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { NonAuthRoutes } from "../url";
 import { ReactComponent as SquazzleDesktopGreenLogo } from "../assets/svg/squazzle-desktop-green-logo.svg";
 import { ReactComponent as BellIcon } from "../assets/svg/bell-icon.svg";
-import { ReactComponent as UserIcon } from "../assets/svg/user-icon.svg";
+import { ReactComponent as UserIcon } from "../assets/svg/profile-icon.svg";
 
 function dashboard() {
   const navigate = useNavigate();
@@ -52,16 +52,16 @@ function dashboard() {
       </nav>
       <ul className={profileCard ? "profile-card-active" : "profile-card"}>
         <li>
-          <Link to="/account">Manage Account</Link>
+          <Link to="/account"> Manage Account </Link>
         </li>
         <li>
-          <Link to="/settings">Settings</Link>
+          <Link to="/settings"> Settings </Link>
         </li>
         <li>
-          <Link to="/wishlists">Wishlist</Link>
+          <Link to="/wishlists"> Wishlist </Link>
         </li>
         <li>
-          <Link to="/help">Help</Link>
+          <Link to="/help"> Help </Link>
         </li>
         <li className="w-full">
           <hr className="border border-squazzle-border-grey-color" />
