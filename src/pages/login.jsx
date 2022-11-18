@@ -33,7 +33,9 @@ const login = () => {
   /** handles Validate Email input */
   const validateEmail = (userEmail) => {
     setEmail(userEmail);
-    const regex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/;
+    // const regex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/;
+    const regex =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,4}))$/;
     if (regex.test(email)) {
       setIsEmailValid(true);
     } else {
@@ -119,16 +121,17 @@ const login = () => {
                 </span>
                 <input
                   id="email"
-                  type="text"
+                  type="email"
                   value={email}
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                  // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                   placeholder="Email"
                   className="block border bg-white border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm  lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                   onChange={(e) => validateEmail(e.target.value)}
+                  onKeyUp={(e) => validateEmail(e.target.value)}
                 />
               </label>
+              {isEmailValid ? null : displayEmailErrorText()}
             </div>
-            {isEmailValid ? null : displayEmailErrorText()}
             <div className="mt-6">
               <label htmlFor="password" className="relative block">
                 <span className="text-squazzle-text-deep-grey1-color text-sm font-[600]">

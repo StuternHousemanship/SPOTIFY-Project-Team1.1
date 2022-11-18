@@ -18,7 +18,6 @@ module.exports = {
         "squazzle-background-grey-color": "#F0F0F0",
         "squazzle-grey-text-color": "#424242",
         "squazzle-white-background-color": "#FFFFFF",
-        "squazzle-white-background-color": "#FFFFFF",
         //Permanent design
         "squazzle-background-white-color": "#F5F5F5",
         "squazzle-text-deep-grey1-color": "#353535",
@@ -28,6 +27,7 @@ module.exports = {
         "squazzle-placeholder-grey-color": "#9A9A9A",
         "squazzle-password-text-grey": "#787878",
         "squazzle-text-error-red-color": "#91332D",
+        "squazzle-profileCard-logout-red-color": "#8D173A",
         "squazzle-border-error--red-color": "#A20111",
         "squazzle-text-deep-green-color": "#001A1B",
         "squazzle-success-green-color": "#3D7D50",
