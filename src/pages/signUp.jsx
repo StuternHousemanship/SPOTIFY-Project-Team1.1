@@ -127,7 +127,7 @@ const signUp = () => {
   const handleSignUp = () => {
     // e.preventDefault();
     // setButtonIsLoading(true);
-    navigate(NonAuthRoutes.enterEmailVerificationCode);
+    navigate(NonAuthRoutes.verifyEmail);
     onboarding
       .SignUp(email, firstName, lastName, phoneNumber, password)
       .then((response) => {
@@ -429,7 +429,7 @@ const signUp = () => {
           className="text-squazzle-button-bg-light-green-color text-sm lg:text-xl font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl mt-10 cursor-pointer"
           onClick={() => handleSignUp()}
         >
-          Continue
+          Create account
         </button>
         <button
           type="button"

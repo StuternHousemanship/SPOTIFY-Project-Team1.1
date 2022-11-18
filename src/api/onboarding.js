@@ -52,4 +52,25 @@ export default {
 
     return squazzleOnboarding.patch("/resetPassword", stringifiedData);
   },
+
+  /** Send a PATCH request to get users password reset code */
+  async passwordCode(email) {
+    const data = {
+      email,
+    };
+    const stringifiedData = JSON.stringify(data);
+
+    return squazzleOnboarding.patch("/forgotPassword", stringifiedData);
+  },
+
+  /** Send a PATCH request to change users password */
+  async changePassword(password, confirmPassword) {
+    const data = {
+      password,
+      changePassword: confirmPassword,
+    };
+    const stringifiedData = JSON.stringify(data);
+
+    return squazzleOnboarding.patch("/changePassword", stringifiedData);
+  },
 };

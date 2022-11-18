@@ -9,7 +9,7 @@ const LandingPage = React.lazy(() => import("./pages/landingPage"));
 const SignUp = React.lazy(() => import("./pages/signUp"));
 const Login = React.lazy(() => import("./pages/login"));
 const EnterEmailVerificationCode = React.lazy(() =>
-  import("./pages/enterEmailVerificationCode")
+  import("./pages/enterPasswordResetCode")
 );
 const EnterPasswordResetCode = React.lazy(() =>
   import("./pages/enterPasswordResetCode")
@@ -22,10 +22,8 @@ const ResetPassword = React.lazy(() => import("./pages/resetPassword"));
 const AlertResetPassword = React.lazy(() =>
   import("./pages/alertResetPassword")
 );
+const VerifyEmail = React.lazy(() => import("./pages/verifyEmail"));
 const Dashboard = React.lazy(() => import("./pages/dashboard"));
-const EmailVerificationSuccess = React.lazy(() =>
-  import("./pages/emailVerificationSuccess")
-);
 
 function Routers() {
   return (
@@ -38,21 +36,21 @@ function Routers() {
         }
       >
         <Routes>
-          <Route path={NonAuthRoutes.landingPage} element={<LandingPage />} />
-          <Route path={NonAuthRoutes.signUp} element={<SignUp />} />
-          <Route path={NonAuthRoutes.login} element={<Login />} />
+          <Route path={NonAuthRoutes.landingPage} element={<LandingPage />} />{" "}
+          <Route path={NonAuthRoutes.signUp} element={<SignUp />} />{" "}
+          <Route path={NonAuthRoutes.login} element={<Login />} />{" "}
           <Route
             path={NonAuthRoutes.forgotPassword}
             element={<ForgotPassword />}
-          />
+          />{" "}
           <Route
             path={NonAuthRoutes.resetPassword}
             element={<ResetPassword />}
-          />
+          />{" "}
           <Route
             path={NonAuthRoutes.alertForgotPassword}
             element={<AlertForgotPassword />}
-          />
+          />{" "}
           <Route
             path={NonAuthRoutes.alertResetPassword}
             element={<AlertResetPassword />}
@@ -60,18 +58,15 @@ function Routers() {
           <Route
             path={NonAuthRoutes.enterEmailVerificationCode}
             element={<EnterEmailVerificationCode />}
-          />
+          />{" "}
           <Route
             path={NonAuthRoutes.enterPasswordResetCode}
             element={<EnterPasswordResetCode />}
-          />
-          <Route
-            path={NonAuthRoutes.emailVerificationSuccess}
-            element={<EmailVerificationSuccess />}
-          />
-          <Route path={AuthRoutes.dashboard} element={<Dashboard />} />
-        </Routes>
-      </Suspense>
+          />{" "}
+          <Route path={NonAuthRoutes.verifyEmail} element={<VerifyEmail />} />{" "}
+          <Route path={AuthRoutes.dashboard} element={<Dashboard />} />{" "}
+        </Routes>{" "}
+      </Suspense>{" "}
     </div>
   );
 }
