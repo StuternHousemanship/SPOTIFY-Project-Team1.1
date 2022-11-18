@@ -19,31 +19,31 @@ const VerifyEmail = () => {
     <div>
       <div className="font-sans flex flex-col sm:grid sm:place-items-center h-screen bg-squazzle-background-white-color max-[767px]:bg-white">
         <nav
-          className="bg-white fixed top-0 right-0 left-0 py-2 pl-5 md:py-5 md:pl-[86px] lg:py-5 lg:pl-[86px] mb-[28px]"
+          className="bg-white fixed top-0 right-0 left-0 py-2 pl-5 lg:py-2 lg:pl-[86px]"
           style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
         >
-          <SquazzleMobileLogo className="h-8 w-[146.33px] md:h-14 md:w-[222.33px] lg:h-14 lg:w-[222.33px]" />
+          <SquazzleMobileLogo className="h-8 w-[146.33px] lg:h-14 lg:w-[222.33px]" />
         </nav>
         <div className=" sm:w-[500px] px-4 mt-[28px] sm:h-[459px] sm:py-10 sm:px-10 box-border bg-white  md:mt-[40px] ">
           <UndrawOpenIcon className="hidden sm:block mx-auto mb-8" />
           <UndrawOpenIconMobile className="mx-auto sm:hidden mt-12 mb-[46px]" />
           <div>
             <div>
-              <h2 className="text-2xl md:text-4xl lg:text-4xl font-bold text-squazzle-grey-text-color mb-6 text-center">
+              <h2 className="text-2xl lg:text-4xl font-bold text-squazzle-grey-text-color mb-6 text-center">
                 Email has been sent!
               </h2>
-              <p className="hidden sm:block font-normal text-[14px] md:text-[18px] leading-[22px] md:leading-[26px] md:h-[78px] text-squazzle-text-deep-grey1-color text-center align-top ">
-                We have sent a 6 digit pin to{" "}
-                <span className="font-normal text-[14px] md:text-[18px] leading-[22px] md:leading-[26px] text-squazzle-button-bg-deep-green-color">
-                  zhara@gmail.com.
+              <p className="hidden sm:block font-normal text-[14px] lg:text-[18px] leading-[22px] lg:leading-[26px] lg:h-[78px] text-squazzle-text-deep-grey1-color text-center align-top ">
+                We have sent a 6 digit pin to
+                <span className="font-normal text-[14px] lg:text-[18px] leading-[22px] lg:leading-[26px] text-squazzle-button-bg-deep-green-color">
+                  {}
                 </span>
                 &nbsp; Click on the button to confirm the validity of your
                 address.
               </p>
-              <p className="sm:hidden font-normal px-5 text-[14px] md:text-[18px] leading-[22px] md:leading-[26px] text-squazzle-text-deep-grey1-color text-center align-top ">
-                We have sent a 6 digit pin to{" "}
-                <span className="font-normal text-[14px] md:text-[18px] leading-[22px] md:leading-[26px] text-squazzle-button-bg-deep-green-color">
-                  zhara@gmail.com.
+              <p className="sm:hidden font-normal px-5 text-[14px] lg:text-[18px] leading-[22px] lg:leading-[26px] text-squazzle-text-deep-grey1-color text-center align-top ">
+                We have sent a 6 digit pin to
+                <span className="font-normal text-[14px] lg:text-[18px] leading-[22px] lg:leading-[26px] text-squazzle-button-bg-deep-green-color">
+                  {}
                 </span>
                 &nbsp; Check your email to get the code.
               </p>

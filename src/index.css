@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
@@ -45,24 +44,25 @@ select {
     left: 60px;
 }
 
+
 /* DASHBOARD PROFILE CARD */
-.profile-card-active{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  width: 240px;
-  height: 200px;
-  background: #FFFFFF;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  color: #000000;
-  position: absolute;
-  right: 0;
-  padding: 5px 10px;
+
+.profile-card-active {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 240px;
+    gap: 24px;
+    padding: 24px;
+    background: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #000000;
+    position: absolute;
+    right: 80px;
 }
 
-.profile-card{
-  display: none;
+.profile-card {
+    display: none;
 }

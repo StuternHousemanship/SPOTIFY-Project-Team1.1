@@ -9,7 +9,7 @@ const LandingPage = React.lazy(() => import("./pages/landingPage"));
 const SignUp = React.lazy(() => import("./pages/signUp"));
 const Login = React.lazy(() => import("./pages/login"));
 const EnterEmailVerificationCode = React.lazy(() =>
-  import("./pages/enterPasswordResetCode")
+  import("./pages/enterEmailVerificationCode")
 );
 const EnterPasswordResetCode = React.lazy(() =>
   import("./pages/enterPasswordResetCode")
@@ -23,6 +23,9 @@ const AlertResetPassword = React.lazy(() =>
   import("./pages/alertResetPassword")
 );
 const VerifyEmail = React.lazy(() => import("./pages/verifyEmail"));
+const EmailVerificationSuccess = React.lazy(() =>
+  import("./pages/emailVerificationSuccess")
+);
 const Dashboard = React.lazy(() => import("./pages/dashboard"));
 
 function Routers() {
@@ -54,7 +57,7 @@ function Routers() {
           <Route
             path={NonAuthRoutes.alertResetPassword}
             element={<AlertResetPassword />}
-          />
+          />{" "}
           <Route
             path={NonAuthRoutes.enterEmailVerificationCode}
             element={<EnterEmailVerificationCode />}
@@ -64,6 +67,10 @@ function Routers() {
             element={<EnterPasswordResetCode />}
           />{" "}
           <Route path={NonAuthRoutes.verifyEmail} element={<VerifyEmail />} />{" "}
+          <Route
+            path={NonAuthRoutes.emailVerificationSuccess}
+            element={<EmailVerificationSuccess />}
+          />
           <Route path={AuthRoutes.dashboard} element={<Dashboard />} />{" "}
         </Routes>{" "}
       </Suspense>{" "}

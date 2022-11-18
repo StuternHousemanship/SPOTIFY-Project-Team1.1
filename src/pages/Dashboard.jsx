@@ -20,11 +20,11 @@ function dashboard() {
 
   return (
     <main className="min-h-screen bg-squazzle-background-white-color">
-      <nav className="flex flex-row items-center justify-between bg-squazzle-white-background-color border-b border-squazzle-background-white-color py-4 px-8 h-[96px]">
+      <nav className="flex flex-row items-center justify-between bg-squazzle-white-background-color border-b border-squazzle-background-white-color py-4 px-20 h-[96px]">
         <div>
           <SquazzleDesktopGreenLogo className="w-[181px] h-[44px]" />
         </div>
-        <ul className="flex-[0.5] flex flex-row items-center justify-between font-normal text-base text-squazzle-text-deep-grey2-color">
+        <ul className="flex flex-[0.4] flex-row items-center justify-between font-normal text-base text-squazzle-text-deep-grey2-color">
           <li>
             <Link to="/accommodations">Accommodations</Link>
           </li>

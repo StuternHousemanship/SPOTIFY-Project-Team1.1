@@ -156,13 +156,13 @@ const resetPassword = () => {
   return (
     <div className="font-sans grid place-items-center h-screen bg-squazzle-background-white-color py-70 max-[640px]:bg-white">
       <nav
-        className="bg-white fixed top-0 right-0 left-0 py-2 pl-5 md:py-5 md:pl-[86px] lg:py-5 lg:pl-[86px]"
+        className="bg-white fixed top-0 right-0 left-0 py-2 pl-5 lg:py-2 lg:pl-[86px]"
         style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
       >
-        <SquazzleMobileLogo className="h-8 w-[146.33px] md:h-14 md:w-[222.33px] lg:h-14 lg:w-[222.33px]" />
+        <SquazzleMobileLogo className="h-8 w-[146.33px] lg:h-14 lg:w-[222.33px]" />
       </nav>
       <div
-        className="w-[610px] mt-10 py-[22px] px-5 md:px-10 lg:px-10 box-border bg-white text-center"
+        className="w-[610px] mt-10 py-[22px] px-5 lg:px-10 box-border bg-white text-center"
         style={{ width: "min(100vw, 609px)" }}
       >
         <h2 className="text-2xl md:text-4xl lg:text-4xl font-bold text-squazzle-grey-text-color mb-7">

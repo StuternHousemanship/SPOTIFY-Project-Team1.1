@@ -199,12 +199,12 @@ const signUp = () => {
   /** displays personal data page */
   const displayPersonalDataPage = () => {
     return (
-      <div className="pt-[115px] md:pt-16 lg:pt-16 h-screen bg-white md:bg-squazzle-background-white-color lg:bg-squazzle-background-white-color max-[400px]-px-10 max-[640px]:px-20 max-[768px]:px-40 max-[1024px]:px-10 max-[1536px]:px-20 md:w-1/2 md:fixed md:z-[1] md:top-0 md:overflow-x-hidden md:right-0 lg:w-1/2 lg:fixed lg:z-[1] lg:top-0 lg:overflow-x-hidden lg:right-0">
+      <div className="pt-20 md:pt-[48px] lg:pt-16 h-screen bg-white md:bg-squazzle-background-white-color lg:bg-squazzle-background-white-color px-5 md:px-10 lg:px-20 md:w-1/2 md:fixed md:z-[1] md:top-0 md:overflow-x-hidden md:right-0 lg:w-1/2 lg:fixed lg:z-[1] lg:top-0 lg:overflow-x-hidden lg:right-0">
         <nav
           className="bg-white fixed top-0 right-0 left-0 md:hidden lg:hidden"
           style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
         >
-          <SquazzleMobileLogo className="my-2 max-[400px]-ml-10 max-[640px]:ml-20 max-[768px]:ml-40 max-[1024px]:ml-10 max-[1536px]:ml-20" />
+          <SquazzleMobileLogo className="my-2 ml-5 md:ml-20 lg:ml-20" />
         </nav>
         <h1 className="text-base lg:text-2xl font-[600] lg:font-bold text-squazzle-text-deep-green-color mb-2">
           Create a squazzle profile
@@ -319,12 +319,12 @@ const signUp = () => {
   /** displays password page */
   const displayPasswordPage = () => {
     return (
-      <div className="pt-[72px] md:pt-16 lg:pt-16 h-screen bg-white md:bg-squazzle-background-white-color lg:bg-squazzle-background-white-color max-[400px]-px-10 max-[640px]:px-20 max-[768px]:px-40 max-[1024px]:px-10 max-[1536px]:px-20 md:w-1/2 md:fixed md:z-[1] md:top-0 md:overflow-x-hidden md:right-0 lg:w-1/2 lg:fixed lg:z-[1] lg:top-0 lg:overflow-x-hidden lg:right-0">
+      <div className="pt-[72px] md:pt-[48px] lg:pt-16 h-screen bg-white md:bg-squazzle-background-white-color lg:bg-squazzle-background-white-color px-5 md:px-10 lg:px-20 md:w-1/2 md:fixed md:z-[1] md:top-0 md:overflow-x-hidden md:right-0 lg:w-1/2 lg:fixed lg:z-[1] lg:top-0 lg:overflow-x-hidden lg:right-0">
         <nav
           className="bg-white fixed top-0 right-0 left-0 md:hidden lg:hidden"
           style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
         >
-          <SquazzleMobileLogo className="my-2 max-[400px]-ml-10 max-[640px]:ml-20 max-[768px]:ml-40 max-[1024px]:ml-10 max-[1536px]:ml-20" />
+          <SquazzleMobileLogo className="my-2 ml-5 md:ml-20 lg:ml-20" />
         </nav>
         <MobileReturnButton
           className="md:hidden lg:hidden mb-4"
@@ -361,12 +361,12 @@ const signUp = () => {
               />
               {showPassword ? (
                 <PasswordShow
-                  className="absolute top-[52px] right-5"
+                  className="absolute top-[49px] right-5 lg:top-[53px] lg:right-5"
                   onClick={() => handleShowPassword()}
                 />
               ) : (
                 <PasswordHide
-                  className="absolute top-[52px] right-5"
+                  className="absolute top-[48px] right-5 lg:top-[52px] lg:right-5"
                   onClick={() => handleShowPassword()}
                 />
               )}
@@ -392,12 +392,12 @@ const signUp = () => {
               />
               {showConfirmPassword ? (
                 <PasswordShow
-                  className="absolute top-[52px] right-5"
+                  className="absolute top-[49px] right-5 lg:top-[53px] lg:right-5"
                   onClick={() => handleShowConfirmPassword()}
                 />
               ) : (
                 <PasswordHide
-                  className="absolute top-[52px] right-5"
+                  className="absolute top-[48px] right-5 lg:top-[52px] lg:right-5"
                   onClick={() => handleShowConfirmPassword()}
                 />
               )}
@@ -457,7 +457,7 @@ const signUp = () => {
   const displaySquazzleDescriptionAndLogo = () => {
     return (
       <div
-        className="pt-6 px-16 h-full w-1/2 fixed z-[1] top-0 overflow-x-hidden left-0 hidden md:block lg:block"
+        className="pt-6 px-10 lg:px-16 h-full w-1/2 fixed z-[1] top-0 overflow-x-hidden left-0 hidden md:block lg:block"
         style={{
           background: `linear-gradient(0.6deg, rgba(255, 255, 255, 0) 5.09%, #016D71 84.76%),url(${backgroundimage})`,
           backgroundRepeat: "no-repeat",
@@ -465,11 +465,11 @@ const signUp = () => {
           backgroundPosition: "center",
         }}
       >
-        <SquazzleDesktopLogo />
-        <h1 className="mt-7 text-3xl lg:text-4xl text-squazzle-background-white-color font-[600]">
+        <SquazzleDesktopLogo className="w-[173px] h-[53px] lg:w-[177px] lg:h-[57px]" />
+        <h1 className="mt-8 text-3xl lg:text-4xl text-squazzle-background-white-color font-[600]">
           Find that perfect home with Squazzle.
         </h1>
-        <p className="mt-3 text-white text-xl lg:text-2xl font-[400] max-w-lg">
+        <p className="mt-[16px] text-white text-xl lg:text-2xl font-[400] max-w-lg">
           We'll get you set up so you can check out affordable housing
         </p>
       </div>
