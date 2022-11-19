@@ -9,9 +9,9 @@ const EmailVerificationSuccess = () => {
   const navigate = useNavigate();
 
   /** handles email verification success and error */
-  const handleemailVerificationSuccess = (e) => {
+  const handleemailVerificationSuccess = () => {
     navigate(NonAuthRoutes.login);
-    e.preventDefault();
+    // e.preventDefault();
   };
 
   return (
