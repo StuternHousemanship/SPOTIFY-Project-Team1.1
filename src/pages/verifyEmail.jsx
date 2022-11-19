@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { NonAuthRoutes } from "../url";
 import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
 import { ReactComponent as UndrawOpenIcon } from "../assets/svg/undraw-open-icon.svg";
-import { ReactComponent as UndrawOpenIconMobile } from "../assets/svg/undraw-open-mobile-logo.svg";
+import { ReactComponent as UndrawOpenMobileIcon } from "../assets/svg/undraw-open-mobile-icon.svg";
 
 const VerifyEmail = () => {
   const navigate = useNavigate();
@@ -17,47 +17,70 @@ const VerifyEmail = () => {
 
   return (
     <div>
-      <div className="font-sans flex flex-col sm:grid sm:place-items-center h-screen bg-squazzle-background-white-color max-[767px]:bg-white">
-        <nav
-          className="bg-white fixed top-0 right-0 left-0 py-2 pl-5 lg:py-2 lg:pl-[86px]"
-          style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
-        >
-          <SquazzleMobileLogo className="h-8 w-[146.33px] lg:h-14 lg:w-[222.33px]" />
-        </nav>
-        <div className=" sm:w-[500px] px-4 mt-[28px] sm:h-[459px] sm:py-10 sm:px-10 box-border bg-white  md:mt-[40px] ">
-          <UndrawOpenIcon className="hidden sm:block mx-auto mb-8" />
-          <UndrawOpenIconMobile className="mx-auto sm:hidden mt-12 mb-[46px]" />
-          <div>
+      <div className="hidden sm:block">
+        <div className="font-sans h-screen flex items-center justify-center bg-squazzle-background-white-color max-[640px]:bg-white ">
+          <nav
+            className="bg-white fixed top-0 right-0 left-0 sm:h-12 sm:pl-5 sm:py-2 md:h-[96px] md:pl-[86px] md:py-[20px]"
+            style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
+          >
+            <SquazzleMobileLogo className=" md:h-14 md:w-[222.33px]" />
+          </nav>
+          <div className="main_div sm:max-w-[500px] sm:py-10 sm:px-10 box-border bg-white rounded-lg drop-shadow-[0_0.5px_rgba(31,44,63,0.05)]">
+            <UndrawOpenIcon className="mx-auto sm:mb-8" />
             <div>
-              <h2 className="text-2xl lg:text-4xl font-bold text-squazzle-grey-text-color mb-6 text-center">
-                Email has been sent!
-              </h2>
-              <p className="hidden sm:block font-normal text-[14px] lg:text-[18px] leading-[22px] lg:leading-[26px] lg:h-[78px] text-squazzle-text-deep-grey1-color text-center align-top ">
-                We have sent a 6 digit pin to
-                <span className="font-normal text-[14px] lg:text-[18px] leading-[22px] lg:leading-[26px] text-squazzle-button-bg-deep-green-color">
-                  {}
-                </span>
-                &nbsp; Click on the button to confirm the validity of your
-                address.
-              </p>
-              <p className="sm:hidden font-normal px-5 text-[14px] lg:text-[18px] leading-[22px] lg:leading-[26px] text-squazzle-text-deep-grey1-color text-center align-top ">
-                We have sent a 6 digit pin to
-                <span className="font-normal text-[14px] lg:text-[18px] leading-[22px] lg:leading-[26px] text-squazzle-button-bg-deep-green-color">
-                  {}
-                </span>
-                &nbsp; Check your email to get the code.
-              </p>
+              <div>
+                <h2 className="text-2xl md:text-[36px] md:leading-[45px] font-normal text-squazzle-grey-text-color mb-6 text-center">
+                  Email has been sent!
+                </h2>
+                <p className="font-normal text-[14px] md:text-[18px] leading-[22px] md:leading-[26px] md:h-[78px] text-squazzle-text-deep-grey1-color text-center align-top ">
+                  We have sent a 6 digit pin to
+                  <span className="font-normal text-[14px] md:text-[18px]  md:leading-[26px] text-squazzle-button-bg-deep-green-color">
+                    {}
+                  </span>
+                  &nbsp; Click on the button to confirm the validity of your
+                  address.
+                </p>
+              </div>
+              <button
+                type="submit"
+                className="text-squazzle-button-bg-light-green-color text-sm md:text-[20px] md:leading-[24px] font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl mt-12 cursor-pointer"
+                onClick={() => handleEmailValidity()}
+              >
+                Continue
+              </button>
             </div>
-
-            <button
-              type="submit"
-              className="text-squazzle-button-bg-light-green-color text-sm lg:text-xl font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl mt-12 cursor-pointer"
-              onClick={() => handleEmailValidity()}
-            >
-              Continue
-            </button>
           </div>
         </div>
+      </div>
+
+      {/* Mobile Screen */}
+      <div className="sm:hidden ">
+        <nav
+          className="bg-white h-12 pl-5 py-2 "
+          style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
+        >
+          <SquazzleMobileLogo className=" w-[146.33px] h-8" />
+        </nav>
+        <main className="pl-5 pr-5 pt-[28px] flex flex-col gap-y-8">
+          <UndrawOpenMobileIcon className="mx-auto " />
+          <div className="px-4 text-center flex flex-col gap-y-6 ">
+            <p className=" font-semibold text-[24px] leading-[30px] text-[#232323]">
+              Email has been sent!
+            </p>
+            <p className="font-normal text-[14px] leading-[24px]">
+              {" "}
+              We have sent a 6 digit pin to <span>{}</span>&nbsp;Check your mail
+              to get the code.
+            </p>
+          </div>
+          <button
+            type="submit"
+            className="text-squazzle-button-bg-light-green-color text-[14px] leading-[18px]  font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl cursor-pointer"
+            onClick={() => handleEmailValidity()}
+          >
+            Continue
+          </button>
+        </main>
       </div>
     </div>
   );
