@@ -33,9 +33,9 @@ const VerifyEmail = () => {
                   Email has been sent!
                 </h2>
                 <p className="font-normal text-[14px] md:text-[18px] leading-[22px] md:leading-[26px] md:h-[78px] text-squazzle-text-deep-grey1-color text-center align-top ">
-                  We have sent a 6 digit pin to
-                  <span className="font-normal text-[14px] md:text-[18px]  md:leading-[26px] text-squazzle-button-bg-deep-green-color">
-                    {}
+                  We have sent a 6 digit pin to &nbsp;
+                  <span className="font-normal text-[14px] md:text-[18px] md:leading-[26px] text-squazzle-button-bg-deep-green-color">
+                    {localStorage.getItem("email")}.
                   </span>
                   &nbsp; Click on the button to confirm the validity of your
                   address.
@@ -68,9 +68,11 @@ const VerifyEmail = () => {
               Email has been sent!
             </p>
             <p className="font-normal text-[14px] leading-[24px]">
-              {" "}
-              We have sent a 6 digit pin to <span>{}</span>&nbsp;Check your mail
-              to get the code.
+              We have sent a 6 digit pin to&nbsp;
+              <span className="text-[#016D71]">
+                {localStorage.getItem("email")}.
+              </span>
+              &nbsp;Check your mail to get the code.
             </p>
           </div>
           <button

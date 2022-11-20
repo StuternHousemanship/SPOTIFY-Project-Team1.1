@@ -127,6 +127,7 @@ const signUp = () => {
   const handleSignUp = () => {
     // e.preventDefault();
     // setButtonIsLoading(true);
+    localStorage.setItem("email", email);
     navigate(NonAuthRoutes.verifyEmail);
     onboarding
       .SignUp(email, firstName, lastName, phoneNumber, password)
