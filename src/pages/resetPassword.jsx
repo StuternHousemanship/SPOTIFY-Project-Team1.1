@@ -129,7 +129,8 @@ const resetPassword = () => {
       </div>
     );
   };
-  const handleResetPassword = () => {
+  const handleResetPassword = (e) => {
+    e.preventDefault();
     navigate(NonAuthRoutes.alertResetPassword);
     onboarding.changePassword(password, confirmPassword).then((response) => {
       if (response.status === 200) {
@@ -154,7 +155,7 @@ const resetPassword = () => {
   };
 
   return (
-    <div className="font-sans grid place-items-center h-screen bg-squazzle-background-white-color py-70 max-[640px]:bg-white">
+    <div className="font-sans grid place-items-center h-full bg-squazzle-background-white-color py-70 max-[640px]:bg-white">
       <nav
         className="bg-white fixed top-0 right-0 left-0 py-2 pl-5 lg:py-2 lg:pl-[86px]"
         style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
@@ -238,7 +239,7 @@ const resetPassword = () => {
           <button
             type="submit"
             className="bg-squazzle-button-bg-deep-green-color h-12 w-full lg:h-16 text-squazzle-button-bg-light-green-color text-sm md:text-xl lg:text-xl font-bold rounded-xl block cursor-pointer mt-[46px]"
-            onClick={() => handleResetPassword()}
+            onClick={(e) => handleResetPassword(e)}
           >
             Reset password
           </button>

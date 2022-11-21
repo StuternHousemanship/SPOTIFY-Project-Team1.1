@@ -9,6 +9,7 @@ import { ReactComponent as PasswordShow } from "../assets/svg/password-eye-show-
 import { ReactComponent as PasswordHide } from "../assets/svg/password-eye-hide-icon.svg";
 import { ReactComponent as SquazzleDesktopLogo } from "../assets/svg/squazzle-desktop-logo.svg";
 import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
+// import { ReactComponent as LoadingIcon } from "../assets/svg/loading-icon.svg";
 import squazzleBackground from "../assets/img/squazzle-login-background.png";
 
 const login = () => {
@@ -17,6 +18,7 @@ const login = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
+  // const [buttonIsLoading, setButtonIsLoading] = useState(false);
 
   useEffect(() => {
     // These logic clear error messages when page loads
@@ -57,7 +59,7 @@ const login = () => {
     e.preventDefault();
     // setButtonIsLoading(true);
     onboarding.Login(email, password).then((response) => {
-      if (response.status === 200) {
+      if (response.status === 201) {
         const accessToken = response.access_token;
         const refreshToken = response.refresh_token;
         Cookies.set("accessToken", accessToken);
@@ -190,16 +192,16 @@ const login = () => {
 
           <button
             type="submit"
-            className="hidden md:block bg-squazzle-button-bg-deep-green-color w-full py-[15px] lg:py-5 text-squazzle-white-background-color rounded-xl font-bold text-sm lg:text-xl mt-12 mb-6"
-            onClick={() => navigate(AuthRoutes.dashboard)}
+            className="hidden md:block bg-squazzle-button-bg-deep-green-color w-full py-[15px] lg:py-5 text-squazzle-white-background-color rounded-xl font-bold text-sm lg:text-xl mt-12 mb-6 cursor-pointer"
+            onClick={(e) => handleLogin(e)}
           >
             Sign in
           </button>
 
           <button
             type="submit"
-            className="block md:hidden bg-squazzle-button-bg-deep-green-color w-full py-[15px] lg:py-5 text-squazzle-white-background-color rounded-xl font-bold text-sm mt-8 mb-4"
-            onClick={() => handleLogin()}
+            className="block md:hidden bg-squazzle-button-bg-deep-green-color w-full py-[15px] lg:py-5 text-squazzle-white-background-color rounded-xl font-bold text-sm mt-8 mb-4 cursor-pointer"
+            onClick={(e) => handleLogin(e)}
           >
             Continue
           </button>

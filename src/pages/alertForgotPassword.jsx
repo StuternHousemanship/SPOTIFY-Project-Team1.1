@@ -3,65 +3,93 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { NonAuthRoutes } from "../url";
 import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
-import { ReactComponent as MailIcon } from "../assets/svg/mail-icon.svg";
+import { ReactComponent as UndrawOpenIcon } from "../assets/svg/undraw-open-icon.svg";
+import { ReactComponent as UndrawOpenMobileIcon } from "../assets/svg/undraw-open-mobile-icon.svg";
 
 function alertForgotPassword() {
   const navigate = useNavigate();
 
   /** handles sending mail to user */
-  const handleGetCode = () => {
+  const handleGetResetPasswordCode = () => {
     navigate(NonAuthRoutes.enterPasswordResetCode);
   };
 
   return (
-    <div className="font-sans">
-      <nav
-        className="bg-white fixed top-0 right-0 left-0 py-2 pl-5 lg:py-2 lg:pl-[86px]"
-        style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
-      >
-        <SquazzleMobileLogo className="h-8 w-[146.33px] lg:h-14 lg:w-[222.33px]" />
-      </nav>
-
-      <main className="min-h-screen flex items-center justify-center bg-squazzle-background-white-color rounded-xl">
-        <div className="flex flex-col w-full max-w-[620px] py-6 lg:py-8 px-10 lg:px-20 bg-white rounded-xl">
-          <header>
-            <div className="mt-0 mb-4 lg:mt-2 grid place-items-center">
-              <MailIcon className="h-[68px] w-[68px] lg:h-[88px] lg:w-[88px]" />
-            </div>
-            <h1 className="font-bold text-2xl lg:text-4xl text-center text-squazzle-grey-text-color">
-              Email has been sent!
-            </h1>
-            <h3 className="text-sm lg:text-lg text-center text-squazzle-grey-text-color mt-4 lg:mt-6">
-              Please check your inbox and click on the recieved link to reset
-              password
-            </h3>
-          </header>
-          <button
-            type="submit"
-            className="hidden md:block bg-squazzle-button-bg-deep-green-color w-full py-[15px] lg:py-5 text-squazzle-white-background-color rounded-xl font-bold text-sm lg:text-xl mt-8 lg:mt-12"
-            onClick={() => handleGetCode()}
+    <div>
+      <div className="hidden sm:block">
+        <div className="font-sans h-screen flex items-center justify-center bg-squazzle-background-white-color max-[640px]:bg-white ">
+          <nav
+            className="bg-white fixed top-0 right-0 left-0 sm:h-12 sm:pl-5 sm:py-2 md:h-[96px] md:pl-[86px] md:py-[20px]"
+            style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
           >
-            Get a reset link
-          </button>
+            <SquazzleMobileLogo className=" md:h-14 md:w-[222.33px]" />
+          </nav>
+          <div className="main_div sm:max-w-[500px] sm:py-10 sm:px-10 box-border bg-white rounded-lg drop-shadow-[0_0.5px_rgba(31,44,63,0.05)]">
+            <UndrawOpenIcon className="mx-auto sm:mb-8" />
+            <div>
+              <div>
+                <h2 className="text-2xl md:text-[36px] md:leading-[45px] font-normal text-squazzle-grey-text-color mb-6 text-center">
+                  Email has been sent!
+                </h2>
+                <p className=" font-normal text-[14px] md:text-[18px] leading-[22px] md:leading-[26px] md:h-[78px] text-squazzle-text-deep-grey1-color text-center align-top ">
+                  Your password has been changed. You can now sign in using your
+                  new password.
+                </p>
+              </div>
+              <button
+                type="submit"
+                className=" text-squazzle-button-bg-light-green-color text-sm md:text-[20px] md:leading-[24px] font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl mt-12 cursor-pointer"
+                onClick={(e) => handleGetResetPasswordCode(e)}
+              >
+                Continue
+              </button>
+              <button
+                type="button"
+                className="text-squazzle-button-bg-deep-green-color text-sm lg:text-xl font-bold bg-white  border-2 border-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl mt-6 cursor-pointer"
+                onClick={() => handleGetResetPasswordCode()}
+              >
+                Resend code
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      {/* Mobile Screen */}
+      <div className="sm:hidden font-sans">
+        <nav
+          className="bg-white h-12 pl-5 py-2 "
+          style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
+        >
+          <SquazzleMobileLogo className=" w-[146.33px] h-8" />
+        </nav>
+        <main className="pl-5 pr-5 pt-[28px] flex flex-col gap-y-8">
+          <UndrawOpenMobileIcon className="mx-auto " />
+          <div className="px-4 text-center flex flex-col gap-y-6 ">
+            <p className="text-[24px] leading-[30px] text-[#232323]">
+              Email has been sent!
+            </p>
+            <p className="font-normal text-[14px] leading-[24px]">
+              Your password has been changed. You can now sign in using your new
+              password.
+            </p>
+          </div>
           <button
             type="submit"
-            className="block md:hidden bg-squazzle-button-bg-deep-green-color text-sm lg:text-xl w-full py-[15px] lg:py-5 text-squazzle-white-background-color rounded-xl font-bold mt-8 lg:mt-12"
-            onClick={() => handleGetCode()}
-            //
+            className="text-squazzle-button-bg-light-green-color text-sm  font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl cursor-pointer"
+            onClick={() => handleGetResetPasswordCode()}
           >
             Continue
           </button>
-
           <button
             type="button"
-            className="bg-squazzle-background-white-color font-bold text-sm lg:text-xl w-full py-[15px] lg:py-5 rounded-xl text-squazzle-button-bg-deep-green-color border-2 border-squazzle-button-bg-deep-green-color mt-4 lg:mt-6"
-            onClick={() => handleGetCode()}
+            className="text-squazzle-button-bg-deep-green-color text-sm lg:text-xl font-bold bg-white  border-2 border-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl cursor-pointer"
+            onClick={() => handleGetResetPasswordCode()}
           >
-            Resend link
+            Resend code
           </button>
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
   );
 }

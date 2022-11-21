@@ -27,6 +27,7 @@ const EmailVerificationSuccess = React.lazy(() =>
   import("./pages/emailVerificationSuccess")
 );
 const Dashboard = React.lazy(() => import("./pages/dashboard"));
+const ErrorSignUp = React.lazy(() => import("./pages/errorSignUp"));
 
 function Routers() {
   return (
@@ -72,6 +73,7 @@ function Routers() {
             element={<EmailVerificationSuccess />}
           />
           <Route path={AuthRoutes.dashboard} element={<Dashboard />} />{" "}
+          <Route path={NonAuthRoutes.errorSignUp} element={<ErrorSignUp />} />
         </Routes>{" "}
       </Suspense>{" "}
     </div>

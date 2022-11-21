@@ -44,7 +44,7 @@ const VerifyEmail = () => {
               <button
                 type="submit"
                 className="text-squazzle-button-bg-light-green-color text-sm md:text-[20px] md:leading-[24px] font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl mt-12 cursor-pointer"
-                onClick={() => handleEmailValidity()}
+                onClick={(e) => handleEmailValidity(e)}
               >
                 Continue
               </button>
@@ -54,7 +54,7 @@ const VerifyEmail = () => {
       </div>
 
       {/* Mobile Screen */}
-      <div className="sm:hidden ">
+      <div className="sm:hidden font-sans">
         <nav
           className="bg-white h-12 pl-5 py-2 "
           style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
@@ -64,7 +64,7 @@ const VerifyEmail = () => {
         <main className="pl-5 pr-5 pt-[28px] flex flex-col gap-y-8">
           <UndrawOpenMobileIcon className="mx-auto " />
           <div className="px-4 text-center flex flex-col gap-y-6 ">
-            <p className=" font-semibold text-[24px] leading-[30px] text-[#232323]">
+            <p className="text-[24px] leading-[30px] text-[#232323]">
               Email has been sent!
             </p>
             <p className="font-normal text-[14px] leading-[24px]">

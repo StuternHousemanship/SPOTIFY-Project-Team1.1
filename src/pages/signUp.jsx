@@ -5,12 +5,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import countryCodeDropDown from "../components/countryCode/countryCode";
 import { ReactComponent as PasswordShow } from "../assets/svg/password-eye-show-icon.svg";
 import { ReactComponent as PasswordHide } from "../assets/svg/password-eye-hide-icon.svg";
 import { ReactComponent as SquazzleDesktopLogo } from "../assets/svg/squazzle-desktop-logo.svg";
 import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
 import { ReactComponent as MobileReturnButton } from "../assets/svg/return-button.svg";
-import { ReactComponent as ArrowDownIcon } from "../assets/svg/arrow-down-icon.svg";
+import { ReactComponent as LoadingIcon } from "../assets/svg/loading-icon.svg";
 import onboarding from "../api/onboarding";
 import { NonAuthRoutes } from "../url";
 import backgroundimage from "../assets/img/squazzle-background.png";
@@ -20,10 +21,13 @@ const signUp = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [countryCode, setCountryCode] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(false);
+  const [showEmailError, setShowEmailError] = useState(false);
+  const [termsAndPolicy, setTermsAndPolicy] = useState(false);
   const [personalDataPageFilled, setPersonalDataPageFilled] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -33,33 +37,33 @@ const signUp = () => {
   const [hasNumber, setHasNumber] = useState(false);
   const [hasSymbol, setHasSymbol] = useState(false);
   const [matchFirstPassword, setMatchFirstPassword] = useState(false);
+  const [showConfirmPasswordError, setShowConfirmPasswordError] =
+    useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [buttonIsLoading, setButtonIsLoading] = useState(false);
 
   useEffect(() => {
     // These logic clear error messages when page loads
-    if (email.length < 1) {
-      setIsEmailValid(true);
+    if (!email) {
+      setShowEmailError(false);
     }
-    if (password.length < 1) {
+    if (!password) {
       setIsPasswordValid(true);
     }
-    if (confirmPassword.length < 1) {
-      setMatchFirstPassword(true);
+    if (!confirmPassword) {
+      setShowConfirmPasswordError(false);
     }
   });
 
-  useEffect(() => {
-    // confirms all criterias of password are met
-    if (
-      hasLowerCase &&
-      hasUpperCase &&
-      hasEightCharacters &&
-      (hasNumber || hasSymbol)
-    ) {
-      setIsPasswordValid(true);
-    } else {
-      setIsPasswordValid(false);
-    }
+  /** ensures only numbers are inputed */
+  const handlePhoneNumberInput = (e) => {
+    const result = e.target.value.replace(/\D/g, "");
+    setPhoneNumber(result);
+  };
+
+  /** handles onkeyUp for password input */
+  const handleOnkeyUpForPasswordInput = () => {
+    setIsPasswordValid(false);
     // checks for lowercase in password
     if (/[a-z]/.test(password)) {
       setHasLowerCase(true);
@@ -91,20 +95,22 @@ const signUp = () => {
     } else {
       setHasSymbol(false);
     }
-  }, [password]);
+  };
 
-  useEffect(() => {
+  /** handles onkeyUp for confirm password input */
+  const handleOnkeyUpForConfirmPasswordInput = () => {
+    setShowConfirmPasswordError(true);
     // checks that second password matches first
     if (password === confirmPassword) {
       setMatchFirstPassword(true);
     } else {
       setMatchFirstPassword(false);
     }
-  }, [confirmPassword]);
+  };
 
   /** handles Validate Email input */
-  const validateEmail = (userEmail) => {
-    setEmail(userEmail);
+  const handleOnkeyUpForEmailInput = () => {
+    setShowEmailError(true);
     const regex =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (regex.test(email)) {
@@ -125,16 +131,17 @@ const signUp = () => {
   };
 
   /** handles Sign Up */
-  const handleSignUp = () => {
-    // e.preventDefault();
-    // setButtonIsLoading(true);
-    localStorage.setItem("email", email);
-    navigate(NonAuthRoutes.verifyEmail);
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    setButtonIsLoading(true);
     onboarding
       .SignUp(email, firstName, lastName, phoneNumber, password)
       .then((response) => {
-        if (response.status === 200) {
-          //
+        if (response.status === 201) {
+          localStorage.setItem("email", email);
+          navigate(NonAuthRoutes.verifyEmail);
+        } else {
+          navigate(NonAuthRoutes.errorSignUp);
         }
       });
   };
@@ -142,7 +149,13 @@ const signUp = () => {
   /** displays email error text */
   const displayEmailErrorText = () => {
     return (
-      <p className="text-squazzle-text-error-red-color text-xs font-semibold mb-6 mt-[6px]">
+      <p
+        className={
+          isEmailValid
+            ? "text-squazzle-success-green-color text-xs font-semibold mb-6 mt-[6px]"
+            : "text-squazzle-text-error-red-color text-xs font-semibold mb-6 mt-[6px]"
+        }
+      >
         Please enter a valid email address
       </p>
     );
@@ -193,7 +206,7 @@ const signUp = () => {
             : "text-squazzle-border-error--red-color text-xs font-semibold mt-[6px]"
         }
       >
-        *Must match first password
+        Passwords must match
       </p>
     );
   };
@@ -201,7 +214,7 @@ const signUp = () => {
   /** displays personal data page */
   const displayPersonalDataPage = () => {
     return (
-      <div className="pt-20 md:pt-[48px] lg:pt-16 h-screen bg-white md:bg-squazzle-background-white-color lg:bg-squazzle-background-white-color px-5 md:px-10 lg:px-20 md:w-1/2 md:fixed md:z-[1] md:top-0 md:overflow-x-hidden md:right-0 lg:w-1/2 lg:fixed lg:z-[1] lg:top-0 lg:overflow-x-hidden lg:right-0">
+      <div className="pt-20 pb-10 md:pt-[48px] lg:pt-16 h-full bg-white md:bg-squazzle-background-white-color lg:bg-squazzle-background-white-color px-5 md:px-10 lg:px-20 md:w-1/2 md:fixed md:z-[1] md:top-0 md:overflow-x-hidden md:right-0 lg:w-1/2 lg:fixed lg:z-[1] lg:top-0 lg:overflow-x-hidden lg:right-0">
         <nav
           className="bg-white fixed top-0 right-0 left-0 md:hidden lg:hidden"
           style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
@@ -214,7 +227,11 @@ const signUp = () => {
         <p className="text-sm lg:text-xl text-squazzle-text-deep-grey1-color">
           It is quick and simple
         </p>
-        <form className="mt-7" autoComplete="off">
+        <form
+          className="mt-7"
+          autoComplete="off"
+          onSubmit={(e) => e.preventDefault()}
+        >
           <div className="mb-4">
             <label htmlFor="first-name">
               <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -266,11 +283,12 @@ const signUp = () => {
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                 placeholder="marydoe@gmail.com"
                 className="block bg-white border border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
-                onChange={(e) => validateEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
+                onKeyUp={(e) => handleOnkeyUpForEmailInput(e)}
               />
             </label>
           </div>
-          {isEmailValid ? null : displayEmailErrorText()}
+          {showEmailError ? displayEmailErrorText() : null}
           <div className="mt-4">
             <label htmlFor="phone-number">
               <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -280,18 +298,19 @@ const signUp = () => {
                 </span>
               </span>
               <div className="flex">
-                <div className="select-wrapper">
-                  <ArrowDownIcon className="arrow-down" />
+                <div>
                   <select
-                    name="country-code"
+                    name="countryCode"
                     id="country-code"
-                    className="w-[90px] pl-3 border border-y-squazzle-border-grey-color border-l-squazzle-border-grey-color border-r-white text-squazzle-placeholder-grey-color text-sm  lg:text-lg font-[400] rounded-tl-lg rounded-bl-lg h-[62px] mt-[6px] w-focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
+                    pattern="+[0-9]{3}"
+                    onClick={(e) => setCountryCode(e.target.value)}
+                    className={
+                      countryCode
+                        ? "w-[80px] pl-3 border border-y-squazzle-border-grey-color border-l-squazzle-border-grey-color border-r-white text-squazzle-text-deep-grey2-color text-sm  lg:text-lg font-[400] rounded-tl-lg rounded-bl-lg h-[62px] mt-[6px] focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
+                        : "w-[80px] pl-3 border border-y-squazzle-border-grey-color border-l-squazzle-border-grey-color border-r-white text-squazzle-placeholder-grey-color text-sm  lg:text-lg font-[400] rounded-tl-lg rounded-bl-lg h-[62px] mt-[6px] focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
+                    }
                   >
-                    <option value="234">+234</option>
-                    <option value="213">+213</option>
-                    <option value="256">+256</option>
-                    <option value="260">+260</option>
-                    <option value="263">+263</option>
+                    {countryCodeDropDown()}
                   </select>
                 </div>
                 <input
@@ -299,9 +318,9 @@ const signUp = () => {
                   type="tel"
                   value={phoneNumber}
                   placeholder="Number"
-                  pattern="[0-9]{10}"
+                  pattern="[0-9]{11}"
                   className="block bg-white border border-squazzle-border-grey-color rounded-tr-lg rounded-br-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color after:content-[''] after:top-0"
-                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  onChange={(e) => handlePhoneNumberInput(e)}
                 />
               </div>
             </label>
@@ -309,7 +328,15 @@ const signUp = () => {
         </form>
         <button
           type="button"
-          className="text-squazzle-button-font-deep-green-color text-sm lg:text-xl font-bold bg-squazzle-button-bg-light-green-color w-full py-4 rounded-xl mt-12 cursor-pointer"
+          className="enabled text-squazzle-button-font-deep-green-color text-sm lg:text-xl font-bold bg-squazzle-button-bg-light-green-color w-full py-4 rounded-xl mt-12 cursor-pointer disabled:opacity-60"
+          disabled={
+            !firstName ||
+            !lastName ||
+            !email ||
+            !phoneNumber ||
+            !countryCode ||
+            !isEmailValid
+          }
           onClick={() => setPersonalDataPageFilled(true)}
         >
           Continue
@@ -321,7 +348,7 @@ const signUp = () => {
   /** displays password page */
   const displayPasswordPage = () => {
     return (
-      <div className="pt-[72px] md:pt-[48px] lg:pt-16 h-screen bg-white md:bg-squazzle-background-white-color lg:bg-squazzle-background-white-color px-5 md:px-10 lg:px-20 md:w-1/2 md:fixed md:z-[1] md:top-0 md:overflow-x-hidden md:right-0 lg:w-1/2 lg:fixed lg:z-[1] lg:top-0 lg:overflow-x-hidden lg:right-0">
+      <div className="pt-[72px] pb-9 md:pt-[48px] lg:pt-16 h-full bg-white md:bg-squazzle-background-white-color lg:bg-squazzle-background-white-color px-5 md:px-10 lg:px-20 md:w-1/2 md:fixed md:z-[1] md:top-0 md:overflow-x-hidden md:right-0 lg:w-1/2 lg:fixed lg:z-[1] lg:top-0 lg:overflow-x-hidden lg:right-0">
         <nav
           className="bg-white fixed top-0 right-0 left-0 md:hidden lg:hidden"
           style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
@@ -342,7 +369,7 @@ const signUp = () => {
         <form
           className="mt-7"
           autoComplete="off"
-          onSubmit={() => handleSignUp()}
+          onSubmit={(e) => handleSignUp(e)}
         >
           <div>
             <label htmlFor="password" className="relative block">
@@ -360,6 +387,7 @@ const signUp = () => {
                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 className="block border bg-white border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyUp={(e) => handleOnkeyUpForPasswordInput(e)}
               />
               {showPassword ? (
                 <PasswordShow
@@ -391,6 +419,7 @@ const signUp = () => {
                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 className="block bg-white border border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                onKeyUp={(e) => handleOnkeyUpForConfirmPasswordInput(e)}
               />
               {showConfirmPassword ? (
                 <PasswordShow
@@ -404,13 +433,18 @@ const signUp = () => {
                 />
               )}
             </label>
-            {matchFirstPassword ? null : displayConfirmPasswordErrorText()}
+            {showConfirmPasswordError
+              ? displayConfirmPasswordErrorText()
+              : null}
           </div>
           <div className="mt-4">
             <label>
               <input
                 type="checkbox"
+                id="terms-and-policy"
+                value={termsAndPolicy}
                 className="border-squazzle-checkbox-border-color border-2 accent-squazzle-button-bg-deep-green-color w-[12px] h-[12px] mr-[6px] lg:w-[16px] lg:h-[16px] lg:mr-[11px]"
+                onClick={() => setTermsAndPolicy(true)}
               />
               <span className="text-xs lg:text-base text-squazzle-terms-policy-grey-color">
                 I confirm that I have read & agreed to Squazzle
@@ -428,9 +462,21 @@ const signUp = () => {
         </form>
         <button
           type="submit"
-          className="text-squazzle-button-bg-light-green-color text-sm lg:text-xl font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl mt-10 cursor-pointer"
-          onClick={() => handleSignUp()}
+          className="enabled flex align-middle justify-center text-squazzle-button-bg-light-green-color text-sm lg:text-xl font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl mt-10 cursor-pointer disabled:opacity-60"
+          disabled={
+            !firstName ||
+            !lastName ||
+            !email ||
+            !phoneNumber ||
+            !isEmailValid ||
+            !matchFirstPassword ||
+            !termsAndPolicy
+          }
+          onClick={(e) => handleSignUp(e)}
         >
+          {buttonIsLoading ? (
+            <LoadingIcon className="suspense-loading-icon mr-3" />
+          ) : null}
           Create account
         </button>
         <button

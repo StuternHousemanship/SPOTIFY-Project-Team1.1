@@ -25,13 +25,31 @@ const enterPasswordResetCode = () => {
     }
   });
 
-  // const handleChange = (e) => {
-  //   if (/\d/.test(e.target.value)) {
-  //     setDigit1(e.target.value);
-  //   } else {
-  //     e.target.value = "";
-  //   }
-  // };
+  /** Ensures only digits are inputed */
+  const handleChangeForDigit1 = (e) => {
+    const result = e.target.value.replace(/\D/g, "");
+    setDigit1(result);
+  };
+  const handleChangeForDigit2 = (e) => {
+    const result = e.target.value.replace(/\D/g, "");
+    setDigit2(result);
+  };
+  const handleChangeForDigit3 = (e) => {
+    const result = e.target.value.replace(/\D/g, "");
+    setDigit3(result);
+  };
+  const handleChangeForDigit4 = (e) => {
+    const result = e.target.value.replace(/\D/g, "");
+    setDigit4(result);
+  };
+  const handleChangeForDigit5 = (e) => {
+    const result = e.target.value.replace(/\D/g, "");
+    setDigit5(result);
+  };
+  const handleChangeForDigit6 = (e) => {
+    const result = e.target.value.replace(/\D/g, "");
+    setDigit6(result);
+  };
 
   /** handles focus on next input when previous input is filled */
   const handleNextInput = (e) => {
@@ -44,7 +62,8 @@ const enterPasswordResetCode = () => {
   };
 
   /** handles enter password reset code submit button */
-  const handleEnterPasswordResetCode = () => {
+  const handleEnterPasswordResetCode = (e) => {
+    e.preventDefault();
     navigate(NonAuthRoutes.resetPassword);
 
     const passwordResetCode = `${digit1}${digit2}${digit3}${digit4}${digit5}${digit6}`;
@@ -75,19 +94,19 @@ const enterPasswordResetCode = () => {
             Please enter the 6-digit code sent to
           </p>
           <p className="font-normal text-sm lg:text-lg text-squazzle-button-bg-deep-green-color mb-[26px]">
-            {}
+            {localStorage.getItem("email")}.
           </p>
           <form className="grid place-items-center">
             <label htmlFor="6-digit-code">
               <div className="flex gap-2 lg:gap-4 ">
                 <input
-                  type="number"
+                  type="text"
                   id="digit-1"
                   value={digit1}
                   pattern="[0-9]"
                   className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border text-squazzle-text-deep-grey1-color border-squazzle-border-grey-color caret-squazzle-border-grey-color text-center focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                   maxLength="1"
-                  onChange={(e) => setDigit1(e.target.value)}
+                  onChange={(e) => handleChangeForDigit1(e)}
                   onKeyUp={(e) => handleNextInput(e)}
                 />
                 <input
@@ -97,7 +116,7 @@ const enterPasswordResetCode = () => {
                   pattern="[0-9]"
                   className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                   maxLength="1"
-                  onChange={(e) => setDigit2(e.target.value)}
+                  onChange={(e) => handleChangeForDigit2(e)}
                   onKeyUp={(e) => handleNextInput(e)}
                 />
                 <input
@@ -107,7 +126,7 @@ const enterPasswordResetCode = () => {
                   pattern="[0-9]"
                   className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                   maxLength="1"
-                  onChange={(e) => setDigit3(e.target.value)}
+                  onChange={(e) => handleChangeForDigit3(e)}
                   onKeyUp={(e) => handleNextInput(e)}
                 />
                 <input
@@ -117,7 +136,7 @@ const enterPasswordResetCode = () => {
                   pattern="[0-9]"
                   className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                   maxLength="1"
-                  onChange={(e) => setDigit4(e.target.value)}
+                  onChange={(e) => handleChangeForDigit4(e)}
                   onKeyUp={(e) => handleNextInput(e)}
                 />
                 <input
@@ -127,7 +146,7 @@ const enterPasswordResetCode = () => {
                   pattern="[0-9]"
                   className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                   maxLength="1"
-                  onChange={(e) => setDigit5(e.target.value)}
+                  onChange={(e) => handleChangeForDigit5(e)}
                   onKeyUp={(e) => handleNextInput(e)}
                 />
                 <input
@@ -137,14 +156,14 @@ const enterPasswordResetCode = () => {
                   pattern="[0-9]"
                   className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                   maxLength="1"
-                  onChange={(e) => setDigit6(e.target.value)}
+                  onChange={(e) => handleChangeForDigit6(e)}
                 />
               </div>
             </label>
             <button
               type="submit"
               className="bg-squazzle-button-bg-light-green-color h-12 w-[350px]  lg:h-16 lg:w-[420px] text-squazzle-button-font-deep-green-color text-sm lg:text-xl font-bold rounded-xl block cursor-pointer mt-[46px]"
-              onClick={() => handleEnterPasswordResetCode()}
+              onClick={(e) => handleEnterPasswordResetCode(e)}
             >
               Continue
             </button>

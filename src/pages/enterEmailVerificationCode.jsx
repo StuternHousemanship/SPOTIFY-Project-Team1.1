@@ -25,6 +25,32 @@ const enterEmailVerificationCode = () => {
     }
   });
 
+  /** Ensures only digits are inputed */
+  const handleChangeForDigit1 = (e) => {
+    const result = e.target.value.replace(/\D/g, "");
+    setDigit1(result);
+  };
+  const handleChangeForDigit2 = (e) => {
+    const result = e.target.value.replace(/\D/g, "");
+    setDigit2(result);
+  };
+  const handleChangeForDigit3 = (e) => {
+    const result = e.target.value.replace(/\D/g, "");
+    setDigit3(result);
+  };
+  const handleChangeForDigit4 = (e) => {
+    const result = e.target.value.replace(/\D/g, "");
+    setDigit4(result);
+  };
+  const handleChangeForDigit5 = (e) => {
+    const result = e.target.value.replace(/\D/g, "");
+    setDigit5(result);
+  };
+  const handleChangeForDigit6 = (e) => {
+    const result = e.target.value.replace(/\D/g, "");
+    setDigit6(result);
+  };
+
   /** handles focus on next input when previous input is filled */
   const handleNextInput = (e) => {
     const { id } = e.target;
@@ -36,7 +62,8 @@ const enterEmailVerificationCode = () => {
   };
 
   /** handles enter password reset code submit button */
-  const handleEnterEmailVerificationCode = () => {
+  const handleEnterEmailVerificationCode = (e) => {
+    e.preventDefault();
     navigate(NonAuthRoutes.emailVerificationSuccess);
 
     const emailVerificationCode = `${digit1}${digit2}${digit3}${digit4}${digit5}${digit6}`;
@@ -68,7 +95,7 @@ const enterEmailVerificationCode = () => {
           Please enter the 6-digit code sent to
         </p>
         <p className="font-normal text-sm lg:text-lg text-squazzle-button-bg-deep-green-color mb-[26px]">
-          {}
+          {localStorage.getItem("email")}.
         </p>
         <form className="grid place-items-center">
           <label htmlFor="6-digit-code">
@@ -79,7 +106,7 @@ const enterEmailVerificationCode = () => {
                 value={digit1}
                 className="w-[38px] h-[38px]  lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border text-squazzle-text-deep-grey1-color border-squazzle-border-grey-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
-                onChange={(e) => setDigit1(e.target.value)}
+                onChange={(e) => handleChangeForDigit1(e)}
                 onKeyUp={(e) => handleNextInput(e)}
               />
               <input
@@ -88,7 +115,7 @@ const enterEmailVerificationCode = () => {
                 value={digit2}
                 className="w-[38px] h-[38px]  lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
-                onChange={(e) => setDigit2(e.target.value)}
+                onChange={(e) => handleChangeForDigit2(e)}
                 onKeyUp={(e) => handleNextInput(e)}
               />
               <input
@@ -97,7 +124,7 @@ const enterEmailVerificationCode = () => {
                 value={digit3}
                 className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
-                onChange={(e) => setDigit3(e.target.value)}
+                onChange={(e) => handleChangeForDigit3(e)}
                 onKeyUp={(e) => handleNextInput(e)}
               />
               <input
@@ -106,7 +133,7 @@ const enterEmailVerificationCode = () => {
                 value={digit4}
                 className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
-                onChange={(e) => setDigit4(e.target.value)}
+                onChange={(e) => handleChangeForDigit4(e)}
                 onKeyUp={(e) => handleNextInput(e)}
               />
               <input
@@ -115,7 +142,7 @@ const enterEmailVerificationCode = () => {
                 value={digit5}
                 className="w-[38px] h-[38px] lg:w-[60px]  lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
-                onChange={(e) => setDigit5(e.target.value)}
+                onChange={(e) => handleChangeForDigit5(e)}
                 onKeyUp={(e) => handleNextInput(e)}
               />
               <input
@@ -124,14 +151,14 @@ const enterEmailVerificationCode = () => {
                 value={digit6}
                 className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                 maxLength="1"
-                onChange={(e) => setDigit6(e.target.value)}
+                onChange={(e) => handleChangeForDigit6(e)}
               />
             </div>
           </label>
           <button
             type="submit"
             className="bg-squazzle-button-bg-light-green-color h-12 w-[350px]  lg:h-16 lg:w-[420px] text-squazzle-button-font-deep-green-color text-sm lg:text-xl font-bold rounded-xl block cursor-pointer mt-[46px]"
-            onClick={() => handleEnterEmailVerificationCode()}
+            onClick={(e) => handleEnterEmailVerificationCode(e)}
           >
             Continue
           </button>

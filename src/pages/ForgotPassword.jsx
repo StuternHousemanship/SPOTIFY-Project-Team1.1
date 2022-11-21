@@ -37,7 +37,8 @@ function forgotPassword() {
     );
   };
 
-  const handleGetCode = () => {
+  const handleGetCode = (e) => {
+    e.preventDefault();
     navigate(NonAuthRoutes.alertForgotPassword);
     onboarding.passwordCode(email).then((response) => {
       if (response.status === 200) {
@@ -89,7 +90,7 @@ function forgotPassword() {
           <button
             type="submit"
             className=" bg-squazzle-button-bg-deep-green-color w-full py-4 text-squazzle-white-background-color rounded-xl font-bold text-sm lg:text-xl mt-8 lg:mt-12"
-            onClick={() => handleGetCode()}
+            onClick={(e) => handleGetCode(e)}
           >
             Get a reset code
           </button>
