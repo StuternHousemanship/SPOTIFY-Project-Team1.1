@@ -26,7 +26,7 @@ const VerifyEmail = React.lazy(() => import("./pages/verifyEmail"));
 const EmailVerificationSuccess = React.lazy(() =>
   import("./pages/emailVerificationSuccess")
 );
-const Dashboard = React.lazy(() => import("./pages/dashboard"));
+const Dashboard = React.lazy(() => import("./components/dashboard"));
 const ErrorSignUp = React.lazy(() => import("./pages/errorSignUp"));
 
 function Routers() {
