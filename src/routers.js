@@ -14,7 +14,7 @@ const EnterEmailVerificationCode = React.lazy(() =>
 const EnterPasswordResetCode = React.lazy(() =>
   import("./pages/enterPasswordResetCode")
 );
-const ForgotPassword = React.lazy(() => import("./pages/forgotPassword"));
+const ForgotPassword = React.lazy(() => import("./components/forgotPassword"));
 const AlertForgotPassword = React.lazy(() =>
   import("./pages/alertForgotPassword")
 );
