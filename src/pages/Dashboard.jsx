@@ -16,6 +16,7 @@ function dashboard() {
   const logout = () => {
     // navigates to login page
     navigate(NonAuthRoutes.login);
+    window.localStorage.clear();
   };
 
   return (

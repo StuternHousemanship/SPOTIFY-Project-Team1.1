@@ -18,6 +18,7 @@ const login = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   // const [buttonIsLoading, setButtonIsLoading] = useState(false);
 
   useEffect(() => {
@@ -54,6 +55,14 @@ const login = () => {
     );
   };
 
+  // handles remember me
+  const handleRememberMe = () => {
+    if (rememberMe) {
+      window.localStorage.setItem("email", email);
+      window.localStorage.setItem("password", password);
+    }
+  };
+
   /** handles login submit */
   const handleLogin = (e) => {
     e.preventDefault();
@@ -67,6 +76,8 @@ const login = () => {
         navigate(AuthRoutes.dashboard);
       }
     });
+
+    handleRememberMe();
   };
 
   return (
@@ -77,6 +88,9 @@ const login = () => {
           backgroundImage: `url(${squazzleBackground})`,
           backgroundSize: "cover",
           backgroundPositionY: "top",
+          position: "fixed",
+          width: "50%",
+          height: "100vh",
         }}
       >
         <section
@@ -98,14 +112,14 @@ const login = () => {
         </section>
       </section>
 
-      <section className="flex flex-col w-full min-h-screen bg-white md:bg-squazzle-background-white-color lg:md:bg-squazzle-background-white-color">
-        <div className="block md:hidden">
-          <SquazzleMobileLogo className="my-2 ml-5" />
+      <section className="md:absolute md:right-0 md:w-1/2 flex flex-col w-full min-h-screen bg-white md:bg-squazzle-background-white-color lg:md:bg-squazzle-background-white-color">
+        <div className="block md:hidden my-4">
+          <SquazzleMobileLogo className="my-2 ml-5 " />
         </div>
 
         <hr className="block md:hidden" />
 
-        <div className="px-5 md:px-10 lg:px-20 pt-8 md:pt-12 lg:pt-[63px]">
+        <div className="px-5 md:px-10 lg:px-20 py-8 md:py-12 lg:pt-[63px]">
           <header>
             <h1 className="font-bold text-base lg:text-4xl text-squazzle-grey-text-color mb-2">
               Welcome back!
@@ -175,6 +189,8 @@ const login = () => {
                   type="checkbox"
                   name="remember"
                   id="remember"
+                  value={rememberMe}
+                  onChange={() => setRememberMe(!rememberMe)}
                   className="border-squazzle-checkbox-border-color border-2 accent-squazzle-button-bg-deep-green-color w-[12px] h-[12px] mr-[6px] lg:w-[16px] lg:h-[16px] lg:mr-[11px] "
                 />
                 Remember me

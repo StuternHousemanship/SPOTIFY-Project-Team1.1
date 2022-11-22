@@ -115,6 +115,7 @@ const signUp = () => {
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (regex.test(email)) {
       setIsEmailValid(true);
+      // setShowEmailError(false);
     } else {
       setIsEmailValid(false);
     }
@@ -287,8 +288,8 @@ const signUp = () => {
                 onKeyUp={(e) => handleOnkeyUpForEmailInput(e)}
               />
             </label>
+            {showEmailError ? displayEmailErrorText() : null}
           </div>
-          {showEmailError ? displayEmailErrorText() : null}
           <div className="mt-4">
             <label htmlFor="phone-number">
               <span className="text-squazzle-text-deep-grey1-color text-sm">
