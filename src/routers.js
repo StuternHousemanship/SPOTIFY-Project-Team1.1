@@ -14,7 +14,7 @@ const EnterEmailVerificationCode = React.lazy(() =>
 const EnterPasswordResetCode = React.lazy(() =>
   import("./pages/enterPasswordResetCode")
 );
-const ForgotPassword = React.lazy(() => import("./components/forgotPassword"));
+const ForgotPassword = React.lazy(() => import("./pages/forgotPassword"));
 const AlertForgotPassword = React.lazy(() =>
   import("./pages/alertForgotPassword")
 );
@@ -26,7 +26,7 @@ const VerifyEmail = React.lazy(() => import("./pages/verifyEmail"));
 const EmailVerificationSuccess = React.lazy(() =>
   import("./pages/emailVerificationSuccess")
 );
-const Dashboard = React.lazy(() => import("./components/dashboard"));
+const Dashboard = React.lazy(() => import("./pages/dashboard"));
 const ErrorSignUp = React.lazy(() => import("./pages/errorSignUp"));
 
 function Routers() {
