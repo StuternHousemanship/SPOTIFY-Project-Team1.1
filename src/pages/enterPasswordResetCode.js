@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
+import { ReactComponent as LoadingIcon } from "../assets/svg/loading-icon.svg";
 import { NonAuthRoutes } from "../url";
 import onboarding from "../api/onboarding";
 
@@ -15,6 +16,7 @@ const enterPasswordResetCode = () => {
   const [digit4, setDigit4] = useState("");
   const [digit5, setDigit5] = useState("");
   const [digit6, setDigit6] = useState("");
+  const [buttonIsLoading, setButtonIsLoading] = useState(false);
 
   //  handles focus on first input when page loads
   useEffect(() => {
@@ -51,25 +53,37 @@ const enterPasswordResetCode = () => {
     setDigit6(result);
   };
 
-  /** handles focus on next input when previous input is filled */
-  const handleNextInput = (e) => {
+  /** handles moving to the next or previous input on keydown */
+  const handleKeyDown = (e) => {
     const { id } = e.target;
-    const nextInputId = Number(id[id.length - 1]) + 1;
-    const nextInput = document.getElementById(`digit-${nextInputId}`);
-    if (nextInput !== null && nextInput.value === "") {
-      nextInput.focus();
+    if (id === "digit-6" && e.key === "ArrowRight") {
+      const firstInput = document.getElementById("digit-1");
+      if (firstInput !== null) {
+        firstInput.focus();
+      }
+    } else if (e.key === "ArrowLeft") {
+      const previousInputId = Number(id[id.length - 1]) - 1;
+      const previousInput = document.getElementById(`digit-${previousInputId}`);
+      if (previousInput !== null) {
+        previousInput.focus();
+      }
+    } else if (e.key === "ArrowRight" || e.key === "Enter") {
+      const previousInputId = Number(id[id.length - 1]) + 1;
+      const previousInput = document.getElementById(`digit-${previousInputId}`);
+      if (previousInput !== null) {
+        previousInput.focus();
+      }
     }
   };
 
   /** handles enter password reset code submit button */
   const handleEnterPasswordResetCode = (e) => {
     e.preventDefault();
-    navigate(NonAuthRoutes.resetPassword);
-
+    setButtonIsLoading(true);
     const passwordResetCode = `${digit1}${digit2}${digit3}${digit4}${digit5}${digit6}`;
     onboarding.EnterPasswordResetCode(passwordResetCode).then((response) => {
-      if (response.status === 200) {
-        //
+      if (response.status === 201) {
+        navigate(NonAuthRoutes.resetPassword);
       }
     });
   };
@@ -103,76 +117,84 @@ const enterPasswordResetCode = () => {
                   type="text"
                   id="digit-1"
                   value={digit1}
-                  pattern="[0-9]"
-                  className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border text-squazzle-text-deep-grey1-color border-squazzle-border-grey-color caret-squazzle-border-grey-color text-center focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
+                  className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border text-squazzle-text-deep-grey1-color border-squazzle-border-grey-color caret-squazzle-border-grey-color text-center focus:outline-none"
                   maxLength="1"
                   onChange={(e) => handleChangeForDigit1(e)}
-                  onKeyUp={(e) => handleNextInput(e)}
+                  onKeyDown={(e) => handleKeyDown(e)}
                 />
                 <input
                   type="text"
                   id="digit-2"
                   value={digit2}
-                  pattern="[0-9]"
-                  className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
+                  className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none "
                   maxLength="1"
                   onChange={(e) => handleChangeForDigit2(e)}
-                  onKeyUp={(e) => handleNextInput(e)}
+                  onKeyDown={(e) => handleKeyDown(e)}
                 />
                 <input
                   type="text"
                   id="digit-3"
                   value={digit3}
-                  pattern="[0-9]"
-                  className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
+                  className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                   maxLength="1"
                   onChange={(e) => handleChangeForDigit3(e)}
-                  onKeyUp={(e) => handleNextInput(e)}
+                  onKeyDown={(e) => handleKeyDown(e)}
                 />
                 <input
                   type="text"
                   id="digit-4"
                   value={digit4}
-                  pattern="[0-9]"
-                  className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
+                  className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                   maxLength="1"
                   onChange={(e) => handleChangeForDigit4(e)}
-                  onKeyUp={(e) => handleNextInput(e)}
+                  onKeyDown={(e) => handleKeyDown(e)}
                 />
                 <input
                   type="text"
                   id="digit-5"
                   value={digit5}
-                  pattern="[0-9]"
-                  className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
+                  className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                   maxLength="1"
                   onChange={(e) => handleChangeForDigit5(e)}
-                  onKeyUp={(e) => handleNextInput(e)}
+                  onKeyDown={(e) => handleKeyDown(e)}
                 />
                 <input
                   type="text"
                   id="digit-6"
                   value={digit6}
-                  pattern="[0-9]"
-                  className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
+                  className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
                   maxLength="1"
                   onChange={(e) => handleChangeForDigit6(e)}
+                  onKeyDown={(e) => handleKeyDown(e)}
                 />
               </div>
             </label>
             <button
               type="submit"
-              className="bg-squazzle-button-bg-light-green-color h-12 w-[350px]  lg:h-16 lg:w-[420px] text-squazzle-button-font-deep-green-color text-sm lg:text-xl font-bold rounded-xl block cursor-pointer mt-[46px]"
+              className="enabled flex align-middle justify-center bg-squazzle-button-bg-light-green-color py-[15px] w-[350px]  lg:py-5 lg:w-[420px] text-squazzle-button-font-deep-green-color text-sm lg:text-xl font-bold rounded-xl cursor-pointer mt-[46px] disabled:opacity-60"
               onClick={(e) => handleEnterPasswordResetCode(e)}
+              disabled={
+                !digit1 || !digit2 || !digit3 || !digit4 || !digit5 || !digit6
+              }
             >
+              {buttonIsLoading ? (
+                <LoadingIcon className="suspense-loading-icon mr-3 lg:mt-1" />
+              ) : null}
               Continue
             </button>
           </form>
           <div className="flex justify-center">
             <button
               type="button"
-              className="bg-white text-sm lg:text-xl font-bold py-0 text-squazzle-button-font-deep-green-color cursor-pointer mt-[44px]"
+              className="enabled flex align-middle justify-center bg-white text-sm lg:text-xl font-bold py-0 text-squazzle-button-font-deep-green-color cursor-pointer mt-[44px] disabled:opacity-60"
+              onClick={(e) => handleEnterPasswordResetCode(e)}
+              disabled={
+                !digit1 || !digit2 || !digit3 || !digit4 || !digit5 || !digit6
+              }
             >
+              {buttonIsLoading ? (
+                <LoadingIcon className="suspense-loading-icon mr-3 lg:mt-1" />
+              ) : null}
               Resend code
             </button>
           </div>

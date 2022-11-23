@@ -5,6 +5,7 @@ import onboarding from "../api/onboarding";
 import { ReactComponent as PasswordShow } from "../assets/svg/password-eye-show-icon.svg";
 import { ReactComponent as PasswordHide } from "../assets/svg/password-eye-hide-icon.svg";
 import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
+import { ReactComponent as LoadingIcon } from "../assets/svg/loading-icon.svg";
 import { NonAuthRoutes } from "../url";
 
 const resetPassword = () => {
@@ -19,30 +20,26 @@ const resetPassword = () => {
   const [hasNumber, setHasNumber] = useState(false);
   const [hasSymbol, setHasSymbol] = useState(false);
   const [matchFirstPassword, setMatchFirstPassword] = useState(false);
+  const [isValidPassword, setIsValidPassword] = useState(false);
+  const [showConfirmPasswordError, setShowConfirmPasswordError] =
+    useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [buttonIsLoading, setButtonIsLoading] = useState(false);
 
   useEffect(() => {
     // These logic clear error messages when page loads
-    if (password.length < 1) {
+    if (!password) {
       setIsPasswordValid(true);
     }
-    if (confirmPassword.length < 1) {
-      setMatchFirstPassword(true);
+    if (!confirmPassword) {
+      setMatchFirstPassword(false);
     }
   });
 
-  useEffect(() => {
-    // confirms all criterias of password are met
-    if (
-      hasLowerCase &&
-      hasUpperCase &&
-      hasEightCharacters &&
-      (hasNumber || hasSymbol)
-    ) {
-      setIsPasswordValid(true);
-    } else {
-      setIsPasswordValid(false);
-    }
+  /** handles onkeyUp for password input */
+  const handleOnkeyUpForPasswordInput = () => {
+    setIsPasswordValid(false);
+    setMatchFirstPassword(false);
     // checks for lowercase in password
     if (/[a-z]/.test(password)) {
       setHasLowerCase(true);
@@ -74,17 +71,30 @@ const resetPassword = () => {
     } else {
       setHasSymbol(false);
     }
-  }, [password]);
+    // for enabling and disabling submit button
+    if (
+      hasLowerCase &&
+      hasUpperCase &&
+      hasEightCharacters &&
+      (hasNumber || hasSymbol)
+    ) {
+      setIsValidPassword(true);
+    } else {
+      setIsValidPassword(false);
+    }
+  };
 
-  useEffect(() => {
+  /** handles onkeyUp for confirm password input */
+  const handleOnkeyUpForConfirmPasswordInput = () => {
+    setShowConfirmPasswordError(true);
+    setMatchFirstPassword(false);
     // checks that second password matches first
     if (password === confirmPassword) {
       setMatchFirstPassword(true);
     } else {
       setMatchFirstPassword(false);
     }
-  }, [confirmPassword]);
-
+  };
   /** handles show Password text */
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -93,6 +103,17 @@ const resetPassword = () => {
   /** handles show Re-enter Password text */
   const handleShowConfirmPassword = () => {
     setShowConfirmPassword(!showConfirmPassword);
+  };
+
+  /** handles reset password submit button */
+  const handleResetPassword = (e) => {
+    e.preventDefault();
+    setButtonIsLoading(true);
+    onboarding.changePassword(password, confirmPassword).then((response) => {
+      if (response.status === 201) {
+        navigate(NonAuthRoutes.alertResetPassword);
+      }
+    });
   };
 
   /** displays password criteria texts */
@@ -106,7 +127,7 @@ const resetPassword = () => {
               : "text-squazzle-border-error--red-color text-xs font-semibold"
           }
         >
-          *Must include one uppercase and one lowercase
+          * Must include one uppercase and one lowercase
         </p>
         <p
           className={
@@ -115,8 +136,8 @@ const resetPassword = () => {
               : "text-squazzle-border-error--red-color text-xs font-semibold"
           }
         >
-          *Contain at least 8 characters
-        </p>
+          * Contain at least 8 characters{" "}
+        </p>{" "}
         <p
           className={
             hasNumber || hasSymbol
@@ -124,19 +145,10 @@ const resetPassword = () => {
               : "text-squazzle-border-error--red-color text-xs font-semibold"
           }
         >
-          *Contain a number or symbol
+          * Contain a number or symbol
         </p>
       </div>
     );
-  };
-  const handleResetPassword = (e) => {
-    e.preventDefault();
-    navigate(NonAuthRoutes.alertResetPassword);
-    onboarding.changePassword(password, confirmPassword).then((response) => {
-      if (response.status === 200) {
-        //
-      }
-    });
   };
 
   /** displays confirm password error text */
@@ -161,27 +173,27 @@ const resetPassword = () => {
         style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
       >
         <SquazzleMobileLogo className="h-8 w-[146.33px] lg:h-14 lg:w-[222.33px]" />
-      </nav>
+      </nav>{" "}
       <div
         className="w-[610px] mt-10 py-[22px] px-5 lg:px-10 box-border bg-white text-center"
         style={{ width: "min(100vw, 609px)" }}
       >
         <h2 className="text-2xl md:text-4xl lg:text-4xl font-bold text-squazzle-grey-text-color mb-7">
-          Password reset request
-        </h2>
+          Password reset request{" "}
+        </h2>{" "}
         <p className="font-normal text-sm md:text-lg lg:text-lg  text-squazzle-text-deep-grey1-color">
           Please use a minimum of 8 characters, including uppercase letters,
-          lowercase letters and a number
-        </p>
+          lowercase letters and a number{" "}
+        </p>{" "}
         <form className="text-left mt-8">
           <div>
             <label htmlFor="password" className="relative block">
               <span className="text-squazzle-text-deep-grey1-color text-sm">
-                Password
+                Password{" "}
                 <span className="text-squazzle-text-error-red-color pl-[5px]">
                   *
-                </span>
-              </span>
+                </span>{" "}
+              </span>{" "}
               <input
                 id="password"
                 value={password}
@@ -190,7 +202,8 @@ const resetPassword = () => {
                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 className="block border bg-white border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                 onChange={(e) => setPassword(e.target.value)}
-              />
+                onKeyUp={() => handleOnkeyUpForPasswordInput()}
+              />{" "}
               {showPassword ? (
                 <PasswordShow
                   className="absolute top-[49px] right-5 md:top-[50px] md:right-5 lg:top-[53px] lg:right-5"
@@ -201,18 +214,18 @@ const resetPassword = () => {
                   className="absolute top-[48px] right-5 md:top-[49px] md:right-5 lg:top-[52px] lg:right-5"
                   onClick={() => handleShowPassword()}
                 />
-              )}
-            </label>
-          </div>
+              )}{" "}
+            </label>{" "}
+          </div>{" "}
           {isPasswordValid ? null : displayPasswordCriteria()}
           <div className="mt-6">
             <label htmlFor="confirmpassword" className="relative block">
               <span className="text-squazzle-text-deep-grey1-color text-sm">
-                Confirm Password
+                Confirm Password{" "}
                 <span className="text-squazzle-text-error-red-color pl-[5px]">
                   *
-                </span>
-              </span>
+                </span>{" "}
+              </span>{" "}
               <input
                 id="confirmpassword"
                 value={confirmPassword}
@@ -221,7 +234,8 @@ const resetPassword = () => {
                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 className="block bg-white border border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                 onChange={(e) => setConfirmPassword(e.target.value)}
-              />
+                onKeyUp={() => handleOnkeyUpForConfirmPasswordInput()}
+              />{" "}
               {showConfirmPassword ? (
                 <PasswordShow
                   className="absolute top-[49px] right-5 md:top-[50px] md:right-5 lg:top-[53px] lg:right-5"
@@ -234,13 +248,19 @@ const resetPassword = () => {
                 />
               )}
             </label>
-            {matchFirstPassword ? null : displayConfirmPasswordErrorText()}
+            {showConfirmPasswordError
+              ? displayConfirmPasswordErrorText()
+              : null}
           </div>
           <button
             type="submit"
-            className="bg-squazzle-button-bg-deep-green-color h-12 w-full lg:h-16 text-squazzle-button-bg-light-green-color text-sm md:text-xl lg:text-xl font-bold rounded-xl block cursor-pointer mt-[46px]"
+            className="enabled flex align-middle justify-center bg-squazzle-button-bg-deep-green-color py-[15px] w-full lg:py-5 text-squazzle-button-bg-light-green-color text-sm md:text-xl lg:text-xl font-bold rounded-xl cursor-pointer mt-[46px] disabled:opacity-60"
             onClick={(e) => handleResetPassword(e)}
+            disabled={!isValidPassword || !matchFirstPassword}
           >
+            {buttonIsLoading ? (
+              <LoadingIcon className="suspense-loading-icon mr-3 lg:mt-1" />
+            ) : null}
             Reset password
           </button>
         </form>
@@ -250,10 +270,10 @@ const resetPassword = () => {
             className="bg-white text-sm md:text-xl lg:text-xl font-bold w-full border-2 rounded-lg border-squazzle-button-bg-deep-green-color h-12 lg:h-16 text-squazzle-button-bg-deep-green-color cursor-pointer mt-4 md:mt-6 lg:mt-6 mb-3"
             onClick={() => navigate(NonAuthRoutes.login)}
           >
-            Cancel
-          </button>
-        </div>
-      </div>
+            Cancel{" "}
+          </button>{" "}
+        </div>{" "}
+      </div>{" "}
     </div>
   );
 };

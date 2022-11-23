@@ -22,19 +22,23 @@ const ResetPassword = React.lazy(() => import("./pages/resetPassword"));
 const AlertResetPassword = React.lazy(() =>
   import("./pages/alertResetPassword")
 );
-const VerifyEmail = React.lazy(() => import("./pages/verifyEmail"));
+const AlertVerifyEmail = React.lazy(() => import("./pages/alertVerifyEmail"));
 const EmailVerificationSuccess = React.lazy(() =>
   import("./pages/emailVerificationSuccess")
 );
 const Dashboard = React.lazy(() => import("./pages/dashboard"));
 const ErrorSignUp = React.lazy(() => import("./pages/errorSignUp"));
 
+const ErrorEmailVerification = React.lazy(() =>
+  import("./pages/errorEmailVerification")
+);
+
 function Routers() {
   return (
     <div>
       <Suspense
         fallback={
-          <div className="flex justify-center mt-60">
+          <div className="flex justify-center mt-80">
             <LoadingIcon className="suspense-loading-icon" />
           </div>
         }
@@ -67,15 +71,22 @@ function Routers() {
             path={NonAuthRoutes.enterPasswordResetCode}
             element={<EnterPasswordResetCode />}
           />{" "}
-          <Route path={NonAuthRoutes.verifyEmail} element={<VerifyEmail />} />{" "}
+          <Route
+            path={NonAuthRoutes.alertVerifyEmail}
+            element={<AlertVerifyEmail />}
+          />{" "}
           <Route
             path={NonAuthRoutes.emailVerificationSuccess}
             element={<EmailVerificationSuccess />}
-          />
+          />{" "}
           <Route path={AuthRoutes.dashboard} element={<Dashboard />} />{" "}
           <Route path={NonAuthRoutes.errorSignUp} element={<ErrorSignUp />} />
-        </Routes>{" "}
-      </Suspense>{" "}
+          <Route
+            path={NonAuthRoutes.errorEmailVerification}
+            element={<ErrorEmailVerification />}
+          />
+        </Routes>
+      </Suspense>
     </div>
   );
 }

@@ -1,7 +1,9 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable import/no-cycle */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
+import { ReactComponent as LoadingIcon } from "../assets/svg/loading-icon.svg";
 import { NonAuthRoutes } from "../url";
 import { ReactComponent as MailIcon } from "../assets/svg/mail-icon.svg";
 import onboarding from "../api/onboarding";
@@ -9,19 +11,22 @@ import onboarding from "../api/onboarding";
 function forgotPassword() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [showEmailError, setShowEmailError] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
+  const [buttonIsLoading, setButtonIsLoading] = useState(false);
 
   useEffect(() => {
     // These logic clear error messages when page loads
-    if (email.length < 1) {
-      setIsEmailValid(true);
+    if (!email) {
+      setIsEmailValid(false);
     }
   });
 
-  const validateEmail = (userEmail) => {
-    setEmail(userEmail);
+  const validateEmail = () => {
+    setShowEmailError(true);
     // eslint-disable-next-line no-useless-escape
-    const regex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/;
+    const regex =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,4}))$/;
     if (regex.test(email)) {
       setIsEmailValid(true);
     } else {
@@ -31,7 +36,13 @@ function forgotPassword() {
 
   const displayEmailErrorText = () => {
     return (
-      <p className="text-squazzle-text-error-red-color text-xs font-semibold mt-2">
+      <p
+        className={
+          isEmailValid
+            ? "text-squazzle-success-green-color text-xs font-semibold mt-2"
+            : "text-squazzle-text-error-red-color text-xs font-semibold mt-2"
+        }
+      >
         Please enter a valid email address
       </p>
     );
@@ -39,10 +50,10 @@ function forgotPassword() {
 
   const handleGetCode = (e) => {
     e.preventDefault();
-    navigate(NonAuthRoutes.alertForgotPassword);
+    setButtonIsLoading(true);
     onboarding.passwordCode(email).then((response) => {
-      if (response.status === 200) {
-        //
+      if (response.status === 201) {
+        navigate(NonAuthRoutes.alertForgotPassword);
       }
     });
   };
@@ -82,16 +93,21 @@ function forgotPassword() {
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                 placeholder="zharadoe@gmail.com"
                 className="block border bg-white border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm  lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
-                onChange={(e) => validateEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
+                onKeyUp={() => validateEmail()}
               />
             </label>
           </div>
-          {isEmailValid ? null : displayEmailErrorText()}
+          {showEmailError ? displayEmailErrorText() : null}
           <button
             type="submit"
-            className=" bg-squazzle-button-bg-deep-green-color w-full py-4 text-squazzle-white-background-color rounded-xl font-bold text-sm lg:text-xl mt-8 lg:mt-12"
+            className="enabled flex align-middle justify-center bg-squazzle-button-bg-deep-green-color w-full py-4 text-squazzle-white-background-color rounded-xl font-bold text-sm lg:text-xl mt-8 lg:mt-12 disabled:opacity-60"
             onClick={(e) => handleGetCode(e)}
+            disabled={!isEmailValid}
           >
+            {buttonIsLoading ? (
+              <LoadingIcon className="suspense-loading-icon mr-3 lg:mt-1" />
+            ) : null}
             Get a reset code
           </button>
         </form>
@@ -106,59 +122,6 @@ function forgotPassword() {
         </div>
       </div>
     </div>
-    // <div className="font-sans">
-    //   <SquazzleMobileLogo className="h-8 md:h-14 lg:h-14 w-[146.33px] md:w-[222.22px] lg:w-[222.33px] my-2 md:my-5 lg:my-5 ml-5 md:ml-[86px] lg:ml-[86px]" />
-
-    //   <main className="min-h-screen flex justify-center bg-white md:bg-squazzle-background-white-color rounded-xl">
-    //     <div className="flex flex-col max-w-[620px] py-0 px-5 md:px-10 lg:px-10 bg-white">
-    //       <header className="grid place-items-center ">
-    //         <img src={mail} alt="mail" className="h-12 justify-items-center" />
-    //         <h1 className="font-bold text-2xl md:text-4xl lg:text-4xl text-center text-squazzle-grey-text-color mt-8">
-    //           Forgot Password?
-    //         </h1>
-    //         <h3 className="text-sm md:text-lg lg:text-lg py-4 max-w-[420px]text-center text-squazzle-grey-text-color mt-4 md:mt-[24px] lg:mt-[24px]">
-    //           Enter your registered email address below to recieve the password
-    //           reset code
-    //         </h3>
-    //       </header>
-
-    //       <form className="mt-8">
-    //         <div>
-    //           <label htmlFor="email">
-    //             <span className="text-squazzle-text-deep-grey1-color text-sm font-[600]">
-    //               Email Address
-    //             </span>
-    //             <input
-    //               id="email"
-    //               type="text"
-    //               value={email}
-    //               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-    //               placeholder="zharadoe@gmail.com"
-    //               className="block border bg-white border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm  lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
-    //               onChange={(e) => validateEmail(e.target.value)}
-    //             />
-    //           </label>
-    //         </div>
-    //         {isEmailValid ? null : displayEmailErrorText()}
-    //       </form>
-
-    //       <button
-    //         type="submit"
-    //         className=" bg-squazzle-button-bg-deep-green-color w-full py-4 text-squazzle-white-background-color rounded-xl font-bold text-lg mt-8 md:mt-12 lg:mt-12 mb-6"
-    //         onClick={() => handleGetCode()}
-    //       >
-    //         Get a reset code
-    //       </button>
-    //       <button
-    //         type="button"
-    //         className="bg-squazzle-background-white-color font-bold text-sm md:text-lg w-full py-4 rounded-xl text-squazzle-button-bg-deep-green-color border-2 border-squazzle-button-bg-deep-green-color mb-5"
-    //         onClick={() => navigate(NonAuthRoutes.dashboard)}
-    //       >
-    //         Cancel
-    //       </button>
-    //     </div>
-    //   </main>
-    // </div>
   );
 }
 

@@ -1,4 +1,4 @@
-/* eslint-disable react/function-component-definition */
+/* eslint-disable import/no-cycle */
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { NonAuthRoutes } from "../url";
@@ -6,13 +6,12 @@ import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mob
 import { ReactComponent as UndrawOpenIcon } from "../assets/svg/undraw-open-icon.svg";
 import { ReactComponent as UndrawOpenMobileIcon } from "../assets/svg/undraw-open-mobile-icon.svg";
 
-const VerifyEmail = () => {
+function alertForgotPassword() {
   const navigate = useNavigate();
 
-  /** handles email verification */
-  const handleEmailValidity = (e) => {
-    navigate(NonAuthRoutes.enterEmailVerificationCode);
-    e.preventDefault();
+  /** handles sending mail to user */
+  const handleGetResetPasswordCode = () => {
+    navigate(NonAuthRoutes.enterPasswordResetCode);
   };
 
   return (
@@ -32,21 +31,24 @@ const VerifyEmail = () => {
                 <h2 className="text-2xl md:text-[36px] md:leading-[45px] font-normal text-squazzle-grey-text-color mb-6 text-center">
                   Email has been sent!
                 </h2>
-                <p className="font-normal text-[14px] md:text-[18px] leading-[22px] md:leading-[26px] md:h-[78px] text-squazzle-text-deep-grey1-color text-center align-top ">
-                  We have sent a 6 digit pin to &nbsp;
-                  <span className="font-normal text-[14px] md:text-[18px] md:leading-[26px] text-squazzle-button-bg-deep-green-color">
-                    {localStorage.getItem("email")}.
-                  </span>
-                  &nbsp; Click on the button to confirm the validity of your
-                  address.
+                <p className=" font-normal text-[14px] md:text-[18px] leading-[22px] md:leading-[26px] md:h-[78px] text-squazzle-text-deep-grey1-color text-center align-top ">
+                  Please check your inbox and copy the received code to reset
+                  password
                 </p>
               </div>
               <button
                 type="submit"
-                className="text-squazzle-button-bg-light-green-color text-sm md:text-[20px] md:leading-[24px] font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl mt-12 cursor-pointer"
-                onClick={(e) => handleEmailValidity(e)}
+                className=" text-squazzle-button-bg-light-green-color text-sm md:text-[20px] md:leading-[24px] font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl mt-12 cursor-pointer"
+                onClick={(e) => handleGetResetPasswordCode(e)}
               >
                 Continue
+              </button>
+              <button
+                type="button"
+                className="text-squazzle-button-bg-deep-green-color text-sm lg:text-xl font-bold bg-white  border-2 border-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl mt-6 cursor-pointer"
+                onClick={() => handleGetResetPasswordCode()}
+              >
+                Resend code
               </button>
             </div>
           </div>
@@ -68,24 +70,27 @@ const VerifyEmail = () => {
               Email has been sent!
             </p>
             <p className="font-normal text-[14px] leading-[24px]">
-              We have sent a 6 digit pin to&nbsp;
-              <span className="text-[#016D71]">
-                {localStorage.getItem("email")}.
-              </span>
-              &nbsp;Check your mail to get the code.
+              Please check your inbox and copy the received code to reset
+              password
             </p>
           </div>
           <button
             type="submit"
-            className="text-squazzle-button-bg-light-green-color text-[14px] leading-[18px]  font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl cursor-pointer"
-            onClick={() => handleEmailValidity()}
+            className="text-squazzle-button-bg-light-green-color text-sm  font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl cursor-pointer"
+            onClick={() => handleGetResetPasswordCode()}
           >
             Continue
+          </button>
+          <button
+            type="button"
+            className="text-squazzle-button-bg-deep-green-color text-sm lg:text-xl font-bold bg-white  border-2 border-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl cursor-pointer"
+            onClick={() => handleGetResetPasswordCode()}
+          >
+            Resend code
           </button>
         </main>
       </div>
     </div>
   );
-};
-
-export default VerifyEmail;
+}
+export default alertForgotPassword;

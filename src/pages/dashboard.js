@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { NonAuthRoutes } from "../url";
 import { ReactComponent as SquazzleDesktopGreenLogo } from "../assets/svg/squazzle-desktop-green-logo.svg";
 import { ReactComponent as BellIcon } from "../assets/svg/bell-icon.svg";
@@ -13,7 +13,7 @@ function dashboard() {
   const toggleProfileCard = () => {
     setProfileCard(!profileCard);
   };
-  const logout = () => {
+  const handleLogout = () => {
     // navigates to login page
     navigate(NonAuthRoutes.login);
     window.localStorage.clear();
@@ -27,16 +27,16 @@ function dashboard() {
         </div>
         <ul className="flex flex-[0.4] flex-row items-center justify-between font-normal text-base text-squazzle-text-deep-grey2-color">
           <li>
-            <Link to="/accommodations">Accommodations</Link>
+            <button type="button">Accommodations</button>
           </li>
           <li>
-            <Link to="/properties">List your property</Link>
+            <button type="button">List your property</button>
           </li>
           <li>
-            <Link to="/about">About us</Link>
+            <button type="button">About us</button>
           </li>
           <li>
-            <Link to="/faq">FAQ</Link>
+            <button type="button">FAQ</button>
           </li>
         </ul>
         <ul className="flex-[0.07] flex flex-row items-center justify-between">
@@ -53,22 +53,22 @@ function dashboard() {
       </nav>
       <ul className={profileCard ? "profile-card-active" : "profile-card"}>
         <li>
-          <Link to="/account"> Manage Account </Link>
+          <button type="button"> Manage Account </button>
         </li>
         <li>
-          <Link to="/settings"> Settings </Link>
+          <button type="button"> Settings </button>
         </li>
         <li>
-          <Link to="/wishlists"> Wishlist </Link>
+          <button type="button"> Wishlist </button>
         </li>
         <li>
-          <Link to="/help"> Help </Link>
+          <button type="button"> Help </button>
         </li>
         <li className="w-full">
           <hr className="border border-squazzle-border-grey-color" />
         </li>
         <li className="text-squazzle-profileCard-logout-red-color">
-          <button type="button" onClick={logout}>
+          <button type="button" onClick={() => handleLogout()}>
             Logout
           </button>
         </li>

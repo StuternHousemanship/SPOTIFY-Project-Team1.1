@@ -9,7 +9,7 @@ const EmailVerificationSuccess = () => {
   const navigate = useNavigate();
 
   /** handles email verification success and error */
-  const handleemailVerificationSuccess = (e) => {
+  const handleEmailVerificationSuccess = (e) => {
     e.preventDefault();
     navigate(NonAuthRoutes.login);
   };
@@ -36,8 +36,8 @@ const EmailVerificationSuccess = () => {
         </p>
         <button
           type="submit"
-          className="bg-squazzle-button-bg-deep-green-color h-12 md:h-16 lg:h-16 w-[350px] lg:w-[400px] text-squazzle-button-bg-light-green-color text-sm lg:text-xl font-bold rounded-xl block cursor-pointer mt-7 lg:mt-12 mb-12"
-          onClick={(e) => handleemailVerificationSuccess(e)}
+          className="block bg-squazzle-button-bg-deep-green-color py-[15px]  lg:py-5 w-[350px] lg:w-[400px] text-squazzle-button-bg-light-green-color text-sm lg:text-xl font-bold rounded-xl cursor-pointer mt-7 lg:mt-12 mb-12"
+          onClick={(e) => handleEmailVerificationSuccess(e)}
         >
           Proceed to sign in
         </button>
