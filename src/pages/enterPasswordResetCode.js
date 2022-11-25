@@ -9,10 +9,10 @@ import onboarding from "../api/onboarding";
 
 const enterPasswordResetCode = () => {
   const navigate = useNavigate();
-  const { verificationCode } = useParams();
+  const { resetCode } = useParams();
 
-  const verificationCodeArray = verificationCode.split("");
-  const [d1, d2, d3, d4, d5, d6] = verificationCodeArray;
+  const resetCodeArray = resetCode.split("");
+  const [d1, d2, d3, d4, d5, d6] = resetCodeArray;
 
   const [digit1, setDigit1] = useState(d1);
   const [digit2, setDigit2] = useState(d2);
@@ -100,7 +100,7 @@ const enterPasswordResetCode = () => {
   };
 
   return (
-    <div className="bg-squazzle-background-white-color pt-[100px] pb-70 md:pb-[800px] lg:pb-70 max-[640px]:bg-white">
+    <div className="bg-squazzle-background-white-color pt-[100px] pb-70 md:pb-[800px] lg:pb-80 max-[640px]:bg-white">
       <div className="font-sans md:grid md:place-items-center h-full bg-squazzle-background-white-color max-[640px]:bg-white">
         {alertPageNavigation()}
         <div

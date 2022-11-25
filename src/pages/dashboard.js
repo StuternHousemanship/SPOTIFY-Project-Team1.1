@@ -122,6 +122,7 @@ function dashboard() {
         </section>
       </section>
       <div className="bg-white w-full h-[112px]">{}</div>
+      {/* 
       <section className="flex justify-between bg-white px-60 leading-10 text-sm text-squazzle-text-deep-grey2-color  border-t-[1px] border-t-[#D7D7D7] mb-20 ">
         <div className="mt-20">
           <p className="text-[16px]">Company</p>
@@ -184,7 +185,7 @@ function dashboard() {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
       {footer()}
     </main>
   );
