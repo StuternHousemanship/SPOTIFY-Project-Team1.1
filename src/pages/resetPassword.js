@@ -136,8 +136,8 @@ const resetPassword = () => {
               : "text-squazzle-border-error--red-color text-xs font-semibold"
           }
         >
-          * Contain at least 8 characters{" "}
-        </p>{" "}
+          * Contain at least 8 characters
+        </p>
         <p
           className={
             hasNumber || hasSymbol
@@ -173,27 +173,27 @@ const resetPassword = () => {
         style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
       >
         <SquazzleMobileLogo className="h-8 w-[146.33px] lg:h-14 lg:w-[222.33px]" />
-      </nav>{" "}
+      </nav>
       <div
         className="w-[610px] mt-10 py-[22px] px-5 lg:px-10 box-border bg-white text-center"
         style={{ width: "min(100vw, 609px)" }}
       >
         <h2 className="text-2xl md:text-4xl lg:text-4xl font-bold text-squazzle-grey-text-color mb-7">
-          Password reset request{" "}
-        </h2>{" "}
+          Password reset request
+        </h2>
         <p className="font-normal text-sm md:text-lg lg:text-lg  text-squazzle-text-deep-grey1-color">
           Please use a minimum of 8 characters, including uppercase letters,
-          lowercase letters and a number{" "}
-        </p>{" "}
+          lowercase letters and a number
+        </p>
         <form className="text-left mt-8">
           <div>
             <label htmlFor="password" className="relative block">
               <span className="text-squazzle-text-deep-grey1-color text-sm">
-                Password{" "}
+                Password
                 <span className="text-squazzle-text-error-red-color pl-[5px]">
                   *
-                </span>{" "}
-              </span>{" "}
+                </span>
+              </span>
               <input
                 id="password"
                 value={password}
@@ -203,7 +203,7 @@ const resetPassword = () => {
                 className="block border bg-white border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                 onChange={(e) => setPassword(e.target.value)}
                 onKeyUp={() => handleOnkeyUpForPasswordInput()}
-              />{" "}
+              />
               {showPassword ? (
                 <PasswordShow
                   className="absolute top-[49px] right-5 md:top-[50px] md:right-5 lg:top-[53px] lg:right-5"
@@ -214,18 +214,18 @@ const resetPassword = () => {
                   className="absolute top-[48px] right-5 md:top-[49px] md:right-5 lg:top-[52px] lg:right-5"
                   onClick={() => handleShowPassword()}
                 />
-              )}{" "}
-            </label>{" "}
-          </div>{" "}
+              )}
+            </label>
+          </div>
           {isPasswordValid ? null : displayPasswordCriteria()}
           <div className="mt-6">
             <label htmlFor="confirmpassword" className="relative block">
               <span className="text-squazzle-text-deep-grey1-color text-sm">
-                Confirm Password{" "}
+                Confirm Password
                 <span className="text-squazzle-text-error-red-color pl-[5px]">
                   *
-                </span>{" "}
-              </span>{" "}
+                </span>
+              </span>
               <input
                 id="confirmpassword"
                 value={confirmPassword}
@@ -235,7 +235,7 @@ const resetPassword = () => {
                 className="block bg-white border border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 onKeyUp={() => handleOnkeyUpForConfirmPasswordInput()}
-              />{" "}
+              />
               {showConfirmPassword ? (
                 <PasswordShow
                   className="absolute top-[49px] right-5 md:top-[50px] md:right-5 lg:top-[53px] lg:right-5"
@@ -270,10 +270,10 @@ const resetPassword = () => {
             className="bg-white text-sm md:text-xl lg:text-xl font-bold w-full border-2 rounded-lg border-squazzle-button-bg-deep-green-color h-12 lg:h-16 text-squazzle-button-bg-deep-green-color cursor-pointer mt-4 md:mt-6 lg:mt-6 mb-3"
             onClick={() => navigate(NonAuthRoutes.login)}
           >
-            Cancel{" "}
-          </button>{" "}
-        </div>{" "}
-      </div>{" "}
+            Cancel
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

@@ -56,7 +56,7 @@ const login = () => {
             : "text-squazzle-text-error-red-color text-xs font-semibold mt-2"
         }
       >
-        Please enter a valid email address{" "}
+        Please enter a valid email address
       </p>
     );
   };
@@ -109,13 +109,13 @@ const login = () => {
           <SquazzleDesktopLogo className="w-[173px] h-[53px] lg:w-[177px] lg:h-[57px]" />
           <div className="text-squazzle-text-deep-grey2-color mt-8">
             <h1 className="text-3xl lg:text-4xl font-semibold">
-              Welcome to Squazzle{" "}
-            </h1>{" "}
+              Welcome to Squazzle
+            </h1>
             <p className="text-squazzle-text-deep-grey2-color text-lg lg:text-xl font-normal mt-[16px]">
-              Lets help you find a home you & apos; ll love{" "}
-            </p>{" "}
-          </div>{" "}
-        </section>{" "}
+              Lets help you find a home you&apos;ll love
+            </p>
+          </div>
+        </section>
       </section>
       <section className="md:absolute md:right-0 md:w-1/2 flex flex-col w-full min-h-screen bg-white md:bg-squazzle-background-white-color lg:md:bg-squazzle-background-white-color">
         <div className="block md:hidden my-4">
@@ -126,20 +126,20 @@ const login = () => {
           <header>
             <h1 className="font-bold text-base lg:text-4xl text-squazzle-grey-text-color mb-2">
               Welcome back!
-            </h1>{" "}
+            </h1>
             <p className="font-normal text-squazzle-text-deep-grey1-color text-sm lg:text-xl">
-              We are thrilled to see you.{" "}
-            </p>{" "}
-          </header>{" "}
+              We are thrilled to see you.
+            </p>
+          </header>
           <form className="mt-8" onSubmit={() => handleLogin()}>
             <div>
               <label htmlFor="email">
                 <span className="text-squazzle-text-deep-grey1-color text-sm font-[600]">
-                  Email Address{" "}
+                  Email Address
                   <span className="text-squazzle-text-error-red-color pl-[5px]">
                     *
-                  </span>{" "}
-                </span>{" "}
+                  </span>
+                </span>
                 <input
                   id="email"
                   type="email"
@@ -149,18 +149,18 @@ const login = () => {
                   className="block border bg-white border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm  lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                   onChange={(e) => setEmail(e.target.value)}
                   onKeyUp={() => validateEmail()}
-                />{" "}
-              </label>{" "}
+                />
+              </label>
               {showEmailError ? displayEmailErrorText() : null}
-            </div>{" "}
+            </div>
             <div className="mt-6">
               <label htmlFor="password" className="relative block">
                 <span className="text-squazzle-text-deep-grey1-color text-sm font-[600]">
-                  Password{" "}
+                  Password
                   <span className="text-squazzle-text-error-red-color pl-[5px]">
                     *
-                  </span>{" "}
-                </span>{" "}
+                  </span>
+                </span>
                 <input
                   id="password"
                   value={password}
@@ -169,7 +169,7 @@ const login = () => {
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   className="block border bg-white border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                   onChange={(e) => setPassword(e.target.value)}
-                />{" "}
+                />
                 {showPassword ? (
                   <PasswordShow
                     className="absolute top-[49px] right-5 lg:top-[53px] lg:right-5"
@@ -180,9 +180,9 @@ const login = () => {
                     className="absolute top-[48px] right-5 lg:top-[52px] lg:right-5"
                     onClick={() => handleShowPassword()}
                   />
-                )}{" "}
-              </label>{" "}
-            </div>{" "}
+                )}
+              </label>
+            </div>
             <div className="flex items-center justify-between mt-2">
               <label
                 htmlFor="remember"
@@ -196,16 +196,16 @@ const login = () => {
                   onChange={() => setRememberMe(!rememberMe)}
                   className="border-squazzle-checkbox-border-color border-2 accent-squazzle-button-bg-deep-green-color w-[12px] h-[12px] mr-[6px] lg:w-[16px] lg:h-[16px] lg:mr-[11px] "
                 />
-                Remember me{" "}
+                Remember me
               </label>
               <button
                 type="button"
                 className="text-sm lg:text-lg text-squazzle-success-green-color font-normal"
                 onClick={() => navigate(NonAuthRoutes.forgotPassword)}
               >
-                Forgot Password{" "}
-              </button>{" "}
-            </div>{" "}
+                Forgot Password
+              </button>
+            </div>
           </form>
           <button
             type="submit"
@@ -227,7 +227,7 @@ const login = () => {
             {buttonIsLoading ? (
               <LoadingIcon className="suspense-loading-icon mt-0 mr-3" />
             ) : null}
-            Continue{" "}
+            Continue
           </button>
           <button
             type="button"
@@ -240,18 +240,18 @@ const login = () => {
             <p>
               <span className="font-semibold text-sm lg:text-lg">
                 New to squazzle account ?
-              </span>{" "}
+              </span>
               <button
                 type="button"
                 className="ml-2 w-fit text-squazzle-success-green-color cursor-pointer font-semibold text-sm lg:text-lg"
                 onClick={() => navigate(NonAuthRoutes.signUp)}
               >
-                Sign up{" "}
-              </button>{" "}
-            </p>{" "}
-          </div>{" "}
-        </div>{" "}
-      </section>{" "}
+                Sign up
+              </button>
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };
