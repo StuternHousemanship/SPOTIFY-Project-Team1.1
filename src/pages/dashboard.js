@@ -25,7 +25,7 @@ function dashboard() {
   };
 
   return (
-    <main className="min-h-screen bg-squazzle-background-white-color font-sans">
+    <main className="min-h-screen bg-white font-sans">
       <nav className="flex flex-row items-center justify-between bg-squazzle-white-background-color border-b border-squazzle-background-white-color py-4 px-20 h-[96px]">
         <div>
           <SquazzleDesktopGreenLogo className="w-[181px] h-[44px]" />
@@ -87,39 +87,42 @@ function dashboard() {
           backgroundPositionY: "top",
           position: "relative",
           width: "100%",
-          height: "50vh",
+          height: "509px",
         }}
       >
         <section className="text-center text-white">
-          <div>
-            <h1 className="text-4xl py-7">
+          <div className="flex justify-center items-center flex-col">
+            <h1 className="text-4xl font-[600] pt-[64px] pb-6">
               Find that perfect home with squazzle
             </h1>
-            <p className="text-2xl font-light">
-              Squatting made easy! Get the best accomodation and list your
-              accomodation for the right prices
+            <p className="text-[28px] font-[400] pb-8 max-w-[818px]">
+              Get the best accommodation and list your property for the right
+              prices.
             </p>
-            <p className="text-2xl py-5">So what would you like to do?</p>
+            <p className="text-[28px] font-[600] pb-[88px]">
+              So what would you like to do?
+            </p>
           </div>
-          <div>
+          <div className="flex gap-[197px] justify-center">
             <button
-              type="submit"
-              className="px-12 w-68 bg-squazzle-button-bg-deep-green-color p-3 rounded-2xl m-5"
+              type="button"
+              className="py-5 w-[420px] text-squazzle-button-font-deep-green-color font-bold bg-squazzle-button-bg-light-green-color rounded-xl"
             >
               List accomodation
             </button>
             <button
-              type="submit"
-              className="px-12 w-68 bg-none p-3 rounded-2xl border-2"
+              type="button"
+              className="py-5 w-[420px] text-squazzle-button-font-deep-green-color font-bold bg-squazzle-button-bg-light-green-color rounded-xl"
             >
               Browse accomodation
             </button>
           </div>
         </section>
       </section>
-      <section className="flex justify-between p-8 px-60 leading-10 text-squazzle-text-deep-grey2-color">
-        <div>
-          COMPANY
+      <div className="bg-white w-full h-[112px]">{}</div>
+      <section className="flex justify-between bg-white px-60 leading-10 text-sm text-squazzle-text-deep-grey2-color  border-t-[1px] border-t-[#D7D7D7]">
+        <div className="mt-20">
+          <p className="text-[16px]">Company</p>
           <ul>
             <li>
               <button type="button">About Us</button>
@@ -132,8 +135,8 @@ function dashboard() {
             </li>
           </ul>
         </div>
-        <div>
-          PRODUCTS
+        <div className="mt-20">
+          <p className="text-[16px]">Products</p>
           <ul>
             <li>
               <button type="button">Become Our Partner</button>
@@ -146,8 +149,8 @@ function dashboard() {
             </li>
           </ul>
         </div>
-        <div>
-          USEFUL LINKS
+        <div className="mt-20">
+          <p className="text-[16px]">Useful Links</p>
           <ul>
             <li>
               <button type="button">FAQ</button>
@@ -160,27 +163,27 @@ function dashboard() {
             </li>
           </ul>
         </div>
-        <div>
-          NEWSLETTER
+        <div className="mt-20">
+          <p className="text-[16px]">Newsletter</p>
           <p className="w-60 leading-6 py-3">
             Subscribe to our newsletter now to get the best deals for you.
           </p>
           <input
             type="email"
             placeholder="Email address"
-            className="w-60 border-2 rounded-lg px-3"
+            className="w-[310px] py-5 border-2 rounded-lg text-lg px-3"
           />
           <div>
             <button
               type="button"
-              className="w-40 rounded-2xl border-4 bg-squazzle-button-bg-deep-green-color text-white my-3"
+              className="w-[178px] py-5 rounded-xl text-xl font-bold bg-squazzle-button-bg-deep-green-color text-white mt-5"
             >
-              Subscribe
+              Subscribe!
             </button>
           </div>
         </div>
       </section>
-      <section>
+      <section className="mt-20">
         <footer className="flex flex-row items-center justify-between bg-squazzle-white-background-color border-b border-squazzle-background-white-color py-4 px-20 h-[96px]">
           <div>
             <SquazzleDesktopGreenLogo className="w-[181px] h-[44px]" />

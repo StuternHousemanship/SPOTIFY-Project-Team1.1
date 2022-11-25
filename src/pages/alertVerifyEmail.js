@@ -67,11 +67,11 @@ const AlertVerifyEmail = () => {
               Email has been sent!
             </p>
             <p className="font-normal text-[14px] leading-[24px]">
-              We have sent a 6 digit pin to & nbsp;
-              <span className="text-[#016D71]">
+              We have sent a 6 digit pin to
+              <span className="text-[#016D71] mx-[2px]">
                 {localStorage.getItem("email")}.
               </span>
-              & nbsp; Check your mail to get the code.
+              Check your mail to get the code.
             </p>
           </div>
           <button
