@@ -2,8 +2,8 @@
 /* eslint-disable import/no-cycle */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
-import { ReactComponent as LoadingIcon } from "../assets/svg/loading-icon.svg";
+import alertNavigation from "../components/navigation/alert-page-navigation";
+import { ReactComponent as LoadingIcon } from "../assets/svg/loading-light-icon.svg";
 import { NonAuthRoutes } from "../url";
 import { ReactComponent as MailIcon } from "../assets/svg/mail-icon.svg";
 import onboarding from "../api/onboarding";
@@ -51,21 +51,23 @@ function forgotPassword() {
   const handleGetCode = (e) => {
     e.preventDefault();
     setButtonIsLoading(true);
-    onboarding.passwordCode(email).then((response) => {
-      if (response.status === 201) {
-        navigate(NonAuthRoutes.alertForgotPassword);
-      }
-    });
+    try {
+      onboarding.passwordCode(email).then((response) => {
+        if (response.status === 200) {
+          navigate(NonAuthRoutes.alertForgotPassword);
+        }
+      });
+    } catch {
+      setTimeout(() => {
+        setButtonIsLoading(false);
+      }, 5000);
+      // navigate(NonAuthRoutes.);
+    }
   };
 
   return (
-    <div className="font-sans grid place-items-center h-screen bg-squazzle-background-white-color max-[640px]:bg-white">
-      <nav
-        className="bg-white fixed top-0 right-0 left-0 py-2 pl-5 lg:py-2 lg:pl-[86px]"
-        style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
-      >
-        <SquazzleMobileLogo className="h-8 w-[146.33px] lg:h-14 lg:w-[222.33px]" />
-      </nav>
+    <div className="font-sans grid place-items-center h-full pt-70 pb-70 md:pb-[600px] lg:pb-70 bg-squazzle-background-white-color max-[640px]:bg-white">
+      {alertNavigation()}
       <div
         className="grid justify-center md:w-[400px] lg:w-[500px] mt-10 lg:mt-20 py-7 lg:py-5 px-5 lg:px-10 box-border bg-white text-center"
         style={{ width: "min(100vw, 609px)" }}
@@ -101,12 +103,12 @@ function forgotPassword() {
           {showEmailError ? displayEmailErrorText() : null}
           <button
             type="submit"
-            className="enabled flex align-middle justify-center bg-squazzle-button-bg-deep-green-color w-full py-4 text-squazzle-white-background-color rounded-xl font-bold text-sm lg:text-xl mt-8 lg:mt-12 disabled:opacity-60"
+            className="enabled flex align-middle justify-center text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color disabled:bg-squazzle-button-bg-light-green-color disabled:text-squazzle-button-font-deep-green-color w-full py-4 rounded-xl font-bold text-sm lg:text-xl mt-8 lg:mt-12"
             onClick={(e) => handleGetCode(e)}
             disabled={!isEmailValid}
           >
             {buttonIsLoading ? (
-              <LoadingIcon className="suspense-loading-icon mr-3 lg:mt-1" />
+              <LoadingIcon className="suspense-loading-icon mr-3 lg:mt-[3px]" />
             ) : null}
             Get a reset code
           </button>

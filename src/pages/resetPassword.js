@@ -1,11 +1,11 @@
 /* eslint-disable import/no-cycle */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import alertPageNavigation from "../components/navigation/alert-page-navigation";
 import onboarding from "../api/onboarding";
 import { ReactComponent as PasswordShow } from "../assets/svg/password-eye-show-icon.svg";
 import { ReactComponent as PasswordHide } from "../assets/svg/password-eye-hide-icon.svg";
-import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
-import { ReactComponent as LoadingIcon } from "../assets/svg/loading-icon.svg";
+import { ReactComponent as LoadingIcon } from "../assets/svg/loading-light-icon.svg";
 import { NonAuthRoutes } from "../url";
 
 const resetPassword = () => {
@@ -109,11 +109,18 @@ const resetPassword = () => {
   const handleResetPassword = (e) => {
     e.preventDefault();
     setButtonIsLoading(true);
-    onboarding.changePassword(password, confirmPassword).then((response) => {
-      if (response.status === 201) {
-        navigate(NonAuthRoutes.alertResetPassword);
-      }
-    });
+    try {
+      onboarding.changePassword(password, confirmPassword).then((response) => {
+        if (response.status === 201) {
+          navigate(NonAuthRoutes.alertResetPassword);
+        }
+      });
+    } catch {
+      setTimeout(() => {
+        setButtonIsLoading(false);
+      }, 5000);
+      // navigate(NonAuthRoutes.);
+    }
   };
 
   /** displays password criteria texts */
@@ -167,13 +174,8 @@ const resetPassword = () => {
   };
 
   return (
-    <div className="font-sans grid place-items-center h-full bg-squazzle-background-white-color py-70 max-[640px]:bg-white">
-      <nav
-        className="bg-white fixed top-0 right-0 left-0 py-2 pl-5 lg:py-2 lg:pl-[86px]"
-        style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
-      >
-        <SquazzleMobileLogo className="h-8 w-[146.33px] lg:h-14 lg:w-[222.33px]" />
-      </nav>
+    <div className="font-sans grid place-items-center h-full bg-squazzle-background-white-color pt-70 pb-70 md:pb-[600px] lg:pb-70 max-[640px]:bg-white">
+      {alertPageNavigation()}
       <div
         className="w-[610px] mt-10 py-[22px] px-5 lg:px-10 box-border bg-white text-center"
         style={{ width: "min(100vw, 609px)" }}
@@ -254,12 +256,12 @@ const resetPassword = () => {
           </div>
           <button
             type="submit"
-            className="enabled flex align-middle justify-center bg-squazzle-button-bg-deep-green-color py-[15px] w-full lg:py-5 text-squazzle-button-bg-light-green-color text-sm md:text-xl lg:text-xl font-bold rounded-xl cursor-pointer mt-[46px] disabled:opacity-60"
+            className="enabled flex align-middle justify-center text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color disabled:bg-squazzle-button-bg-light-green-color disabled:text-squazzle-button-font-deep-green-color py-[15px] w-full lg:py-5 text-sm md:text-xl lg:text-xl font-bold rounded-xl cursor-pointer mt-[46px]"
             onClick={(e) => handleResetPassword(e)}
             disabled={!isValidPassword || !matchFirstPassword}
           >
             {buttonIsLoading ? (
-              <LoadingIcon className="suspense-loading-icon mr-3 lg:mt-1" />
+              <LoadingIcon className="suspense-loading-icon mr-3 lg:mt-[5px]" />
             ) : null}
             Reset password
           </button>

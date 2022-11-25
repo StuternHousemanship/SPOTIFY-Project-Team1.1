@@ -1,8 +1,8 @@
 /* eslint-disable react/function-component-definition */
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import alertPageNavigation from "../components/navigation/alert-page-navigation";
 import { NonAuthRoutes } from "../url";
-import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
 import { ReactComponent as UndrawOpenIcon } from "../assets/svg/undraw-open-icon.svg";
 import { ReactComponent as UndrawOpenMobileIcon } from "../assets/svg/undraw-open-mobile-icon.svg";
 
@@ -11,20 +11,15 @@ const AlertVerifyEmail = () => {
 
   /** handles email verification */
   const handleEmailValidity = (e) => {
-    navigate(NonAuthRoutes.enterEmailVerificationCode);
     e.preventDefault();
+    navigate(NonAuthRoutes.enterEmailVerificationCode);
   };
 
   return (
     <div>
       <div className="hidden sm:block">
-        <div className="font-sans h-screen flex items-center justify-center bg-squazzle-background-white-color max-[640px]:bg-white ">
-          <nav
-            className="bg-white fixed top-0 right-0 left-0 sm:h-12 sm:pl-5 sm:py-2 md:h-[96px] md:pl-[86px] md:py-[20px]"
-            style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
-          >
-            <SquazzleMobileLogo className=" md:h-14 md:w-[222.33px]" />
-          </nav>
+        <div className="font-sans h-full md:pt-[85px] md:pb-[800px] lg:pb-10 lg:pt-5 flex items-center justify-center bg-squazzle-background-white-color max-[640px]:bg-white ">
+          {alertPageNavigation()}
           <div className="main_div sm:max-w-[500px] sm:py-10 sm:px-10 box-border bg-white rounded-lg drop-shadow-[0_0.5px_rgba(31,44,63,0.05)]">
             <UndrawOpenIcon className="mx-auto sm:mb-8" />
             <div>
@@ -33,12 +28,11 @@ const AlertVerifyEmail = () => {
                   Email has been sent!
                 </h2>
                 <p className="font-normal text-[14px] md:text-[18px] leading-[22px] md:leading-[26px] md:h-[78px] text-squazzle-text-deep-grey1-color text-center align-top ">
-                  We have sent a 6 digit pin to & nbsp;
-                  <span className="font-normal text-[14px] md:text-[18px] md:leading-[26px] text-squazzle-button-bg-deep-green-color">
+                  We have sent a 6 digit pin to
+                  <span className="font-normal text-[14px] md:text-[18px] md:leading-[26px] text-squazzle-button-bg-deep-green-color mx-1">
                     {localStorage.getItem("email")}.
                   </span>
-                  & nbsp; Click on the button to confirm the validity of your
-                  address.
+                  Click on the button to confirm the validity of your address.
                 </p>
               </div>
               <button
@@ -54,13 +48,8 @@ const AlertVerifyEmail = () => {
       </div>
       {/* Mobile Screen */}
       <div className="sm:hidden font-sans">
-        <nav
-          className="bg-white h-12 pl-5 py-2 "
-          style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
-        >
-          <SquazzleMobileLogo className=" w-[146.33px] h-8" />
-        </nav>
-        <main className="pl-5 pr-5 pt-[28px] flex flex-col gap-y-8">
+        {alertPageNavigation()}
+        <main className="pl-5 pr-5 pt-[28px] flex flex-col gap-y-8 mt-16">
           <UndrawOpenMobileIcon className="mx-auto " />
           <div className="px-4 text-center flex flex-col gap-y-6 ">
             <p className="text-[24px] leading-[30px] text-[#232323]">
@@ -68,7 +57,7 @@ const AlertVerifyEmail = () => {
             </p>
             <p className="font-normal text-[14px] leading-[24px]">
               We have sent a 6 digit pin to
-              <span className="text-[#016D71] mx-[2px]">
+              <span className="text-[#016D71] mx-1">
                 {localStorage.getItem("email")}.
               </span>
               Check your mail to get the code.

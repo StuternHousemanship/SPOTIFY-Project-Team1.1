@@ -38,7 +38,7 @@ function Routers() {
     <div>
       <Suspense
         fallback={
-          <div className="flex justify-center mt-80">
+          <div className="flex justify-center mt-[500px]">
             <LoadingIcon className="suspense-loading-icon" />
           </div>
         }
@@ -64,11 +64,11 @@ function Routers() {
             element={<AlertResetPassword />}
           />
           <Route
-            path={NonAuthRoutes.enterEmailVerificationCode}
+            path={`${NonAuthRoutes.enterEmailVerificationCode}/:verificationCode`}
             element={<EnterEmailVerificationCode />}
           />
           <Route
-            path={NonAuthRoutes.enterPasswordResetCode}
+            path={`${NonAuthRoutes.enterPasswordResetCode}/:resetCode`}
             element={<EnterPasswordResetCode />}
           />
           <Route

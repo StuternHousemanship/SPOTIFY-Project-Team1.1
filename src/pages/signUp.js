@@ -11,7 +11,7 @@ import { ReactComponent as PasswordHide } from "../assets/svg/password-eye-hide-
 import { ReactComponent as SquazzleDesktopLogo } from "../assets/svg/squazzle-desktop-logo.svg";
 import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
 import { ReactComponent as MobileReturnButton } from "../assets/svg/return-button.svg";
-import { ReactComponent as LoadingIcon } from "../assets/svg/loading-icon.svg";
+import { ReactComponent as LoadingIcon } from "../assets/svg/loading-light-icon.svg";
 import onboarding from "../api/onboarding";
 import { NonAuthRoutes } from "../url";
 import backgroundimage from "../assets/img/squazzle-background.png";
@@ -135,16 +135,21 @@ const signUp = () => {
   const handleSignUp = (e) => {
     e.preventDefault();
     setButtonIsLoading(true);
-    onboarding
-      .SignUp(email, firstName, lastName, phoneNumber, password)
-      .then((response) => {
-        if (response.status === 201) {
-          localStorage.setItem("email", email);
-          navigate(NonAuthRoutes.alertVerifyEmail);
-        } else {
-          navigate(NonAuthRoutes.errorSignUp);
-        }
-      });
+    try {
+      onboarding
+        .SignUp(email, firstName, lastName, phoneNumber, password)
+        .then((response) => {
+          if (response.status === 200) {
+            localStorage.setItem("email", email);
+            navigate(NonAuthRoutes.alertVerifyEmail);
+          }
+        });
+    } catch (error) {
+      setTimeout(() => {
+        setButtonIsLoading(false);
+      }, 5000);
+      // navigate(NonAuthRoutes.);
+    }
   };
 
   /** displays email error text */
@@ -220,7 +225,13 @@ const signUp = () => {
           className="bg-white fixed top-0 right-0 left-0 md:hidden lg:hidden"
           style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
         >
-          <SquazzleMobileLogo className="my-2 ml-5 md:ml-20 lg:ml-20" />
+          <button
+            type="button"
+            className="cursor-pointer"
+            onClick={() => navigate(NonAuthRoutes.login)}
+          >
+            <SquazzleMobileLogo className="my-2 ml-5 md:ml-20 lg:ml-20" />
+          </button>
         </nav>
         <h1 className="text-base lg:text-2xl font-[600] lg:font-bold text-squazzle-text-deep-green-color mb-2">
           Create a squazzle profile
@@ -329,7 +340,7 @@ const signUp = () => {
         </form>
         <button
           type="button"
-          className="enabled text-squazzle-button-font-deep-green-color text-sm lg:text-xl font-bold bg-squazzle-button-bg-light-green-color w-full py-4 rounded-xl mt-12 cursor-pointer disabled:opacity-60"
+          className="enabled text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color disabled:bg-squazzle-button-bg-light-green-color disabled:text-squazzle-button-font-deep-green-color text-sm lg:text-xl font-bold w-full py-4 rounded-xl mt-12 cursor-pointer"
           disabled={
             !firstName ||
             !lastName ||
@@ -348,17 +359,26 @@ const signUp = () => {
   /** displays password page */
   const displayPasswordPage = () => {
     return (
-      <div className="pt-[72px] pb-9 md:pt-[48px] lg:pt-16 h-full bg-white md:bg-squazzle-background-white-color lg:bg-squazzle-background-white-color px-5 md:px-10 lg:px-20 md:w-1/2 md:fixed md:z-[1] md:top-0 md:overflow-x-hidden md:right-0 lg:w-1/2 lg:fixed lg:z-[1] lg:top-0 lg:overflow-x-hidden lg:right-0">
+      <div className="pt-[72px] pb-9 md:pt-[45px] lg:pt-10 h-full bg-white md:bg-squazzle-background-white-color lg:bg-squazzle-background-white-color px-5 md:px-10 lg:px-20 md:w-1/2 md:fixed md:z-[1] md:top-0 md:overflow-x-hidden md:right-0 lg:w-1/2 lg:fixed lg:z-[1] lg:top-0 lg:overflow-x-hidden lg:right-0">
         <nav
           className="bg-white fixed top-0 right-0 left-0 md:hidden lg:hidden"
           style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
         >
-          <SquazzleMobileLogo className="my-2 ml-5 md:ml-20 lg:ml-20" />
+          <button
+            type="button"
+            className="cursor-pointer"
+            onClick={() => navigate(NonAuthRoutes.login)}
+          >
+            <SquazzleMobileLogo className="my-2 ml-5 md:ml-20 lg:ml-20" />
+          </button>
         </nav>
-        <MobileReturnButton
-          className="md:hidden lg:hidden mb-4"
+        <button
+          type="button"
+          className="cursor-pointer"
           onClick={() => setPersonalDataPageFilled(false)}
-        />
+        >
+          <MobileReturnButton className="mb-4 lg:mb-5" />
+        </button>
         <h1 className="text-base lg:text-2xl font-[600] lg:font-bold text-squazzle-text-deep-green-color mb-2">
           Create Password
         </h1>
@@ -462,7 +482,7 @@ const signUp = () => {
         </form>
         <button
           type="submit"
-          className="enabled flex align-middle justify-center text-squazzle-button-bg-light-green-color text-sm lg:text-xl font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl mt-10 cursor-pointer disabled:opacity-60"
+          className="enabled flex align-middle justify-center text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color disabled:bg-squazzle-button-bg-light-green-color disabled:text-squazzle-button-font-deep-green-color text-sm lg:text-xl font-bold w-full py-4 rounded-xl mt-10 cursor-pointer"
           disabled={
             !firstName ||
             !lastName ||
@@ -475,7 +495,7 @@ const signUp = () => {
           onClick={(e) => handleSignUp(e)}
         >
           {buttonIsLoading ? (
-            <LoadingIcon className="suspense-loading-icon mr-3" />
+            <LoadingIcon className="suspense-loading-icon mr-3 lg:mt-1" />
           ) : null}
           Create account
         </button>
@@ -513,7 +533,13 @@ const signUp = () => {
           backgroundPosition: "center",
         }}
       >
-        <SquazzleDesktopLogo className="w-[173px] h-[53px] lg:w-[177px] lg:h-[57px]" />
+        <button
+          type="button"
+          className="cursor-pointer"
+          onClick={() => navigate(NonAuthRoutes.login)}
+        >
+          <SquazzleDesktopLogo className="w-[173px] h-[53px] lg:w-[177px] lg:h-[57px]" />
+        </button>
         <h1 className="mt-8 text-3xl lg:text-4xl text-squazzle-background-white-color font-[600]">
           Find that perfect home with Squazzle.
         </h1>

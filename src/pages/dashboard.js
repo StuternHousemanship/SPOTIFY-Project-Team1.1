@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import footer from "../components/footer/footer";
 import { NonAuthRoutes } from "../url";
 import { ReactComponent as SquazzleDesktopGreenLogo } from "../assets/svg/squazzle-desktop-green-logo.svg";
 import { ReactComponent as BellIcon } from "../assets/svg/bell-icon.svg";
 import { ReactComponent as UserIcon } from "../assets/svg/profile-icon.svg";
-import { ReactComponent as InstagramIcon } from "../assets/svg/instagram.svg";
-import { ReactComponent as FacebookIcon } from "../assets/svg/facebook.svg";
-import { ReactComponent as TwitterIcon } from "../assets/svg/twitter.svg";
-import { ReactComponent as LinkdnIcon } from "../assets/svg/linkdn.svg";
-import onboard from "../assets/img/onboard.png";
+import dashboardBackgroundImage from "../assets/img/dashboard-background-image.png";
 
 function dashboard() {
   const navigate = useNavigate();
@@ -26,7 +23,7 @@ function dashboard() {
 
   return (
     <main className="min-h-screen bg-white font-sans">
-      <nav className="flex flex-row items-center justify-between bg-squazzle-white-background-color border-b border-squazzle-background-white-color py-4 px-20 h-[96px]">
+      <nav className="flex flex-row items-center justify-between bg-squazzle-white-background-color border-b border-squazzle-background-white-color py-9 px-20 fixed top-0 w-full z-10">
         <div>
           <SquazzleDesktopGreenLogo className="w-[181px] h-[44px]" />
         </div>
@@ -51,12 +48,16 @@ function dashboard() {
           <li>
             <UserIcon
               className="w-[33px] h-[33px] cursor-pointer"
-              onClick={toggleProfileCard}
+              onClick={() => toggleProfileCard()}
             />
           </li>
         </ul>
       </nav>
-      <ul className={profileCard ? "profile-card-active" : "profile-card"}>
+      <ul
+        className={
+          profileCard ? "profile-card-active absolute z-10" : "profile-card"
+        }
+      >
         <li>
           <button type="button"> Manage Account </button>
         </li>
@@ -80,19 +81,20 @@ function dashboard() {
       </ul>
 
       <section
-        className="hidden md:block"
+        className="hidden md:grid md:place-items-center"
         style={{
-          backgroundImage: `url(${onboard})`,
+          backgroundImage: `url(${dashboardBackgroundImage})`,
           backgroundSize: "cover",
           backgroundPositionY: "top",
           position: "relative",
           width: "100%",
           height: "509px",
+          marginTop: "96px",
         }}
       >
         <section className="text-center text-white">
           <div className="flex justify-center items-center flex-col">
-            <h1 className="text-4xl font-[600] pt-[64px] pb-6">
+            <h1 className="text-[54px] font-[600] pb-6">
               Find that perfect home with squazzle
             </h1>
             <p className="text-[28px] font-[400] pb-8 max-w-[818px]">
@@ -103,7 +105,7 @@ function dashboard() {
               So what would you like to do?
             </p>
           </div>
-          <div className="flex gap-[197px] justify-center">
+          <div className="flex gap-x-[197px] justify-center">
             <button
               type="button"
               className="py-5 w-[420px] text-squazzle-button-font-deep-green-color font-bold bg-squazzle-button-bg-light-green-color rounded-xl"
@@ -120,7 +122,7 @@ function dashboard() {
         </section>
       </section>
       <div className="bg-white w-full h-[112px]">{}</div>
-      <section className="flex justify-between bg-white px-60 leading-10 text-sm text-squazzle-text-deep-grey2-color  border-t-[1px] border-t-[#D7D7D7]">
+      <section className="flex justify-between bg-white px-60 leading-10 text-sm text-squazzle-text-deep-grey2-color  border-t-[1px] border-t-[#D7D7D7] mb-20 ">
         <div className="mt-20">
           <p className="text-[16px]">Company</p>
           <ul>
@@ -171,7 +173,7 @@ function dashboard() {
           <input
             type="email"
             placeholder="Email address"
-            className="w-[310px] py-5 border-2 rounded-lg text-lg px-3"
+            className="w-[310px] py-5 border-2 rounded-lg text-lg px-3 focus:bg-none"
           />
           <div>
             <button
@@ -183,27 +185,7 @@ function dashboard() {
           </div>
         </div>
       </section>
-      <section className="mt-20">
-        <footer className="flex flex-row items-center justify-between bg-squazzle-white-background-color border-b border-squazzle-background-white-color py-4 px-20 h-[96px]">
-          <div>
-            <SquazzleDesktopGreenLogo className="w-[181px] h-[44px]" />
-          </div>
-          <ul className="flex flex-[0.4] flex-row items-center justify-between font-normal text-base text-squazzle-text-deep-grey2-color">
-            <li>
-              <button type="button">Privacy policy</button>
-            </li>
-            <li>
-              <button type="button">Terms and condition</button>
-            </li>
-          </ul>
-          <div className="flex">
-            <InstagramIcon className="w-[50px] h-[10px]" />
-            <FacebookIcon className="w-[50px] h-[10px]" />
-            <TwitterIcon className="w-[50px] h-[10px]" />
-            <LinkdnIcon className="w-[50px] h-[10px]" />
-          </div>
-        </footer>
-      </section>
+      {footer()}
     </main>
   );
 }
