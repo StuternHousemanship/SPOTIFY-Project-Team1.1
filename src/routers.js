@@ -32,6 +32,9 @@ const ErrorSignUp = React.lazy(() => import("./pages/errorSignUp"));
 const ErrorEmailVerification = React.lazy(() =>
   import("./pages/errorEmailVerification")
 );
+const AccommodationDetails = React.lazy(() =>
+  import("./pages/accommodationDetails")
+);
 
 function Routers() {
   return (
@@ -80,6 +83,10 @@ function Routers() {
             element={<EmailVerificationSuccess />}
           />
           <Route path={AuthRoutes.dashboard} element={<Dashboard />} />
+          <Route
+            path={AuthRoutes.accommodationDetails}
+            element={<AccommodationDetails />}
+          />
           <Route path={NonAuthRoutes.errorSignUp} element={<ErrorSignUp />} />
           <Route
             path={NonAuthRoutes.errorEmailVerification}

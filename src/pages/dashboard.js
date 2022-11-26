@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import footer from "../components/footer/footer";
-import { NonAuthRoutes } from "../url";
+import { NonAuthRoutes, AuthRoutes } from "../url";
 import { ReactComponent as SquazzleDesktopGreenLogo } from "../assets/svg/squazzle-desktop-green-logo.svg";
 import { ReactComponent as BellIcon } from "../assets/svg/bell-icon.svg";
 import { ReactComponent as UserIcon } from "../assets/svg/profile-icon.svg";
@@ -29,7 +29,12 @@ function dashboard() {
         </div>
         <ul className="flex flex-[0.4] flex-row items-center justify-between font-normal text-base text-squazzle-text-deep-grey2-color">
           <li>
-            <button type="button">Accommodations</button>
+            <button
+              type="button"
+              onClick={() => navigate(AuthRoutes.accommodationDetails)}
+            >
+              Accommodations
+            </button>
           </li>
           <li>
             <button type="button">List your property</button>
