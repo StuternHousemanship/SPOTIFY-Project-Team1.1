@@ -1,6 +1,7 @@
 /** Authenticated URL Routes */
 const AuthRoutes = {
   dashboard: "/dashboard",
+  accommodationDetails: "/dashboard/accommodation-details",
 };
 
 /** Non Authenticated URL Routes */

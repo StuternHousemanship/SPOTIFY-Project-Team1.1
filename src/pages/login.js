@@ -9,7 +9,7 @@ import { ReactComponent as PasswordShow } from "../assets/svg/password-eye-show-
 import { ReactComponent as PasswordHide } from "../assets/svg/password-eye-hide-icon.svg";
 import { ReactComponent as SquazzleDesktopLogo } from "../assets/svg/squazzle-desktop-logo.svg";
 import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
-import { ReactComponent as LoadingIcon } from "../assets/svg/loading-icon.svg";
+import { ReactComponent as LoadingIcon } from "../assets/svg/loading-light-icon.svg";
 import squazzleBackground from "../assets/img/squazzle-login-background.png";
 
 const login = () => {
@@ -73,15 +73,23 @@ const login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     setButtonIsLoading(true);
-    onboarding.Login(email, password).then((response) => {
-      if (response.status === 201) {
-        const accessToken = response.access_token;
-        const refreshToken = response.refresh_token;
-        Cookies.set("accessToken", accessToken);
-        localStorage.setItem("token", refreshToken);
-        navigate(AuthRoutes.dashboard);
-      }
-    });
+    try {
+      onboarding.Login(email, password).then((response) => {
+        if (response.status === 200) {
+          const accessToken = response.access_token;
+          const refreshToken = response.refresh_token;
+          Cookies.set("accessToken", accessToken);
+          localStorage.setItem("token", refreshToken);
+          setButtonIsLoading(false);
+          navigate(AuthRoutes.dashboard);
+        }
+      });
+    } catch (error) {
+      setTimeout(() => {
+        setButtonIsLoading(false);
+      }, 5000);
+      // navigate(NonAuthRoutes.err);
+    }
 
     handleRememberMe();
   };
@@ -209,7 +217,7 @@ const login = () => {
           </form>
           <button
             type="submit"
-            className="enabled md:flex md:align-middle md:justify-center hidden bg-squazzle-button-bg-deep-green-color w-full py-[15px] lg:py-5 text-squazzle-white-background-color rounded-xl font-bold text-sm lg:text-xl mt-12 mb-6 cursor-pointer disabled:opacity-60"
+            className="enabled md:flex md:align-middle md:justify-center hidden w-full py-[15px] lg:py-5 text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color disabled:bg-squazzle-button-bg-light-green-color disabled:text-squazzle-button-font-deep-green-color rounded-xl font-bold text-sm lg:text-xl mt-12 mb-6 cursor-pointer"
             onClick={(e) => handleLogin(e)}
             disabled={!isEmailValid || !password}
           >
@@ -220,7 +228,7 @@ const login = () => {
           </button>
           <button
             type="submit"
-            className="enabled flex align-middle justify-center md:hidden bg-squazzle-button-bg-deep-green-color w-full py-[15px] lg:py-5 text-squazzle-white-background-color rounded-xl font-bold text-sm mt-8 mb-4 cursor-pointer disabled:opacity-60"
+            className="enabled flex align-middle justify-center md:hidden text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color disabled:bg-squazzle-button-bg-light-green-color disabled:text-squazzle-button-font-deep-green-color w-full py-[15px] lg:py-5 rounded-xl font-bold text-sm mt-8 mb-4 cursor-pointer"
             onClick={(e) => handleLogin(e)}
             disabled={!isEmailValid || !password}
           >

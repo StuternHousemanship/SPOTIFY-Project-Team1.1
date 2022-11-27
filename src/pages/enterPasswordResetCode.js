@@ -1,21 +1,25 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable react/function-component-definition */
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
+import { useNavigate, useParams } from "react-router-dom";
+import alertPageNavigation from "../components/navigation/alert-page-navigation";
 import { ReactComponent as LoadingIcon } from "../assets/svg/loading-icon.svg";
 import { NonAuthRoutes } from "../url";
 import onboarding from "../api/onboarding";
 
 const enterPasswordResetCode = () => {
   const navigate = useNavigate();
+  const { resetCode } = useParams();
 
-  const [digit1, setDigit1] = useState("");
-  const [digit2, setDigit2] = useState("");
-  const [digit3, setDigit3] = useState("");
-  const [digit4, setDigit4] = useState("");
-  const [digit5, setDigit5] = useState("");
-  const [digit6, setDigit6] = useState("");
+  const resetCodeArray = resetCode.split("");
+  const [d1, d2, d3, d4, d5, d6] = resetCodeArray;
+
+  const [digit1, setDigit1] = useState(d1);
+  const [digit2, setDigit2] = useState(d2);
+  const [digit3, setDigit3] = useState(d3);
+  const [digit4, setDigit4] = useState(d4);
+  const [digit5, setDigit5] = useState(d5);
+  const [digit6, setDigit6] = useState(d6);
   const [buttonIsLoading, setButtonIsLoading] = useState(false);
 
   //  handles focus on first input when page loads
@@ -81,24 +85,26 @@ const enterPasswordResetCode = () => {
     e.preventDefault();
     setButtonIsLoading(true);
     const passwordResetCode = `${digit1}${digit2}${digit3}${digit4}${digit5}${digit6}`;
-    onboarding.EnterPasswordResetCode(passwordResetCode).then((response) => {
-      if (response.status === 201) {
-        navigate(NonAuthRoutes.resetPassword);
-      }
-    });
+    try {
+      onboarding.EnterPasswordResetCode(passwordResetCode).then((response) => {
+        if (response.status === 200) {
+          navigate(NonAuthRoutes.resetPassword);
+        }
+      });
+    } catch {
+      setTimeout(() => {
+        setButtonIsLoading(false);
+      }, 5000);
+      // navigate(NonAuthRoutes.);
+    }
   };
 
   return (
-    <div className="grid justify-center bg-squazzle-background-white-color max-[640px]:bg-white">
-      <div className="font-sans md:grid md:place-items-center h-screen bg-squazzle-background-white-color py-70 max-[640px]:bg-white">
-        <nav
-          className="bg-white fixed top-0 right-0 left-0 py-2 pl-5 lg:py-2 lg:pl-[86px]"
-          style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
-        >
-          <SquazzleMobileLogo className="h-8 w-[146.33px] lg:h-14 lg:w-[222.33px]" />
-        </nav>
+    <div className="bg-squazzle-background-white-color pt-[100px] pb-70 md:pb-[800px] lg:pb-80 max-[640px]:bg-white">
+      <div className="font-sans md:grid md:place-items-center h-full bg-squazzle-background-white-color max-[640px]:bg-white">
+        {alertPageNavigation()}
         <div
-          className="grid place-items-center w-[610px] py-[44px] px-5 md:px-10 lg:px-10 box-border bg-white text-center"
+          className="grid place-items-center w-[610px] py-[22px] px-[4px] md:px-10 lg:px-10 box-border bg-white text-center"
           style={{ width: "min(100vw, 609px)" }}
         >
           <h2 className="text-2xl lg:text-4xl font-bold text-squazzle-grey-text-color mb-7">
@@ -171,7 +177,7 @@ const enterPasswordResetCode = () => {
             </label>
             <button
               type="submit"
-              className="enabled flex align-middle justify-center bg-squazzle-button-bg-light-green-color py-[15px] w-[350px]  lg:py-5 lg:w-[420px] text-squazzle-button-font-deep-green-color text-sm lg:text-xl font-bold rounded-xl cursor-pointer mt-[46px] disabled:opacity-60"
+              className="enabled flex align-middle justify-center text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color disabled:bg-squazzle-button-bg-light-green-color disabled:text-squazzle-button-font-deep-green-color py-[15px] w-[280px]  lg:py-5 lg:w-[420px] text-sm lg:text-xl font-bold rounded-xl cursor-pointer mt-[46px]"
               onClick={(e) => handleEnterPasswordResetCode(e)}
               disabled={
                 !digit1 || !digit2 || !digit3 || !digit4 || !digit5 || !digit6

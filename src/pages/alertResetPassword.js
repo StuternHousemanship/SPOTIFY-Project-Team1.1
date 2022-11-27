@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
+import alertNavigation from "../components/navigation/alert-page-navigation";
 import { ReactComponent as CheckCircleIcon } from "../assets/svg/check_circle_icon.svg";
 import { NonAuthRoutes } from "../url";
 
@@ -9,13 +9,8 @@ const passwordResetSuccess = () => {
   return (
     <div>
       <div className="hidden sm:block">
-        <div className="font-sans h-screen flex items-center justify-center bg-squazzle-background-white-color max-[640px]:bg-white ">
-          <nav
-            className="bg-white fixed top-0 right-0 left-0 sm:h-12 sm:pl-5 sm:py-2 md:h-[96px] md:pl-[86px] md:py-[20px]"
-            style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
-          >
-            <SquazzleMobileLogo className=" md:h-14 md:w-[222.33px]" />
-          </nav>
+        <div className="font-sans h-full md:pt-[85px] md:pb-[800px] lg:pb-10 lg:pt-5 flex items-center justify-center bg-squazzle-background-white-color max-[640px]:bg-white ">
+          {alertNavigation()}
           <div className="main_div sm:max-w-[500px] sm:py-10 sm:px-10 box-border bg-white rounded-lg drop-shadow-[0_0.5px_rgba(31,44,63,0.05)]">
             <CheckCircleIcon className="mx-auto sm:mb-8" />
             <div>
@@ -42,13 +37,8 @@ const passwordResetSuccess = () => {
 
       {/* Mobile Screen */}
       <div className="sm:hidden font-sans">
-        <nav
-          className="bg-white h-12 pl-5 py-2 "
-          style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
-        >
-          <SquazzleMobileLogo className=" w-[146.33px] h-8" />
-        </nav>
-        <main className="pl-5 pr-5 pt-[28px] flex flex-col gap-y-8">
+        {alertNavigation()}
+        <main className="pl-5 pr-5 pt-[28px] flex flex-col gap-y-8 mt-16">
           <CheckCircleIcon className="mx-auto " />
           <div className="px-4 text-center flex flex-col gap-y-6 ">
             <p className="text-[24px] leading-[30px] text-[#232323]">
