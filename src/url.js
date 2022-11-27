@@ -18,6 +18,7 @@ const NonAuthRoutes = {
   alertVerifyEmail: "/alert-verify-email",
   errorSignUp: "/error-sign-up",
   errorEmailVerification: "/error-email-verification",
+  manageAccount: "/manage-account",
 };
 
 export { AuthRoutes, NonAuthRoutes };
