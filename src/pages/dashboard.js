@@ -15,13 +15,7 @@ function dashboard() {
         />
       </div>
 
-      <div
-        className={
-          sidebarToggle
-            ? "hidden"
-            : "block py-4 bg-squazzle-background-white-color md:mt-4"
-        }
-      >
+      <div className={sidebarToggle ? "hidden" : "block py-4 bg-white md:mt-4"}>
         <Outlet />
       </div>
 

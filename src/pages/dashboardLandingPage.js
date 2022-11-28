@@ -3,9 +3,9 @@ import dashboardBackgroundImage from "../assets/img/dashboard-background-image.p
 
 const dashboardLandingPage = () => {
   return (
-    <main className="flex flex-col items-center justify-between gap-4">
+    <main className="flex flex-col items-center justify-between gap-4 mt-[-14px] md:mt-[100px] md:mb-[85px]">
       <section
-        className="h-full md:min-h-screen"
+        className="h-[233px] md:h-[509px]"
         style={{
           backgroundImage: `url(${dashboardBackgroundImage})`,
           backgroundSize: "cover",
@@ -15,15 +15,14 @@ const dashboardLandingPage = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: "1rem",
         }}
       >
-        <section className="flex flex-col justify-around items-center text-center text-white min-h-full md:min-h-screen">
-          <div className="flex flex-col justify-around items-center gap-4 md:gap-2 md:pt-10">
-            <h1 className="text-[28px] md:text-[54px] font-[600]">
+        <section className="flex flex-col justify-around text-center text-white min-h-full md:min-h-screen">
+          <div className="flex flex-col justify-around items-center gap-4 md:gap-2">
+            <h1 className="text-[28px] md:text-[54px] font-[600] max-w-[323.97px] md:max-w-[989px] mt-[-20px]">
               Find that perfect home with squazzle
             </h1>
-            <p className="text-[16px] md:text-[28px] font-[400] max-w-[818px]">
+            <p className="text-[16px] md:text-[28px] font-[400] max-w-[350px] md:max-w-[818px] ">
               Get the best accommodation and list your property for the right
               prices.
             </p>
@@ -31,16 +30,16 @@ const dashboardLandingPage = () => {
               So what would you like to do?
             </p>
           </div>
-          <div className="hidden md:flex flex-row gap-4 justify-center pt-10">
+          <div className="hidden md:flex flex-row gap-[197px] justify-center mt-[-250px]">
             <button
               type="button"
-              className="py-5 w-[320px] text-squazzle-button-font-deep-green-color font-bold bg-squazzle-button-bg-light-green-color rounded-xl"
+              className="py-5 w-[320px] text-squazzle-button-bg-light-green-color font-bold bg-squazzle-button-bg-deep-green-color rounded-xl"
             >
               List accomodation
             </button>
             <button
               type="button"
-              className="py-5 w-[320px] text-squazzle-button-font-deep-green-color font-bold bg-squazzle-button-bg-light-green-color rounded-xl"
+              className="py-5 w-[320px] text-white border-2 border-white font-bold bg-transparent rounded-xl"
             >
               Browse accomodation
             </button>
@@ -48,16 +47,16 @@ const dashboardLandingPage = () => {
         </section>
       </section>
 
-      <div className="flex md:hidden flex-col gap-4 justify-center items-center">
+      <div className="flex md:hidden flex-col gap-[13px] justify-center items-center mb-16 ">
         <button
           type="button"
-          className="py-3 px-6 w-full text-squazzle-button-font-deep-green-color font-bold bg-squazzle-button-bg-light-green-color rounded-xl"
+          className="py-[15px] w-[350px] text-squazzle-button-bg-light-green-color font-bold bg-squazzle-button-bg-deep-green-color rounded-xl"
         >
           List accomodation
         </button>
         <button
           type="button"
-          className="py-3 px-6 w-full text-squazzle-button-font-deep-green-color font-bold bg-squazzle-button-bg-light-green-color rounded-xl"
+          className="py-[15px] w-[350px] text-squazzle-button-bg-deep-green-color border-2 border-squazzle-button-bg-deep-green-color font-bold bg-transparent rounded-xl"
         >
           Browse accomodation
         </button>

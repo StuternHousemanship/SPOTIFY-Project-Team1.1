@@ -11,7 +11,7 @@ import { ReactComponent as PasswordSettingsIcon } from "../assets/svg/dashboard-
 
 const dashboardManageAccount = () => {
   return (
-    <main className="min-h-[70vh] md:min-h-screen flex items-center justify-center px-10">
+    <main className="min-h-[70vh] md:min-h-screen flex items-center justify-center px-10 bg-squazzle-white-background-color">
       <section className="hidden md:flex flex-col gap-y-6">
         <p className="font-normal text-sm">Manage Account</p>
 
