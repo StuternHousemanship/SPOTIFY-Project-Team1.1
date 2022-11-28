@@ -19,7 +19,7 @@ function dashboard() {
         className={
           sidebarToggle
             ? "hidden"
-            : "block py-4 bg-squazzle-background-white-color mt-4"
+            : "block py-4 bg-squazzle-background-white-color md:mt-4"
         }
       >
         <Outlet />
