@@ -51,7 +51,7 @@ const footer = () => {
             </li>
           </ul>
         </div>
-        <div className="order-1 md:order-none flex flex-col items-start justify-center border-2">
+        <div className="order-1 md:order-none flex flex-col items-start justify-center">
           <h2 className="text-[16px] font-semibold">Newsletter</h2>
           <p className="w-full md:w-60 leading-6">
             Subscribe to our newsletter now to get the best deals for you.
