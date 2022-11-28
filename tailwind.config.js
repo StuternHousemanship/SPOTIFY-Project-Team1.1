@@ -22,6 +22,7 @@ module.exports = {
         "squazzle-background-white-color": "#F5F5F5",
         "squazzle-text-deep-grey1-color": "#353535",
         "squazzle-text-deep-grey2-color": "#232323",
+        "squazzle-text-black-color": "#000000",
         "squazzle-border-grey-color": "#BCBCBC",
         "squazzle-checkbox-border-color": "#323232",
         "squazzle-placeholder-grey-color": "#9A9A9A",

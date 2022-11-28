@@ -1,7 +1,9 @@
 /** Authenticated URL Routes */
 const AuthRoutes = {
   dashboard: "/dashboard",
-  accommodationDetails: "/dashboard/accommodation-details",
+  dashboardLandingPage: "/dashboardLandingPage",
+  dashboardAccommodationDetails: "/dashboard/accommodation-details",
+  dashboardManageAccount: "/dashboard/manage-account",
 };
 
 /** Non Authenticated URL Routes */
@@ -19,7 +21,6 @@ const NonAuthRoutes = {
   alertVerifyEmail: "/alert-verify-email",
   errorSignUp: "/error-sign-up",
   errorEmailVerification: "/error-email-verification",
-  manageAccount: "/manage-account",
 };
 
 export { AuthRoutes, NonAuthRoutes };

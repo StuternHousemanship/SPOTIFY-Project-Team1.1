@@ -26,14 +26,22 @@ const AlertVerifyEmail = React.lazy(() => import("./pages/alertVerifyEmail"));
 const EmailVerificationSuccess = React.lazy(() =>
   import("./pages/emailVerificationSuccess")
 );
-const Dashboard = React.lazy(() => import("./pages/dashboard"));
+
 const ErrorSignUp = React.lazy(() => import("./pages/errorSignUp"));
 
 const ErrorEmailVerification = React.lazy(() =>
   import("./pages/errorEmailVerification")
 );
-const AccommodationDetails = React.lazy(() =>
+
+const Dashboard = React.lazy(() => import("./pages/dashboard"));
+const DashboardLandingPage = React.lazy(() =>
+  import("./pages/dashboardLandingPage")
+);
+const DashboardAccommodationDetails = React.lazy(() =>
   import("./pages/accommodationDetails")
+);
+const DashboardManageAccount = React.lazy(() =>
+  import("./pages/dashboardManageAccount")
 );
 
 function Routers() {
@@ -82,16 +90,24 @@ function Routers() {
             path={NonAuthRoutes.emailVerificationSuccess}
             element={<EmailVerificationSuccess />}
           />
-          <Route path={AuthRoutes.dashboard} element={<Dashboard />} />
-          <Route
-            path={AuthRoutes.accommodationDetails}
-            element={<AccommodationDetails />}
-          />
           <Route path={NonAuthRoutes.errorSignUp} element={<ErrorSignUp />} />
           <Route
             path={NonAuthRoutes.errorEmailVerification}
             element={<ErrorEmailVerification />}
           />
+
+          {/* DASHBOARD PAGES NESTED IN DASHBOARD AS AN OUTLET */}
+          <Route path={AuthRoutes.dashboard} element={<Dashboard />}>
+            <Route index element={<DashboardLandingPage />} />
+            <Route
+              path={AuthRoutes.dashboardAccommodationDetails}
+              element={<DashboardAccommodationDetails />}
+            />
+            <Route
+              path={AuthRoutes.dashboardManageAccount}
+              element={<DashboardManageAccount />}
+            />
+          </Route>
         </Routes>
       </Suspense>
     </div>

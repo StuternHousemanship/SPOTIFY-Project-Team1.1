@@ -8,9 +8,9 @@ import { ReactComponent as LinkdnIcon } from "../../assets/svg/linkedin-icon.svg
 const footer = () => {
   return (
     <>
-      <section className="flex justify-between bg-white px-60 leading-10 text-sm text-squazzle-text-deep-grey2-color  border-t-[1px] border-t-[#D7D7D7] mb-20 ">
-        <div className="mt-20">
-          <p className="text-[16px]">Company</p>
+      <section className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 bg-white px-10 md:px-24 leading-10 text-sm text-squazzle-text-deep-grey2-color border-t-[1px] border-t-[#D7D7D7]">
+        <div className="order-2 md:order-none flex flex-col">
+          <h2 className="text-[16px] font-semibold">Company</h2>
           <ul>
             <li>
               <button type="button">About Us</button>
@@ -23,8 +23,8 @@ const footer = () => {
             </li>
           </ul>
         </div>
-        <div className="mt-20">
-          <p className="text-[16px]">Products</p>
+        <div className="order-3 md:order-none">
+          <h2 className="text-[16px] font-semibold">Products</h2>
           <ul>
             <li>
               <button type="button">Become Our Partner</button>
@@ -37,8 +37,8 @@ const footer = () => {
             </li>
           </ul>
         </div>
-        <div className="mt-20">
-          <p className="text-[16px]">Useful Links</p>
+        <div className="order-4 md:order-none">
+          <h2 className="text-[16px] font-semibold">Useful Links</h2>
           <ul>
             <li>
               <button type="button">FAQ</button>
@@ -51,33 +51,34 @@ const footer = () => {
             </li>
           </ul>
         </div>
-        <div className="mt-20">
-          <p className="text-[16px]">Newsletter</p>
-          <p className="w-60 leading-6 py-3">
+        <div className="order-1 md:order-none flex flex-col items-start justify-center border-2">
+          <h2 className="text-[16px] font-semibold">Newsletter</h2>
+          <p className="w-full md:w-60 leading-6">
             Subscribe to our newsletter now to get the best deals for you.
           </p>
-          <input
-            type="email"
-            placeholder="Email address"
-            className="w-[310px] py-5 border-2 rounded-lg text-lg px-3 focus:bg-none"
-          />
-          <div>
+          <div className="flex flex-col items-start justify-between gap-y-2 w-full mt-2">
+            <input
+              type="email"
+              placeholder="Email address"
+              className="w-full md:w-[310px] py-3 md:py-5 border-2 rounded-md md:rounded-lg text-base md:text-lg px-2 md:px-3 focus:bg-none focus:outline-none"
+            />
             <button
               type="button"
-              className="w-[178px] py-5 rounded-xl text-xl font-bold bg-squazzle-button-bg-deep-green-color text-white mt-5"
+              className="w-[100px] md:w-[178px] py-3 md:py-5 rounded-md md:rounded-xl text-base md:text-xl font-bold bg-squazzle-button-bg-deep-green-color text-white"
             >
               Subscribe!
             </button>
           </div>
         </div>
       </section>
-      <div className="flex flex-row justify-center items-center">
-        <section className="border-t-[1px] border-t-[#D7D7D7] w-[1048px]">
-          <footer className="flex flex-row items-center justify-between bg-squazzle-white-background-color border-b border-squazzle-background-white-color py-5 h-[96px]">
+
+      <div className="flex flex-row justify-center items-center px-10 md:px-24 py-4">
+        <section className="border-t-[1px] border-t-[#D7D7D7] w-full">
+          <footer className="flex flex-col md:flex-row items-start md:items-center justify-between gap-y-4 bg-squazzle-white-background-color border-b border-squazzle-background-white-color py-5 h-[96px]">
             <div>
               <SquazzleDesktopGreenLogo className="w-[181px] h-[44px]" />
             </div>
-            <ul className="flex flex-[0.4] flex-row items-center justify-between font-normal text-sm text-squazzle-text-deep-grey2-color">
+            <ul className="flex flex-[0.4] flex-col md:flex-row items-start md:items-center justify-between gap-y-3 font-normal text-sm text-squazzle-text-deep-grey2-color">
               <li>
                 <button type="button">Privacy policy</button>
               </li>
@@ -85,11 +86,11 @@ const footer = () => {
                 <button type="button">Terms and conditions</button>
               </li>
             </ul>
-            <div className="flex items-center gap-5">
-              <InstagramIcon />
-              <FacebookIcon />
-              <TwitterIcon />
-              <LinkdnIcon />
+            <div className="flex flex-row items-start md:items-center gap-x-5 py4">
+              <InstagramIcon className="cursor-pointer" />
+              <FacebookIcon className="cursor-pointer" />
+              <TwitterIcon className="cursor-pointer" />
+              <LinkdnIcon className="cursor-pointer" />
             </div>
           </footer>
         </section>
