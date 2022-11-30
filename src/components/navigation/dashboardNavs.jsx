@@ -44,14 +44,14 @@ const dashboardNavs = ({ sidebarToggle, setSidebarToggle }) => {
 
   return (
     <>
-      <nav className="hidden md:flex flex-row items-center justify-between bg-squazzle-white-background-color border-b border-squazzle-background-white-color py-6 md:py-10 px-10 md:px-20 fixed top-0 w-full z-10">
-        <div>
+      <nav className="hidden md:flex flex-row items-center justify-between h-[96px] bg-squazzle-white-background-color border-b border-squazzle-background-white-color px-10 fixed top-0 w-full z-10">
+        <div className="">
           <button type="button" onClick={goToMainDashboard}>
-            <SquazzleDesktopGreenLogo className="w-[120px] md:w-[181px] h-[30px] md:h-[44px]" />
+            <SquazzleDesktopGreenLogo className="w-[181px] h-[30px] md:h-[44px]" />
           </button>
         </div>
 
-        <ul className="flex-[0.5] flex flex-row items-center justify-between font-normal text-base text-squazzle-text-deep-grey2-color">
+        <ul className="flex-[0.6] flex flex-row items-center justify-between font-normal text-base text-squazzle-text-deep-grey2-color">
           <li>
             <button type="button" onClick={goToAccommodationDetails}>
               Accommodations
@@ -67,7 +67,7 @@ const dashboardNavs = ({ sidebarToggle, setSidebarToggle }) => {
             <button type="button">FAQ</button>
           </li>
         </ul>
-        <ul className="flex-[0.07] flex flex-row items-center justify-between">
+        <ul className="flex-[0.1] flex flex-row items-center justify-between">
           <li>
             <BellIcon className="w-[16px] h-[20px] cursor-pointer" />
           </li>
@@ -82,7 +82,7 @@ const dashboardNavs = ({ sidebarToggle, setSidebarToggle }) => {
       <ul
         className={
           profileCard
-            ? "flex flex-col items-start w-[240px] gap-[24px] p-[24px] bg-squazzle-white-background-color text-base font-normal leading-6 text-squazzle-text-black-color fixed top-[120px] right-[80px] z-[1]"
+            ? "flex flex-col items-start w-[240px] gap-[24px] p-[24px] bg-squazzle-white-background-color text-base font-normal leading-6 text-squazzle-text-black-color fixed top-[90px] right-[80px] z-[1]"
             : "hidden"
         }
       >

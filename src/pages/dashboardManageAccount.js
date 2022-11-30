@@ -11,15 +11,15 @@ import { ReactComponent as PasswordSettingsIcon } from "../assets/svg/dashboard-
 
 const dashboardManageAccount = () => {
   return (
-    <main className="min-h-[70vh] md:min-h-screen flex items-center justify-center px-10 bg-squazzle-white-background-color">
-      <section className="hidden md:flex flex-col gap-y-6">
+    <main className="md:min-h-screen flex items-center justify-center px-6 md:px-10 bg-squazzle-white-background-color md:bg-squazzle-background-grey-color">
+      <section className="hidden md:flex flex-col gap-y-6 w-full">
         <p className="font-normal text-sm">Manage Account</p>
 
-        <section className="flex flex-row items-center justify-between gap-x-10">
+        <section className="flex flex-row flex-1 flex-wrap items-center justify-between gap-x-10 ">
           <button
             type="button"
             style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
-            className="flex flex-col items-center justify-center gap-y-4 p-4 bg-squazzle-white-background-color h-[312px] w-[305px] "
+            className="flex flex-col flex-[0.3] items-center justify-between gap-y-4 p-4 bg-squazzle-white-background-color h-[312px]"
           >
             <h1 className="font-semibold text-[28px] text-squazzle-text-deep-grey2-color text-center w-[203px]">
               Welcome back Zhara Doe
@@ -30,78 +30,82 @@ const dashboardManageAccount = () => {
             <UserIcon className="w-[87px] h-[87px]" />
           </button>
 
-          <div className="flex-1 grid grid-cols-3 gap-6">
-            <button
-              type="button"
-              style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
-              className="flex flex-col items-center justify-center gap-y-4 p-4 bg-squazzle-white-background-color w-[280px] h-[144px] rounded-lg"
-            >
-              <PersonalDetailsIcon className="w-[24px] h-[24px]" />
-              <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
-                Personal Details
-              </h1>
-            </button>
+          <div className="flex-1 flex flex-col gap-y-6">
+            <div className="flex flex-row flex-1 w-full gap-x-3">
+              <button
+                type="button"
+                style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
+                className="flex flex-col flex-1 w-full items-center justify-center gap-y-4 p-4 bg-squazzle-white-background-color h-[144px] rounded-lg"
+              >
+                <PersonalDetailsIcon className="w-[24px] h-[24px]" />
+                <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
+                  Personal Details
+                </h1>
+              </button>
 
-            <button
-              type="button"
-              style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
-              className="flex flex-col items-center justify-center gap-y-4 p-4 bg-squazzle-white-background-color w-[280px] h-[144px] rounded-lg"
-            >
-              <MyListingIcon className="w-[24px] h-[24px]" />
-              <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
-                My Listing
-              </h1>
-            </button>
+              <button
+                type="button"
+                style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
+                className="flex flex-col flex-1 w-full items-center justify-center gap-y-4 p-4 bg-squazzle-white-background-color h-[144px] rounded-lg"
+              >
+                <MyListingIcon className="w-[24px] h-[24px]" />
+                <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
+                  My Listing
+                </h1>
+              </button>
 
-            <button
-              type="button"
-              style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
-              className="flex flex-col items-center justify-center gap-y-4 p-4 bg-squazzle-white-background-color w-[280px] h-[144px] rounded-lg"
-            >
-              <NotificationIcon className="w-[24px] h-[24px]" />
-              <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
-                Notification
-              </h1>
-            </button>
+              <button
+                type="button"
+                style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
+                className="flex flex-col flex-1 w-full items-center justify-center gap-y-4 p-4 bg-squazzle-white-background-color h-[144px] rounded-lg"
+              >
+                <NotificationIcon className="w-[24px] h-[24px]" />
+                <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
+                  Notification
+                </h1>
+              </button>
+            </div>
 
-            <button
-              type="button"
-              style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
-              className="flex flex-col items-center justify-center gap-y-4 p-4 bg-squazzle-white-background-color w-[280px] h-[144px] rounded-lg"
-            >
-              <PasswordSettingsIcon className="w-[24px] h-[24px]" />
-              <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
-                Password Settings
-              </h1>
-            </button>
+            <div className="flex flex-row flex-1 w-full gap-x-3">
+              <button
+                type="button"
+                style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
+                className="flex flex-col flex-1 w-full items-center justify-center gap-y-4 p-4 bg-squazzle-white-background-color h-[144px] rounded-lg"
+              >
+                <PasswordSettingsIcon className="w-[24px] h-[24px]" />
+                <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
+                  Password Settings
+                </h1>
+              </button>
 
-            <button
-              type="button"
-              style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
-              className="flex flex-col items-center justify-center gap-y-4 p-4 bg-squazzle-white-background-color w-[280px] h-[144px] rounded-lg"
-            >
-              <PaymentIcon className="w-[24px] h-[24px]" />
-              <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
-                Payments and Payout
-              </h1>
-            </button>
+              <button
+                type="button"
+                style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
+                className="flex flex-col flex-1 w-full items-center justify-center gap-y-4 p-4 bg-squazzle-white-background-color h-[144px] rounded-lg"
+              >
+                <PaymentIcon className="w-[24px] h-[24px]" />
+                <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
+                  Payments and Payout
+                </h1>
+              </button>
 
-            <button
-              type="button"
-              style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
-              className="flex flex-col items-center justify-center gap-y-4 p-4 bg-squazzle-white-background-color w-[280px] h-[144px] rounded-lg"
-            >
-              <DeleteAccountIcon className="w-[24px] h-[24px]" />
-              <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
-                Delete Account
-              </h1>
-            </button>
+              <button
+                type="button"
+                style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
+                className="flex flex-col flex-1 w-full items-center justify-center gap-y-4 p-4 bg-squazzle-white-background-color h-[144px] rounded-lg"
+              >
+                <DeleteAccountIcon className="w-[24px] h-[24px]" />
+                <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
+                  Delete Account
+                </h1>
+              </button>
+            </div>
           </div>
         </section>
       </section>
 
       <section className="flex md:hidden flex-col gap-y-8 w-full">
-        <div className="flex flex-col gap-y-3">
+        <div className="flex flex-col gap-y-3 h-[160px]">
           <UserIcon className="w-[45px] h-[45px]" />
           <h2 className="w-[168px] h-[60px] font-semibold text-2xl text-squazzle-text-deep-grey1-color">
             Welcome back Zhara Doe
@@ -111,7 +115,7 @@ const dashboardManageAccount = () => {
           </p>
         </div>
 
-        <div className="flex flex-col gap-y-6 w-full">
+        <div className="flex flex-col gap-y-6 w-full h-[270px]">
           <h2 className="text-squazzle-text-deep-grey1-color text-lg font-semibold">
             Manage Account
           </h2>

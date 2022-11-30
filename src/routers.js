@@ -55,63 +55,64 @@ function Routers() {
         }
       >
         <Routes>
-          <Route path={NonAuthRoutes.landingPage} element={<LandingPage />} />{" "}
-          <Route path={NonAuthRoutes.signUp} element={<SignUp />} />{" "}
-          <Route path={NonAuthRoutes.login} element={<Login />} />{" "}
+          <Route path={NonAuthRoutes.landingPage} element={<LandingPage />} />
+          <Route path={NonAuthRoutes.signUp} element={<SignUp />} />
+          <Route path={NonAuthRoutes.login} element={<Login />} />
           <Route
             path={NonAuthRoutes.forgotPassword}
             element={<ForgotPassword />}
-          />{" "}
+          />
           <Route
             path={NonAuthRoutes.resetPassword}
             element={<ResetPassword />}
-          />{" "}
+          />
           <Route
             path={NonAuthRoutes.alertForgotPassword}
             element={<AlertForgotPassword />}
-          />{" "}
+          />
           <Route
             path={NonAuthRoutes.alertResetPassword}
             element={<AlertResetPassword />}
-          />{" "}
+          />
           <Route
             path={`${NonAuthRoutes.enterEmailVerificationCode}/:verificationCode`}
             element={<EnterEmailVerificationCode />}
-          />{" "}
+          />
           <Route
             path={`${NonAuthRoutes.enterPasswordResetCode}/:resetCode`}
             element={<EnterPasswordResetCode />}
-          />{" "}
+          />
           <Route
             path={NonAuthRoutes.alertVerifyEmail}
             element={<AlertVerifyEmail />}
-          />{" "}
+          />
           <Route
             path={NonAuthRoutes.emailVerificationSuccess}
             element={<EmailVerificationSuccess />}
-          />{" "}
+          />
           <Route
             path={NonAuthRoutes.errorOnSignUp}
             element={<ErrorOnSignUp />}
-          />{" "}
+          />
           <Route
             path={NonAuthRoutes.errorEmailVerification}
             element={<ErrorEmailVerification />}
           />
-          {/* DASHBOARD PAGES NESTED IN DASHBOARD AS AN OUTLET */}{" "}
+
+          {/* DASHBOARD PAGES NESTED IN DASHBOARD AS AN OUTLET */}
           <Route path={AuthRoutes.dashboard} element={<Dashboard />}>
-            <Route index element={<DashboardLandingPage />} />{" "}
+            <Route index element={<DashboardLandingPage />} />
             <Route
               path={AuthRoutes.dashboardAccommodationDetails}
               element={<DashboardAccommodationDetails />}
-            />{" "}
+            />
             <Route
               path={AuthRoutes.dashboardManageAccount}
               element={<DashboardManageAccount />}
-            />{" "}
-          </Route>{" "}
-        </Routes>{" "}
-      </Suspense>{" "}
+            />
+          </Route>
+        </Routes>
+      </Suspense>
     </div>
   );
 }

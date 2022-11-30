@@ -16,7 +16,7 @@ const accommodationDetails = () => {
         </h1>
       </div>
       {/* Mobile Screen */}
-      <div className="md:hidden font-sans">
+      <div className="md:hidden font-sans mt-4 md:mt-0">
         <div className="h-full ">
           <div className="flex flex-col px-5">
             <div className="flex flex-col gap-y-3 ">

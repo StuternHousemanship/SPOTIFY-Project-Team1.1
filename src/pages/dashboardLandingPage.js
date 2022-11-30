@@ -3,7 +3,7 @@ import dashboardBackgroundImage from "../assets/img/dashboard-background-image.p
 
 const dashboardLandingPage = () => {
   return (
-    <main className="flex flex-col items-center justify-between gap-4 mt-[-14px] md:mt-[100px] md:mb-[85px]">
+    <main className="flex flex-col items-center justify-between gap-4 md:mt-[100px] md:mb-[85px]">
       <section
         className="h-[233px] md:h-[509px]"
         style={{
@@ -20,7 +20,7 @@ const dashboardLandingPage = () => {
         <section className="flex flex-col justify-around text-center text-white min-h-full md:min-h-screen">
           <div className="flex flex-col justify-around items-center gap-4 md:gap-2">
             <h1 className="text-[28px] md:text-[54px] font-[600] max-w-[323.97px] md:max-w-[989px] mt-[-20px]">
-              Find that perfect home with squazzle
+              Find that perfect home with Squazzle
             </h1>
             <p className="text-[16px] md:text-[28px] font-[400] max-w-[350px] md:max-w-[818px] ">
               Get the best accommodation and list your property for the right
@@ -47,7 +47,7 @@ const dashboardLandingPage = () => {
         </section>
       </section>
 
-      <div className="flex md:hidden flex-col gap-[13px] justify-center items-center mb-16 ">
+      <div className="flex md:hidden flex-col gap-[13px] justify-center items-center mb-16">
         <button
           type="button"
           className="py-[15px] w-[350px] text-squazzle-button-bg-light-green-color font-bold bg-squazzle-button-bg-deep-green-color rounded-xl"

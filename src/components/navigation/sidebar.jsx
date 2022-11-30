@@ -38,29 +38,35 @@ const sidebar = ({ sidebarToggle, setSidebarToggle }) => {
   };
 
   return (
-    <main className="">
+    <>
+      <main className="flex items-center justify-center w-full h-[92px]">
+        <section
+          style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
+          className={
+            sidebarToggle
+              ? "hidden"
+              : "flex flex-row items-center justify-between px-6 pb-3 w-full"
+          }
+        >
+          <button type="button" onClick={goToMainDashboard}>
+            <SquazzleDesktopGreenLogo className="w-[130px] h-[30px]" />
+          </button>
+
+          <div>
+            <FontAwesomeIcon
+              icon={faBars}
+              onClick={showSidebar}
+              className="cursor-pointer text-lg"
+            />
+          </div>
+        </section>
+      </main>
+
       <section
         className={
           sidebarToggle
-            ? "hidden"
-            : "flex flex-row items-center justify-between px-6 py-4"
-        }
-      >
-        <button type="button" onClick={goToMainDashboard}>
-          <SquazzleDesktopGreenLogo className="w-[130px] h-[30px]" />
-        </button>
-
-        <div>
-          <FontAwesomeIcon
-            icon={faBars}
-            onClick={showSidebar}
-            className="cursor-pointer text-lg"
-          />
-        </div>
-      </section>
-      <section
-        className={
-          sidebarToggle ? "flex flex-col p-4 gap-y-6 min-h-screen" : "hidden"
+            ? "flex flex-col items-start justify-start p-4 gap-y-6"
+            : "hidden"
         }
       >
         <div className="font-semibold text-lg self-end">
@@ -106,7 +112,7 @@ const sidebar = ({ sidebarToggle, setSidebarToggle }) => {
           </li>
         </ul>
       </section>
-    </main>
+    </>
   );
 };
 
