@@ -92,6 +92,7 @@ function Routers() {
             path={NonAuthRoutes.errorEmailVerification}
             element={<ErrorEmailVerification />}
           />
+<<<<<<< HEAD
           {/* DASHBOARD PAGES NESTED IN DASHBOARD AS AN OUTLET */}{" "}
           <Route path={AuthRoutes.dashboard} element={<Dashboard />}>
             <Route index element={<DashboardLandingPage />} />{" "}
@@ -99,6 +100,16 @@ function Routers() {
               path={AuthRoutes.dashboardAccommodationDetails}
               element={<DashboardAccommodationDetails />}
             />{" "}
+=======
+          <Route
+            path={AuthRoutes.dashboardAccommodationDetails}
+            element={<DashboardAccommodationDetails />}
+          />
+          {/* DASHBOARD PAGES NESTED IN DASHBOARD AS AN OUTLET */}
+          <Route path={AuthRoutes.dashboard} element={<Dashboard />}>
+            <Route index element={<DashboardLandingPage />} />
+
+>>>>>>> 7c33c4e923a93b9fd68ab7ed1b3368f856fe81ea
             <Route
               path={AuthRoutes.dashboardManageAccount}
               element={<DashboardManageAccount />}
