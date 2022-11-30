@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-useless-escape */
 /* eslint-disable import/no-cycle */
 import React, { useState, useEffect } from "react";
@@ -21,6 +22,8 @@ const login = () => {
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [buttonIsLoading, setButtonIsLoading] = useState(false);
+  const [loginErrorText, setLoginErrorText] = useState("");
+  const [isLoginError, setIsLoginError] = useState(false);
 
   useEffect(() => {
     // These logic clear error messages when page loads
@@ -56,7 +59,7 @@ const login = () => {
             : "text-squazzle-text-error-red-color text-xs font-semibold mt-2"
         }
       >
-        Please enter a valid email address
+        Please enter a valid email address{" "}
       </p>
     );
   };
@@ -70,25 +73,27 @@ const login = () => {
   };
 
   /** handles login submit */
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setButtonIsLoading(true);
     try {
-      onboarding.Login(email, password).then((response) => {
-        if (response.status === 200) {
-          const accessToken = response.access_token;
-          const refreshToken = response.refresh_token;
-          Cookies.set("accessToken", accessToken);
-          localStorage.setItem("token", refreshToken);
-          setButtonIsLoading(false);
-          navigate(AuthRoutes.dashboard);
-        }
-      });
+      const response = await onboarding.Login(email, password);
+      if (response.status === 200) {
+        const accessToken = response.access_token;
+        const refreshToken = response.refresh_token;
+        Cookies.set("accessToken", accessToken);
+        localStorage.setItem("token", refreshToken);
+        setButtonIsLoading(false);
+        navigate(AuthRoutes.dashboard);
+      }
     } catch (error) {
       setTimeout(() => {
         setButtonIsLoading(false);
-      }, 5000);
-      // navigate(NonAuthRoutes.err);
+      }, 3000);
+
+      const { email: errorMessage } = error.response.data;
+      setLoginErrorText(errorMessage);
+      setIsLoginError(true);
     }
 
     handleRememberMe();
@@ -117,14 +122,14 @@ const login = () => {
           <SquazzleDesktopLogo className="w-[173px] h-[53px] lg:w-[177px] lg:h-[57px]" />
           <div className="text-squazzle-text-deep-grey2-color mt-8">
             <h1 className="text-3xl lg:text-4xl font-semibold">
-              Welcome to Squazzle
-            </h1>
+              Welcome to Squazzle{" "}
+            </h1>{" "}
             <p className="text-squazzle-text-deep-grey2-color text-lg lg:text-xl font-normal mt-[16px]">
-              Lets help you find a home you&apos;ll love
-            </p>
-          </div>
-        </section>
-      </section>
+              Lets help you find a home you'll love
+            </p>{" "}
+          </div>{" "}
+        </section>{" "}
+      </section>{" "}
       <section className="md:absolute md:right-0 md:w-1/2 flex flex-col w-full min-h-screen bg-white md:bg-squazzle-background-white-color lg:md:bg-squazzle-background-white-color">
         <div className="block md:hidden my-4">
           <SquazzleMobileLogo className="my-2 ml-5 " />
@@ -132,12 +137,20 @@ const login = () => {
         <hr className="block md:hidden" />
         <div className="px-5 md:px-10 lg:px-20 py-8 md:py-12 lg:pt-[63px]">
           <header>
-            <h1 className="font-bold text-base lg:text-4xl text-squazzle-grey-text-color mb-2">
-              Welcome back!
+            <h1 className="font-bold text-base lg:text-4xl text-squazzle-grey-text-color mb-2 max-w-[530px]">
+              {isLoginError
+                ? "Oops! We can't sign you in at the moment"
+                : "Welcome back!"}
             </h1>
-            <p className="font-normal text-squazzle-text-deep-grey1-color text-sm lg:text-xl">
-              We are thrilled to see you.
-            </p>
+            {isLoginError ? (
+              <p className="font-normal text-squazzle-text-error-red-color text-sm lg:text-xl">
+                {loginErrorText}
+              </p>
+            ) : (
+              <p className="font-normal text-squazzle-text-deep-grey1-color text-sm lg:text-xl">
+                We are thrilled to see you
+              </p>
+            )}
           </header>
           <form className="mt-8" onSubmit={() => handleLogin()}>
             <div>
@@ -146,8 +159,8 @@ const login = () => {
                   Email Address
                   <span className="text-squazzle-text-error-red-color pl-[5px]">
                     *
-                  </span>
-                </span>
+                  </span>{" "}
+                </span>{" "}
                 <input
                   id="email"
                   type="email"
@@ -159,7 +172,7 @@ const login = () => {
                   onKeyUp={() => validateEmail()}
                 />
               </label>
-              {showEmailError ? displayEmailErrorText() : null}
+              {showEmailError ? displayEmailErrorText() : null}{" "}
             </div>
             <div className="mt-6">
               <label htmlFor="password" className="relative block">
@@ -190,7 +203,7 @@ const login = () => {
                   />
                 )}
               </label>
-            </div>
+            </div>{" "}
             <div className="flex items-center justify-between mt-2">
               <label
                 htmlFor="remember"
@@ -204,62 +217,64 @@ const login = () => {
                   onChange={() => setRememberMe(!rememberMe)}
                   className="border-squazzle-checkbox-border-color border-2 accent-squazzle-button-bg-deep-green-color w-[12px] h-[12px] mr-[6px] lg:w-[16px] lg:h-[16px] lg:mr-[11px] "
                 />
-                Remember me
-              </label>
+                Remember me{" "}
+              </label>{" "}
               <button
                 type="button"
                 className="text-sm lg:text-lg text-squazzle-success-green-color font-normal"
                 onClick={() => navigate(NonAuthRoutes.forgotPassword)}
               >
-                Forgot Password
-              </button>
-            </div>
-          </form>
+                Forgot Password{" "}
+              </button>{" "}
+            </div>{" "}
+          </form>{" "}
           <button
             type="submit"
             className="enabled md:flex md:align-middle md:justify-center hidden w-full py-[15px] lg:py-5 text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color disabled:bg-squazzle-button-bg-light-green-color disabled:text-squazzle-button-font-deep-green-color rounded-xl font-bold text-sm lg:text-xl mt-12 mb-6 cursor-pointer"
             onClick={(e) => handleLogin(e)}
             disabled={!isEmailValid || !password}
           >
+            {" "}
             {buttonIsLoading ? (
               <LoadingIcon className="suspense-loading-icon md:mt-0 lg:mt-1 mr-3" />
             ) : null}
             Sign in
-          </button>
+          </button>{" "}
           <button
             type="submit"
             className="enabled flex align-middle justify-center md:hidden text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color disabled:bg-squazzle-button-bg-light-green-color disabled:text-squazzle-button-font-deep-green-color w-full py-[15px] lg:py-5 rounded-xl font-bold text-sm mt-8 mb-4 cursor-pointer"
             onClick={(e) => handleLogin(e)}
             disabled={!isEmailValid || !password}
           >
+            {" "}
             {buttonIsLoading ? (
               <LoadingIcon className="suspense-loading-icon mt-0 mr-3" />
             ) : null}
-            Continue
-          </button>
+            Continue{" "}
+          </button>{" "}
           <button
             type="button"
             className="bg-squazzle-background-white-color font-bold text-sm lg:text-xl w-full py-[15px] lg:py-5 rounded-xl text-squazzle-button-bg-deep-green-color border-2 border-squazzle-button-bg-deep-green-color"
             onClick={() => navigate(NonAuthRoutes.landingPage)}
           >
-            Cancel
-          </button>
+            Cancel{" "}
+          </button>{" "}
           <div className="flex justify-center mt-8">
             <p>
               <span className="font-semibold text-sm lg:text-lg">
                 New to squazzle account ?
-              </span>
+              </span>{" "}
               <button
                 type="button"
                 className="ml-2 w-fit text-squazzle-success-green-color cursor-pointer font-semibold text-sm lg:text-lg"
                 onClick={() => navigate(NonAuthRoutes.signUp)}
               >
-                Sign up
-              </button>
-            </p>
-          </div>
-        </div>
-      </section>
+                Sign up{" "}
+              </button>{" "}
+            </p>{" "}
+          </div>{" "}
+        </div>{" "}
+      </section>{" "}
     </main>
   );
 };

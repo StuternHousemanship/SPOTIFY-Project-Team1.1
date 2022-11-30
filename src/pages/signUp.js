@@ -15,6 +15,7 @@ import { ReactComponent as LoadingIcon } from "../assets/svg/loading-light-icon.
 import onboarding from "../api/onboarding";
 import { NonAuthRoutes } from "../url";
 import backgroundimage from "../assets/img/squazzle-background.png";
+import ErrorOnSignUp from "../components/successAndError/errorOnSignUp";
 
 const signUp = () => {
   const navigate = useNavigate();
@@ -22,7 +23,9 @@ const signUp = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [countryCode, setCountryCode] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [number, setNumber] = useState("");
+  const [isNumberValid, setIsNumberValid] = useState(false);
+  const [showPhoneNumberError, setShowPhoneNumberError] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(false);
@@ -41,6 +44,16 @@ const signUp = () => {
     useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
   const [buttonIsLoading, setButtonIsLoading] = useState(false);
+  const [isErrorOnSignUp, setIsErrorOnSignUp] = useState(false);
+  const [signUpErrorText, setSignUpErrorText] = useState("");
+
+  useEffect(() => {
+    const ac = new AbortController();
+    document.title = "Sign Up - Squazzle";
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
 
   useEffect(() => {
     // These logic clear error messages when page loads
@@ -56,9 +69,9 @@ const signUp = () => {
   });
 
   /** ensures only numbers are inputed */
-  const handlePhoneNumberInput = (e) => {
+  const handleNumberInput = (e) => {
     const result = e.target.value.replace(/\D/g, "");
-    setPhoneNumber(result);
+    setNumber(result);
   };
 
   /** handles onkeyUp for password input */
@@ -115,9 +128,19 @@ const signUp = () => {
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (regex.test(email)) {
       setIsEmailValid(true);
-      // setShowEmailError(false);
     } else {
       setIsEmailValid(false);
+    }
+  };
+
+  /** handles Validate Phone number input */
+  const handleOnkeyUpForPhoneNumberInput = () => {
+    setShowPhoneNumberError(true);
+    const regex = /^[0-9]{10}$/;
+    if (regex.test(number)) {
+      setIsNumberValid(true);
+    } else {
+      setIsNumberValid(false);
     }
   };
 
@@ -132,24 +155,36 @@ const signUp = () => {
   };
 
   /** handles Sign Up */
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     setButtonIsLoading(true);
+    const phoneNumber = `${countryCode}${number}`;
     try {
-      onboarding
-        .SignUp(email, firstName, lastName, phoneNumber, password)
-        .then((response) => {
-          if (response.status === 200) {
-            localStorage.setItem("email", email);
-            navigate(NonAuthRoutes.alertVerifyEmail);
-          }
-        });
+      const response = await onboarding.SignUp(
+        email,
+        firstName,
+        lastName,
+        phoneNumber,
+        password
+      );
+      if (response.status === 200) {
+        localStorage.setItem("email", email);
+        navigate(NonAuthRoutes.alertVerifyEmail);
+      }
     } catch (error) {
       setTimeout(() => {
         setButtonIsLoading(false);
-      }, 5000);
-      // navigate(NonAuthRoutes.);
+      }, 3000);
+      const { data: errorMessage } = error.response;
+      setSignUpErrorText(errorMessage);
+      setIsErrorOnSignUp(true);
     }
+  };
+
+  /** sets Error on Sign Up to False */
+  const setErrorOnSignToFalse = () => {
+    setIsErrorOnSignUp(false);
+    setSignUpErrorText("");
   };
 
   /** displays email error text */
@@ -167,6 +202,20 @@ const signUp = () => {
     );
   };
 
+  /** displays email error text */
+  const displayPhoneNumberErrorText = () => {
+    return (
+      <p
+        className={
+          isNumberValid && countryCode
+            ? "text-squazzle-success-green-color text-xs font-semibold mb-6 mt-[6px]"
+            : "text-squazzle-text-error-red-color text-xs font-semibold mb-6 mt-[6px]"
+        }
+      >
+        Please enter both country code and 10 digit phone number
+      </p>
+    );
+  };
   /** displays password criteria texts */
   const displayPasswordCriteria = () => {
     return (
@@ -256,7 +305,7 @@ const signUp = () => {
                 id="first-name"
                 type="text"
                 value={firstName}
-                placeholder="Mary"
+                placeholder="First name"
                 className="block border bg-white border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm  lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
                 onChange={(e) => setFirstName(e.target.value)}
               />
@@ -274,7 +323,7 @@ const signUp = () => {
                 id="last-name"
                 type="text"
                 value={lastName}
-                placeholder="Doe"
+                placeholder="Last name"
                 className="block bg-white border border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
                 onChange={(e) => setLastName(e.target.value)}
               />
@@ -293,7 +342,7 @@ const signUp = () => {
                 type="email"
                 value={email}
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                placeholder="marydoe@gmail.com"
+                placeholder="Email"
                 className="block bg-white border border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                 onChange={(e) => setEmail(e.target.value)}
                 onKeyUp={(e) => handleOnkeyUpForEmailInput(e)}
@@ -314,8 +363,9 @@ const signUp = () => {
                   <select
                     name="countryCode"
                     id="country-code"
+                    value={countryCode}
                     pattern="+[0-9]{3}"
-                    onClick={(e) => setCountryCode(e.target.value)}
+                    onChange={(e) => setCountryCode(e.target.value)}
                     className={
                       countryCode
                         ? "w-[80px] pl-3 border border-y-squazzle-border-grey-color border-l-squazzle-border-grey-color border-r-white text-squazzle-text-deep-grey2-color text-sm  lg:text-lg font-[400] rounded-tl-lg rounded-bl-lg h-[62px] mt-[6px] focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
@@ -328,15 +378,17 @@ const signUp = () => {
                 <input
                   id="phone-number"
                   type="tel"
-                  value={phoneNumber}
+                  value={number}
                   placeholder="Number"
-                  pattern="[0-9]{11}"
+                  pattern="[0-9]{10}"
                   className="block bg-white border border-squazzle-border-grey-color rounded-tr-lg rounded-br-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color after:content-[''] after:top-0"
-                  onChange={(e) => handlePhoneNumberInput(e)}
+                  onChange={(e) => handleNumberInput(e)}
+                  onKeyUp={(e) => handleOnkeyUpForPhoneNumberInput(e)}
                 />
               </div>
             </label>
           </div>
+          {showPhoneNumberError ? displayPhoneNumberErrorText() : null}
         </form>
         <button
           type="button"
@@ -345,7 +397,7 @@ const signUp = () => {
             !firstName ||
             !lastName ||
             !isEmailValid ||
-            !phoneNumber ||
+            !isNumberValid ||
             !countryCode
           }
           onClick={() => setPersonalDataPageFilled(true)}
@@ -464,7 +516,7 @@ const signUp = () => {
                 id="terms-and-policy"
                 value={termsAndPolicy}
                 className="border-squazzle-checkbox-border-color border-2 accent-squazzle-button-bg-deep-green-color w-[12px] h-[12px] mr-[6px] lg:w-[16px] lg:h-[16px] lg:mr-[11px]"
-                onClick={() => setTermsAndPolicy(true)}
+                onClick={(e) => setTermsAndPolicy(e.target.checked)}
               />
               <span className="text-xs lg:text-base text-squazzle-terms-policy-grey-color">
                 I confirm that I have read & agreed to Squazzle
@@ -487,7 +539,8 @@ const signUp = () => {
             !firstName ||
             !lastName ||
             !email ||
-            !phoneNumber ||
+            !number ||
+            !countryCode ||
             !email ||
             !matchFirstPassword ||
             !termsAndPolicy
@@ -551,11 +604,20 @@ const signUp = () => {
   };
 
   return (
-    <div className="font-sans">
-      {displaySquazzleDescriptionAndLogo()}
-      {personalDataPageFilled
-        ? displayPasswordPage()
-        : displayPersonalDataPage()}
+    <div>
+      {isErrorOnSignUp ? (
+        <ErrorOnSignUp
+          error={signUpErrorText}
+          setErrorOnSignToFalse={setErrorOnSignToFalse}
+        />
+      ) : (
+        <div className="font-sans">
+          {displaySquazzleDescriptionAndLogo()}
+          {personalDataPageFilled
+            ? displayPasswordPage()
+            : displayPersonalDataPage()}
+        </div>
+      )}
     </div>
   );
 };

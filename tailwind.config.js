@@ -3,10 +3,10 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     screens: {
-        sm: '468px',
-        md: '850px',
-        lg: '1024px'
-      },
+      sm: "468px",
+      md: "850px",
+      lg: "1024px",
+    },
     extend: {
       spacing: {
         500: "500px",
@@ -14,11 +14,6 @@ module.exports = {
         70: "4.375rem",
       },
       colors: {
-        //Temporary design
-        "squazzle-background-grey-color": "#F0F0F0",
-        "squazzle-grey-text-color": "#424242",
-        "squazzle-white-background-color": "#FFFFFF",
-        //Permanent design
         "squazzle-background-white-color": "#F5F5F5",
         "squazzle-text-deep-grey1-color": "#353535",
         "squazzle-text-deep-grey2-color": "#232323",

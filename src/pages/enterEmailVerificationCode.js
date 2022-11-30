@@ -104,7 +104,7 @@ const enterEmailVerificationCode = () => {
   };
 
   return (
-    <div className="bg-squazzle-background-white-color pt-[100px] pb-70 md:pb-[800px] lg:pb-80 max-[640px]:bg-white">
+    <div className="bg-squazzle-background-white-color pt-[130px] pb-70 md:pb-[800px] lg:pb-80 max-[640px]:bg-white">
       <div className="font-sans md:grid md:place-items-center h-full bg-squazzle-background-white-color max-[640px]:bg-white">
         {alertPageNavigation()}
         <div

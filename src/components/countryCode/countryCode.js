@@ -3,9 +3,9 @@ import React from "react";
 const countryCode = () => {
   return (
     <>
-      <option value="+234">+234</option>
       <option value="44">+44</option>
       <option value="213">+213</option>
+      <option value="+234">+234</option>
       <option value="376">+376</option>
       <option value="244">+244</option>
       <option value="1264">+1264</option>

@@ -11,23 +11,23 @@ const errorSignUp = () => {
   return (
     <div>
       <div className="hidden sm:block">
-        <div className="font-sans h-screen flex items-center justify-center bg-squazzle-background-white-color max-[640px]:bg-white ">
+        <div className="font-sans bg-squazzle-background-white-color h-screen flex justify-center items-center mt-2 lg:mt-[50px]">
           {alertPageNavigation()}
-          <div className="main_div sm:max-w-[500px] sm:py-10 sm:px-10 box-border bg-white rounded-lg drop-shadow-[0_0.5px_rgba(31,44,63,0.05)]">
+          <div className="bg-white text-center w-1/2 p-5 lg:py-5 lg:px-10">
             <ErrorIcon className="mx-auto sm:mb-8" />
             <div>
-              <div>
+              <div className="flex flex-col justify-center items-center">
                 <h2 className="text-2xl md:text-[36px] md:leading-[45px] font-normal text-squazzle-grey-text-color mb-6 text-center">
                   Let's try that again
                 </h2>
-                <p className="font-normal text-[14px] md:text-[18px] leading-[22px] md:leading-[26px] md:h-[78px] text-squazzle-text-error-red-color text-center align-top ">
+                <p className="font-normal text-[14px] md:text-[18px] leading-[22px] md:leading-[26px] md:h-[78px] text-squazzle-text-error-red-color text-center align-top max-w-[420px]">
                   Your email address cannot be verified. It seems you entered
                   the wrong PIN.
                 </p>
               </div>
               <button
                 type="submit"
-                className="text-squazzle-button-bg-light-green-color text-sm md:text-[20px] md:leading-[24px] font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl mt-12 cursor-pointer"
+                className="text-squazzle-button-bg-light-green-color text-sm md:text-[20px] md:leading-[24px] font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl mt-12 mb-5 max-w-[420px] cursor-pointer"
               >
                 resend code
               </button>
