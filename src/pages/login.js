@@ -26,6 +26,14 @@ const login = () => {
   const [isLoginError, setIsLoginError] = useState(false);
 
   useEffect(() => {
+    const ac = new AbortController();
+    document.title = "login - Squazzle";
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
+
+  useEffect(() => {
     // These logic clear error messages when page loads
     if (!email) {
       setIsEmailValid(false);
@@ -89,10 +97,10 @@ const login = () => {
     } catch (error) {
       setTimeout(() => {
         setButtonIsLoading(false);
-      }, 3000);
-
-      const { email: errorMessage } = error.response.data;
-      setLoginErrorText(errorMessage);
+      }, 2000);
+      // console.error(error);
+      const { error: errorMessage, email: errorEmail } = error.response.data;
+      setLoginErrorText(errorMessage || errorEmail);
       setIsLoginError(true);
     }
 

@@ -12,6 +12,9 @@ import { ReactComponent as SquazzleDesktopLogo } from "../assets/svg/squazzle-de
 import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
 import { ReactComponent as MobileReturnButton } from "../assets/svg/return-button.svg";
 import { ReactComponent as LoadingIcon } from "../assets/svg/loading-light-icon.svg";
+// import { ReactComponent as CheckCircleIcon } from "../assets/svg/check_circle_icon.svg";
+// import { ReactComponent as ErrorIcon } from "../assets/svg/error-icon.svg";
+
 import onboarding from "../api/onboarding";
 import { NonAuthRoutes } from "../url";
 import backgroundimage from "../assets/img/squazzle-background.png";
@@ -167,7 +170,7 @@ const signUp = () => {
         phoneNumber,
         password
       );
-      if (response.status === 200) {
+      if (response.status === 201) {
         localStorage.setItem("email", email);
         navigate(NonAuthRoutes.alertVerifyEmail);
       }
@@ -175,16 +178,11 @@ const signUp = () => {
       setTimeout(() => {
         setButtonIsLoading(false);
       }, 3000);
+      // console.error(error);
       const { data: errorMessage } = error.response;
       setSignUpErrorText(errorMessage);
       setIsErrorOnSignUp(true);
     }
-  };
-
-  /** sets Error on Sign Up to False */
-  const setErrorOnSignToFalse = () => {
-    setIsErrorOnSignUp(false);
-    setSignUpErrorText("");
   };
 
   /** displays email error text */
@@ -606,10 +604,7 @@ const signUp = () => {
   return (
     <div>
       {isErrorOnSignUp ? (
-        <ErrorOnSignUp
-          error={signUpErrorText}
-          setErrorOnSignToFalse={setErrorOnSignToFalse}
-        />
+        <ErrorOnSignUp errorText={signUpErrorText} />
       ) : (
         <div className="font-sans">
           {displaySquazzleDescriptionAndLogo()}

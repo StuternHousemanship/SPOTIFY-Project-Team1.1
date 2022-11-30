@@ -50,7 +50,7 @@ export default {
     };
     const stringifiedData = JSON.stringify(data);
 
-    return squazzleOnboarding.patch("/resetPassword", stringifiedData);
+    return squazzleOnboarding.post("/confirmOtp", stringifiedData);
   },
 
   /** Send a PATCH request to get users password reset code */
@@ -60,17 +60,17 @@ export default {
     };
     const stringifiedData = JSON.stringify(data);
 
-    return squazzleOnboarding.patch("/forgotPassword", stringifiedData);
+    return squazzleOnboarding.post("/forgotPassword", stringifiedData);
   },
 
   /** Send a PATCH request to change users password */
   async changePassword(password, confirmPassword) {
     const data = {
       password,
-      changePassword: confirmPassword,
+      confirmPassword,
     };
     const stringifiedData = JSON.stringify(data);
 
-    return squazzleOnboarding.patch("/changePassword", stringifiedData);
+    return squazzleOnboarding.patch("/resetPassword", stringifiedData);
   },
 };

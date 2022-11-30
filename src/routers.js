@@ -23,9 +23,6 @@ const AlertResetPassword = React.lazy(() =>
   import("./pages/alertResetPassword")
 );
 const AlertVerifyEmail = React.lazy(() => import("./pages/alertVerifyEmail"));
-const EmailVerificationSuccess = React.lazy(() =>
-  import("./pages/emailVerificationSuccess")
-);
 
 const ErrorEmailVerification = React.lazy(() =>
   import("./pages/errorEmailVerification")
@@ -73,7 +70,7 @@ function Routers() {
             element={<AlertResetPassword />}
           />{" "}
           <Route
-            path={`${NonAuthRoutes.enterEmailVerificationCode}/:verificationCode`}
+            path={NonAuthRoutes.enterEmailVerificationCode}
             element={<EnterEmailVerificationCode />}
           />{" "}
           <Route
@@ -85,22 +82,9 @@ function Routers() {
             element={<AlertVerifyEmail />}
           />{" "}
           <Route
-            path={NonAuthRoutes.emailVerificationSuccess}
-            element={<EmailVerificationSuccess />}
-          />{" "}
-          <Route
             path={NonAuthRoutes.errorEmailVerification}
             element={<ErrorEmailVerification />}
           />
-<<<<<<< HEAD
-          {/* DASHBOARD PAGES NESTED IN DASHBOARD AS AN OUTLET */}{" "}
-          <Route path={AuthRoutes.dashboard} element={<Dashboard />}>
-            <Route index element={<DashboardLandingPage />} />{" "}
-            <Route
-              path={AuthRoutes.dashboardAccommodationDetails}
-              element={<DashboardAccommodationDetails />}
-            />{" "}
-=======
           <Route
             path={AuthRoutes.dashboardAccommodationDetails}
             element={<DashboardAccommodationDetails />}
@@ -108,8 +92,6 @@ function Routers() {
           {/* DASHBOARD PAGES NESTED IN DASHBOARD AS AN OUTLET */}
           <Route path={AuthRoutes.dashboard} element={<Dashboard />}>
             <Route index element={<DashboardLandingPage />} />
-
->>>>>>> 7c33c4e923a93b9fd68ab7ed1b3368f856fe81ea
             <Route
               path={AuthRoutes.dashboardManageAccount}
               element={<DashboardManageAccount />}

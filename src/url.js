@@ -17,7 +17,6 @@ const NonAuthRoutes = {
   enterPasswordResetCode: "/enter-password-reset-code",
   resetPassword: "/reset-password",
   alertResetPassword: "/alert-reset-password",
-  emailVerificationSuccess: "/email-verification-success",
   alertVerifyEmail: "/alert-verify-email",
   errorOnSignUp: "/error-on-sign-up",
   errorEmailVerification: "/error-email-verification",
