@@ -98,14 +98,14 @@ function Routers() {
             path={NonAuthRoutes.errorEmailVerification}
             element={<ErrorEmailVerification />}
           />
-
+          <Route
+            path={AuthRoutes.dashboardAccommodationDetails}
+            element={<DashboardAccommodationDetails />}
+          />
           {/* DASHBOARD PAGES NESTED IN DASHBOARD AS AN OUTLET */}
           <Route path={AuthRoutes.dashboard} element={<Dashboard />}>
             <Route index element={<DashboardLandingPage />} />
-            <Route
-              path={AuthRoutes.dashboardAccommodationDetails}
-              element={<DashboardAccommodationDetails />}
-            />
+
             <Route
               path={AuthRoutes.dashboardManageAccount}
               element={<DashboardManageAccount />}
