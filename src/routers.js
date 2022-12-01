@@ -5,38 +5,39 @@ import { Routes, Route } from "react-router-dom";
 import { NonAuthRoutes, AuthRoutes } from "./url";
 import { ReactComponent as LoadingIcon } from "./assets/svg/loading-icon.svg";
 
-const LandingPage = React.lazy(() => import("./pages/landingPage"));
-const SignUp = React.lazy(() => import("./pages/signUp"));
-const Login = React.lazy(() => import("./pages/login"));
+const LandingPage = React.lazy(() => import("./pages/onboarding/landingPage"));
+const SignUp = React.lazy(() => import("./pages/onboarding/signUp"));
+const Login = React.lazy(() => import("./pages/onboarding/login"));
 const EnterEmailVerificationCode = React.lazy(() =>
-  import("./pages/enterEmailVerificationCode")
+  import("./pages/onboarding/enterEmailVerificationCode")
 );
 const EnterPasswordResetCode = React.lazy(() =>
-  import("./pages/enterPasswordResetCode")
+  import("./pages/onboarding/enterPasswordResetCode")
 );
-const ForgotPassword = React.lazy(() => import("./pages/forgotPassword"));
+const ForgotPassword = React.lazy(() =>
+  import("./pages/onboarding/forgotPassword")
+);
 const AlertForgotPassword = React.lazy(() =>
-  import("./pages/alertForgotPassword")
+  import("./pages/onboarding/alertForgotPassword")
 );
-const ResetPassword = React.lazy(() => import("./pages/resetPassword"));
+const ResetPassword = React.lazy(() =>
+  import("./pages/onboarding/resetPassword")
+);
 const AlertResetPassword = React.lazy(() =>
-  import("./pages/alertResetPassword")
+  import("./pages/onboarding/alertResetPassword")
 );
-const AlertVerifyEmail = React.lazy(() => import("./pages/alertVerifyEmail"));
-
-const ErrorEmailVerification = React.lazy(() =>
-  import("./pages/errorEmailVerification")
+const AlertVerifyEmail = React.lazy(() =>
+  import("./pages/onboarding/alertVerifyEmail")
 );
-
-const Dashboard = React.lazy(() => import("./pages/dashboard"));
+const Dashboard = React.lazy(() => import("./pages/dashboard/dashboard"));
 const DashboardLandingPage = React.lazy(() =>
-  import("./pages/dashboardLandingPage")
+  import("./pages/dashboard/dashboardLandingPage")
 );
 const DashboardAccommodationDetails = React.lazy(() =>
-  import("./pages/accommodationDetails")
+  import("./pages/dashboard/accommodationDetails")
 );
 const DashboardManageAccount = React.lazy(() =>
-  import("./pages/dashboardManageAccount")
+  import("./pages/dashboard/dashboardManageAccount")
 );
 
 function Routers() {
@@ -50,40 +51,36 @@ function Routers() {
         }
       >
         <Routes>
-          <Route path={NonAuthRoutes.landingPage} element={<LandingPage />} />{" "}
-          <Route path={NonAuthRoutes.signUp} element={<SignUp />} />{" "}
-          <Route path={NonAuthRoutes.login} element={<Login />} />{" "}
+          <Route path={NonAuthRoutes.landingPage} element={<LandingPage />} />
+          <Route path={NonAuthRoutes.signUp} element={<SignUp />} />
+          <Route path={NonAuthRoutes.login} element={<Login />} />
           <Route
             path={NonAuthRoutes.forgotPassword}
             element={<ForgotPassword />}
-          />{" "}
+          />
           <Route
             path={NonAuthRoutes.resetPassword}
             element={<ResetPassword />}
-          />{" "}
+          />
           <Route
             path={NonAuthRoutes.alertForgotPassword}
             element={<AlertForgotPassword />}
-          />{" "}
+          />
           <Route
             path={NonAuthRoutes.alertResetPassword}
             element={<AlertResetPassword />}
-          />{" "}
+          />
           <Route
             path={NonAuthRoutes.enterEmailVerificationCode}
             element={<EnterEmailVerificationCode />}
-          />{" "}
+          />
           <Route
             path={`${NonAuthRoutes.enterPasswordResetCode}/:resetCode`}
             element={<EnterPasswordResetCode />}
-          />{" "}
+          />
           <Route
             path={NonAuthRoutes.alertVerifyEmail}
             element={<AlertVerifyEmail />}
-          />{" "}
-          <Route
-            path={NonAuthRoutes.errorEmailVerification}
-            element={<ErrorEmailVerification />}
           />
           <Route
             path={AuthRoutes.dashboardAccommodationDetails}
@@ -95,10 +92,10 @@ function Routers() {
             <Route
               path={AuthRoutes.dashboardManageAccount}
               element={<DashboardManageAccount />}
-            />{" "}
-          </Route>{" "}
-        </Routes>{" "}
-      </Suspense>{" "}
+            />
+          </Route>
+        </Routes>
+      </Suspense>
     </div>
   );
 }

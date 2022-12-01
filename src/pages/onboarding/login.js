@@ -4,14 +4,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import onboarding from "../api/onboarding";
-import { NonAuthRoutes, AuthRoutes } from "../url";
-import { ReactComponent as PasswordShow } from "../assets/svg/password-eye-show-icon.svg";
-import { ReactComponent as PasswordHide } from "../assets/svg/password-eye-hide-icon.svg";
-import { ReactComponent as SquazzleDesktopLogo } from "../assets/svg/squazzle-desktop-logo.svg";
-import { ReactComponent as SquazzleMobileLogo } from "../assets/svg/squazzle-mobile-logo.svg";
-import { ReactComponent as LoadingIcon } from "../assets/svg/loading-light-icon.svg";
-import squazzleBackground from "../assets/img/squazzle-login-background.png";
+import onboarding from "../../api/onboarding";
+import { NonAuthRoutes, AuthRoutes } from "../../url";
+import { ReactComponent as PasswordShow } from "../../assets/svg/password-eye-show-icon.svg";
+import { ReactComponent as PasswordHide } from "../../assets/svg/password-eye-hide-icon.svg";
+import { ReactComponent as SquazzleDesktopLogo } from "../../assets/svg/squazzle-desktop-logo.svg";
+import { ReactComponent as SquazzleMobileLogo } from "../../assets/svg/squazzle-mobile-logo.svg";
+import { ReactComponent as LoadingIcon } from "../../assets/svg/loading-light-icon.svg";
+import squazzleBackground from "../../assets/img/squazzle-login-background.png";
 
 const login = () => {
   const navigate = useNavigate();
@@ -133,7 +133,7 @@ const login = () => {
               Welcome to Squazzle{" "}
             </h1>{" "}
             <p className="text-squazzle-text-deep-grey2-color text-lg lg:text-xl font-normal mt-[16px]">
-              Lets help you find a home you'll love
+              Lets help you find a home you 'll love{" "}
             </p>{" "}
           </div>{" "}
         </section>{" "}
@@ -141,30 +141,32 @@ const login = () => {
       <section className="md:absolute md:right-0 md:w-1/2 flex flex-col w-full min-h-screen bg-white md:bg-squazzle-background-white-color lg:md:bg-squazzle-background-white-color">
         <div className="block md:hidden my-4">
           <SquazzleMobileLogo className="my-2 ml-5 " />
-        </div>
+        </div>{" "}
         <hr className="block md:hidden" />
         <div className="px-5 md:px-10 lg:px-20 py-8 md:py-12 lg:pt-[63px]">
           <header>
             <h1 className="font-bold text-base lg:text-4xl text-squazzle-grey-text-color mb-2 max-w-[530px]">
+              {" "}
               {isLoginError
                 ? "Oops! We can't sign you in at the moment"
-                : "Welcome back!"}
-            </h1>
+                : "Welcome back!"}{" "}
+            </h1>{" "}
             {isLoginError ? (
               <p className="font-normal text-squazzle-text-error-red-color text-sm lg:text-xl">
-                {loginErrorText}
+                {" "}
+                {loginErrorText}{" "}
               </p>
             ) : (
               <p className="font-normal text-squazzle-text-deep-grey1-color text-sm lg:text-xl">
-                We are thrilled to see you
+                We are thrilled to see you{" "}
               </p>
-            )}
-          </header>
+            )}{" "}
+          </header>{" "}
           <form className="mt-8" onSubmit={() => handleLogin()}>
             <div>
               <label htmlFor="email">
                 <span className="text-squazzle-text-deep-grey1-color text-sm font-[600]">
-                  Email Address
+                  Email Address{" "}
                   <span className="text-squazzle-text-error-red-color pl-[5px]">
                     *
                   </span>{" "}
@@ -178,18 +180,18 @@ const login = () => {
                   className="block border bg-white border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm  lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                   onChange={(e) => setEmail(e.target.value)}
                   onKeyUp={() => validateEmail()}
-                />
-              </label>
+                />{" "}
+              </label>{" "}
               {showEmailError ? displayEmailErrorText() : null}{" "}
-            </div>
+            </div>{" "}
             <div className="mt-6">
               <label htmlFor="password" className="relative block">
                 <span className="text-squazzle-text-deep-grey1-color text-sm font-[600]">
-                  Password
+                  Password{" "}
                   <span className="text-squazzle-text-error-red-color pl-[5px]">
                     *
-                  </span>
-                </span>
+                  </span>{" "}
+                </span>{" "}
                 <input
                   id="password"
                   value={password}
@@ -198,7 +200,7 @@ const login = () => {
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   className="block border bg-white border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                   onChange={(e) => setPassword(e.target.value)}
-                />
+                />{" "}
                 {showPassword ? (
                   <PasswordShow
                     className="absolute top-[49px] right-5 lg:top-[53px] lg:right-5"
@@ -209,8 +211,8 @@ const login = () => {
                     className="absolute top-[48px] right-5 lg:top-[52px] lg:right-5"
                     onClick={() => handleShowPassword()}
                   />
-                )}
-              </label>
+                )}{" "}
+              </label>{" "}
             </div>{" "}
             <div className="flex items-center justify-between mt-2">
               <label

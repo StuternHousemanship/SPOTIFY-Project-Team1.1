@@ -1,13 +1,13 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { ReactComponent as UserIcon } from "../assets/svg/profile-icon.svg";
-import { ReactComponent as PersonalDetailsIcon } from "../assets/svg/dashboard-personalDetails-icon.svg";
-import { ReactComponent as PaymentIcon } from "../assets/svg/dashboard-payment-icon.svg";
-import { ReactComponent as DeleteAccountIcon } from "../assets/svg/dashboard-deleteAccount-icon.svg";
-import { ReactComponent as MyListingIcon } from "../assets/svg/dashboard-myListing-icon.svg";
-import { ReactComponent as NotificationIcon } from "../assets/svg/dashboard-notification-icon.svg";
-import { ReactComponent as PasswordSettingsIcon } from "../assets/svg/dashboard-passwordSettings-icon.svg";
+import { ReactComponent as UserIcon } from "../../assets/svg/profile-icon.svg";
+import { ReactComponent as PersonalDetailsIcon } from "../../assets/svg/dashboard-personalDetails-icon.svg";
+import { ReactComponent as PaymentIcon } from "../../assets/svg/dashboard-payment-icon.svg";
+import { ReactComponent as DeleteAccountIcon } from "../../assets/svg/dashboard-deleteAccount-icon.svg";
+import { ReactComponent as MyListingIcon } from "../../assets/svg/dashboard-myListing-icon.svg";
+import { ReactComponent as NotificationIcon } from "../../assets/svg/dashboard-notification-icon.svg";
+import { ReactComponent as PasswordSettingsIcon } from "../../assets/svg/dashboard-passwordSettings-icon.svg";
 
 const dashboardManageAccount = () => {
   return (

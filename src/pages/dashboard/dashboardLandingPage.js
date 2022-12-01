@@ -1,5 +1,5 @@
 import React from "react";
-import dashboardBackgroundImage from "../assets/img/dashboard-background-image.png";
+import dashboardBackgroundImage from "../../assets/img/dashboard-background-image.png";
 
 const dashboardLandingPage = () => {
   return (

@@ -2,11 +2,11 @@
 /* eslint-disable react/function-component-definition */
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import alertPageNavigation from "../components/navigation/alert-page-navigation";
-import { ReactComponent as LoadingIcon } from "../assets/svg/loading-light-icon.svg";
-import { NonAuthRoutes } from "../url";
-import onboarding from "../api/onboarding";
-import SuccessAndErrorPage from "../components/successAndError/successAndError";
+import alertPageNavigation from "../../components/navigation/alert-page-navigation";
+import { ReactComponent as LoadingIcon } from "../../assets/svg/loading-light-icon.svg";
+import { NonAuthRoutes } from "../../url";
+import onboarding from "../../api/onboarding";
+import SuccessAndErrorPage from "../../components/successAndError/successAndError";
 
 const enterPasswordResetCode = () => {
   const navigate = useNavigate();
@@ -110,6 +110,7 @@ const enterPasswordResetCode = () => {
 
   return (
     <div>
+      {" "}
       {displaySuccessOrError ? (
         <SuccessAndErrorPage
           heading={heading}
@@ -120,20 +121,22 @@ const enterPasswordResetCode = () => {
       ) : (
         <div className="bg-squazzle-background-white-color pt-[130px] pb-[600px] md:pb-[800px] lg:pb-80 max-[640px]:bg-white">
           <div className="font-sans grid place-items-center h-full bg-squazzle-background-white-color max-[640px]:bg-white">
-            {alertPageNavigation()}
+            {" "}
+            {alertPageNavigation()}{" "}
             <div
               className="grid place-items-center w-[610px] py-[22px] px-[4px] md:px-10 lg:px-10 box-border bg-white text-center"
               style={{ width: "min(100vw, 609px)" }}
             >
               <h2 className="text-2xl lg:text-4xl font-bold text-squazzle-grey-text-color mb-7">
-                Password Reset
-              </h2>
+                Password Reset{" "}
+              </h2>{" "}
               <p className="font-normal text-smlg:text-lg  text-squazzle-text-deep-grey1-color">
-                Please enter the 6-digit code sent to
-              </p>
+                Please enter the 6 - digit code sent to{" "}
+              </p>{" "}
               <p className="font-normal text-sm lg:text-lg text-squazzle-button-bg-deep-green-color mb-[26px]">
-                {localStorage.getItem("email")}.
-              </p>
+                {" "}
+                {localStorage.getItem("email")}.{" "}
+              </p>{" "}
               <form className="grid place-items-center">
                 <label htmlFor="6-digit-code">
                   <div className="flex gap-2 lg:gap-4 ">
@@ -145,7 +148,7 @@ const enterPasswordResetCode = () => {
                       maxLength="1"
                       onChange={(e) => handleChangeForDigit1(e)}
                       onKeyDown={(e) => handleKeyDown(e)}
-                    />
+                    />{" "}
                     <input
                       type="text"
                       id="digit-2"
@@ -154,7 +157,7 @@ const enterPasswordResetCode = () => {
                       maxLength="1"
                       onChange={(e) => handleChangeForDigit2(e)}
                       onKeyDown={(e) => handleKeyDown(e)}
-                    />
+                    />{" "}
                     <input
                       type="text"
                       id="digit-3"
@@ -163,7 +166,7 @@ const enterPasswordResetCode = () => {
                       maxLength="1"
                       onChange={(e) => handleChangeForDigit3(e)}
                       onKeyDown={(e) => handleKeyDown(e)}
-                    />
+                    />{" "}
                     <input
                       type="text"
                       id="digit-4"
@@ -172,7 +175,7 @@ const enterPasswordResetCode = () => {
                       maxLength="1"
                       onChange={(e) => handleChangeForDigit4(e)}
                       onKeyDown={(e) => handleKeyDown(e)}
-                    />
+                    />{" "}
                     <input
                       type="text"
                       id="digit-5"
@@ -181,7 +184,7 @@ const enterPasswordResetCode = () => {
                       maxLength="1"
                       onChange={(e) => handleChangeForDigit5(e)}
                       onKeyDown={(e) => handleKeyDown(e)}
-                    />
+                    />{" "}
                     <input
                       type="text"
                       id="digit-6"
@@ -190,9 +193,9 @@ const enterPasswordResetCode = () => {
                       maxLength="1"
                       onChange={(e) => handleChangeForDigit6(e)}
                       onKeyDown={(e) => handleKeyDown(e)}
-                    />
-                  </div>
-                </label>
+                    />{" "}
+                  </div>{" "}
+                </label>{" "}
                 <button
                   type="submit"
                   className="enabled flex align-middle justify-center text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color disabled:bg-squazzle-button-bg-light-green-color disabled:text-squazzle-button-font-deep-green-color py-[15px] w-[280px]  lg:py-5 lg:w-[420px] text-sm lg:text-xl font-bold rounded-xl cursor-pointer mt-[46px]"
@@ -209,9 +212,9 @@ const enterPasswordResetCode = () => {
                   {buttonIsLoading ? (
                     <LoadingIcon className="suspense-loading-icon mr-3 lg:mt-1" />
                   ) : null}
-                  Continue
-                </button>
-              </form>
+                  Continue{" "}
+                </button>{" "}
+              </form>{" "}
               <div className="flex justify-center">
                 <button
                   type="button"
@@ -226,13 +229,13 @@ const enterPasswordResetCode = () => {
                     !digit6
                   }
                 >
-                  Resend code
-                </button>
-              </div>
-            </div>
-          </div>
+                  Resend code{" "}
+                </button>{" "}
+              </div>{" "}
+            </div>{" "}
+          </div>{" "}
         </div>
-      )}
+      )}{" "}
     </div>
   );
 };
