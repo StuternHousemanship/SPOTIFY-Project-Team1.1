@@ -14,6 +14,7 @@ module.exports = {
         70: "4.375rem",
       },
       colors: {
+        "squazzle-profileCard-background-white-color": "#FFFFFF",
         "squazzle-background-white-color": "#F5F5F5",
         "squazzle-text-deep-grey1-color": "#353535",
         "squazzle-text-deep-grey2-color": "#232323",

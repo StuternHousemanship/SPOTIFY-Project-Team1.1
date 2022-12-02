@@ -1,7 +1,7 @@
 /** Authenticated URL Routes */
 const AuthRoutes = {
   dashboard: "/dashboard",
-  dashboardLandingPage: "/dashboardLandingPage",
+  // dashboardLandingPage: "/dashboardLandingPage",
   dashboardAccommodationDetails: "/dashboard/accommodation-details",
   dashboardManageAccount: "/dashboard/manage-account",
 };

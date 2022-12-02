@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faBars } from "@fortawesome/free-solid-svg-icons";
 import { NonAuthRoutes, AuthRoutes } from "../../url";
 import { ReactComponent as SquazzleDesktopGreenLogo } from "../../assets/svg/squazzle-desktop-green-logo.svg";
 
-const sidebar = ({ sidebarToggle, setSidebarToggle }) => {
+const sidebar = () => {
+  const [sidebarToggle, setSidebarToggle] = useState(false);
   const navigate = useNavigate();
 
-  // handles sidebar
+  // handles sidebar toggle
   const showSidebar = () => {
     setSidebarToggle(!sidebarToggle);
   };
@@ -16,7 +17,10 @@ const sidebar = ({ sidebarToggle, setSidebarToggle }) => {
   const removeSidebar = () => {
     setSidebarToggle(false);
   };
+  window.addEventListener("scroll", removeSidebar);
+  window.addEventListener("resize", removeSidebar);
 
+  // handles logout
   const handleLogout = () => {
     // navigates to login page
     navigate(NonAuthRoutes.login);
@@ -39,7 +43,13 @@ const sidebar = ({ sidebarToggle, setSidebarToggle }) => {
 
   return (
     <>
-      <main className="flex items-center justify-center w-full h-[92px]">
+      <main
+        className={
+          sidebarToggle
+            ? "hidden"
+            : "flex items-center justify-center w-full h-[92px]"
+        }
+      >
         <section
           style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
           className={
@@ -76,7 +86,7 @@ const sidebar = ({ sidebarToggle, setSidebarToggle }) => {
             className="cursor-pointer text-base text-squazzle-text-deep-grey1-color"
           />
         </div>
-        <ul className="flex flex-col text-base text-squazzle-text-deep-grey1-color font-normal gap-y-6">
+        <ul className="flex flex-col text-base text-squazzle-text-deep-grey1-color font-normal gap-y-6 w-full">
           <li>
             <button type="button" onClick={goToManageAccount}>
               Manage Account

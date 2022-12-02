@@ -6,7 +6,7 @@ import { ReactComponent as BellIcon } from "../../assets/svg/bell-icon.svg";
 import { ReactComponent as UserIcon } from "../../assets/svg/profile-icon.svg";
 import Sidebar from "./sidebar";
 
-const dashboardNavs = ({ sidebarToggle, setSidebarToggle }) => {
+const dashboardNavs = () => {
   const navigate = useNavigate();
   const [profileCard, setProfileCard] = useState(false);
 
@@ -44,7 +44,7 @@ const dashboardNavs = ({ sidebarToggle, setSidebarToggle }) => {
 
   return (
     <>
-      <nav className="hidden md:flex flex-row items-center justify-between h-[96px] bg-squazzle-white-background-color border-b border-squazzle-background-white-color px-10 fixed top-0 w-full z-10">
+      <nav className="hidden md:flex flex-row items-center justify-between h-[96px] bg-squazzle-profileCard-background-white-color border-b border-squazzle-background-white-color px-10 fixed top-0 w-full z-10">
         <div className="">
           <button type="button" onClick={goToMainDashboard}>
             <SquazzleDesktopGreenLogo className="w-[181px] h-[30px] md:h-[44px]" />
@@ -82,7 +82,7 @@ const dashboardNavs = ({ sidebarToggle, setSidebarToggle }) => {
       <ul
         className={
           profileCard
-            ? "flex flex-col items-start w-[240px] gap-[24px] p-[24px] bg-squazzle-white-background-color text-base font-normal leading-6 text-squazzle-text-black-color fixed top-[90px] right-[80px] z-[1]"
+            ? "flex flex-col items-start w-[240px] gap-[24px] p-[24px] bg-squazzle-profileCard-background-white-color text-base font-normal leading-6 text-squazzle-text-black-color fixed top-[90px] right-[80px] z-[2]"
             : "hidden"
         }
       >
@@ -111,10 +111,7 @@ const dashboardNavs = ({ sidebarToggle, setSidebarToggle }) => {
       </ul>
 
       <div className="block md:hidden">
-        <Sidebar
-          sidebarToggle={sidebarToggle}
-          setSidebarToggle={setSidebarToggle}
-        />
+        <Sidebar />
       </div>
     </>
   );

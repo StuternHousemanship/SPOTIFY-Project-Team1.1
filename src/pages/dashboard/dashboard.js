@@ -1,27 +1,24 @@
-import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
-import DashboardNavs from "../../components/navigation/dashboardNavs";
-import Footer from "../../components/footer/footer";
+// import React from "react";
+// import { Outlet } from "react-router-dom";
 
-function dashboard() {
-  const [sidebarToggle, setSidebarToggle] = useState(false);
+// function dashboard() {
+// return (
+// <div>Hi</div>
+// <main className="min-h-screen bg-white ">
+//   <div className="">
+//     <DashboardNavs
+//       sidebarToggle={sidebarToggle}
+//       setSidebarToggle={setSidebarToggle}
+//     />
+//   </div>
+//   <div className={sidebarToggle ? "hidden" : "block md:mt-4"}>
+//     <Outlet />
+//   </div>
+//   <div className={sidebarToggle ? "hidden" : "block"}>
+//     <Footer />
+//   </div>
+// </main>
+// );
+// }
 
-  return (
-    <main className="min-h-screen bg-white ">
-      <div className="">
-        <DashboardNavs
-          sidebarToggle={sidebarToggle}
-          setSidebarToggle={setSidebarToggle}
-        />
-      </div>
-      <div className={sidebarToggle ? "hidden" : "block md:mt-4"}>
-        <Outlet />
-      </div>
-      <div className={sidebarToggle ? "hidden" : "block"}>
-        <Footer />
-      </div>
-    </main>
-  );
-}
-
-export default dashboard;
+// export default dashboard;

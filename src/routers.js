@@ -29,7 +29,7 @@ const AlertResetPassword = React.lazy(() =>
 const AlertVerifyEmail = React.lazy(() =>
   import("./pages/onboarding/alertVerifyEmail")
 );
-const Dashboard = React.lazy(() => import("./pages/dashboard/dashboard"));
+
 const DashboardLandingPage = React.lazy(() =>
   import("./pages/dashboard/dashboardLandingPage")
 );
@@ -83,17 +83,18 @@ function Routers() {
             element={<AlertVerifyEmail />}
           />
           <Route
+            path={AuthRoutes.dashboard}
+            element={<DashboardLandingPage />}
+          />
+          <Route
             path={AuthRoutes.dashboardAccommodationDetails}
             element={<DashboardAccommodationDetails />}
           />
-          {/* DASHBOARD PAGES NESTED IN DASHBOARD AS AN OUTLET */}
-          <Route path={AuthRoutes.dashboard} element={<Dashboard />}>
-            <Route index element={<DashboardLandingPage />} />
-            <Route
-              path={AuthRoutes.dashboardManageAccount}
-              element={<DashboardManageAccount />}
-            />
-          </Route>
+
+          <Route
+            path={AuthRoutes.dashboardManageAccount}
+            element={<DashboardManageAccount />}
+          />
         </Routes>
       </Suspense>
     </div>
