@@ -4,6 +4,7 @@ const AuthRoutes = {
   // dashboardLandingPage: "/dashboardLandingPage",
   dashboardAccommodationDetails: "/dashboard/accommodation-details",
   dashboardManageAccount: "/dashboard/manage-account",
+  profile: "/profile",
 };
 
 /** Non Authenticated URL Routes */

@@ -39,6 +39,7 @@ const DashboardAccommodationDetails = React.lazy(() =>
 const DashboardManageAccount = React.lazy(() =>
   import("./pages/dashboard/dashboardManageAccount")
 );
+const Profile = React.lazy(() => import("./pages/dashboard/profile"));
 
 function Routers() {
   return (
@@ -95,6 +96,8 @@ function Routers() {
             path={AuthRoutes.dashboardManageAccount}
             element={<DashboardManageAccount />}
           />
+
+          <Route path={AuthRoutes.profile} element={<Profile />} />
         </Routes>
       </Suspense>
     </div>
