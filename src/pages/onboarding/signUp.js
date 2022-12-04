@@ -600,7 +600,6 @@ const signUp = () => {
 
   return (
     <div>
-      {" "}
       {isErrorOnSignUp ? (
         <ErrorOnSignUp errorText={signUpErrorText} />
       ) : (

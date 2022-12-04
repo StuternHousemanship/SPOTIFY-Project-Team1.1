@@ -6,6 +6,8 @@ const AuthRoutes = {
   dashboardManageAccount: "/dashboard/manage-account",
   profile: "/profile",
   editProfile: "/editprofile",
+  listedAccommodations: "/listed-accommodations",
+  addNewListing: "/add-new-listing",
 };
 
 /** Non Authenticated URL Routes */

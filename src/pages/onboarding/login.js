@@ -97,7 +97,7 @@ const login = () => {
     } catch (error) {
       setTimeout(() => {
         setButtonIsLoading(false);
-      }, 2000);
+      }, 1000);
       // console.error(error);
       const { error: errorMessage, email: errorEmail } = error.response.data;
       setLoginErrorText(errorMessage || errorEmail);

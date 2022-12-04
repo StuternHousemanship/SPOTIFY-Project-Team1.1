@@ -1,6 +1,9 @@
+/* eslint-disable import/no-cycle */
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { AuthRoutes } from "../../url";
 import DashboardNavs from "../../components/navigation/dashboardNavs";
 import Footer from "../../components/footer/footer";
 import { ReactComponent as UserIcon } from "../../assets/svg/profile-icon.svg";
@@ -12,6 +15,7 @@ import { ReactComponent as NotificationIcon } from "../../assets/svg/dashboard-n
 import { ReactComponent as PasswordSettingsIcon } from "../../assets/svg/dashboard-passwordSettings-icon.svg";
 
 const dashboardManageAccount = () => {
+  const navigate = useNavigate();
   return (
     <>
       <DashboardNavs />
@@ -40,6 +44,7 @@ const dashboardManageAccount = () => {
                   type="button"
                   style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
                   className="flex flex-col flex-1 w-full items-center justify-center gap-y-4 p-4 bg-squazzle-profileCard-background-white-color h-[144px] rounded-lg"
+                  onClick={() => navigate(AuthRoutes.profile)}
                 >
                   <PersonalDetailsIcon className="w-[24px] h-[24px]" />
                   <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
@@ -51,6 +56,7 @@ const dashboardManageAccount = () => {
                   type="button"
                   style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
                   className="flex flex-col flex-1 w-full items-center justify-center gap-y-4 p-4 bg-squazzle-profileCard-background-white-color h-[144px] rounded-lg"
+                  onClick={() => navigate(AuthRoutes.listedAccommodations)}
                 >
                   <MyListingIcon className="w-[24px] h-[24px]" />
                   <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
@@ -124,56 +130,74 @@ const dashboardManageAccount = () => {
               Manage Account
             </h2>
             <ul className="flex flex-col gap-y-6 w-full">
-              <li className="flex flex-row items-center justify-between w-full">
-                <div className="flex flex-row gap-x-4">
-                  <PersonalDetailsIcon className="w-[20px] h-[20px]" />
-                  <h2 className="font-normal text-sm">Personal Information</h2>
-                </div>
-                <FontAwesomeIcon
-                  icon={faChevronRight}
-                  className="font-normal text-sm"
-                />
-              </li>
-              <li className="flex flex-row items-center justify-between w-full">
-                <div className="flex flex-row gap-x-4">
-                  <MyListingIcon className="w-[20px] h-[20px]" />
-                  <h2 className="font-normal text-sm">My Listing</h2>
-                </div>
-                <FontAwesomeIcon
-                  icon={faChevronRight}
-                  className="font-normal text-sm"
-                />
-              </li>
-              <li className="flex flex-row items-center justify-between w-full">
-                <div className="flex flex-row gap-x-4">
-                  <PasswordSettingsIcon className="w-[20px] h-[20px]" />
-                  <h2 className="font-normal text-sm">Privacy Settings</h2>
-                </div>
-                <FontAwesomeIcon
-                  icon={faChevronRight}
-                  className="font-normal text-sm"
-                />
-              </li>
-              <li className="flex flex-row items-center justify-between w-full">
-                <div className="flex flex-row gap-x-4">
-                  <NotificationIcon className="w-[20px] h-[20px]" />
-                  <h2 className="font-normal text-sm">Notifications</h2>
-                </div>
-                <FontAwesomeIcon
-                  icon={faChevronRight}
-                  className="font-normal text-sm"
-                />
-              </li>
-              <li className="flex flex-row items-center justify-between w-full">
-                <div className="flex flex-row gap-x-4">
-                  <PaymentIcon className="w-[20px] h-[20px]" />
-                  <h2 className="font-normal text-sm">Payment and payouts</h2>
-                </div>
-                <FontAwesomeIcon
-                  icon={faChevronRight}
-                  className="font-normal text-sm"
-                />
-              </li>
+              <button
+                type="button"
+                onClick={() => navigate(AuthRoutes.profile)}
+              >
+                <li className="flex flex-row items-center justify-between w-full">
+                  <div className="flex flex-row gap-x-4">
+                    <PersonalDetailsIcon className="w-[20px] h-[20px]" />
+                    <h2 className="font-normal text-sm">
+                      Personal Information
+                    </h2>
+                  </div>
+                  <FontAwesomeIcon
+                    icon={faChevronRight}
+                    className="font-normal text-sm"
+                  />
+                </li>
+              </button>
+              <button
+                type="button"
+                onClick={() => navigate(AuthRoutes.listedAccommodations)}
+              >
+                <li className="flex flex-row items-center justify-between w-full">
+                  <div className="flex flex-row gap-x-4">
+                    <MyListingIcon className="w-[20px] h-[20px]" />
+                    <h2 className="font-normal text-sm">My Listing</h2>
+                  </div>
+                  <FontAwesomeIcon
+                    icon={faChevronRight}
+                    className="font-normal text-sm"
+                  />
+                </li>
+              </button>
+              <button type="button">
+                <li className="flex flex-row items-center justify-between w-full">
+                  <div className="flex flex-row gap-x-4">
+                    <PasswordSettingsIcon className="w-[20px] h-[20px]" />
+                    <h2 className="font-normal text-sm">Privacy Settings</h2>
+                  </div>
+                  <FontAwesomeIcon
+                    icon={faChevronRight}
+                    className="font-normal text-sm"
+                  />
+                </li>
+              </button>
+              <button type="button">
+                <li className="flex flex-row items-center justify-between w-full">
+                  <div className="flex flex-row gap-x-4">
+                    <NotificationIcon className="w-[20px] h-[20px]" />
+                    <h2 className="font-normal text-sm">Notifications</h2>
+                  </div>
+                  <FontAwesomeIcon
+                    icon={faChevronRight}
+                    className="font-normal text-sm"
+                  />
+                </li>
+              </button>
+              <button type="button">
+                <li className="flex flex-row items-center justify-between w-full">
+                  <div className="flex flex-row gap-x-4">
+                    <PaymentIcon className="w-[20px] h-[20px]" />
+                    <h2 className="font-normal text-sm">Payment and payouts</h2>
+                  </div>
+                  <FontAwesomeIcon
+                    icon={faChevronRight}
+                    className="font-normal text-sm"
+                  />
+                </li>
+              </button>
             </ul>
           </div>
         </section>

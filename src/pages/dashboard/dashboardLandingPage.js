@@ -1,9 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthRoutes } from "../../url";
 import DashboardNavs from "../../components/navigation/dashboardNavs";
 import Footer from "../../components/footer/footer";
 import dashboardBackgroundImage from "../../assets/img/dashboard-background-image.png";
 
 const dashboardLandingPage = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <DashboardNavs />
@@ -38,6 +42,7 @@ const dashboardLandingPage = () => {
               <button
                 type="button"
                 className="py-5 w-[320px] text-squazzle-button-bg-light-green-color font-bold bg-squazzle-button-bg-deep-green-color rounded-xl"
+                onClick={() => navigate(AuthRoutes.listedAccommodations)}
               >
                 List accomodation
               </button>
@@ -55,6 +60,7 @@ const dashboardLandingPage = () => {
           <button
             type="button"
             className="py-[15px] w-[350px] text-squazzle-button-bg-light-green-color font-bold bg-squazzle-button-bg-deep-green-color rounded-xl"
+            onClick={() => navigate(AuthRoutes.listedAccommodations)}
           >
             List accomodation
           </button>

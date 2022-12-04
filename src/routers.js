@@ -43,6 +43,14 @@ const Profile = React.lazy(() => import("./pages/dashboard/profile"));
 
 const EditProfile = React.lazy(() => import("./pages/dashboard/editProfile"));
 
+const ListedAccommodations = React.lazy(() =>
+  import("./pages/dashboard/listedAccommodations")
+);
+
+const AddNewListing = React.lazy(() =>
+  import("./pages/dashboard/addNewListing")
+);
+
 function Routers() {
   return (
     <div>
@@ -102,6 +110,11 @@ function Routers() {
           <Route path={AuthRoutes.profile} element={<Profile />} />
 
           <Route path={AuthRoutes.editProfile} element={<EditProfile />} />
+          <Route
+            path={AuthRoutes.listedAccommodations}
+            element={<ListedAccommodations />}
+          />
+          <Route path={AuthRoutes.addNewListing} element={<AddNewListing />} />
         </Routes>
       </Suspense>
     </div>

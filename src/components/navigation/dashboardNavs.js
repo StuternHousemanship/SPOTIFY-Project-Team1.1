@@ -58,7 +58,12 @@ const dashboardNavs = () => {
             </button>
           </li>
           <li>
-            <button type="button">List your property</button>
+            <button
+              type="button"
+              onClick={() => navigate(AuthRoutes.listedAccommodations)}
+            >
+              List your property
+            </button>
           </li>
           <li>
             <button type="button">About us</button>

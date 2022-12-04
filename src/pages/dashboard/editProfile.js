@@ -8,7 +8,6 @@ import countryCodeDropDown from "../../components/countryCode/countryCode";
 import Footer from "../../components/footer/footer";
 import { ReactComponent as UserIcon } from "../../assets/svg/profile-icon.svg";
 import { ReactComponent as GreaterThanIcon } from "../../assets/svg/greaterthan-icon.svg";
-
 import { ReactComponent as EditIcon } from "../../assets/svg/edit-icon.svg";
 
 function editProfile() {
@@ -118,7 +117,7 @@ function editProfile() {
                 </div>
               </div>
             </div>
-            <div className="px-20 box-border h-[1,373px] w-[774px] p-4 rounded-lg border-[2px] border-solid border-[#F5F5F5] bg-[#ffffff] mt-4 ">
+            <div className="px-20 box-border h-[1,373px] w-[774px] py-16 rounded-lg border-[2px] border-solid border-[#F5F5F5] bg-[#ffffff] mt-4 ">
               <div>
                 <label className="block">
                   <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm  ">
@@ -131,7 +130,7 @@ function editProfile() {
                     onChange={(e) => {
                       setFirstName(e.target.value);
                     }}
-                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md sm:text-sm focus:ring-1 mb-6"
+                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md text-sm  lg:text-xl focus:ring-1 mb-6"
                     placeholder="First Name"
                   />
                 </label>
@@ -148,7 +147,7 @@ function editProfile() {
                     }}
                     type="lastName"
                     name="lastName"
-                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md sm:text-sm focus:ring-1 mb-6"
+                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md text-sm  lg:text-xl focus:ring-1 mb-6"
                     placeholder="Last Name"
                   />
                 </label>
@@ -161,7 +160,7 @@ function editProfile() {
                   <input
                     type="email"
                     name="email"
-                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md sm:text-sm focus:ring-1 mb-6"
+                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md text-sm lg:text-xl focus:ring-1 mb-6"
                     placeholder="Email"
                   />
                 </label>
@@ -174,7 +173,7 @@ function editProfile() {
                   <input
                     type="occupation"
                     name="occupation"
-                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md sm:text-sm focus:ring-1 mb-6"
+                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md text-sm  lg:text-xl focus:ring-1 mb-6"
                     placeholder="Your Occupation"
                   />
                 </label>
@@ -186,7 +185,7 @@ function editProfile() {
                   </span>
                   <select
                     name="Gender"
-                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md sm:text-sm focus:ring-1 mb-6"
+                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md text-sm  lg:text-xl focus:ring-1 mb-6"
                   >
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -201,7 +200,7 @@ function editProfile() {
                   <input
                     type="occupation"
                     name="occupation"
-                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-[311px] rounded-md sm:text-sm focus:ring-1 mb-6 mr-4"
+                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-[311px] rounded-md text-sm  lg:text-xl focus:ring-1 mb-6 mr-4"
                     placeholder="State"
                   />
                 </label>
@@ -212,7 +211,7 @@ function editProfile() {
                   <input
                     type="occupation"
                     name="occupation"
-                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block w-[311px] h-16 rounded-md sm:text-sm focus:ring-1 mb-6"
+                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block w-[311px] h-16 rounded-md text-sm  lg:text-xl focus:ring-1 mb-6"
                     placeholder="City"
                   />
                 </label>
@@ -225,7 +224,7 @@ function editProfile() {
                   <input
                     type="occupation"
                     name="occupation"
-                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md sm:text-sm focus:ring-1 mb-6"
+                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md text-sm  lg:text-xl focus:ring-1 mb-6"
                     placeholder="NIN"
                   />
                 </label>
@@ -269,7 +268,7 @@ function editProfile() {
                 <input
                   type="occupation"
                   name="occupation"
-                  className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-[219px] w-full rounded-md sm:text-sm focus:ring-1 mb-6 placeholder:mb-[500px]"
+                  className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-[219px] w-full rounded-md text-sm  lg:text-xl focus:ring-1 mb-6 placeholder:mb-[500px]"
                   placeholder="Describe Yourself "
                 />
               </label>

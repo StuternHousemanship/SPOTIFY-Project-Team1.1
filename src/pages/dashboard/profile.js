@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthRoutes } from "../../url";
 import DashboardNavs from "../../components/navigation/dashboardNavs";
 import Footer from "../../components/footer/footer";
 import { ReactComponent as UserIcon } from "../../assets/svg/profile-icon.svg";
@@ -11,6 +13,7 @@ import { ReactComponent as PaymentIcon } from "../../assets/svg/payment-icon.svg
 import { ReactComponent as EditIcon } from "../../assets/svg/edit-icon.svg";
 
 const profile = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="hidden sm:block">
@@ -42,8 +45,18 @@ const profile = () => {
                   </li>
                 </ul>
                 <div className="font-Sans flex gap-2 text-[15px] leading-[24px] font-[400] text-[#353535">
-                  <button type="button">Edit profile</button>
-                  <EditIcon className="cursor-pointer inset-2" />
+                  <button
+                    type="button"
+                    onClick={() => navigate(AuthRoutes.editProfile)}
+                  >
+                    Edit profile
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => navigate(AuthRoutes.editProfile)}
+                  >
+                    <EditIcon className="cursor-pointer inset-2" />
+                  </button>
                 </div>
               </div>
               <div className="p-[1rem] bg-[white]  box-border h-[293px] w-[305px] shadow rounded-lg border-[1px] border-solid border-[#F5F5F5] pt-[24px] pb-[40px] items-center mb-10">
@@ -81,11 +94,11 @@ const profile = () => {
                 </ul>
               </div>
             </div>
-            <div className="px-20 box-border h-[808px] w-[774px] p-4 rounded-lg border-[2px] border-solid border-[#F5F5F5] bg-[#ffffff] mt-4 ">
+            <div className="px-20 box-border w-[774px] py-12 rounded-lg border-[2px] border-solid border-[#F5F5F5] bg-[#ffffff] mt-4 ">
               <p className="font-Sans text-[24px] leading-[30px] text-[#232323] font-[600] justify-items-start">
                 Personal Details
               </p>
-              <p className="font-Sans  text-[18px] font-[400] leading-[24px] text-[#787878] mt-2">
+              <p className="font-sans  text-[18px] font-[400] leading-[24px] text-[#787878] mt-2">
                 update your personal info and how we can reach you
               </p>
               <div>
@@ -172,6 +185,8 @@ const profile = () => {
           <Footer />
         </div>
       </div>
+
+      {/* MOBILE SCREEN */}
       <div className="sm:hidden font-sans px-5">
         <DashboardNavs />
         <div>
@@ -185,10 +200,17 @@ const profile = () => {
           zhardoe@gmail.com
         </p>
         <div className=" flex  flex-row gap-2 mt-4 ">
-          <button type="button" className="font-[400] text-sm">
+          <button
+            type="button"
+            className="font-[400] text-sm"
+            onClick={() => navigate(AuthRoutes.editProfile)}
+          >
             Edit profile
           </button>
-          <button type="button">
+          <button
+            type="button"
+            onClick={() => navigate(AuthRoutes.editProfile)}
+          >
             <EditIcon className="cursor-pointer h-[12px] w-[12px]" />
           </button>
         </div>
