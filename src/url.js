@@ -5,6 +5,7 @@ const AuthRoutes = {
   dashboardAccommodationDetails: "/dashboard/accommodation-details",
   dashboardManageAccount: "/dashboard/manage-account",
   profile: "/profile",
+  editProfile: "/editprofile",
 };
 
 /** Non Authenticated URL Routes */

@@ -41,6 +41,8 @@ const DashboardManageAccount = React.lazy(() =>
 );
 const Profile = React.lazy(() => import("./pages/dashboard/profile"));
 
+const EditProfile = React.lazy(() => import("./pages/dashboard/editProfile"));
+
 function Routers() {
   return (
     <div>
@@ -98,6 +100,8 @@ function Routers() {
           />
 
           <Route path={AuthRoutes.profile} element={<Profile />} />
+
+          <Route path={AuthRoutes.editProfile} element={<EditProfile />} />
         </Routes>
       </Suspense>
     </div>
