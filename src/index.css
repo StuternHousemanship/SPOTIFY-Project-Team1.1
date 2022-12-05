@@ -37,9 +37,12 @@ code {
     }
 }
 
+/* Change horizontal line color on parent container hover  */
+.accomodation_details:hover > hr {
+  border-color: #f5f5f5;
+}
 
 /* Hide vertical Overflow Scrollbar */
-
 .accommodation_content::-webkit-scrollbar {
     display: none;
 }

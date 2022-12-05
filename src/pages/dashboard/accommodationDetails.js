@@ -1,7 +1,6 @@
 import React from "react";
+import { Link } from "react-scroll";
 import { useNavigate } from "react-router-dom";
-// import DashboardNavs from "../../components/navigation/dashboardNavs";
-// import Footer from "../../components/footer/footer";
 import { AuthRoutes } from "../../url";
 import { ReactComponent as RadioButtonCheckedIcon } from "../../assets/svg/radio_button_checked_icon.svg";
 import { ReactComponent as MoneyIcon } from "../../assets/svg/money_icon.svg";
@@ -17,37 +16,55 @@ import { ReactComponent as TwitterIcon } from "../../assets/svg/twitter-icon.svg
 import { ReactComponent as LinkdnIcon } from "../../assets/svg/linkedin-icon.svg";
 import { ReactComponent as BellIcon } from "../../assets/svg/bell-icon.svg";
 import { ReactComponent as ProfileIcon } from "../../assets/svg/profile-icon.svg";
+import { ReactComponent as ArrowForwardIcon } from "../../assets/svg/arrow_forward_icon.svg";
+import { ReactComponent as ArrowBackIcon } from "../../assets/svg/arrow_back_icon.svg";
+import { ReactComponent as CreateIcon } from "../../assets/svg/create_icon.svg";
 import { ReactComponent as SquazzleMobileLogo } from "../../assets/svg/squazzle-mobile-logo.svg";
 import { ReactComponent as SquazzleDesktopGreenLogo } from "../../assets/svg/squazzle-desktop-green-logo.svg";
 import AccommodationImage from "../../assets/img/accommodation-image.png";
+import AccommodationImageOne from "../../assets/img/accomodation_image_one_desktop.png";
+import AccommodationImageTwo from "../../assets/img/accomodation_image_two_desktop.png";
+import AccommodationImageThree from "../../assets/img/accomodation_image_three_desktop.png";
+import Footer from "../../components/footer/footer";
 
 const accommodationDetails = () => {
   const navigate = useNavigate();
 
   return (
     <div>
-      {/* <DashboardNavs /> */}
       {/* Desktop Screen */}
-      <div className="hidden md:block font-sans">
-        <header className="md:h-[96px] md:px-10 lg:px-20 fixed top-0 w-full bg-[#ffffff] border-b">
+      <div className="hidden lg:block font-sans">
+        <header
+          name="header"
+          className="lg:h-[96px] lg:px-20 fixed top-0 w-full bg-[#ffffff] z-20"
+        >
           <div className="flex justify-between items-center mt-[25px]">
-            <button type="button">
-              <SquazzleDesktopGreenLogo className=" h-[46px]" />
+            <button
+              type="button"
+              onClick={() => navigate(AuthRoutes.dashboard)}
+            >
+              <SquazzleDesktopGreenLogo className="h-[46px] pr-10" />
             </button>
-            <ul className="w-[450px] flex justify-between font-normal text-base text-[#232323]">
-              <button
-                type="button"
-                onClick={() =>
-                  navigate(AuthRoutes.dashboardAccommodationDetails)
-                }
+
+            <ul className="flex lg:gap-8 font-normal text-base text-[#232323]">
+              <Link
+                to="header"
+                smooth="true"
+                duration={500}
+                spy="true"
+                offset={-2000}
+                className="cursor-pointer"
               >
                 Accommodations
-              </button>
-              <button type="button"> List your property </button>
-              <button type="button"> About us </button>
-              <button type="button"> FAQ </button>
+              </Link>
+
+              <button type="button">List your property</button>
+
+              <button type="button">About us</button>
+
+              <button type="button">FAQ</button>
             </ul>
-            <ul className="flex md:gap-x-[15px] lg:gap-x-[20px]">
+            <ul className="flex lg:gap-x-[20px]">
               <button type="button">
                 <BellIcon className=" cursor-pointer" />
               </button>
@@ -57,34 +74,250 @@ const accommodationDetails = () => {
             </ul>
           </div>
         </header>
+        <section className="flex lg:gap-12 lg:pl-20 ">
+          <aside className="w-[280px] pt-[128px]">
+            <div className="flex w-[235px] gap-x-5 mb-[31px]">
+              <button
+                type="button"
+                className="cursor-pointer text-[#353535] text-sm font-semibold"
+              >
+                Manage Account
+              </button>
+              <ArrowForwardIcon />
+              <button
+                type="button"
+                className="cursor-pointer text-sm text-[#353535]"
+              >
+                My Listing
+              </button>
+            </div>
+
+            <div className="h-16 py-5 px-6 bg-[#001A1B] flex gap-x-[109px] mb-4">
+              <button
+                type="button"
+                className="cursor-pointer text-sm text-[#CCE6E7] flex gap-2"
+              >
+                <ArrowBackIcon />
+                <span>Back</span>
+              </button>
+              <button
+                type="button"
+                className="cursor-pointer text-sm text-[#CCE6E7] flex gap-2"
+              >
+                <CreateIcon />
+                <span>Edit</span>
+              </button>
+            </div>
+
+            <div className="py-3 px-3 ">
+              <div className="accomodation_details px-3 py-3 flex flex-col gap-y-4 hover:bg-[#CCE6E7]">
+                <span className="font-semibold text-[18px] text-[#232323] leading-[26px]">
+                  Location
+                </span>
+                <hr className="border-[1px] border-solid border-[#D7D7D7] " />
+                <span className="text-[#232323] text-[14px] leading-[22px] font-normal">
+                  Federal Housing Estate, Number 49 East-End, Jos, Plateau
+                  State, Nigeria.
+                </span>
+              </div>
+              <div className="accomodation_details px-3 py-3 flex flex-col gap-y-4 hover:bg-[#CCE6E7] ">
+                <span className="font-semibold text-[18px] text-[#232323] leading-[26px]">
+                  Reason for listing this accommodation
+                </span>
+                <hr className="border-[1px] border-solid border-[#D7D7D7] " />
+                <span className="text-[#232323] text-[14px] leading-[22px] font-normal">
+                  To offer guests an interesting and enriching experience that
+                  makes a holiday memorable for all the right reasons.
+                </span>
+              </div>
+              <div className="accomodation_details px-3 py-3 flex flex-col gap-y-4 hover:bg-[#CCE6E7]">
+                <span className="font-semibold text-[18px] text-[#232323] leading-[26px]">
+                  Hosting duration
+                </span>
+                <hr className="border-[1px] border-solid border-[#D7D7D7] " />
+                <span className="text-[#232323] text-[16px] leading-[24px] font-normal flex gap-x-[11px]">
+                  <DateRangeIcon /> <span>Fri 18 Nov - Fri 16 Dec</span>
+                </span>
+              </div>
+              <div className="accomodation_details px-3 py-3 flex flex-col gap-y-4 hover:bg-[#CCE6E7]">
+                <span className="font-semibold text-[18px] text-[#232323] leading-[26px]">
+                  Accommodation type
+                </span>
+                <hr className="border-[1px] border-solid border-[#D7D7D7] " />
+                <span className="text-[#232323] text-[16px] leading-[24px] font-normal flex gap-x-[11px]">
+                  <HouseIcon /> <span>Apartment</span>
+                </span>
+              </div>
+            </div>
+          </aside>
+          <main className="pt-[181px]">
+            <div className="h-16 flex flex-row gap-x-5 text-base font-normal w-[875px] mb-5 ">
+              <button
+                type="button"
+                className="m-w-[155px] py-5 px-[28px] bg-[#F5F5F5] flex space-x-[9.33px] "
+              >
+                <RadioButtonCheckedIcon className="self-center" />
+                <span>Available</span>
+              </button>
+              <button
+                type="button"
+                className="flex py-5 px-[28px] bg-[#F5F5F5] m-w-[250px] space-x-[9.33px]"
+              >
+                <MoneyIcon className="self-center" />
+                <span>NGN 65,000 per night</span>
+              </button>
+              <button
+                type="button"
+                className="flex py-5 px-[28px] bg-[#F5F5F5] m-w-[152px] space-x-[9.33px]"
+              >
+                <LocationIcon className="self-center" />
+                <span>Location</span>
+              </button>
+              <Link
+                to="accommodation_rules"
+                smooth="true"
+                duration={500}
+                spy="true"
+                offset={-105}
+                className="flex py-5 px-[28px] bg-[#F5F5F5] m-w-[258px] space-x-[9.33px] cursor-pointer"
+              >
+                <AccommodationRuleIcon className="self-center" />
+                <span>Accomodation rules</span>
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 grid-row-2 gap-5 mb-16">
+              <img
+                src={AccommodationImageOne}
+                alt="accommodation__image"
+                className="w-[582px] h-[530px] row-span-2"
+              />
+              <img
+                src={AccommodationImageTwo}
+                alt="accommodation__image"
+                className="w-[350px] h-[255px]"
+              />
+              <img
+                src={AccommodationImageThree}
+                alt="accommodation__image"
+                className="w-[350px] h-[255px]"
+              />
+            </div>
+            <p className="text-[#232323] font-semibold text-[50px] mb-10 w-[794px]">
+              Primrose View
+            </p>
+            <div className="flex flex-col gap-y-4 w-[794px] mb-10">
+              <p className="text-[28px] font-normal text-[#232323]">
+                About this apartment
+              </p>
+              <p className="font-normal text-base ">
+                From the outside this house looks nice and traditional. It has
+                windows that let in plenty of light. The house is equipped with
+                a small kitchen and two bathrooms, it also has a cozy living
+                room, two bedrooms, a roomy dining area, a playroom and a cozy
+                garage.The building is fairly rounded in shape.The roof is low
+                and v-shaped and is covered with grey ceramic tiles. The house
+                itself is surrounded by a tranquil garden, with beautiful
+                primrose flowers and various rock formations...
+              </p>
+              <p className="text-base text-[#8D173A]">Read more</p>
+            </div>
+            <hr className="border-[1px] w-[794px] mb-10 border-solid border-[#D7D7D7]" />
+            <div
+              name="accommodation_rules"
+              className="w-[794px] flex flex-col gap-y-4 mb-[112px]"
+            >
+              <span className="font-normal text-[28px] text-[#222222]">
+                Accommodation rules
+              </span>
+              <div className="p-8 flex flex-col gap-y-6 bg-[#F5F5F5]">
+                <div className="bg-[#FFFFFF] py-3 px-6 flex flex-col gap-y-4 text-[#232323]">
+                  <span className="font-semibold text-[18px] ">
+                    Damage to property
+                  </span>
+                  <span className="text-[16px] ">
+                    Guests will be held responsible for any loss or damage to
+                    the property caused by negligence either by themselves,
+                    their guests or any person for whom they are responsible
+                    for.
+                  </span>
+                </div>
+                <div className="bg-[#FFFFFF] py-3 px-6 flex flex-col gap-y-4 text-[#232323]">
+                  <span className="font-semibold text-[18px] ">Check-in</span>
+                  <span className="text-[16px] ">
+                    Check-in time is from 12:00 - 22:00
+                  </span>
+                </div>
+                <div className="bg-[#FFFFFF] py-3 px-6 flex flex-col gap-y-4 text-[#232323]">
+                  <span className="font-semibold text-[18px] ">Departure</span>
+                  <span className="text-[16px] ">
+                    Check-out time is from 12:00 - 13:00
+                  </span>
+                </div>
+                <div className="bg-[#FFFFFF] py-3 px-6 flex flex-col gap-y-4 text-[#232323]">
+                  <span className="font-semibold text-[18px] ">Pets</span>
+                  <span className="text-[16px] ">
+                    Pets are not allowed here. Special arrangements could be
+                    made upon request.
+                  </span>
+                </div>
+                <div className="bg-[#FFFFFF] py-3 px-6 flex flex-col gap-y-4 text-[#232323]">
+                  <span className="font-semibold text-[18px] ">
+                    Settlement of bills
+                  </span>
+                  <span className="text-[16px] ">
+                    Bills can be paid through bank transfers or cash. Checks are
+                    not allowed.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </main>
+        </section>
+        <Footer />
       </div>
+
       {/* Mobile Screen */}
-      <div className="md:hidden font-sans">
+      <div className="lg:hidden font-sans">
         <div className="h-full ">
-          <header className="flex flex-row justify-between py-4 drop-shadow-[1px_2px_rgba(0,0,0,0.06)] mb-8 px-5">
+          <header className="flex flex-row justify-between py-4 drop-shadow-[1px_2px_rgba(0,0,0,0.06)] mb-8 px-5 sm:px-10 ">
             <MoreIcon className="self-center" />
             <MenuIcon className="self-center" />
           </header>
-          <div className="flex flex-col px-5">
+          <div className="flex flex-col px-5 sm:px-10">
             <div className="flex flex-col gap-y-3 ">
               <div className="accommodation_content flex flex-col gap-y-3 overflow-x-scroll ">
                 <div className="h-8 flex flex-row gap-x-3 text-xs font-semibold w-[573px] mb-4 ">
-                  <div className="m-w-[97px] py-2 px-[10px] bg-[#F5F5F5] flex space-x-[9.33px] ">
+                  <button
+                    type="button"
+                    className="m-w-[97px] py-2 px-[10px] bg-[#F5F5F5] flex space-x-[9.33px] "
+                  >
                     <RadioButtonCheckedIcon className="self-center" />
-                    <span> Available </span>
-                  </div>
-                  <div className="flex py-2 px-[10px] bg-[#F5F5F5] m-w-[169px] space-x-[9.33px]">
+                    <span>Available</span>
+                  </button>
+                  <button
+                    type="button"
+                    className="flex py-2 px-[10px] bg-[#F5F5F5] m-w-[169px] space-x-[9.33px]"
+                  >
                     <MoneyIcon className="self-center" />
-                    <span> NGN 65, 000 per night </span>
-                  </div>
-                  <div className="flex py-2 px-[10px] bg-[#F5F5F5] m-w-[94px] space-x-[9.33px]">
+                    <span>NGN 65,000 per night</span>
+                  </button>
+                  <button
+                    type="button"
+                    className="flex py-2 px-[10px] bg-[#F5F5F5] m-w-[94px] space-x-[9.33px]"
+                  >
                     <LocationIcon className="self-center" />
-                    <span> Location </span>
-                  </div>
-                  <div className="flex py-2 px-[10px] bg-[#F5F5F5] m-w-[177px] space-x-[9.33px] ">
+                    <span>Location</span>
+                  </button>
+                  <Link
+                    to="accommodation_rules_mobile"
+                    smooth="true"
+                    duration={500}
+                    spy="true"
+                    className="flex py-2 px-[10px] bg-[#F5F5F5] m-w-[177px] space-x-[9.33px]"
+                  >
                     <AccommodationRuleIcon className="self-center" />
-                    <span> Accomodation rules </span>
-                  </div>
+                    <span>Accomodation rules</span>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -97,42 +330,42 @@ const accommodationDetails = () => {
               className="flex flex-col gap-y-3 px-3 py-3 max-h-[609px] rounded-[10px] shadow-[#001A1B] mb-8"
               style={{ boxShadow: "0px 2px rgba(0, 26, 27, 0.1)" }}
             >
-              <div className="px-3 py-3 flex flex-col gap-y-4 hover:bg-[#CCE6E7]">
+              <div className="accomodation_details px-3 py-3 flex flex-col gap-y-4 hover:bg-[#CCE6E7]">
                 <span className="font-semibold text-[18px] text-[#232323] leading-[26px]">
                   Location
                 </span>
-                <hr className="border-[1px] border-solid border-[#D7D7D7] hover:border-[#F5F5F5]" />
+                <hr className="border-[1px] border-solid border-[#D7D7D7] " />
                 <span className="text-[#232323] text-[14px] leading-[22px] font-normal">
-                  Federal Housing Estate, Number 49 East - End, Jos, Plateau
+                  Federal Housing Estate, Number 49 East-End, Jos, Plateau
                   State, Nigeria.
                 </span>
               </div>
-              <div className="px-3 py-3 flex flex-col gap-y-4 hover:bg-[#CCE6E7] ">
+              <div className="accomodation_details px-3 py-3 flex flex-col gap-y-4 hover:bg-[#CCE6E7] ">
                 <span className="font-semibold text-[18px] text-[#232323] leading-[26px]">
                   Reason for listing this accommodation
                 </span>
-                <hr className="border-[1px] border-solid border-[#D7D7D7] hover:border-[#F5F5F5]" />
+                <hr className="border-[1px] border-solid border-[#D7D7D7] " />
                 <span className="text-[#232323] text-[14px] leading-[22px] font-normal">
                   To offer guests an interesting and enriching experience that
                   makes a holiday memorable for all the right reasons.
                 </span>
               </div>
-              <div className="px-3 py-3 flex flex-col gap-y-4 hover:bg-[#CCE6E7]">
+              <div className="accomodation_details px-3 py-3 flex flex-col gap-y-4 hover:bg-[#CCE6E7]">
                 <span className="font-semibold text-[18px] text-[#232323] leading-[26px]">
                   Hosting duration
                 </span>
-                <hr className="border-[1px] border-solid border-[#D7D7D7] hover:border-[#F5F5F5]" />
+                <hr className="border-[1px] border-solid border-[#D7D7D7] " />
                 <span className="text-[#232323] text-[16px] leading-[24px] font-normal flex gap-x-[11px]">
-                  <DateRangeIcon /> <span> Fri 18 Nov - Fri 16 Dec </span>
+                  <DateRangeIcon /> <span>Fri 18 Nov - Fri 16 Dec</span>
                 </span>
               </div>
-              <div className="px-3 py-3 flex flex-col gap-y-4 hover:bg-[#CCE6E7]">
+              <div className="accomodation_details px-3 py-3 flex flex-col gap-y-4 hover:bg-[#CCE6E7]">
                 <span className="font-semibold text-[18px] text-[#232323] leading-[26px]">
                   Accommodation type
                 </span>
-                <hr className="border-[1px] border-solid border-[#D7D7D7] hover:border-[#F5F5F5]" />
+                <hr className="border-[1px] border-solid border-[#D7D7D7] " />
                 <span className="text-[#232323] text-[16px] leading-[24px] font-normal flex gap-x-[11px]">
-                  <HouseIcon /> <span> Apartment </span>
+                  <HouseIcon /> <span>Apartment</span>
                 </span>
               </div>
             </div>
@@ -144,12 +377,12 @@ const accommodationDetails = () => {
                 About this apartment
               </p>
               <p className="font-normal text-[14px] leading-[22px] h-[220px]">
-                From the outside this house looks nice and traditional.It has
-                windows that let in plenty of light.The house is equipped with a
-                small kitchen and two bathrooms, it also has a cozy living room,
-                two bedrooms, a roomy dining area, a playroom and a cozy
+                From the outside this house looks nice and traditional. It has
+                windows that let in plenty of light. The house is equipped with
+                a small kitchen and two bathrooms, it also has a cozy living
+                room, two bedrooms, a roomy dining area, a playroom and a cozy
                 garage.The building is fairly rounded in shape.The roof is low
-                and v - shaped and is covered with grey ceramic tiles.The house
+                and v-shaped and is covered with grey ceramic tiles. The house
                 itself is surrounded by a tranquil garden, with beautiful
                 primrose flowers and various rock formations...
               </p>
@@ -158,7 +391,10 @@ const accommodationDetails = () => {
               </p>
             </div>
             <hr className="border-[1px] border-solid border-[#D7D7D7] mb-8" />
-            <div className="mb-[64px] flex flex-col gap-y-4">
+            <div
+              name="accommodation_rules_mobile"
+              className="mb-[64px] flex flex-col gap-y-4"
+            >
               <span className="font-normal text-[24px] text-[#222222]">
                 Accommodation rules
               </span>
@@ -175,22 +411,22 @@ const accommodationDetails = () => {
                   </span>
                 </div>
                 <div className="bg-[#FFFFFF] py-3 px-4 flex flex-col gap-y-4 text-[#232323]">
-                  <span className="font-semibold text-[16px] ">Check - in</span>
+                  <span className="font-semibold text-[16px] ">Check-in</span>
                   <span className="text-[14px] ">
-                    Check - in time is from 12: 00 - 22: 00
+                    Check-in time is from 12:00 - 22:00
                   </span>
                 </div>
                 <div className="bg-[#FFFFFF] py-3 px-4 flex flex-col gap-y-4 text-[#232323]">
                   <span className="font-semibold text-[16px] ">Departure</span>
                   <span className="text-[14px] ">
-                    Check - out time is from 12: 00 - 13: 00
+                    Check-out time is from 12:00 - 13:00
                   </span>
                 </div>
                 <div className="bg-[#FFFFFF] py-3 px-4 flex flex-col gap-y-4 text-[#232323]">
-                  <span className="font-semibold text-[16px] "> Pets </span>
+                  <span className="font-semibold text-[16px] ">Pets</span>
                   <span className="text-[14px] ">
-                    Pets are not allowed here.Special arrangements could be made
-                    upon request.
+                    Pets are not allowed here. Special arrangements could be
+                    made upon request.
                   </span>
                 </div>
                 <div className="bg-[#FFFFFF] py-3 px-4 flex flex-col gap-y-4 text-[#232323]">
@@ -198,7 +434,7 @@ const accommodationDetails = () => {
                     Settlement of bills
                   </span>
                   <span className="text-[14px] ">
-                    Bills can be paid through bank transfers or cash.Checks are
+                    Bills can be paid through bank transfers or cash. Checks are
                     not allowed.
                   </span>
                 </div>
@@ -223,7 +459,7 @@ const accommodationDetails = () => {
                           name="email"
                           id="email"
                           placeholder="Email address"
-                          className="py-[15px] pl-4 border-[1px] border-[#BCBCBC] rounded-lg"
+                          className="py-[15px] pl-4 border-[1px] border-[#BCBCBC] rounded-lg focus:bg-none focus:outline-none"
                         />
                       </div>
                       <button
@@ -329,8 +565,8 @@ const accommodationDetails = () => {
               <div className="mb-8 flex flex-col gap-y-6">
                 <SquazzleMobileLogo />
                 <div className="flex flex-col gap-y-6 text-[#232323] text-[14px] w-[129px] items-start">
-                  <button type="button"> Private Policy </button>
-                  <button type="button"> Terms & Conditions </button>
+                  <button type="button">Private Policy</button>
+                  <button type="button">Terms & Conditions</button>
                 </div>
                 <div className="flex gap-x-5 w-[188px]">
                   <button type="button">
@@ -351,7 +587,6 @@ const accommodationDetails = () => {
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
     </div>
   );
 };
