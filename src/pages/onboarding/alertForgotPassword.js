@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import alertNavigation from "../../components/navigation/alert-page-navigation";
 import { NonAuthRoutes } from "../../url";
@@ -9,9 +9,17 @@ import { ReactComponent as UndrawOpenMobileIcon } from "../../assets/svg/undraw-
 function alertForgotPassword() {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const ac = new AbortController();
+    document.title = "Forgot Password - Squazzle";
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
+
   /** handles sending mail to user */
   const handleGetResetPasswordCode = () => {
-    navigate(NonAuthRoutes.enterPasswordResetCode);
+    navigate(`${NonAuthRoutes.enterPasswordResetCode}/000000`);
   };
 
   return (

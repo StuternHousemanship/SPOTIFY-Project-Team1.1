@@ -27,7 +27,7 @@ const login = () => {
 
   useEffect(() => {
     const ac = new AbortController();
-    document.title = "login - Squazzle";
+    document.title = "Login - Squazzle";
     return function cleanup() {
       ac.abort();
     };

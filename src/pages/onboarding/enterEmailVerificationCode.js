@@ -1,15 +1,19 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable react/function-component-definition */
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import alertPageNavigation from "../../components/navigation/alert-page-navigation";
 import { ReactComponent as LoadingIcon } from "../../assets/svg/loading-light-icon.svg";
 import { NonAuthRoutes } from "../../url";
 import onboarding from "../../api/onboarding";
-import SuccessAndErrorPage from "../../components/successAndError/successAndError";
+import ErrorEmailVerification from "../../components/successAndError/errorOnEmailVerification";
 
 const enterEmailVerificationCode = () => {
   const navigate = useNavigate();
+  const { verificationCode } = useParams();
+
+  const verificationCodeArray = verificationCode.split("");
+  const [d1, d2, d3, d4, d5, d6] = verificationCodeArray;
 
   const [digit1, setDigit1] = useState("");
   const [digit2, setDigit2] = useState("");
@@ -18,13 +22,34 @@ const enterEmailVerificationCode = () => {
   const [digit5, setDigit5] = useState("");
   const [digit6, setDigit6] = useState("");
   const [buttonIsLoading, setButtonIsLoading] = useState(false);
-  const [heading, setHeading] = useState("");
-  const [message, setMessage] = useState("");
-  const [buttonAction, setButtonAction] = useState(null);
-  const [buttonText, setButtonText] = useState("");
-  const [displaySuccessOrError, setDisplaySuccessOrError] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isErrorOnEmailVerification, setIsErrorOnEmailVerification] =
+    useState(false);
+  const [verificationErrorText, setVerificationErrorText] = useState("");
+
+  useEffect(() => {
+    const ac = new AbortController();
+
+    document.title = "Email Verification Code - Squazzle";
+    if (verificationCode === "000000") {
+      setDigit1("");
+      setDigit2("");
+      setDigit3("");
+      setDigit4("");
+      setDigit5("");
+      setDigit6("");
+    } else {
+      setDigit1(d1);
+      setDigit2(d2);
+      setDigit3(d3);
+      setDigit4(d4);
+      setDigit5(d5);
+      setDigit6(d6);
+    }
+
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
 
   /** handles moving to the next or previous input on keydown */
   const handleKeyDown = (e) => {
@@ -87,47 +112,29 @@ const enterEmailVerificationCode = () => {
       );
 
       if (response.status === 202) {
-        setDisplaySuccessOrError(true);
-        setIsSuccess(true);
-        setHeading("Verification Successful");
-        setMessage(
-          "Your email address has been verified. You can start enjoying all the amazing features of Squazzle."
-        );
-        setButtonAction(navigate(NonAuthRoutes.login));
-        setButtonText("Proceed to sign in");
+        setButtonIsLoading(false);
+        navigate(NonAuthRoutes.alertVerificationSuccess);
       }
     } catch (error) {
       setTimeout(() => {
         setButtonIsLoading(false);
       }, 2000);
       // console.error(error);
-      setDisplaySuccessOrError(true);
       const { message: errorMessage } = error.response.data;
-      setIsError(true);
-      setHeading("Let's try that again");
-      setMessage(errorMessage);
-      // setButtonAction(navigate(NonAuthRoutes.login));
-      setButtonText("Resend Code");
+      setVerificationErrorText(errorMessage);
+      setIsErrorOnEmailVerification(true);
     }
   };
 
   return (
     <div>
-      {" "}
-      {displaySuccessOrError ? (
-        <SuccessAndErrorPage
-          heading={heading}
-          message={message}
-          buttonAction={buttonAction}
-          buttonText={buttonText}
-          isError={isError}
-          isSuccess={isSuccess}
-        />
+      {isErrorOnEmailVerification ? (
+        <ErrorEmailVerification errorText={verificationErrorText} />
       ) : (
         <div className="bg-squazzle-background-white-color pt-[130px] pb-[600px] md:pb-[800px] lg:pb-80 max-[640px]:bg-white">
           <div className="font-sans grid place-items-center h-full bg-squazzle-background-white-color max-[640px]:bg-white">
             {" "}
-            {alertPageNavigation()}{" "}
+            {alertPageNavigation()}
             <div
               className="grid place-items-center w-[610px] py-[22px] px-[4px] md:px-10 lg:px-10 box-border bg-white text-center"
               style={{ width: "min(100vw, 609px)" }}
@@ -201,7 +208,6 @@ const enterEmailVerificationCode = () => {
                     />{" "}
                   </div>{" "}
                 </label>{" "}
-                <div> {displaySuccessOrError ? <p> {message} </p> : null}</div>
                 <button
                   type="submit"
                   className="enabled flex align-middle justify-center text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color disabled:bg-squazzle-button-bg-light-green-color disabled:text-squazzle-button-font-deep-green-color py-[15px] w-[280px]  lg:py-5 lg:w-[420px text-sm lg:text-xl font-bold rounded-xl cursor-pointer mt-[46px]"

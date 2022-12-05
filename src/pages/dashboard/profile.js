@@ -67,12 +67,18 @@ const profile = () => {
                       Personal details
                     </p>
                   </li>
-                  <li className="border-[#D7D7D7] hover:bg-[#CCE6E7] p-2 border-b-[1px] w-full flex gap-5 items-center my-3">
-                    <MansionIcon className="w-[16px] h-[20px] cursor-pointer inset-2" />
-                    <p className=" text-[15px] font-[600] text-[black]">
-                      My listings
-                    </p>
-                  </li>
+                  <button
+                    type="button"
+                    className="w-full"
+                    onClick={() => navigate(AuthRoutes.listedAccommodations)}
+                  >
+                    <li className="border-[#D7D7D7] hover:bg-[#CCE6E7] p-2 border-b-[1px] w-full flex gap-5 items-center my-3">
+                      <MansionIcon className="w-[16px] h-[20px] cursor-pointer inset-2" />
+                      <p className=" text-[15px] font-[600] text-[black]">
+                        My listings
+                      </p>
+                    </li>
+                  </button>
                   <li className="border-[#D7D7D7] hover:bg-[#CCE6E7] p-2 border-b-[1px] w-full flex gap-5 items-center my-3">
                     <PrivacyIcon className="w-[16px] h-[20px] cursor-pointer inset-2" />
                     <p className="text-[15px] font-[600] text-[black]">

@@ -16,6 +16,14 @@ function forgotPassword() {
   const [buttonIsLoading, setButtonIsLoading] = useState(false);
 
   useEffect(() => {
+    const ac = new AbortController();
+    document.title = "Forgot Password - Squazzle";
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
+
+  useEffect(() => {
     // These logic clear error messages when page loads
     if (!email) {
       setIsEmailValid(false);

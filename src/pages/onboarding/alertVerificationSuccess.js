@@ -4,12 +4,12 @@ import alertNavigation from "../../components/navigation/alert-page-navigation";
 import { ReactComponent as CheckCircleIcon } from "../../assets/svg/check_circle_icon.svg";
 import { NonAuthRoutes } from "../../url";
 
-const passwordResetSuccess = () => {
+const alertVerificationSuccess = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
     const ac = new AbortController();
-    document.title = "Reset Password Successful - Squazzle";
+    document.title = "Verification Successful - Squazzle";
     return function cleanup() {
       ac.abort();
     };
@@ -25,11 +25,11 @@ const passwordResetSuccess = () => {
             <div>
               <div className="flex flex-col justify-center items-center">
                 <h2 className="text-2xl md:text-[36px] md:leading-[45px] font-normal text-squazzle-grey-text-color mb-6 text-center">
-                  Password reset successful!
+                  Verification successful!
                 </h2>{" "}
                 <p className="font-normal text-[14px] md:text-[18px] leading-[22px] md:leading-[26px] md:h-[78px] text-squazzle-text-deep-grey1-color text-center align-top max-w-[420px]">
-                  Your password has been changed.You can now sign in using your
-                  new password.{" "}
+                  Your email address has been verified. You can start enjoying
+                  all the amazing features of Squazzle.
                 </p>{" "}
               </div>{" "}
               <button
@@ -51,11 +51,11 @@ const passwordResetSuccess = () => {
           <CheckCircleIcon className="mx-auto " />
           <div className="px-4 text-center flex flex-col gap-y-6 ">
             <p className="text-[24px] leading-[30px] text-[#232323]">
-              Password reset sucessful!
+              Verification sucessful!
             </p>{" "}
             <p className="font-normal text-[14px] leading-[24px]">
-              Your password has been changed.You can now sign in using your new
-              password.{" "}
+              Your email address has been verified. You can start enjoying all
+              the amazing features of Squazzle.
             </p>{" "}
           </div>{" "}
           <button
@@ -71,4 +71,4 @@ const passwordResetSuccess = () => {
   );
 };
 
-export default passwordResetSuccess;
+export default alertVerificationSuccess;

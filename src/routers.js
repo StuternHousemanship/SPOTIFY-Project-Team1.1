@@ -30,6 +30,10 @@ const AlertVerifyEmail = React.lazy(() =>
   import("./pages/onboarding/alertVerifyEmail")
 );
 
+const AlertVerificationSuccess = React.lazy(() =>
+  import("./pages/onboarding/alertVerificationSuccess")
+);
+
 const DashboardLandingPage = React.lazy(() =>
   import("./pages/dashboard/dashboardLandingPage")
 );
@@ -56,7 +60,7 @@ function Routers() {
     <div>
       <Suspense
         fallback={
-          <div className="flex justify-center mt-[500px]">
+          <div className="flex justify-center mt-[300px]">
             <LoadingIcon className="suspense-loading-icon" />
           </div>
         }
@@ -82,7 +86,7 @@ function Routers() {
             element={<AlertResetPassword />}
           />
           <Route
-            path={NonAuthRoutes.enterEmailVerificationCode}
+            path={`${NonAuthRoutes.enterEmailVerificationCode}/:verificationCode`}
             element={<EnterEmailVerificationCode />}
           />
           <Route
@@ -92,6 +96,10 @@ function Routers() {
           <Route
             path={NonAuthRoutes.alertVerifyEmail}
             element={<AlertVerifyEmail />}
+          />
+          <Route
+            path={NonAuthRoutes.alertVerificationSuccess}
+            element={<AlertVerificationSuccess />}
           />
           <Route
             path={AuthRoutes.dashboard}

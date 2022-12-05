@@ -9,6 +9,7 @@ function App() {
 
   useEffect(() => {
     const ac = new AbortController();
+    document.title = "Landing Page - Squazzle";
 
     navigate(NonAuthRoutes.login);
 

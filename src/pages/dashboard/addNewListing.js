@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthRoutes } from "../../url";
 import { ReactComponent as ArrowRight } from "../../assets/svg/arrow-right-icon.svg";
 import Overview1 from "../../components/listAccommodation/overview1";
 import Overview2 from "../../components/listAccommodation/overview2";
@@ -8,6 +10,7 @@ import DashboardNavs from "../../components/navigation/dashboardNavs";
 import Footer from "../../components/footer/footer";
 
 const addNewListing = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("tab1");
   const [progress, setProgress] = useState(0.25);
 
@@ -15,11 +18,21 @@ const addNewListing = () => {
     <>
       <DashboardNavs />
       <div className="font-sans gap-[24.33px] mt-[130px] ml-20 hidden md:flex">
-        <h1 className="text-sm font-[600] opacity-[0.67]">Manage Account</h1>
-        <div className="flex items-center gap-[23.89px]">
-          <ArrowRight />
-          <h1 className="text-sm font-[600] opacity-[0.67]">My Listing</h1>
-        </div>
+        <button
+          type="button"
+          onClick={() => navigate(AuthRoutes.dashboardManageAccount)}
+        >
+          <h1 className="text-sm font-[600] opacity-[0.67]">Manage Account</h1>
+        </button>
+        <button
+          type="button"
+          onClick={() => navigate(AuthRoutes.listedAccommodations)}
+        >
+          <div className="flex items-center gap-[23.89px]">
+            <ArrowRight />
+            <h1 className="text-sm font-[600] opacity-[0.67]">My Listing</h1>
+          </div>
+        </button>
         <div className="flex items-center gap-[23.89px]">
           <ArrowRight />
           <h1 className="text-sm font-normal opacity-[0.67]">New Listing</h1>

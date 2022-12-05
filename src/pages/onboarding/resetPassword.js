@@ -27,6 +27,14 @@ const resetPassword = () => {
   const [buttonIsLoading, setButtonIsLoading] = useState(false);
 
   useEffect(() => {
+    const ac = new AbortController();
+    document.title = "Reset Password - Squazzle";
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
+
+  useEffect(() => {
     // These logic clear error messages when page loads
     if (!password) {
       setIsPasswordValid(true);

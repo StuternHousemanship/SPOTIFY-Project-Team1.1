@@ -176,7 +176,7 @@ const signUp = () => {
         setButtonIsLoading(false);
       }, 3000);
       // console.error(error);
-      const { data: errorMessage } = error.response;
+      const { email: errorMessage } = error.response.data;
       setSignUpErrorText(errorMessage);
       setIsErrorOnSignUp(true);
     }

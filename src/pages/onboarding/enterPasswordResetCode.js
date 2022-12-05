@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable react/function-component-definition */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import alertPageNavigation from "../../components/navigation/alert-page-navigation";
 import { ReactComponent as LoadingIcon } from "../../assets/svg/loading-light-icon.svg";
@@ -15,18 +15,43 @@ const enterPasswordResetCode = () => {
   const resetCodeArray = resetCode.split("");
   const [d1, d2, d3, d4, d5, d6] = resetCodeArray;
 
-  const [digit1, setDigit1] = useState(d1);
-  const [digit2, setDigit2] = useState(d2);
-  const [digit3, setDigit3] = useState(d3);
-  const [digit4, setDigit4] = useState(d4);
-  const [digit5, setDigit5] = useState(d5);
-  const [digit6, setDigit6] = useState(d6);
+  const [digit1, setDigit1] = useState("");
+  const [digit2, setDigit2] = useState("");
+  const [digit3, setDigit3] = useState("");
+  const [digit4, setDigit4] = useState("");
+  const [digit5, setDigit5] = useState("");
+  const [digit6, setDigit6] = useState("");
   const [buttonIsLoading, setButtonIsLoading] = useState(false);
   const [heading, setHeading] = useState("");
   const [message, setMessage] = useState("");
   const [buttonAction, setButtonAction] = useState(null);
   const [buttonText, setButtonText] = useState("");
   const [displaySuccessOrError, setDisplaySuccessOrError] = useState(false);
+
+  useEffect(() => {
+    const ac = new AbortController();
+
+    document.title = "Password Reset Code - Squazzle";
+    if (resetCode === "000000") {
+      setDigit1("");
+      setDigit2("");
+      setDigit3("");
+      setDigit4("");
+      setDigit5("");
+      setDigit6("");
+    } else {
+      setDigit1(d1);
+      setDigit2(d2);
+      setDigit3(d3);
+      setDigit4(d4);
+      setDigit5(d5);
+      setDigit6(d6);
+    }
+
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
 
   /** Ensures only digits are inputed */
   const handleChangeForDigit1 = (e) => {

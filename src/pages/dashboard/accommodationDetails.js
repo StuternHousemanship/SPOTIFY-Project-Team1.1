@@ -58,7 +58,12 @@ const accommodationDetails = () => {
                 Accommodations
               </Link>
 
-              <button type="button">List your property</button>
+              <button
+                type="button"
+                onClick={() => navigate(AuthRoutes.listedAccommodations)}
+              >
+                List your property
+              </button>
 
               <button type="button">About us</button>
 
@@ -80,6 +85,7 @@ const accommodationDetails = () => {
               <button
                 type="button"
                 className="cursor-pointer text-[#353535] text-sm font-semibold"
+                onClick={() => navigate(AuthRoutes.dashboardManageAccount)}
               >
                 Manage Account
               </button>

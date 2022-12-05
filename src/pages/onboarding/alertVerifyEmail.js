@@ -1,5 +1,5 @@
 /* eslint-disable react/function-component-definition */
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import alertPageNavigation from "../../components/navigation/alert-page-navigation";
 import { NonAuthRoutes } from "../../url";
@@ -9,10 +9,18 @@ import { ReactComponent as UndrawOpenMobileIcon } from "../../assets/svg/undraw-
 const AlertVerifyEmail = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const ac = new AbortController();
+    document.title = "Verify Email - Squazzle";
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
+
   /** handles email verification */
   const handleEmailValidity = (e) => {
     e.preventDefault();
-    navigate(NonAuthRoutes.enterEmailVerificationCode);
+    navigate(`${NonAuthRoutes.enterEmailVerificationCode}/000000`);
   };
 
   return (
