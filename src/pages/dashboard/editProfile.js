@@ -265,9 +265,10 @@ function editProfile() {
                 <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm ">
                   About You
                 </span>
-                <input
-                  type="occupation"
+                <textarea
+                  type="text"
                   name="occupation"
+                  rows="5"
                   className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-[219px] w-full rounded-md text-sm  lg:text-xl focus:ring-1 mb-6 placeholder:mb-[500px]"
                   placeholder="Describe Yourself "
                 />
@@ -449,7 +450,7 @@ function editProfile() {
               NIN
             </span>
             <input
-              type="occupation"
+              type="text"
               name="occupation"
               className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-12 w-full rounded-md sm:text-sm focus:ring-1 mb-6"
               placeholder="NIN"
@@ -461,11 +462,12 @@ function editProfile() {
             <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm ">
               About You
             </span>
-            <input
-              type="occupation"
+            <textarea
+              type="text"
               name="occupation"
+              rows="5"
               className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-[219px] w-full rounded-md sm:text-sm focus:ring-1 mb-6 placeholder:mb-[500px]"
-              placeholder="Describe Yourself "
+              placeholder="Describe Yourself"
             />
           </label>
         </section>

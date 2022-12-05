@@ -14,6 +14,35 @@ const addNewListing = () => {
   const [activeTab, setActiveTab] = useState("tab1");
   const [progress, setProgress] = useState(0.25);
 
+  const handleSaveAndContinueToTab2 = () => {
+    setActiveTab("tab2");
+    setProgress(0.5);
+  };
+
+  const handleSaveAndContinueToTab3 = () => {
+    setActiveTab("tab3");
+    setProgress(0.75);
+  };
+
+  const handleSaveAndContinueToTab4 = () => {
+    setActiveTab("tab4");
+    setProgress(1);
+  };
+
+  const handleBackToTab1 = () => {
+    setActiveTab("tab1");
+    setProgress(0.25);
+  };
+
+  const handleBackToTab2 = () => {
+    setActiveTab("tab2");
+    setProgress(0.5);
+  };
+
+  const handleBackToTab3 = () => {
+    setActiveTab("tab3");
+    setProgress(0.75);
+  };
   return (
     <>
       <DashboardNavs />
@@ -117,10 +146,55 @@ const addNewListing = () => {
           <p>Overview</p>
         </div>
       </div>
-      {activeTab === "tab1" ? <Overview1 /> : ""}
-      {activeTab === "tab2" ? <Overview2 /> : ""}
-      {activeTab === "tab3" ? <Description /> : ""}
-      {activeTab === "tab4" ? <UploadImages /> : ""}
+      {/* <main className="font-sans mt-7 mb-[117px]">
+        <div className="flex justify-center">
+          <div className="border border-squazzle-background-white-color p-10 rounded-lg">
+            <form>
+              {activeTab === "tab1" ? <Overview1 /> : ""}
+              <section className="flex gap-[323px] mt-16">
+                <button
+                  type="button"
+                  className="text-xl font-bold text-squazzle-button-bg-deep-green-color py-5 w-40 border-2 border-squazzle-button-bg-deep-green-color rounded-xl"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="text-xl font-bold py-5 w-[211px] bg-squazzle-button-bg-deep-green-color text-squazzle-button-bg-light-green-color rounded-xl"
+                >
+                  Save & Continue
+                </button>
+              </section>
+            </form>
+          </div>
+        </div>
+      </main> */}
+      {activeTab === "tab1" ? (
+        <Overview1 handleSaveAndContinue={handleSaveAndContinueToTab2} />
+      ) : (
+        ""
+      )}
+      {activeTab === "tab2" ? (
+        <Overview2
+          handleSaveAndContinue={handleSaveAndContinueToTab3}
+          handleBackToTab1={handleBackToTab1}
+        />
+      ) : (
+        ""
+      )}
+      {activeTab === "tab3" ? (
+        <Description
+          handleSaveAndContinue={handleSaveAndContinueToTab4}
+          handleBackToTab2={handleBackToTab2}
+        />
+      ) : (
+        ""
+      )}
+      {activeTab === "tab4" ? (
+        <UploadImages handleBackToTab3={handleBackToTab3} />
+      ) : (
+        ""
+      )}
       <Footer />
     </>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 
-const overview2 = () => {
+const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
   return (
     <>
       <div className="hidden md:block">
@@ -15,7 +15,7 @@ const overview2 = () => {
                     </span>{" "}
                     <span className="block font-normal text-base mb-[34px] text-squazzle-text-deep-grey1-color">
                       Choose availability{" "}
-                    </span>{" "}
+                    </span>
                     <div className="flex flex-col gap-7">
                       <label htmlFor="available">
                         <input
@@ -84,12 +84,14 @@ const overview2 = () => {
                   <button
                     type="button"
                     className="text-xl font-bold text-squazzle-button-bg-deep-green-color py-5 w-40 border-2 border-squazzle-button-bg-deep-green-color rounded-xl"
+                    onClick={handleBackToTab1}
                   >
-                    Back{" "}
-                  </button>{" "}
+                    Back
+                  </button>
                   <button
                     type="submit"
                     className="text-xl font-bold py-5 w-[211px] bg-squazzle-button-bg-deep-green-color text-squazzle-button-bg-light-green-color rounded-xl"
+                    onClick={handleSaveAndContinue}
                   >
                     Save & Continue{" "}
                   </button>{" "}
@@ -177,12 +179,14 @@ const overview2 = () => {
           <button
             type="submit"
             className="text-sm font-bold py-[15px] w-full bg-squazzle-button-bg-deep-green-color text-squazzle-button-bg-light-green-color rounded-xl mt-10"
+            onClick={handleSaveAndContinue}
           >
             Save & Continue{" "}
           </button>{" "}
           <button
             type="button"
             className="text-sm font-bold text-squazzle-button-bg-deep-green-color py-[15px] w-full border-2 border-squazzle-button-bg-deep-green-color rounded-xl mt-4"
+            onClick={handleBackToTab1}
           >
             Cancel{" "}
           </button>{" "}

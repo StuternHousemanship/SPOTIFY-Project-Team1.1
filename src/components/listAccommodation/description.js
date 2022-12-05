@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { ReactComponent as AddNewListingIcon } from "../../assets/svg/add-new-listing-icon.svg";
 
-const description = () => {
+const description = ({ handleSaveAndContinue, handleBackToTab2 }) => {
   const [rulesFields, setRulesFields] = useState([
     { name: "", description: "" },
   ]);
@@ -117,12 +117,14 @@ const description = () => {
                   <button
                     type="button"
                     className="text-xl font-bold text-squazzle-button-bg-deep-green-color py-5 w-40 border-2 border-squazzle-button-bg-deep-green-color rounded-xl"
+                    onClick={handleBackToTab2}
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     className="text-xl font-bold py-5 w-[211px] bg-squazzle-button-bg-deep-green-color text-squazzle-button-bg-light-green-color rounded-xl"
+                    onClick={handleSaveAndContinue}
                   >
                     Save & Continue
                   </button>
@@ -200,12 +202,14 @@ const description = () => {
           <button
             type="submit"
             className="text-sm font-bold py-[15px] w-full bg-squazzle-button-bg-deep-green-color text-squazzle-button-bg-light-green-color rounded-xl mt-14"
+            onClick={handleSaveAndContinue}
           >
             Save & Continue
           </button>
           <button
             type="button"
             className="text-sm font-bold text-squazzle-button-bg-deep-green-color py-[15px] w-full border-2 border-squazzle-button-bg-deep-green-color rounded-xl mt-4"
+            onClick={handleBackToTab2}
           >
             Cancel
           </button>

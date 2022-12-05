@@ -51,7 +51,7 @@ const dashboardNavs = () => {
           </button>
         </div>
 
-        <ul className="flex-[0.6] flex flex-row items-center justify-between font-normal text-base text-squazzle-text-deep-grey2-color">
+        <ul className="flex-[0.6] max-[1030px]:flex-[0.7] flex flex-row items-center justify-between font-normal text-base max-[1030px]:text-sm text-squazzle-text-deep-grey2-color">
           <li>
             <button type="button" onClick={goToAccommodationDetails}>
               Accommodations
@@ -87,7 +87,7 @@ const dashboardNavs = () => {
       <ul
         className={
           profileCard
-            ? "flex flex-col items-start w-[240px] gap-[24px] p-[24px] bg-squazzle-profileCard-background-white-color text-base font-normal leading-6 text-squazzle-text-black-color fixed top-[90px] right-[80px] z-[2]"
+            ? "flex flex-col items-start w-[240px] gap-[24px] p-[24px] bg-squazzle-profileCard-background-white-color text-base max-[1030px]:text-sm font-normal leading-6 text-squazzle-text-black-color fixed top-[90px] right-[80px] z-[2]"
             : "hidden"
         }
       >

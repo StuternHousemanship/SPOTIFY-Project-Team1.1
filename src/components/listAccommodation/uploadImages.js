@@ -1,13 +1,10 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthRoutes } from "../../url";
 import { ReactComponent as AddNewListingIcon } from "../../assets/svg/add-new-listing-icon.svg";
 import { ReactComponent as OpenModalIcon } from "../../assets/svg/open-modal-icon.svg";
 import { ReactComponent as CloseModalIcon } from "../../assets/svg/close-modal-icon.svg";
 
-const uploadImages = () => {
-  const navigate = useNavigate();
+const uploadImages = ({ handleBackToTab3 }) => {
   const [images, setImages] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -166,11 +163,9 @@ const uploadImages = () => {
                     <button
                       type="button"
                       className="box-border text-xl font-bold text-squazzle-button-bg-deep-green-color py-5 w-40 border-2 border-squazzle-button-bg-deep-green-color rounded-xl"
-                      onClick={() =>
-                        navigate(AuthRoutes.dashboardManageAccount)
-                      }
+                      onClick={handleBackToTab3}
                     >
-                      Cancel
+                      Back
                     </button>
                     <button
                       type="submit"
@@ -309,9 +304,9 @@ const uploadImages = () => {
               <button
                 type="button"
                 className="box-border text-sm font-bold text-squazzle-button-bg-deep-green-color py-[15px] w-[330px] border-2 border-squazzle-button-bg-deep-green-color rounded-xl mb-16"
-                onClick={() => navigate(AuthRoutes.dashboardManageAccount)}
+                onClick={handleBackToTab3}
               >
-                Cancel
+                Back
               </button>
             </section>
           </section>
