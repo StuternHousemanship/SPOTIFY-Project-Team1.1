@@ -1,6 +1,13 @@
 /** Authenticated URL Routes */
 const AuthRoutes = {
   dashboard: "/dashboard",
+  // dashboardLandingPage: "/dashboardLandingPage",
+  dashboardAccommodationDetails: "/dashboard/accommodation-details",
+  dashboardManageAccount: "/dashboard/manage-account",
+  profile: "/profile",
+  editProfile: "/editprofile",
+  listedAccommodations: "/listed-accommodations",
+  addNewListing: "/add-new-listing",
 };
 
 /** Non Authenticated URL Routes */
@@ -14,10 +21,8 @@ const NonAuthRoutes = {
   enterPasswordResetCode: "/enter-password-reset-code",
   resetPassword: "/reset-password",
   alertResetPassword: "/alert-reset-password",
-  emailVerificationSuccess: "/email-verification-success",
   alertVerifyEmail: "/alert-verify-email",
-  errorSignUp: "/error-sign-up",
-  errorEmailVerification: "/error-email-verification",
+  alertVerificationSuccess: "/alert-verification-success",
 };
 
 export { AuthRoutes, NonAuthRoutes };
