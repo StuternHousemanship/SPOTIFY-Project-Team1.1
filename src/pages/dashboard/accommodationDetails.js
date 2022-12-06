@@ -1,4 +1,5 @@
 import React from "react";
+import ReactTooltip from "react-tooltip";
 import { Link } from "react-scroll";
 import { useNavigate } from "react-router-dom";
 import { AuthRoutes } from "../../url";
@@ -93,6 +94,7 @@ const accommodationDetails = () => {
               <button
                 type="button"
                 className="cursor-pointer text-sm text-[#353535]"
+                onClick={() => navigate(AuthRoutes.listedAccommodations)}
               >
                 My Listing
               </button>
@@ -102,6 +104,7 @@ const accommodationDetails = () => {
               <button
                 type="button"
                 className="cursor-pointer text-sm text-[#CCE6E7] flex gap-2"
+                onClick={() => navigate(AuthRoutes.listedAccommodations)}
               >
                 <ArrowBackIcon />
                 <span>Back</span>
@@ -158,20 +161,48 @@ const accommodationDetails = () => {
           </aside>
           <main className="pt-[181px]">
             <div className="h-16 flex flex-row gap-x-5 text-base font-normal w-[875px] mb-5 ">
-              <button
-                type="button"
+              <span
+                data-tip
+                data-for="available"
                 className="m-w-[155px] py-5 px-[28px] bg-[#F5F5F5] flex space-x-[9.33px] "
               >
                 <RadioButtonCheckedIcon className="self-center" />
                 <span>Available</span>
-              </button>
-              <button
-                type="button"
+                <ReactTooltip
+                  id="available"
+                  place="bottom"
+                  effect="solid"
+                  backgroundColor="#DA4773"
+                  padding="20px 16px"
+                  className="!w-[179px] !ml-4"
+                  offset="{'bottom':9}"
+                >
+                  <span className="text-base flex items-center justify-center">
+                    Availability
+                  </span>
+                </ReactTooltip>
+              </span>
+              <span
+                data-tip
+                data-for="price"
                 className="flex py-5 px-[28px] bg-[#F5F5F5] m-w-[250px] space-x-[9.33px]"
               >
                 <MoneyIcon className="self-center" />
                 <span>NGN 65,000 per night</span>
-              </button>
+                <ReactTooltip
+                  id="price"
+                  place="bottom"
+                  effect="solid"
+                  backgroundColor="#DA4773"
+                  padding="20px 16px"
+                  className="!w-[179px] !ml-4"
+                  offset="{'bottom':9}"
+                >
+                  <span className="text-base flex items-center justify-center">
+                    Price
+                  </span>
+                </ReactTooltip>
+              </span>
               <button
                 type="button"
                 className="flex py-5 px-[28px] bg-[#F5F5F5] m-w-[152px] space-x-[9.33px]"
@@ -183,7 +214,6 @@ const accommodationDetails = () => {
                 to="accommodation_rules"
                 smooth="true"
                 duration={500}
-                spy="true"
                 offset={-105}
                 className="flex py-5 px-[28px] bg-[#F5F5F5] m-w-[258px] space-x-[9.33px] cursor-pointer"
               >
@@ -318,7 +348,6 @@ const accommodationDetails = () => {
                     to="accommodation_rules_mobile"
                     smooth="true"
                     duration={500}
-                    spy="true"
                     className="flex py-2 px-[10px] bg-[#F5F5F5] m-w-[177px] space-x-[9.33px]"
                   >
                     <AccommodationRuleIcon className="self-center" />
@@ -382,7 +411,7 @@ const accommodationDetails = () => {
               <p className="text-[24px] leading-[30px] font-normal text-[#232323]">
                 About this apartment
               </p>
-              <p className="font-normal text-[14px] leading-[22px] h-[220px]">
+              <p className="font-normal text-[14px] leading-[22px]">
                 From the outside this house looks nice and traditional. It has
                 windows that let in plenty of light. The house is equipped with
                 a small kitchen and two bathrooms, it also has a cozy living
