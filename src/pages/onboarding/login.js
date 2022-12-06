@@ -124,16 +124,16 @@ const login = () => {
           className="text-squazzle-background-white-color py-6 px-20 h-[50vh]"
           style={{
             background:
-              "linear-gradient(to top, rgba(255, 255, 255, 0), #016D71)",
+              "linear-gradient(180deg, #016D71 0%, rgba(217, 217, 217, 0) 100%)",
           }}
         >
           <SquazzleDesktopLogo className="w-[173px] h-[53px] lg:w-[177px] lg:h-[57px]" />
-          <div className="text-squazzle-text-deep-grey2-color mt-8">
+          <div className="text-white mt-8">
             <h1 className="text-3xl lg:text-4xl font-semibold">
               Welcome to Squazzle
             </h1>
-            <p className="text-squazzle-text-deep-grey2-color text-lg lg:text-xl font-normal mt-[16px]">
-              Lets help you find a home you 'll love
+            <p className="text-white text-lg lg:text-xl font-normal mt-[16px]">
+              Lets help you find a home you'll love
             </p>
           </div>
         </section>
