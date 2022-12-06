@@ -196,7 +196,6 @@ const profile = () => {
       <div className="sm:hidden font-sans px-5">
         <DashboardNavs />
         <div>
-          {" "}
           <UserIcon className="w-[45px] h-[45px]  mt-6  cursor-pointer" />
         </div>
         <h1 className="font-[600] text-[24px] mt-5 text-[#232323]">

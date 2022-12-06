@@ -233,11 +233,11 @@ function editProfile() {
                 <div className="mt-4">
                   <label htmlFor="phone-number">
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
-                      Phone Number{" "}
+                      Phone Number
                       <span className="text-squazzle-text-error-red-color pl-[5px]">
                         *
-                      </span>{" "}
-                    </span>{" "}
+                      </span>
+                    </span>
                     <div className="flex">
                       <div>
                         <select
@@ -246,19 +246,19 @@ function editProfile() {
                           pattern="+[0-9]{3}"
                           className="w-[80px] pl-3 border border-y-squazzle-border-grey-color border-l-squazzle-border-grey-color border-r-white text-squazzle-text-deep-grey2-color text-sm  lg:text-lg font-[400] rounded-tl-lg rounded-bl-lg h-[62px] mt-[6px] focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                         >
-                          {countryCodeDropDown()}{" "}
-                        </select>{" "}
-                      </div>{" "}
+                          {countryCodeDropDown()}
+                        </select>
+                      </div>
                       <input
                         id="phone-number"
                         type="tel"
                         placeholder="Phone Number"
                         pattern="[0-9]{10}"
                         className="block bg-white border border-squazzle-border-grey-color rounded-tr-lg rounded-br-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color after:content-[''] after:top-0 mb-6"
-                      />{" "}
-                    </div>{" "}
-                  </label>{" "}
-                </div>{" "}
+                      />
+                    </div>
+                  </label>
+                </div>
               </div>
 
               <label className="block">
@@ -297,7 +297,6 @@ function editProfile() {
       <div className="sm:hidden font-sans px-5">
         <DashboardNavs />
         <div>
-          {" "}
           <UserIcon className="w-[45px] h-[45px]  mt-6  cursor-pointer" />
         </div>
         <h1 className="font-[600] text-[24px] mt-5 text-[#232323]">
@@ -416,11 +415,11 @@ function editProfile() {
             <div className="mt-4">
               <label htmlFor="phone-number">
                 <span className="text-squazzle-text-deep-grey1-color text-sm">
-                  Phone Number{" "}
+                  Phone Number
                   <span className="text-squazzle-text-error-red-color pl-[5px]">
                     *
-                  </span>{" "}
-                </span>{" "}
+                  </span>
+                </span>
                 <div className="flex">
                   <div>
                     <select
@@ -429,19 +428,19 @@ function editProfile() {
                       pattern="+[0-9]{3}"
                       className="w-[91px] pl-3 border border-y-squazzle-border-grey-color border-l-squazzle-border-grey-color border-r-white text-squazzle-text-deep-grey2-color text-sm  lg:text-lg font-[400] rounded-tl-lg rounded-bl-lg h-[48px] mt-[6px] focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                     >
-                      {countryCodeDropDown()}{" "}
-                    </select>{" "}
-                  </div>{" "}
+                      {countryCodeDropDown()}
+                    </select>
+                  </div>
                   <input
                     id="phone-number"
                     type="tel"
                     placeholder="Phone Number"
                     pattern="[0-9]{10}"
                     className="block bg-white border border-squazzle-border-grey-color rounded-tr-lg rounded-br-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-[259px] py-4 text-sm lg:text-lg px-3 h-12 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color after:content-[''] after:top-0 mb-6"
-                  />{" "}
-                </div>{" "}
-              </label>{" "}
-            </div>{" "}
+                  />
+                </div>
+              </label>
+            </div>
           </div>
         </section>
         <section className="mt-6">
