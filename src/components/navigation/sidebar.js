@@ -95,7 +95,12 @@ const sidebar = () => {
             </button>
           </li>
           <li>
-            <button type="button">Accommodations</button>
+            <button
+              type="button"
+              onClick={() => navigate(AuthRoutes.dashboardAccommodationDetails)}
+            >
+              Accommodations
+            </button>
           </li>
           <li>
             <button type="button" onClick={goToListedAccommodations}>
