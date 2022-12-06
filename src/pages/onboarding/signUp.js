@@ -182,6 +182,11 @@ const signUp = () => {
     }
   };
 
+  /** set error on sign up state to false */
+  const setErrorToFalse = () => {
+    setIsErrorOnSignUp(false);
+  };
+
   /** displays email error text */
   const displayEmailErrorText = () => {
     return (
@@ -601,7 +606,10 @@ const signUp = () => {
   return (
     <div>
       {isErrorOnSignUp ? (
-        <ErrorOnSignUp errorText={signUpErrorText} />
+        <ErrorOnSignUp
+          errorText={signUpErrorText}
+          setErrorToFalse={setErrorToFalse}
+        />
       ) : (
         <div className="font-sans">
           {displaySquazzleDescriptionAndLogo()}

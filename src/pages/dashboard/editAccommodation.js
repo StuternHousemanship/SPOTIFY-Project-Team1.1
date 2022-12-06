@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthRoutes } from "../../url";
 import Footer from "../../components/footer/footer";
@@ -17,6 +17,14 @@ import UploadImages from "../../components/listAccommodation/uploadImages";
 const editAccommodation = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("tab1");
+
+  useEffect(() => {
+    const ac = new AbortController();
+    document.title = "Edit Accommodation Listing - Squazzle";
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
 
   const handleSaveAndContinueToTab2 = () => {
     setActiveTab("tab2");

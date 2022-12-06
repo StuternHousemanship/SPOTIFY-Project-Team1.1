@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthRoutes } from "../../url";
 import DashboardNavs from "../../components/navigation/dashboardNavs";
@@ -14,6 +14,15 @@ import { ReactComponent as EditIcon } from "../../assets/svg/edit-icon.svg";
 
 const profile = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const ac = new AbortController();
+    document.title = "User Profile - Squazzle";
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
+
   return (
     <>
       <div className="hidden sm:block">

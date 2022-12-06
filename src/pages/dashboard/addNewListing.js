@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthRoutes } from "../../url";
 import { ReactComponent as ArrowRight } from "../../assets/svg/arrow-right-icon.svg";
@@ -13,6 +13,14 @@ const addNewListing = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("tab1");
   const [progress, setProgress] = useState(0.25);
+
+  useEffect(() => {
+    const ac = new AbortController();
+    document.title = "Add New Listing - Squazzle";
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
 
   const handleSaveAndContinueToTab2 = () => {
     setActiveTab("tab2");

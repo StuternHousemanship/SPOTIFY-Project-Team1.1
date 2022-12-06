@@ -100,6 +100,11 @@ const enterEmailVerificationCode = () => {
     setDigit6(result);
   };
 
+  /** sets error on email verification to false */
+  const setErrorToFalse = () => {
+    setIsErrorOnEmailVerification(false);
+  };
+
   /** handles enter password reset code submit button */
   const handleEnterEmailVerificationCode = async (e) => {
     e.preventDefault();
@@ -129,7 +134,10 @@ const enterEmailVerificationCode = () => {
   return (
     <div>
       {isErrorOnEmailVerification ? (
-        <ErrorEmailVerification errorText={verificationErrorText} />
+        <ErrorEmailVerification
+          errorText={verificationErrorText}
+          setErrorToFalse={setErrorToFalse}
+        />
       ) : (
         <div className="bg-squazzle-background-white-color pt-[130px] pb-[600px] md:pb-[800px] lg:pb-80 max-[640px]:bg-white">
           <div className="font-sans grid place-items-center h-full bg-squazzle-background-white-color max-[640px]:bg-white">

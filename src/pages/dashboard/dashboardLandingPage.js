@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthRoutes } from "../../url";
 import DashboardNavs from "../../components/navigation/dashboardNavs";
@@ -7,6 +7,14 @@ import dashboardBackgroundImage from "../../assets/img/dashboard-background-imag
 
 const dashboardLandingPage = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const ac = new AbortController();
+    document.title = "Landing Page - Squazzle";
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
 
   return (
     <>

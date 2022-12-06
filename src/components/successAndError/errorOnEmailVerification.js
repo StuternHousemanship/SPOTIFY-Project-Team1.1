@@ -5,7 +5,7 @@ import alertPageNavigation from "../navigation/alert-page-navigation";
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error-icon.svg";
 import { NonAuthRoutes } from "../../url";
 
-const errorEmailVerification = ({ errorText }) => {
+const errorEmailVerification = ({ errorText, setErrorToFalse }) => {
   const navigate = useNavigate();
 
   return (
@@ -28,6 +28,7 @@ const errorEmailVerification = ({ errorText }) => {
                 type="submit"
                 className="text-squazzle-button-bg-light-green-color text-sm md:text-[20px] md:leading-[24px] font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl mt-12 cursor-pointer"
                 onClick={() => {
+                  setErrorToFalse();
                   navigate(
                     `${NonAuthRoutes.enterEmailVerificationCode}/000000`
                   );
@@ -56,6 +57,7 @@ const errorEmailVerification = ({ errorText }) => {
             type="submit"
             className="text-squazzle-button-bg-light-green-color text-[14px] leading-[18px]  font-bold bg-squazzle-button-bg-deep-green-color w-full py-4 rounded-xl cursor-pointer"
             onClick={() => {
+              setErrorToFalse();
               navigate(`${NonAuthRoutes.enterEmailVerificationCode}/000000`);
             }}
           >
