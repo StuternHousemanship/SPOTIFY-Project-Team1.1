@@ -38,7 +38,7 @@ const overview1 = ({ handleSaveAndContinue }) => {
                           <input
                             type="radio"
                             id="duplex"
-                            name="duplex"
+                            name="accommodation-type"
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -49,7 +49,7 @@ const overview1 = ({ handleSaveAndContinue }) => {
                           <input
                             type="radio"
                             id="bungalow"
-                            name="bungalow"
+                            name="accommodation-type"
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -60,7 +60,7 @@ const overview1 = ({ handleSaveAndContinue }) => {
                           <input
                             type="radio"
                             id="mansion"
-                            name="mansion"
+                            name="accommodation-type"
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -73,7 +73,7 @@ const overview1 = ({ handleSaveAndContinue }) => {
                           <input
                             type="radio"
                             id="apartment"
-                            name="apartment"
+                            name="accommodation-type"
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -84,7 +84,7 @@ const overview1 = ({ handleSaveAndContinue }) => {
                           <input
                             type="radio"
                             id="flat"
-                            name="flat"
+                            name="accommodation-type"
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -97,7 +97,7 @@ const overview1 = ({ handleSaveAndContinue }) => {
                           <input
                             type="radio"
                             id="single-room"
-                            name="single-room"
+                            name="accommodation-type"
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -108,7 +108,7 @@ const overview1 = ({ handleSaveAndContinue }) => {
                           <input
                             type="radio"
                             id="studio"
-                            name="studio"
+                            name="accommodation-type"
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -180,150 +180,6 @@ const overview1 = ({ handleSaveAndContinue }) => {
           </div>
         </main>
       </div>
-      {/* <div className="hidden md:block">
-        <section>
-          <label htmlFor="accommodation-name">
-            <span className="block font-normal text-[28px]">
-              Accommodation name
-            </span>
-            <input
-              type="text"
-              id="accommodation-name"
-              placeholder="Name"
-              className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
-            />
-          </label>
-        </section>
-        <section className="mt-10 mb-12">
-          <label htmlFor="accommodation-type">
-            <span className="block font-normal text-[28px]">
-              Accommodation type
-            </span>
-            <span className="block font-normal text-base mb-[34px]">
-              Choose accomodation type
-            </span>
-            <div className="flex gap-[178.5px]">
-              <div className="flex flex-col gap-7">
-                <label htmlFor="duplex">
-                  <input
-                    type="radio"
-                    id="duplex"
-                    name="duplex"
-                    className="accent-squazzle-text-deep-grey1-color mr-[10px]"
-                  />
-                  <span className="text-squazzle-text-deep-grey1-color">
-                    Duplex
-                  </span>
-                </label>
-                <label htmlFor="bungalow">
-                  <input
-                    type="radio"
-                    id="bungalow"
-                    name="bungalow"
-                    className="accent-squazzle-text-deep-grey1-color mr-[10px]"
-                  />
-                  <span className="text-squazzle-text-deep-grey1-color">
-                    Bungalow
-                  </span>
-                </label>
-                <label htmlFor="mansion">
-                  <input
-                    type="radio"
-                    id="mansion"
-                    name="mansion"
-                    className="accent-squazzle-text-deep-grey1-color mr-[10px]"
-                  />
-                  <span className="text-squazzle-text-deep-grey1-color">
-                    Mansion
-                  </span>
-                </label>
-              </div>
-              <div className="flex flex-col gap-7">
-                <label htmlFor="apartment">
-                  <input
-                    type="radio"
-                    id="apartment"
-                    name="apartment"
-                    className="accent-squazzle-text-deep-grey1-color mr-[10px]"
-                  />
-                  <span className="text-squazzle-text-deep-grey1-color">
-                    Apartment
-                  </span>
-                </label>
-                <label htmlFor="flat">
-                  <input
-                    type="radio"
-                    id="flat"
-                    name="flat"
-                    className="accent-squazzle-text-deep-grey1-color mr-[10px]"
-                  />
-                  <span className="text-squazzle-text-deep-grey1-color">
-                    Flat
-                  </span>
-                </label>
-              </div>
-              <div className="flex flex-col gap-7">
-                <label htmlFor="single-room">
-                  <input
-                    type="radio"
-                    id="single-room"
-                    name="single-room"
-                    className="accent-squazzle-text-deep-grey1-color mr-[10px]"
-                  />
-                  <span className="text-squazzle-text-deep-grey1-color">
-                    Single room
-                  </span>
-                </label>
-                <label htmlFor="studio">
-                  <input
-                    type="radio"
-                    id="studio"
-                    name="studio"
-                    className="accent-squazzle-text-deep-grey1-color mr-[10px]"
-                  />
-                  <span className="text-squazzle-text-deep-grey1-color">
-                    Studio
-                  </span>
-                </label>
-              </div>
-            </div>
-          </label>
-        </section>
-        <section className="border-t-[1px] border-t-[#D7D7D7] pt-10">
-          <label htmlFor="location">
-            <span className="block font-normal text-[28px]">Location</span>
-            <textarea
-              type="text"
-              id="location"
-              rows="5"
-              placeholder="Location address"
-              className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
-            >
-              {}
-            </textarea>
-          </label>
-          <div className="flex gap-6 mt-10">
-            <label htmlFor="State">
-              <span className="block font-normal text-[28px]">State</span>
-              <input
-                type="text"
-                id="state"
-                placeholder="State"
-                className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-[335px] border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
-              />
-            </label>
-            <label htmlFor="city">
-              <span className="block font-normal text-[28px]">City</span>
-              <input
-                type="text"
-                id="city"
-                placeholder="City"
-                className="font-normal text-lg ttext-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-[335px] border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
-              />
-            </label>
-          </div>
-        </section>
-      </div> */}
 
       {/* mobile screen */}
       <div className="md:hidden font-sans px-5">

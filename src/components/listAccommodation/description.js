@@ -39,9 +39,10 @@ const description = ({ handleSaveAndContinue, handleBackToTab2 }) => {
                       type="text"
                       id="about-this-accommodation"
                       rows="7"
-                      className="font-normal text-lg text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
+                      placeholder="A brief description of the accommodation"
+                      className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
                     >
-                      A brief description of the accommodation
+                      {}
                     </textarea>
                   </label>
                 </section>
@@ -54,9 +55,10 @@ const description = ({ handleSaveAndContinue, handleBackToTab2 }) => {
                       type="text"
                       id="reason-for-listing"
                       rows="4"
-                      className="font-normal text-lg text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
+                      placeholder="Why are you listing this accommodation?"
+                      className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
                     >
-                      Why are you listing this accommodation?
+                      {}
                     </textarea>
                   </label>
                 </section>

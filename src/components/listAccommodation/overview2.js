@@ -21,6 +21,7 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                         <input
                           type="radio"
                           id="available"
+                          name="availability"
                           className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                         />
                         <span className="text-squazzle-text-deep-grey1-color">
@@ -31,6 +32,7 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                         <input
                           type="radio"
                           id="not-available"
+                          name="availability"
                           className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                         />
                         <span className="text-squazzle-text-deep-grey1-color">
@@ -65,7 +67,7 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                       type="date"
                       id="start-date"
                       placeholder="DD/MM/YY"
-                      className="font-normal text-lg text-black py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] mb-3 rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
+                      className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] mb-3 rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
                     />
                   </label>
                   <label htmlFor="end-date">
@@ -76,7 +78,7 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                       type="date"
                       id="end-date"
                       placeholder="DD/MM/YY"
-                      className="font-normal text-lg text-black py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
+                      className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
                     />
                   </label>
                 </section>
@@ -117,6 +119,7 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                   <input
                     type="radio"
                     id="available"
+                    name="availability"
                     className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                   />
                   <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -127,6 +130,7 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                   <input
                     type="radio"
                     id="not-available"
+                    name="availability"
                     className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                   />
                   <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -161,7 +165,7 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                 type="text"
                 id="start-date"
                 placeholder="DD/MM/YY"
-                className="font-normal text-sm text-black py-[15px] px-4 w-full border border-squazzle-border-grey-color mt-[6px] mb-3 rounded-lg"
+                className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-[15px] px-4 w-full border border-squazzle-border-grey-color mt-[6px] mb-3 rounded-lg"
               />
             </label>
             <label htmlFor="end-date">
@@ -172,7 +176,7 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                 type="text"
                 id="end-date"
                 placeholder="DD/MM/YY"
-                className="font-normal text-sm text-black py-[15px] px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg"
+                className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-[15px] px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg"
               />
             </label>
           </section>

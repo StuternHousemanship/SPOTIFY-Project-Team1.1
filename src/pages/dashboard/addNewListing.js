@@ -146,29 +146,6 @@ const addNewListing = () => {
           <p>Overview</p>
         </div>
       </div>
-      {/* <main className="font-sans mt-7 mb-[117px]">
-        <div className="flex justify-center">
-          <div className="border border-squazzle-background-white-color p-10 rounded-lg">
-            <form>
-              {activeTab === "tab1" ? <Overview1 /> : ""}
-              <section className="flex gap-[323px] mt-16">
-                <button
-                  type="button"
-                  className="text-xl font-bold text-squazzle-button-bg-deep-green-color py-5 w-40 border-2 border-squazzle-button-bg-deep-green-color rounded-xl"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="text-xl font-bold py-5 w-[211px] bg-squazzle-button-bg-deep-green-color text-squazzle-button-bg-light-green-color rounded-xl"
-                >
-                  Save & Continue
-                </button>
-              </section>
-            </form>
-          </div>
-        </div>
-      </main> */}
       {activeTab === "tab1" ? (
         <Overview1 handleSaveAndContinue={handleSaveAndContinueToTab2} />
       ) : (
