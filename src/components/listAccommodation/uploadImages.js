@@ -7,7 +7,7 @@ import { ReactComponent as CloseModalIcon } from "../../assets/svg/close-modal-i
 const uploadImages = ({ handleBackToTab3 }) => {
   const [images, setImages] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(null);
   const [viewAll, setViewAll] = useState(false);
 
   useEffect(() => {
@@ -21,17 +21,27 @@ const uploadImages = ({ handleBackToTab3 }) => {
     setImages([...images, ...e.target.files]);
   };
 
-  const handleShowModal = () => {
-    setShowModal(true);
+  const handleShowModal = (index) => {
+    // setShowModal(true);
+    setShowModal((prev) => {
+      return prev === index ? null : index;
+    });
   };
 
   const handleHideModal = () => {
     setShowModal(false);
   };
 
+  const deleteImage = (index) => {
+    const data = [...imageURLs];
+    data.splice(index, 1);
+    setImageURLs(data);
+  };
+
   const toggleView = () => {
     setViewAll(!viewAll);
   };
+
   return (
     <>
       <div className="hidden md:block">
@@ -56,12 +66,12 @@ const uploadImages = ({ handleBackToTab3 }) => {
                             alt=""
                             className="h-[350px] w-[264px] md:h-[245px] md:w-[337px]"
                           />
-                          {showModal ? (
+                          {showModal === index ? (
                             <div className="absolute flex flex-col h-[170px] bg-white z-20 top-[15px] right-[15px]">
                               <button
                                 type="button"
                                 className="text-sm py-[13px] px-[13px] flex justify-end border border-transparent border-b-squazzle-background-white-color w-full"
-                                onClick={() => handleHideModal()}
+                                onClick={() => handleHideModal(index)}
                               >
                                 <CloseModalIcon />
                               </button>
@@ -74,7 +84,11 @@ const uploadImages = ({ handleBackToTab3 }) => {
                               <button type="button" className="text-sm pb-4">
                                 Hide from gallery
                               </button>
-                              <button type="button" className="text-sm pb-4">
+                              <button
+                                type="button"
+                                className="text-sm pb-4"
+                                onClick={() => deleteImage()}
+                              >
                                 Delete
                               </button>
                             </div>
@@ -82,7 +96,7 @@ const uploadImages = ({ handleBackToTab3 }) => {
                             <button
                               type="button"
                               className="bg-white h-10 px-[18px] top-[15px] right-[15px] z-10 absolute"
-                              onClick={() => handleShowModal()}
+                              onClick={() => handleShowModal(index)}
                             >
                               <OpenModalIcon />
                             </button>
@@ -96,7 +110,7 @@ const uploadImages = ({ handleBackToTab3 }) => {
                             alt=""
                             className=" h-[245px] w-[337px]"
                           />
-                          {showModal ? (
+                          {showModal === index ? (
                             <div className="absolute flex flex-col h-[170px] bg-white z-20 top-[15px] right-[15px]">
                               <button
                                 type="button"
@@ -114,7 +128,11 @@ const uploadImages = ({ handleBackToTab3 }) => {
                               <button type="button" className="text-sm pb-4">
                                 Hide from gallery
                               </button>
-                              <button type="button" className="text-sm pb-4">
+                              <button
+                                type="button"
+                                className="text-sm pb-4"
+                                onClick={() => deleteImage()}
+                              >
                                 Delete
                               </button>
                             </div>
@@ -122,7 +140,7 @@ const uploadImages = ({ handleBackToTab3 }) => {
                             <button
                               type="button"
                               className="bg-white h-10 px-[18px] top-[15px] right-[15px] z-10 absolute"
-                              onClick={() => handleShowModal()}
+                              onClick={() => handleShowModal(index)}
                             >
                               <OpenModalIcon />
                             </button>
@@ -199,7 +217,7 @@ const uploadImages = ({ handleBackToTab3 }) => {
                       alt=""
                       className="w-[330px] h-[264px]"
                     />
-                    {showModal ? (
+                    {showModal === index ? (
                       <div className="absolute flex flex-col h-[170px] bg-white z-20 top-[15px] right-[15px]">
                         <button
                           type="button"
@@ -214,7 +232,11 @@ const uploadImages = ({ handleBackToTab3 }) => {
                         <button type="button" className="text-sm pb-4">
                           Hide from gallery
                         </button>
-                        <button type="button" className="text-sm pb-4">
+                        <button
+                          type="button"
+                          className="text-sm pb-4"
+                          onClick={() => deleteImage()}
+                        >
                           Delete
                         </button>
                       </div>
@@ -222,7 +244,7 @@ const uploadImages = ({ handleBackToTab3 }) => {
                       <button
                         type="button"
                         className="bg-white h-10 px-[18px] top-[15px] right-[15px] z-10 absolute"
-                        onClick={() => handleShowModal()}
+                        onClick={() => handleShowModal(index)}
                       >
                         <OpenModalIcon />
                       </button>
@@ -234,9 +256,9 @@ const uploadImages = ({ handleBackToTab3 }) => {
                     <img
                       src={imageSrc}
                       alt=""
-                      className=" h-[264px] w-[350px]"
+                      className=" h-[264px] w-[330px]"
                     />
-                    {showModal ? (
+                    {showModal === index ? (
                       <div className="absolute flex flex-col h-[170px] bg-white z-20 top-[15px] right-[15px]">
                         <button
                           type="button"
@@ -251,7 +273,11 @@ const uploadImages = ({ handleBackToTab3 }) => {
                         <button type="button" className="text-sm pb-4">
                           Hide from gallery
                         </button>
-                        <button type="button" className="text-sm pb-4">
+                        <button
+                          type="button"
+                          className="text-sm pb-4"
+                          onClick={() => deleteImage()}
+                        >
                           Delete
                         </button>
                       </div>
@@ -259,7 +285,7 @@ const uploadImages = ({ handleBackToTab3 }) => {
                       <button
                         type="button"
                         className="bg-white h-10 px-[18px] top-[15px] right-[15px] z-10 absolute"
-                        onClick={() => handleShowModal()}
+                        onClick={() => handleShowModal(index)}
                       >
                         <OpenModalIcon />
                       </button>

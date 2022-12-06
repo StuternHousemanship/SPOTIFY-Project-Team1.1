@@ -55,26 +55,23 @@ const editAccommodation = () => {
       <DashboardNavs />
       <section className="md:flex lg:gap-6 md:pl-[70px]">
         <aside className="pt-[137px] hidden md:block">
-          <div className="flex gap-x-5 max-[1116px]:gap-x-1 mb-[40px] w-[305px]">
+          <div className="flex gap-x-5 max-[1116px]:gap-x-1 mb-[40px] max-w-[305px]">
             <button
               type="button"
-              className="cursor-pointer text-[#353535] text-sm max-[1116px]:text-xs font-semibold"
+              className="cursor-pointer text-[#353535] text-sm  font-semibold"
               onClick={() => navigate(AuthRoutes.dashboardManageAccount)}
             >
               Manage Account
             </button>
             <ArrowForwardIcon />
-            <button
-              type="button"
-              className="text-sm max-[1116px]:text-xs text-[#353535]"
-            >
+            <button type="button" className="text-sm  text-[#353535]">
               My Listing
             </button>
           </div>
           <div className="py-5 px-6 bg-[#001A1B] mb-4">
             <button
               type="button"
-              className="cursor-pointer text-sm max-[1116px]:text-xs text-[#CCE6E7] flex gap-2"
+              className="cursor-pointer text-sm text-[#CCE6E7] flex gap-2"
               onClick={() => navigate(AuthRoutes.dashboardAccommodationDetails)}
             >
               <ArrowBackIcon />

@@ -177,21 +177,6 @@ const description = ({ handleSaveAndContinue, handleBackToTab2 }) => {
               <span className="block font-[600] text-lg">
                 Accommodation Rules
               </span>
-              {/* <input
-                type="text"
-                id="accommodation-rules"
-                placeholder="Rule name"
-                className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
-              />
-              <textarea
-                type="text"
-                id="rule-description"
-                placeholder="Description"
-                rows="4"
-                className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
-              >
-                {}
-              </textarea> */}
               {rulesFields.map((rulesField, index) => {
                 return (
                   <div key={index} className="flex flex-col ">
