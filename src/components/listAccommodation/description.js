@@ -177,7 +177,7 @@ const description = ({ handleSaveAndContinue, handleBackToTab2 }) => {
               <span className="block font-[600] text-lg">
                 Accommodation Rules
               </span>
-              <input
+              {/* <input
                 type="text"
                 id="accommodation-rules"
                 placeholder="Rule name"
@@ -191,10 +191,45 @@ const description = ({ handleSaveAndContinue, handleBackToTab2 }) => {
                 className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
               >
                 {}
-              </textarea>
+              </textarea> */}
+              {rulesFields.map((rulesField, index) => {
+                return (
+                  <div key={index} className="flex flex-col ">
+                    <input
+                      type="text"
+                      id="accommodation-rules"
+                      placeholder="Rule name"
+                      value={rulesField.name}
+                      className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
+                      onChange={(e) => handleRulesFieldChange(e, index)}
+                    />
+                    <textarea
+                      type="text"
+                      id="rule-description"
+                      placeholder="Description"
+                      rows="4"
+                      value={rulesField.description}
+                      className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
+                      onChange={(e) => handleRulesFieldChange(e, index)}
+                    >
+                      {}
+                    </textarea>
+                    <div className="self-end mt-2">
+                      <button
+                        type="button"
+                        className="text-squazzle-profileCard-logout-red-color text-base"
+                        onClick={() => removeRulesField(index)}
+                      >
+                        Remove rule
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
               <button
                 type="button"
                 className="flex flex-row gap-[14px] mt-5 items-center"
+                onClick={() => addNewRulesField()}
               >
                 <p className="text-squazzle-profileCard-logout-red-color text-base font-[400]">
                   Add new rule
@@ -215,7 +250,7 @@ const description = ({ handleSaveAndContinue, handleBackToTab2 }) => {
             className="text-sm font-bold text-squazzle-button-bg-deep-green-color py-[15px] w-full border-2 border-squazzle-button-bg-deep-green-color rounded-xl mt-4"
             onClick={handleBackToTab2}
           >
-            Cancel
+            Back
           </button>
         </form>
       </div>

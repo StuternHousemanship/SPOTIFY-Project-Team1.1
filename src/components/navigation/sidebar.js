@@ -32,12 +32,14 @@ const sidebar = () => {
     navigate(AuthRoutes.dashboard);
     removeSidebar();
   };
-  const goToAccommodationDetails = () => {
-    navigate(AuthRoutes.dashboardAccommodationDetails);
-    removeSidebar();
-  };
+
   const goToManageAccount = () => {
     navigate(AuthRoutes.dashboardManageAccount);
+    removeSidebar();
+  };
+
+  const goToListedAccommodations = () => {
+    navigate(AuthRoutes.listedAccommodations);
     removeSidebar();
   };
 
@@ -93,12 +95,12 @@ const sidebar = () => {
             </button>
           </li>
           <li>
-            <button type="button" onClick={goToAccommodationDetails}>
-              Accommodations
-            </button>
+            <button type="button">Accommodations</button>
           </li>
           <li>
-            <button type="button"> List your properties </button>
+            <button type="button" onClick={goToListedAccommodations}>
+              List your properties
+            </button>
           </li>
           <li>
             <button type="button"> About us </button>

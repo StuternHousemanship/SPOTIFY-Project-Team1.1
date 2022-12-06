@@ -211,6 +211,7 @@ const overview1 = ({ handleSaveAndContinue }) => {
                     <input
                       type="radio"
                       id="duplex"
+                      name="accommodation-type"
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -221,6 +222,7 @@ const overview1 = ({ handleSaveAndContinue }) => {
                     <input
                       type="radio"
                       id="bungalow"
+                      name="accommodation-type"
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -231,6 +233,7 @@ const overview1 = ({ handleSaveAndContinue }) => {
                     <input
                       type="radio"
                       id="mansion"
+                      name="accommodation-type"
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -241,6 +244,7 @@ const overview1 = ({ handleSaveAndContinue }) => {
                     <input
                       type="radio"
                       id="apartment"
+                      name="accommodation-type"
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -251,6 +255,7 @@ const overview1 = ({ handleSaveAndContinue }) => {
                     <input
                       type="radio"
                       id="flat"
+                      name="accommodation-type"
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -263,6 +268,7 @@ const overview1 = ({ handleSaveAndContinue }) => {
                     <input
                       type="radio"
                       id="single-room"
+                      name="accommodation-type"
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -273,6 +279,7 @@ const overview1 = ({ handleSaveAndContinue }) => {
                     <input
                       type="radio"
                       id="studio"
+                      name="accommodation-type"
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -324,6 +331,7 @@ const overview1 = ({ handleSaveAndContinue }) => {
           <button
             type="button"
             className="text-sm font-bold text-squazzle-button-bg-deep-green-color py-[15px] w-full border-2 border-squazzle-button-bg-deep-green-color rounded-xl mt-4"
+            onClick={() => navigate(AuthRoutes.listedAccommodations)}
           >
             Cancel
           </button>
