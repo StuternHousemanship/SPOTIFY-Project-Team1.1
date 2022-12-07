@@ -64,10 +64,10 @@ const enterEmailVerificationCode = () => {
         previousInput.focus();
       }
     } else if (e.key === "ArrowRight" || e.key === "Enter") {
-      const previousInputId = Number(id[id.length - 1]) + 1;
-      const previousInput = document.getElementById(`digit-${previousInputId}`);
-      if (previousInput !== null) {
-        previousInput.focus();
+      const nextInputId = Number(id[id.length - 1]) + 1;
+      const nextInput = document.getElementById(`digit-${nextInputId}`);
+      if (nextInput !== null) {
+        nextInput.focus();
       }
     }
   };
@@ -101,6 +101,12 @@ const enterEmailVerificationCode = () => {
   /** sets error on email verification to false */
   const setErrorToFalse = () => {
     setIsErrorOnEmailVerification(false);
+    setDigit1("");
+    setDigit2("");
+    setDigit3("");
+    setDigit4("");
+    setDigit5("");
+    setDigit6("");
   };
 
   /** handles enter password reset code submit button */

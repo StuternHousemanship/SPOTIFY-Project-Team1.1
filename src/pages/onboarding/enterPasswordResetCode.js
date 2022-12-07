@@ -91,10 +91,10 @@ const enterPasswordResetCode = () => {
         previousInput.focus();
       }
     } else if (e.key === "ArrowRight" || e.key === "Enter") {
-      const previousInputId = Number(id[id.length - 1]) + 1;
-      const previousInput = document.getElementById(`digit-${previousInputId}`);
-      if (previousInput !== null) {
-        previousInput.focus();
+      const nextInputId = Number(id[id.length - 1]) + 1;
+      const nextInput = document.getElementById(`digit-${nextInputId}`);
+      if (nextInput !== null) {
+        nextInput.focus();
       }
     }
   };
