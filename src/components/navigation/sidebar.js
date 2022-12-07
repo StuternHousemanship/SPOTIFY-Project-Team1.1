@@ -122,7 +122,7 @@ const sidebar = () => {
           <li className="w-full">
             <hr className="border border-squazzle-border-grey-color" />
           </li>
-          <li className="text-squazzle-profileCard-logout-red-color mb-[300px]">
+          <li className="text-squazzle-profileCard-logout-red-color mb-[500px]">
             <button type="button" onClick={() => handleLogout()}>
               Logout
             </button>
