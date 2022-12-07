@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthRoutes } from "../../url";
 import DashboardNavs from "../../components/navigation/dashboardNavs";
@@ -8,10 +8,18 @@ import dashboardBackgroundImage from "../../assets/img/dashboard-background-imag
 const dashboardLandingPage = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const ac = new AbortController();
+    document.title = "Landing Page - Squazzle";
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
+
   return (
     <>
       <DashboardNavs />
-      <main className="flex flex-col items-center justify-between gap-4 md:mt-[100px] md:mb-[85px]">
+      <main className="flex flex-col items-center justify-between gap-4 mt-[-25px] md:mt-[95px] md:mb-[85px]">
         <section
           className="h-[233px] md:h-[509px]"
           style={{
@@ -56,17 +64,17 @@ const dashboardLandingPage = () => {
           </section>
         </section>
 
-        <div className="flex md:hidden flex-col gap-[13px] justify-center items-center mb-16">
+        <div className="flex md:hidden flex-col gap-[13px] max-[883px]:gap-[8px] justify-center items-center mb-16">
           <button
             type="button"
-            className="py-[15px] w-[350px] text-squazzle-button-bg-light-green-color font-bold bg-squazzle-button-bg-deep-green-color rounded-xl"
+            className="py-[15px] w-[320px] max-[883px]:max-w-[350px] text-squazzle-button-bg-light-green-color font-bold bg-squazzle-button-bg-deep-green-color rounded-xl"
             onClick={() => navigate(AuthRoutes.listedAccommodations)}
           >
             List accomodation
           </button>
           <button
             type="button"
-            className="py-[15px] w-[350px] text-squazzle-button-bg-deep-green-color border-2 border-squazzle-button-bg-deep-green-color font-bold bg-transparent rounded-xl"
+            className="py-[15px] w-[330px] max-[883px]:max-w-[320px] text-squazzle-button-bg-deep-green-color border-2 border-squazzle-button-bg-deep-green-color font-bold bg-transparent rounded-xl"
           >
             Browse accomodation
           </button>

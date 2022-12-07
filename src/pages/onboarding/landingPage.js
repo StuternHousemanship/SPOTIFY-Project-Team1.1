@@ -22,11 +22,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo h-12" alt="logo" />
-        <p className="font-bold mt-12 text-5xl"> A squatting platform </p>{" "}
+        <p className="font-bold mt-12 text-5xl"> A squatting platform </p>
         <p className="w-96 mt-3 text-lg">
           This platform allows people to accommodate others for an agreed period
-          of time..{" "}
-        </p>{" "}
+          of time..
+        </p>
         <button
           type="button"
           title="Sign Up"
@@ -41,9 +41,9 @@ function App() {
           className="bg-blue-500 text-xl h-12 px-16 mt-4 rounded font-bold cursor-pointer"
           onClick={() => navigate(NonAuthRoutes.login)}
         >
-          LOGIN{" "}
-        </button>{" "}
-      </header>{" "}
+          LOGIN
+        </button>
+      </header>
     </div>
   );
 }

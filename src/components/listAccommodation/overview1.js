@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthRoutes } from "../../url";
 
-const overview1 = () => {
+const overview1 = ({ handleSaveAndContinue }) => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="hidden md:block">
@@ -35,7 +38,7 @@ const overview1 = () => {
                           <input
                             type="radio"
                             id="duplex"
-                            name="duplex"
+                            name="accommodation-type"
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -46,7 +49,7 @@ const overview1 = () => {
                           <input
                             type="radio"
                             id="bungalow"
-                            name="bungalow"
+                            name="accommodation-type"
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -57,7 +60,7 @@ const overview1 = () => {
                           <input
                             type="radio"
                             id="mansion"
-                            name="mansion"
+                            name="accommodation-type"
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -70,7 +73,7 @@ const overview1 = () => {
                           <input
                             type="radio"
                             id="apartment"
-                            name="apartment"
+                            name="accommodation-type"
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -81,7 +84,7 @@ const overview1 = () => {
                           <input
                             type="radio"
                             id="flat"
-                            name="flat"
+                            name="accommodation-type"
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -94,7 +97,7 @@ const overview1 = () => {
                           <input
                             type="radio"
                             id="single-room"
-                            name="single-room"
+                            name="accommodation-type"
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -105,7 +108,7 @@ const overview1 = () => {
                           <input
                             type="radio"
                             id="studio"
-                            name="studio"
+                            name="accommodation-type"
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -160,12 +163,14 @@ const overview1 = () => {
                   <button
                     type="button"
                     className="text-xl font-bold text-squazzle-button-bg-deep-green-color py-5 w-40 border-2 border-squazzle-button-bg-deep-green-color rounded-xl"
+                    onClick={() => navigate(AuthRoutes.listedAccommodations)}
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     className="text-xl font-bold py-5 w-[211px] bg-squazzle-button-bg-deep-green-color text-squazzle-button-bg-light-green-color rounded-xl"
+                    onClick={handleSaveAndContinue}
                   >
                     Save & Continue
                   </button>
@@ -206,6 +211,7 @@ const overview1 = () => {
                     <input
                       type="radio"
                       id="duplex"
+                      name="accommodation-type"
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -216,6 +222,7 @@ const overview1 = () => {
                     <input
                       type="radio"
                       id="bungalow"
+                      name="accommodation-type"
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -226,6 +233,7 @@ const overview1 = () => {
                     <input
                       type="radio"
                       id="mansion"
+                      name="accommodation-type"
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -236,6 +244,7 @@ const overview1 = () => {
                     <input
                       type="radio"
                       id="apartment"
+                      name="accommodation-type"
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -246,6 +255,7 @@ const overview1 = () => {
                     <input
                       type="radio"
                       id="flat"
+                      name="accommodation-type"
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -258,6 +268,7 @@ const overview1 = () => {
                     <input
                       type="radio"
                       id="single-room"
+                      name="accommodation-type"
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -268,6 +279,7 @@ const overview1 = () => {
                     <input
                       type="radio"
                       id="studio"
+                      name="accommodation-type"
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -312,12 +324,14 @@ const overview1 = () => {
           <button
             type="submit"
             className="text-sm font-bold py-[15px] w-full bg-squazzle-button-bg-deep-green-color text-squazzle-button-bg-light-green-color rounded-xl mt-10"
+            onClick={handleSaveAndContinue}
           >
             Save & Continue
           </button>
           <button
             type="button"
             className="text-sm font-bold text-squazzle-button-bg-deep-green-color py-[15px] w-full border-2 border-squazzle-button-bg-deep-green-color rounded-xl mt-4"
+            onClick={() => navigate(AuthRoutes.listedAccommodations)}
           >
             Cancel
           </button>

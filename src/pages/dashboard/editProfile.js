@@ -3,6 +3,8 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthRoutes } from "../../url";
 import DashboardNavs from "../../components/navigation/dashboardNavs";
 import countryCodeDropDown from "../../components/countryCode/countryCode";
 import Footer from "../../components/footer/footer";
@@ -11,15 +13,28 @@ import { ReactComponent as GreaterThanIcon } from "../../assets/svg/greaterthan-
 import { ReactComponent as EditIcon } from "../../assets/svg/edit-icon.svg";
 
 function editProfile() {
+  const navigate = useNavigate();
   const [users, setUser] = useState([]);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [occupation, setOccupation] = useState("");
-  const [state, setState] = useState("");
-  const [city, setCity] = useState("");
+  const [firstName, setFirstName] = useState("Zhara");
+  const [lastName, setLastName] = useState("Doe");
+  const [email, setEmail] = useState("zharadoe@gmail.com");
+  const [mobile, setMobile] = useState("8123181961");
+  const [occupation, setOccupation] = useState("Real Estate Manager");
+  const [nin, setNin] = useState("75312208056610");
+  const [state, setState] = useState("Jos");
+  const [city, setCity] = useState("Plateau");
+  const [aboutYou, setAboutYou] = useState(
+    " Lorem ipsum is simply a dummy text of the printing and typesetting industry.lorem ipsum has been in the industry"
+  );
   const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const ac = new AbortController();
+    document.title = "Edit Profile - Squazzle";
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
 
   useEffect(() => {
     getUsers();
@@ -130,7 +145,7 @@ function editProfile() {
                     onChange={(e) => {
                       setFirstName(e.target.value);
                     }}
-                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md text-sm  lg:text-xl focus:ring-1 mb-6"
+                    className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none hover:bg-squazzle-button-bg-light-green-color focus:border-squazzle-button-bg-deep-green-color block h-16 w-full rounded-md text-sm  lg:text-xl mb-6"
                     placeholder="First Name"
                   />
                 </label>
@@ -147,7 +162,7 @@ function editProfile() {
                     }}
                     type="lastName"
                     name="lastName"
-                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md text-sm  lg:text-xl focus:ring-1 mb-6"
+                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color  block h-16 w-full rounded-md text-sm  lg:text-xl mb-6"
                     placeholder="Last Name"
                   />
                 </label>
@@ -160,7 +175,8 @@ function editProfile() {
                   <input
                     type="email"
                     name="email"
-                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md text-sm lg:text-xl focus:ring-1 mb-6"
+                    value={email}
+                    className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color block h-16 w-full rounded-md text-sm lg:text-xl mb-6"
                     placeholder="Email"
                   />
                 </label>
@@ -173,7 +189,8 @@ function editProfile() {
                   <input
                     type="occupation"
                     name="occupation"
-                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md text-sm  lg:text-xl focus:ring-1 mb-6"
+                    value={occupation}
+                    className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color  block h-16 w-full rounded-md text-sm  lg:text-xl  mb-6"
                     placeholder="Your Occupation"
                   />
                 </label>
@@ -185,10 +202,12 @@ function editProfile() {
                   </span>
                   <select
                     name="Gender"
-                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md text-sm  lg:text-xl focus:ring-1 mb-6"
+                    className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color  block h-16 w-full rounded-md text-sm  lg:text-xl  mb-6"
                   >
                     <option value="male">Male</option>
-                    <option value="female">Female</option>
+                    <option value="female" selected>
+                      Female
+                    </option>
                   </select>
                 </label>
               </div>
@@ -198,9 +217,10 @@ function editProfile() {
                     State
                   </span>
                   <input
-                    type="occupation"
-                    name="occupation"
-                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-[311px] rounded-md text-sm  lg:text-xl focus:ring-1 mb-6 mr-4"
+                    type="state"
+                    name="state"
+                    value={state}
+                    className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color block h-16 w-[298px] rounded-md text-sm  lg:text-xl  mb-6 mr-4"
                     placeholder="State"
                   />
                 </label>
@@ -209,9 +229,10 @@ function editProfile() {
                     City
                   </span>
                   <input
-                    type="occupation"
-                    name="occupation"
-                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block w-[311px] h-16 rounded-md text-sm  lg:text-xl focus:ring-1 mb-6"
+                    type="city"
+                    name="city"
+                    value={city}
+                    className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color block w-[298px] h-16 rounded-md text-sm  lg:text-xl  mb-6"
                     placeholder="City"
                   />
                 </label>
@@ -224,7 +245,8 @@ function editProfile() {
                   <input
                     type="occupation"
                     name="occupation"
-                    className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-16 w-full rounded-md text-sm  lg:text-xl focus:ring-1 mb-6"
+                    value={nin}
+                    className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color block h-16 w-full rounded-md text-sm  lg:text-xl  mb-6"
                     placeholder="NIN"
                   />
                 </label>
@@ -233,42 +255,45 @@ function editProfile() {
                 <div className="mt-4">
                   <label htmlFor="phone-number">
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
-                      Phone Number{" "}
+                      Phone Number
                       <span className="text-squazzle-text-error-red-color pl-[5px]">
                         *
-                      </span>{" "}
-                    </span>{" "}
+                      </span>
+                    </span>
                     <div className="flex">
                       <div>
                         <select
                           name="countryCode"
                           id="country-code"
                           pattern="+[0-9]{3}"
-                          className="w-[80px] pl-3 border border-y-squazzle-border-grey-color border-l-squazzle-border-grey-color border-r-white text-squazzle-text-deep-grey2-color text-sm  lg:text-lg font-[400] rounded-tl-lg rounded-bl-lg h-[62px] mt-[6px] focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
+                          className="w-[80px] pl-3 border border-y-squazzle-border-grey-color border-l-squazzle-border-grey-color border-r-white text-squazzle-text-deep-grey2-color text-sm  lg:text-xl font-[400] rounded-tl-lg rounded-bl-lg h-[62px] mt-[6px] focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                         >
-                          {countryCodeDropDown()}{" "}
-                        </select>{" "}
-                      </div>{" "}
+                          {countryCodeDropDown()}
+                        </select>
+                      </div>
                       <input
                         id="phone-number"
                         type="tel"
+                        value={mobile}
                         placeholder="Phone Number"
                         pattern="[0-9]{10}"
-                        className="block bg-white border border-squazzle-border-grey-color rounded-tr-lg rounded-br-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color after:content-[''] after:top-0 mb-6"
-                      />{" "}
-                    </div>{" "}
-                  </label>{" "}
-                </div>{" "}
+                        className="block bg-white border border-squazzle-border-grey-color rounded-tr-lg rounded-br-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-xl px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color after:content-[''] after:top-0 mb-6"
+                      />
+                    </div>
+                  </label>
+                </div>
               </div>
 
               <label className="block">
                 <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm ">
                   About You
                 </span>
-                <input
-                  type="occupation"
+                <textarea
+                  type="text"
                   name="occupation"
-                  className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-[219px] w-full rounded-md text-sm  lg:text-xl focus:ring-1 mb-6 placeholder:mb-[500px]"
+                  value={aboutYou}
+                  rows="5"
+                  className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-[219px] w-full rounded-md text-sm  lg:text-xl mb-6 placeholder:mb-[500px]"
                   placeholder="Describe Yourself "
                 />
               </label>
@@ -276,7 +301,7 @@ function editProfile() {
                 <button
                   type="button"
                   className="py-[15px] w-[160px] h-[64px] text-squazzle-button-bg-deep-green-color font-bold border-squazzle-button-bg-deep-green-color rounded-xl border "
-                  onClick={deleteUser}
+                  onClick={() => navigate(AuthRoutes.profile)}
                 >
                   Cancel
                 </button>
@@ -296,7 +321,6 @@ function editProfile() {
       <div className="sm:hidden font-sans px-5">
         <DashboardNavs />
         <div>
-          {" "}
           <UserIcon className="w-[45px] h-[45px]  mt-6  cursor-pointer" />
         </div>
         <h1 className="font-[600] text-[24px] mt-5 text-[#232323]">
@@ -325,7 +349,7 @@ function editProfile() {
               onChange={(e) => {
                 setFirstName(e.target.value);
               }}
-              className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-12 w-full rounded-md sm:text-sm focus:ring-1 mb-6"
+              className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color block h-12 w-full rounded-md sm:text-sm mb-6"
               placeholder="First Name"
             />
           </label>
@@ -342,7 +366,7 @@ function editProfile() {
               onChange={(e) => {
                 setLastName(e.target.value);
               }}
-              className="mt-1 px-3 py-2 bg-white border  shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-12 w-full rounded-md sm:text-sm focus:ring-1 mb-6"
+              className="mt-1 px-3 py-2 bg-white border  border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color block h-12 w-full rounded-md sm:text-sm  mb-6"
               placeholder="First Name"
             />
           </label>
@@ -358,7 +382,7 @@ function editProfile() {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-            className="mt-1 px-3 py-2 bg-white border  shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-12 w-full rounded-md sm:text-sm focus:ring-1 mb-6"
+            className="mt-1 px-3 py-2 bg-white border  border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color  block h-12 w-full rounded-md sm:text-sm mb-6"
             placeholder="First Name"
           />
         </label>
@@ -369,10 +393,12 @@ function editProfile() {
             </span>
             <select
               name="Gender"
-              className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-12 w-full rounded-md sm:text-sm focus:ring-1 mb-6"
+              className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color  block h-12 w-full rounded-md sm:text-sm  mb-6"
             >
               <option value="male">Male</option>
-              <option value="female">Female</option>
+              <option value="female" selected>
+                Female
+              </option>
             </select>
           </label>
         </section>
@@ -388,7 +414,7 @@ function editProfile() {
               onChange={(e) => {
                 setCity(e.target.value);
               }}
-              className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-12 w-full rounded-md sm:text-sm focus:ring-1 mb-6 mr-4"
+              className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color  block h-12 w-full rounded-md sm:text-sm  mb-6 mr-4"
               placeholder="State"
             />
           </label>
@@ -405,7 +431,7 @@ function editProfile() {
               onChange={(e) => {
                 setState(e.target.value);
               }}
-              className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-12 w-full rounded-md sm:text-sm focus:ring-1 mb-6 mr-4"
+              className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color  block h-12 w-full rounded-md sm:text-sm  mb-6 mr-4"
               placeholder="State"
             />
           </label>
@@ -415,32 +441,33 @@ function editProfile() {
             <div className="mt-4">
               <label htmlFor="phone-number">
                 <span className="text-squazzle-text-deep-grey1-color text-sm">
-                  Phone Number{" "}
+                  Phone Number
                   <span className="text-squazzle-text-error-red-color pl-[5px]">
                     *
-                  </span>{" "}
-                </span>{" "}
+                  </span>
+                </span>
                 <div className="flex">
                   <div>
                     <select
                       name="countryCode"
                       id="country-code"
                       pattern="+[0-9]{3}"
-                      className="w-[91px] pl-3 border border-y-squazzle-border-grey-color border-l-squazzle-border-grey-color border-r-white text-squazzle-text-deep-grey2-color text-sm  lg:text-lg font-[400] rounded-tl-lg rounded-bl-lg h-[48px] mt-[6px] focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
+                      className="w-[91px] pl-3 border border-y-squazzle-border-grey-color border-l-squazzle-border-grey-color border-r-white text-squazzle-text-deep-grey2-color sm:text-sm  font-[400] rounded-tl-lg rounded-bl-lg h-[48px] mt-[6px] focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                     >
-                      {countryCodeDropDown()}{" "}
-                    </select>{" "}
-                  </div>{" "}
+                      {countryCodeDropDown()}
+                    </select>
+                  </div>
                   <input
                     id="phone-number"
                     type="tel"
                     placeholder="Phone Number"
+                    value={mobile}
                     pattern="[0-9]{10}"
-                    className="block bg-white border border-squazzle-border-grey-color rounded-tr-lg rounded-br-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-[259px] py-4 text-sm lg:text-lg px-3 h-12 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color after:content-[''] after:top-0 mb-6"
-                  />{" "}
-                </div>{" "}
-              </label>{" "}
-            </div>{" "}
+                    className="block bg-white border border-squazzle-border-grey-color rounded-tr-lg rounded-br-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-[259px] py-4 sm:text-sm px-3 h-12 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color after:content-[''] after:top-0 mb-6"
+                  />
+                </div>
+              </label>
+            </div>
           </div>
         </section>
         <section className="mt-6">
@@ -449,9 +476,10 @@ function editProfile() {
               NIN
             </span>
             <input
-              type="occupation"
+              type="text"
               name="occupation"
-              className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-12 w-full rounded-md sm:text-sm focus:ring-1 mb-6"
+              value={nin}
+              className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color  block h-12 w-full rounded-md sm:text-sm  mb-6"
               placeholder="NIN"
             />
           </label>
@@ -461,11 +489,13 @@ function editProfile() {
             <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm ">
               About You
             </span>
-            <input
-              type="occupation"
+            <textarea
+              type="text"
               name="occupation"
-              className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-[219px] w-full rounded-md sm:text-sm focus:ring-1 mb-6 placeholder:mb-[500px]"
-              placeholder="Describe Yourself "
+              rows="5"
+              value={aboutYou}
+              className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color  block h-[219px] w-full rounded-md sm:text-sm  mb-6 placeholder:mb-[500px]"
+              placeholder="Describe Yourself"
             />
           </label>
         </section>
@@ -483,7 +513,7 @@ function editProfile() {
             <button
               type="button"
               className="py-[15px] w-full h-[48px] text-squazzle-button-bg-deep-green-color font-bold border-squazzle-button-bg-deep-green-color rounded-xl border "
-              onClick={deleteUser}
+              onClick={() => navigate(AuthRoutes.profile)}
             >
               Cancel
             </button>

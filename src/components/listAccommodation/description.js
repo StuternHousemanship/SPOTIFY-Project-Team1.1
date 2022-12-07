@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { ReactComponent as AddNewListingIcon } from "../../assets/svg/add-new-listing-icon.svg";
 
-const description = () => {
+const description = ({ handleSaveAndContinue, handleBackToTab2 }) => {
   const [rulesFields, setRulesFields] = useState([
     { name: "", description: "" },
   ]);
@@ -39,9 +39,10 @@ const description = () => {
                       type="text"
                       id="about-this-accommodation"
                       rows="7"
-                      className="font-normal text-lg text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
+                      placeholder="A brief description of the accommodation"
+                      className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
                     >
-                      A brief description of the accommodation
+                      {}
                     </textarea>
                   </label>
                 </section>
@@ -54,9 +55,10 @@ const description = () => {
                       type="text"
                       id="reason-for-listing"
                       rows="4"
-                      className="font-normal text-lg text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
+                      placeholder="Why are you listing this accommodation?"
+                      className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
                     >
-                      Why are you listing this accommodation?
+                      {}
                     </textarea>
                   </label>
                 </section>
@@ -117,12 +119,14 @@ const description = () => {
                   <button
                     type="button"
                     className="text-xl font-bold text-squazzle-button-bg-deep-green-color py-5 w-40 border-2 border-squazzle-button-bg-deep-green-color rounded-xl"
+                    onClick={handleBackToTab2}
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     className="text-xl font-bold py-5 w-[211px] bg-squazzle-button-bg-deep-green-color text-squazzle-button-bg-light-green-color rounded-xl"
+                    onClick={handleSaveAndContinue}
                   >
                     Save & Continue
                   </button>
@@ -145,9 +149,10 @@ const description = () => {
                 type="text"
                 id="about-this-accommodation"
                 rows="5"
-                className="font-normal text-lg text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
+                placeholder="A brief description of the accommodation"
+                className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
               >
-                A brief description of the accommodation
+                {}
               </textarea>
             </label>
           </section>
@@ -160,9 +165,10 @@ const description = () => {
                 type="text"
                 id="reason-for-listing"
                 rows="5"
-                className="font-normal text-lg text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
+                placeholder="Reason for listing this accommodation"
+                className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
               >
-                Reason for listing this accommodation
+                {}
               </textarea>
             </label>
           </section>
@@ -171,24 +177,44 @@ const description = () => {
               <span className="block font-[600] text-lg">
                 Accommodation Rules
               </span>
-              <input
-                type="text"
-                id="accommodation-rules"
-                placeholder="Rule name"
-                className="font-normal text-lg text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
-              />
-              <textarea
-                type="text"
-                id="rule-description"
-                placeholder="Description"
-                rows="4"
-                className="font-normal text-lg text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
-              >
-                {}
-              </textarea>
+              {rulesFields.map((rulesField, index) => {
+                return (
+                  <div key={index} className="flex flex-col ">
+                    <input
+                      type="text"
+                      id="accommodation-rules"
+                      placeholder="Rule name"
+                      value={rulesField.name}
+                      className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
+                      onChange={(e) => handleRulesFieldChange(e, index)}
+                    />
+                    <textarea
+                      type="text"
+                      id="rule-description"
+                      placeholder="Description"
+                      rows="4"
+                      value={rulesField.description}
+                      className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
+                      onChange={(e) => handleRulesFieldChange(e, index)}
+                    >
+                      {}
+                    </textarea>
+                    <div className="self-end mt-2">
+                      <button
+                        type="button"
+                        className="text-squazzle-profileCard-logout-red-color text-base"
+                        onClick={() => removeRulesField(index)}
+                      >
+                        Remove rule
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
               <button
                 type="button"
                 className="flex flex-row gap-[14px] mt-5 items-center"
+                onClick={() => addNewRulesField()}
               >
                 <p className="text-squazzle-profileCard-logout-red-color text-base font-[400]">
                   Add new rule
@@ -200,14 +226,16 @@ const description = () => {
           <button
             type="submit"
             className="text-sm font-bold py-[15px] w-full bg-squazzle-button-bg-deep-green-color text-squazzle-button-bg-light-green-color rounded-xl mt-14"
+            onClick={handleSaveAndContinue}
           >
             Save & Continue
           </button>
           <button
             type="button"
             className="text-sm font-bold text-squazzle-button-bg-deep-green-color py-[15px] w-full border-2 border-squazzle-button-bg-deep-green-color rounded-xl mt-4"
+            onClick={handleBackToTab2}
           >
-            Cancel
+            Back
           </button>
         </form>
       </div>

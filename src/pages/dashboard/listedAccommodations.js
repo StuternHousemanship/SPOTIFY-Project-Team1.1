@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthRoutes } from "../../url";
 import DashboardNavs from "../../components/navigation/dashboardNavs";
@@ -9,6 +9,15 @@ import accommodationImage from "../../assets/img/accomodation_image_one_desktop.
 
 const listedAccommodations = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const ac = new AbortController();
+    document.title = "Listed Accommodations - Squazzle";
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
+
   return (
     <>
       <DashboardNavs />
@@ -27,7 +36,7 @@ const listedAccommodations = () => {
       <p className="text-lg font-[600] text-squazzle-text-deep-grey2-color mt-8 ml-5 md:hidden">
         Add a new listing
       </p>
-      <main className="font-sans mt-[40px] mb-[190px] ml-20 md:mt-[30px] flex gap-5 flex-col md:flex-row items-center">
+      <main className="font-sans mt-[40px] mb-[190px] md:ml-20 md:mt-[30px] flex items-center gap-5 flex-col md:flex-row  md:items-center">
         <button
           type="button"
           className="w-[305px]"

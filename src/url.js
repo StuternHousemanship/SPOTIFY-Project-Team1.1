@@ -8,6 +8,7 @@ const AuthRoutes = {
   editProfile: "/editprofile",
   listedAccommodations: "/listed-accommodations",
   addNewListing: "/add-new-listing",
+  editAccommodation: "/edit-accommodation",
 };
 
 /** Non Authenticated URL Routes */

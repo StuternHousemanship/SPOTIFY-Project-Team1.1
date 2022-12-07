@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthRoutes } from "../../url";
 import { ReactComponent as ArrowRight } from "../../assets/svg/arrow-right-icon.svg";
@@ -14,6 +14,43 @@ const addNewListing = () => {
   const [activeTab, setActiveTab] = useState("tab1");
   const [progress, setProgress] = useState(0.25);
 
+  useEffect(() => {
+    const ac = new AbortController();
+    document.title = "Add New Listing - Squazzle";
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
+
+  const handleSaveAndContinueToTab2 = () => {
+    setActiveTab("tab2");
+    setProgress(0.5);
+  };
+
+  const handleSaveAndContinueToTab3 = () => {
+    setActiveTab("tab3");
+    setProgress(0.75);
+  };
+
+  const handleSaveAndContinueToTab4 = () => {
+    setActiveTab("tab4");
+    setProgress(1);
+  };
+
+  const handleBackToTab1 = () => {
+    setActiveTab("tab1");
+    setProgress(0.25);
+  };
+
+  const handleBackToTab2 = () => {
+    setActiveTab("tab2");
+    setProgress(0.5);
+  };
+
+  const handleBackToTab3 = () => {
+    setActiveTab("tab3");
+    setProgress(0.75);
+  };
   return (
     <>
       <DashboardNavs />
@@ -117,10 +154,32 @@ const addNewListing = () => {
           <p>Overview</p>
         </div>
       </div>
-      {activeTab === "tab1" ? <Overview1 /> : ""}
-      {activeTab === "tab2" ? <Overview2 /> : ""}
-      {activeTab === "tab3" ? <Description /> : ""}
-      {activeTab === "tab4" ? <UploadImages /> : ""}
+      {activeTab === "tab1" ? (
+        <Overview1 handleSaveAndContinue={handleSaveAndContinueToTab2} />
+      ) : (
+        ""
+      )}
+      {activeTab === "tab2" ? (
+        <Overview2
+          handleSaveAndContinue={handleSaveAndContinueToTab3}
+          handleBackToTab1={handleBackToTab1}
+        />
+      ) : (
+        ""
+      )}
+      {activeTab === "tab3" ? (
+        <Description
+          handleSaveAndContinue={handleSaveAndContinueToTab4}
+          handleBackToTab2={handleBackToTab2}
+        />
+      ) : (
+        ""
+      )}
+      {activeTab === "tab4" ? (
+        <UploadImages handleBackToTab3={handleBackToTab3} />
+      ) : (
+        ""
+      )}
       <Footer />
     </>
   );

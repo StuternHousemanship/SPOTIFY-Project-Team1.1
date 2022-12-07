@@ -67,7 +67,7 @@ const login = () => {
             : "text-squazzle-text-error-red-color text-xs font-semibold mt-2"
         }
       >
-        Please enter a valid email address{" "}
+        Please enter a valid email address
       </p>
     );
   };
@@ -124,53 +124,51 @@ const login = () => {
           className="text-squazzle-background-white-color py-6 px-20 h-[50vh]"
           style={{
             background:
-              "linear-gradient(to top, rgba(255, 255, 255, 0), #016D71)",
+              "linear-gradient(180deg, #016D71 0%, rgba(217, 217, 217, 0) 100%)",
           }}
         >
           <SquazzleDesktopLogo className="w-[173px] h-[53px] lg:w-[177px] lg:h-[57px]" />
-          <div className="text-squazzle-text-deep-grey2-color mt-8">
+          <div className="text-white mt-8">
             <h1 className="text-3xl lg:text-4xl font-semibold">
-              Welcome to Squazzle{" "}
-            </h1>{" "}
-            <p className="text-squazzle-text-deep-grey2-color text-lg lg:text-xl font-normal mt-[16px]">
-              Lets help you find a home you 'll love{" "}
-            </p>{" "}
-          </div>{" "}
-        </section>{" "}
-      </section>{" "}
+              Welcome to Squazzle
+            </h1>
+            <p className="text-white text-lg lg:text-xl font-normal mt-[16px]">
+              Lets help you find a home you'll love
+            </p>
+          </div>
+        </section>
+      </section>
       <section className="md:absolute md:right-0 md:w-1/2 flex flex-col w-full min-h-screen bg-white md:bg-squazzle-background-white-color lg:md:bg-squazzle-background-white-color">
         <div className="block md:hidden my-4">
           <SquazzleMobileLogo className="my-2 ml-5 " />
-        </div>{" "}
+        </div>
         <hr className="block md:hidden" />
         <div className="px-5 md:px-10 lg:px-20 py-8 md:py-12 lg:pt-[63px]">
           <header>
             <h1 className="font-bold text-base lg:text-4xl text-squazzle-grey-text-color mb-2 max-w-[530px]">
-              {" "}
               {isLoginError
                 ? "Oops! We can't sign you in at the moment"
-                : "Welcome back!"}{" "}
-            </h1>{" "}
+                : "Welcome back!"}
+            </h1>
             {isLoginError ? (
               <p className="font-normal text-squazzle-text-error-red-color text-sm lg:text-xl">
-                {" "}
-                {loginErrorText}{" "}
+                {loginErrorText}
               </p>
             ) : (
               <p className="font-normal text-squazzle-text-deep-grey1-color text-sm lg:text-xl">
-                We are thrilled to see you{" "}
+                We are thrilled to see you
               </p>
-            )}{" "}
-          </header>{" "}
+            )}
+          </header>
           <form className="mt-8" onSubmit={() => handleLogin()}>
             <div>
               <label htmlFor="email">
                 <span className="text-squazzle-text-deep-grey1-color text-sm font-[600]">
-                  Email Address{" "}
+                  Email Address
                   <span className="text-squazzle-text-error-red-color pl-[5px]">
                     *
-                  </span>{" "}
-                </span>{" "}
+                  </span>
+                </span>
                 <input
                   id="email"
                   type="email"
@@ -180,18 +178,18 @@ const login = () => {
                   className="block border bg-white border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm  lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                   onChange={(e) => setEmail(e.target.value)}
                   onKeyUp={() => validateEmail()}
-                />{" "}
-              </label>{" "}
-              {showEmailError ? displayEmailErrorText() : null}{" "}
-            </div>{" "}
+                />
+              </label>
+              {showEmailError ? displayEmailErrorText() : null}
+            </div>
             <div className="mt-6">
               <label htmlFor="password" className="relative block">
                 <span className="text-squazzle-text-deep-grey1-color text-sm font-[600]">
-                  Password{" "}
+                  Password
                   <span className="text-squazzle-text-error-red-color pl-[5px]">
                     *
-                  </span>{" "}
-                </span>{" "}
+                  </span>
+                </span>
                 <input
                   id="password"
                   value={password}
@@ -200,7 +198,7 @@ const login = () => {
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   className="block border bg-white border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-lg px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
                   onChange={(e) => setPassword(e.target.value)}
-                />{" "}
+                />
                 {showPassword ? (
                   <PasswordShow
                     className="absolute top-[49px] right-5 lg:top-[53px] lg:right-5"
@@ -211,9 +209,9 @@ const login = () => {
                     className="absolute top-[48px] right-5 lg:top-[52px] lg:right-5"
                     onClick={() => handleShowPassword()}
                   />
-                )}{" "}
-              </label>{" "}
-            </div>{" "}
+                )}
+              </label>
+            </div>
             <div className="flex items-center justify-between mt-2">
               <label
                 htmlFor="remember"
@@ -227,64 +225,62 @@ const login = () => {
                   onChange={() => setRememberMe(!rememberMe)}
                   className="border-squazzle-checkbox-border-color border-2 accent-squazzle-button-bg-deep-green-color w-[12px] h-[12px] mr-[6px] lg:w-[16px] lg:h-[16px] lg:mr-[11px] "
                 />
-                Remember me{" "}
-              </label>{" "}
+                Remember me
+              </label>
               <button
                 type="button"
                 className="text-sm lg:text-lg text-squazzle-success-green-color font-normal"
                 onClick={() => navigate(NonAuthRoutes.forgotPassword)}
               >
-                Forgot Password{" "}
-              </button>{" "}
-            </div>{" "}
-          </form>{" "}
+                Forgot Password
+              </button>
+            </div>
+          </form>
           <button
             type="submit"
             className="enabled md:flex md:align-middle md:justify-center hidden w-full py-[15px] lg:py-5 text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color disabled:bg-squazzle-button-bg-light-green-color disabled:text-squazzle-button-font-deep-green-color rounded-xl font-bold text-sm lg:text-xl mt-12 mb-6 cursor-pointer"
             onClick={(e) => handleLogin(e)}
             disabled={!isEmailValid || !password}
           >
-            {" "}
             {buttonIsLoading ? (
               <LoadingIcon className="suspense-loading-icon md:mt-0 lg:mt-1 mr-3" />
             ) : null}
             Sign in
-          </button>{" "}
+          </button>
           <button
             type="submit"
             className="enabled flex align-middle justify-center md:hidden text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color disabled:bg-squazzle-button-bg-light-green-color disabled:text-squazzle-button-font-deep-green-color w-full py-[15px] lg:py-5 rounded-xl font-bold text-sm mt-8 mb-4 cursor-pointer"
             onClick={(e) => handleLogin(e)}
             disabled={!isEmailValid || !password}
           >
-            {" "}
             {buttonIsLoading ? (
               <LoadingIcon className="suspense-loading-icon mt-0 mr-3" />
             ) : null}
-            Continue{" "}
-          </button>{" "}
+            Continue
+          </button>
           <button
             type="button"
             className="bg-squazzle-background-white-color font-bold text-sm lg:text-xl w-full py-[15px] lg:py-5 rounded-xl text-squazzle-button-bg-deep-green-color border-2 border-squazzle-button-bg-deep-green-color"
             onClick={() => navigate(NonAuthRoutes.landingPage)}
           >
-            Cancel{" "}
-          </button>{" "}
+            Cancel
+          </button>
           <div className="flex justify-center mt-8">
             <p>
               <span className="font-semibold text-sm lg:text-lg">
                 New to squazzle account ?
-              </span>{" "}
+              </span>
               <button
                 type="button"
                 className="ml-2 w-fit text-squazzle-success-green-color cursor-pointer font-semibold text-sm lg:text-lg"
                 onClick={() => navigate(NonAuthRoutes.signUp)}
               >
-                Sign up{" "}
-              </button>{" "}
-            </p>{" "}
-          </div>{" "}
-        </div>{" "}
-      </section>{" "}
+                Sign up
+              </button>
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };

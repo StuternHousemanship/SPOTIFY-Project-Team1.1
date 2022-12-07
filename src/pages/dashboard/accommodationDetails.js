@@ -1,7 +1,10 @@
-import React from "react";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useState, useEffect } from "react";
+import ReactTooltip from "react-tooltip";
 import { Link } from "react-scroll";
 import { useNavigate } from "react-router-dom";
-import { AuthRoutes } from "../../url";
+import { NonAuthRoutes, AuthRoutes } from "../../url";
 import { ReactComponent as RadioButtonCheckedIcon } from "../../assets/svg/radio_button_checked_icon.svg";
 import { ReactComponent as MoneyIcon } from "../../assets/svg/money_icon.svg";
 import { ReactComponent as MoreIcon } from "../../assets/svg/more-icon.svg";
@@ -18,17 +21,58 @@ import { ReactComponent as BellIcon } from "../../assets/svg/bell-icon.svg";
 import { ReactComponent as ProfileIcon } from "../../assets/svg/profile-icon.svg";
 import { ReactComponent as ArrowForwardIcon } from "../../assets/svg/arrow_forward_icon.svg";
 import { ReactComponent as ArrowBackIcon } from "../../assets/svg/arrow_back_icon.svg";
+import { ReactComponent as ArrowBackIosIcon } from "../../assets/svg/arrow_back_ios_icon.svg";
 import { ReactComponent as CreateIcon } from "../../assets/svg/create_icon.svg";
+import { ReactComponent as EditIcon } from "../../assets/svg/mobile-edit-icon.svg";
+import { ReactComponent as ClearIcon } from "../../assets/svg/clear_icon.svg";
 import { ReactComponent as SquazzleMobileLogo } from "../../assets/svg/squazzle-mobile-logo.svg";
 import { ReactComponent as SquazzleDesktopGreenLogo } from "../../assets/svg/squazzle-desktop-green-logo.svg";
-import AccommodationImage from "../../assets/img/accommodation-image.png";
 import AccommodationImageOne from "../../assets/img/accomodation_image_one_desktop.png";
 import AccommodationImageTwo from "../../assets/img/accomodation_image_two_desktop.png";
-import AccommodationImageThree from "../../assets/img/accomodation_image_three_desktop.png";
 import Footer from "../../components/footer/footer";
 
 const accommodationDetails = () => {
   const navigate = useNavigate();
+  const [profileCard, setProfileCard] = useState(false);
+  const [menu, setMenu] = useState(false);
+  const [option, setOption] = useState(false);
+
+  useEffect(() => {
+    const ac = new AbortController();
+    document.title = "Accommodation Details - Squazzle";
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
+
+  // handles hamburger menu toggle
+  const handleMenuClick = () => setMenu(!menu);
+
+  // handles option icon toggle
+  const handleOptionClick = () => setOption(!option);
+
+  // handles profile-card toggle
+  const toggleProfileCard = () => {
+    setProfileCard(!profileCard);
+  };
+
+  // handles profile-card removal
+  const removeProfileCard = () => {
+    setProfileCard(false);
+  };
+  window.addEventListener("resize", removeProfileCard);
+  window.addEventListener("scroll", removeProfileCard);
+
+  const handleLogout = () => {
+    // navigates to login page
+    navigate(NonAuthRoutes.login);
+    window.localStorage.clear();
+  };
+
+  const goToManageAccount = () => {
+    navigate(AuthRoutes.dashboardManageAccount);
+    removeProfileCard();
+  };
 
   return (
     <div>
@@ -36,7 +80,7 @@ const accommodationDetails = () => {
       <div className="hidden lg:block font-sans">
         <header
           name="header"
-          className="lg:h-[96px] lg:px-20 fixed top-0 w-full bg-[#ffffff] z-20"
+          className="lg:h-[96px] lg:px-20 fixed top-0 w-full bg-[#ffffff] z-20 border-b"
         >
           <div className="flex justify-between items-center mt-[25px]">
             <button
@@ -73,12 +117,42 @@ const accommodationDetails = () => {
               <button type="button">
                 <BellIcon className=" cursor-pointer" />
               </button>
-              <button type="button">
+              <button onClick={() => toggleProfileCard()} type="button">
                 <ProfileIcon className="cursor-pointer" />
               </button>
             </ul>
           </div>
         </header>
+        <ul
+          className={
+            profileCard
+              ? "flex flex-col items-start w-[240px] gap-[24px] p-[24px] bg-squazzle-profileCard-background-white-color text-base max-[1030px]:text-sm font-normal leading-6 text-squazzle-text-black-color fixed top-[90px] right-[80px] z-[2]"
+              : "hidden"
+          }
+        >
+          <li>
+            <button type="button" onClick={goToManageAccount}>
+              Manage Account
+            </button>
+          </li>
+          <li>
+            <button type="button"> Settings </button>
+          </li>
+          <li>
+            <button type="button"> Wishlist </button>
+          </li>
+          <li>
+            <button type="button"> Help </button>
+          </li>
+          <li className="w-full">
+            <hr className="border border-squazzle-border-grey-color" />
+          </li>
+          <li className="text-squazzle-profileCard-logout-red-color">
+            <button type="button" onClick={() => handleLogout()}>
+              Logout
+            </button>
+          </li>
+        </ul>
         <section className="flex lg:gap-12 lg:pl-20 ">
           <aside className="w-[280px] pt-[128px]">
             <div className="flex w-[235px] gap-x-5 mb-[31px]">
@@ -93,6 +167,7 @@ const accommodationDetails = () => {
               <button
                 type="button"
                 className="cursor-pointer text-sm text-[#353535]"
+                onClick={() => navigate(AuthRoutes.listedAccommodations)}
               >
                 My Listing
               </button>
@@ -102,6 +177,7 @@ const accommodationDetails = () => {
               <button
                 type="button"
                 className="cursor-pointer text-sm text-[#CCE6E7] flex gap-2"
+                onClick={() => navigate(AuthRoutes.listedAccommodations)}
               >
                 <ArrowBackIcon />
                 <span>Back</span>
@@ -109,6 +185,7 @@ const accommodationDetails = () => {
               <button
                 type="button"
                 className="cursor-pointer text-sm text-[#CCE6E7] flex gap-2"
+                onClick={() => navigate(AuthRoutes.editAccommodation)}
               >
                 <CreateIcon />
                 <span>Edit</span>
@@ -158,20 +235,48 @@ const accommodationDetails = () => {
           </aside>
           <main className="pt-[181px]">
             <div className="h-16 flex flex-row gap-x-5 text-base font-normal w-[875px] mb-5 ">
-              <button
-                type="button"
+              <span
+                data-tip
+                data-for="available"
                 className="m-w-[155px] py-5 px-[28px] bg-[#F5F5F5] flex space-x-[9.33px] "
               >
                 <RadioButtonCheckedIcon className="self-center" />
                 <span>Available</span>
-              </button>
-              <button
-                type="button"
+                <ReactTooltip
+                  id="available"
+                  place="bottom"
+                  effect="solid"
+                  backgroundColor="#DA4773"
+                  padding="20px 16px"
+                  className="!w-[179px] !ml-4"
+                  offset="{'bottom':9}"
+                >
+                  <span className="text-base flex items-center justify-center">
+                    Availability
+                  </span>
+                </ReactTooltip>
+              </span>
+              <span
+                data-tip
+                data-for="price"
                 className="flex py-5 px-[28px] bg-[#F5F5F5] m-w-[250px] space-x-[9.33px]"
               >
                 <MoneyIcon className="self-center" />
                 <span>NGN 65,000 per night</span>
-              </button>
+                <ReactTooltip
+                  id="price"
+                  place="bottom"
+                  effect="solid"
+                  backgroundColor="#DA4773"
+                  padding="20px 16px"
+                  className="!w-[179px] !ml-4"
+                  offset="{'bottom':9}"
+                >
+                  <span className="text-base flex items-center justify-center">
+                    Price
+                  </span>
+                </ReactTooltip>
+              </span>
               <button
                 type="button"
                 className="flex py-5 px-[28px] bg-[#F5F5F5] m-w-[152px] space-x-[9.33px]"
@@ -183,7 +288,6 @@ const accommodationDetails = () => {
                 to="accommodation_rules"
                 smooth="true"
                 duration={500}
-                spy="true"
                 offset={-105}
                 className="flex py-5 px-[28px] bg-[#F5F5F5] m-w-[258px] space-x-[9.33px] cursor-pointer"
               >
@@ -203,7 +307,7 @@ const accommodationDetails = () => {
                 className="w-[350px] h-[255px]"
               />
               <img
-                src={AccommodationImageThree}
+                src={AccommodationImageTwo}
                 alt="accommodation__image"
                 className="w-[350px] h-[255px]"
               />
@@ -286,27 +390,130 @@ const accommodationDetails = () => {
       <div className="lg:hidden font-sans">
         <div className="h-full ">
           <header className="flex flex-row justify-between py-4 drop-shadow-[1px_2px_rgba(0,0,0,0.06)] mb-8 px-5 sm:px-10 ">
-            <MoreIcon className="self-center" />
-            <MenuIcon className="self-center" />
+            <div
+              className="flex items-center z-50"
+              onClick={() => handleOptionClick()}
+            >
+              {!option ? <MoreIcon /> : <ClearIcon />}
+            </div>
+
+            <div
+              className="flex items-center z-50"
+              onClick={() => handleMenuClick()}
+            >
+              {!menu ? <MenuIcon /> : <ClearIcon />}
+            </div>
           </header>
+
+          {/* Option dropdown List */}
+          <ul
+            className={
+              !option
+                ? "hidden"
+                : "absolute top-14 left-0 flex flex-col items-start w-[88px] ml-5 md:ml-10 pt-3 pr-6 pb-4 pl-3 bg-squazzle-profileCard-background-white-color text-base gap-4"
+            }
+          >
+            <button
+              type="button"
+              className="flex gap-2 items-center"
+              onClick={() => navigate(AuthRoutes.listedAccommodations)}
+            >
+              <ArrowBackIosIcon />
+              <span>Back</span>
+            </button>
+            <button
+              type="button"
+              className="flex gap-2 items-center"
+              onClick={() => navigate(AuthRoutes.editAccommodation)}
+            >
+              <EditIcon />
+              <span>Edit</span>
+            </button>
+          </ul>
+          {/* Hamburger Menu List */}
+          <ul
+            className={
+              !menu
+                ? "hidden"
+                : "absolute top-14 left-0 h-full flex flex-col items-start w-full gap-[24px] p-[24px] bg-squazzle-profileCard-background-white-color text-base "
+            }
+          >
+            <li>
+              <button type="button" onClick={goToManageAccount}>
+                Manage Account
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                onClick={() => navigate(AuthRoutes.listedAccommodations)}
+              >
+                List your property
+              </button>
+            </li>
+            <li>
+              <button type="button"> About us </button>
+            </li>
+            <li>
+              <button type="button"> FAQ </button>
+            </li>
+
+            <li>
+              <button type="button"> Settings </button>
+            </li>
+            <li>
+              <button type="button"> Wishlist </button>
+            </li>
+
+            <li className="w-full">
+              <hr className="border border-squazzle-border-grey-color" />
+            </li>
+            <li className="text-squazzle-profileCard-logout-red-color">
+              <button type="button" onClick={() => handleLogout()}>
+                Logout
+              </button>
+            </li>
+          </ul>
           <div className="flex flex-col px-5 sm:px-10">
             <div className="flex flex-col gap-y-3 ">
               <div className="accommodation_content flex flex-col gap-y-3 overflow-x-scroll ">
                 <div className="h-8 flex flex-row gap-x-3 text-xs font-semibold w-[573px] mb-4 ">
-                  <button
-                    type="button"
-                    className="m-w-[97px] py-2 px-[10px] bg-[#F5F5F5] flex space-x-[9.33px] "
-                  >
+                  <span className="m-w-[97px] py-2 px-[10px] bg-[#F5F5F5] flex space-x-[9.33px] ">
                     <RadioButtonCheckedIcon className="self-center" />
-                    <span>Available</span>
-                  </button>
-                  <button
-                    type="button"
-                    className="flex py-2 px-[10px] bg-[#F5F5F5] m-w-[169px] space-x-[9.33px]"
-                  >
+                    <span data-tip data-for="available_mobile">
+                      Available
+                    </span>
+                    <ReactTooltip
+                      id="available_mobile"
+                      place="bottom"
+                      effect="solid"
+                      backgroundColor="#DA4773"
+                      className="!w-[136px]"
+                      offset="{'bottom':9}"
+                    >
+                      <span className="text-xs font-semibold flex items-center justify-center">
+                        Availability
+                      </span>
+                    </ReactTooltip>
+                  </span>
+                  <span className="flex py-2 px-[10px] bg-[#F5F5F5] m-w-[169px] space-x-[9.33px]">
                     <MoneyIcon className="self-center" />
-                    <span>NGN 65,000 per night</span>
-                  </button>
+                    <span data-tip data-for="price_mobile">
+                      NGN 65,000 per night
+                    </span>
+                    <ReactTooltip
+                      id="price_mobile"
+                      place="bottom"
+                      effect="solid"
+                      backgroundColor="#DA4773"
+                      className="!w-[136px]"
+                      offset="{'bottom':9}"
+                    >
+                      <span className="text-xs font-semibold flex items-center justify-center">
+                        Price
+                      </span>
+                    </ReactTooltip>
+                  </span>
                   <button
                     type="button"
                     className="flex py-2 px-[10px] bg-[#F5F5F5] m-w-[94px] space-x-[9.33px]"
@@ -318,7 +525,6 @@ const accommodationDetails = () => {
                     to="accommodation_rules_mobile"
                     smooth="true"
                     duration={500}
-                    spy="true"
                     className="flex py-2 px-[10px] bg-[#F5F5F5] m-w-[177px] space-x-[9.33px]"
                   >
                     <AccommodationRuleIcon className="self-center" />
@@ -329,7 +535,7 @@ const accommodationDetails = () => {
             </div>
             <img
               className="mb-4"
-              src={AccommodationImage}
+              src={AccommodationImageTwo}
               alt="accommodation__image"
             />
             <div
@@ -382,7 +588,7 @@ const accommodationDetails = () => {
               <p className="text-[24px] leading-[30px] font-normal text-[#232323]">
                 About this apartment
               </p>
-              <p className="font-normal text-[14px] leading-[22px] h-[220px]">
+              <p className="font-normal text-[14px] leading-[22px]">
                 From the outside this house looks nice and traditional. It has
                 windows that let in plenty of light. The house is equipped with
                 a small kitchen and two bathrooms, it also has a cozy living
@@ -569,7 +775,13 @@ const accommodationDetails = () => {
                 </div>
               </div>
               <div className="mb-8 flex flex-col gap-y-6">
-                <SquazzleMobileLogo />
+                <button
+                  type="button"
+                  onClick={() => navigate(AuthRoutes.dashboard)}
+                >
+                  <SquazzleMobileLogo />
+                </button>
+
                 <div className="flex flex-col gap-y-6 text-[#232323] text-[14px] w-[129px] items-start">
                   <button type="button">Private Policy</button>
                   <button type="button">Terms & Conditions</button>

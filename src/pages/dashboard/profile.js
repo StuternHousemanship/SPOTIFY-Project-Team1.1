@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthRoutes } from "../../url";
 import DashboardNavs from "../../components/navigation/dashboardNavs";
@@ -14,6 +14,15 @@ import { ReactComponent as EditIcon } from "../../assets/svg/edit-icon.svg";
 
 const profile = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const ac = new AbortController();
+    document.title = "User Profile - Squazzle";
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
+
   return (
     <>
       <div className="hidden sm:block">
@@ -59,7 +68,7 @@ const profile = () => {
                   </button>
                 </div>
               </div>
-              <div className="p-[1rem] bg-[white]  box-border h-[293px] w-[305px] shadow rounded-lg border-[1px] border-solid border-[#F5F5F5] pt-[24px] pb-[40px] items-center mb-10">
+              <div className="p-[1rem] bg-[white]  box-border w-[305px] shadow rounded-lg border-[1px] border-solid border-[#F5F5F5] pt-[24px] pb-[40px] items-center mb-10">
                 <ul className=" ml-2">
                   <li className="border-[#D7D7D7] hover:bg-[#CCE6E7] p-2 border-b-[1px] w-full flex gap-5 items-center my-3">
                     <ProfileIcon className="w-[16px] h-[20px] cursor-pointer inset-2" />
@@ -149,7 +158,7 @@ const profile = () => {
                   Address
                 </p>
                 <p className="font-sans text-[15px] leading-[24px] font-[400] text-[#353535]">
-                  No 49 East-End,Jos,Plateau State,Nigeria.
+                  No 49 East-End, Jos, Plateau State, Nigeria.
                 </p>
               </div>
               <div>
@@ -196,7 +205,6 @@ const profile = () => {
       <div className="sm:hidden font-sans px-5">
         <DashboardNavs />
         <div>
-          {" "}
           <UserIcon className="w-[45px] h-[45px]  mt-6  cursor-pointer" />
         </div>
         <h1 className="font-[600] text-[24px] mt-5 text-[#232323]">
