@@ -305,7 +305,7 @@ const uploadImages = ({ handleBackToTab3 }) => {
                   <div className="relative bg-squazzle-background-white-color h-[226px] w-[330px]">
                     <AddNewListingIcon className="absolute top-[81px] left-[150px]" />
                   </div>
-                  <div className="py-2 bg-[#D7D7D7] text-squazzle-text-deep-grey2-color text-sm grid place-items-center">
+                  <div className="py-2 bg-[#D7D7D7] text-squazzle-text-deep-grey2-color text-sm grid w-[330px] place-items-center">
                     Add photo
                   </div>
                 </div>

@@ -6,7 +6,7 @@ import alertPageNavigation from "../../components/navigation/alert-page-navigati
 import { ReactComponent as LoadingIcon } from "../../assets/svg/loading-light-icon.svg";
 import { NonAuthRoutes } from "../../url";
 import onboarding from "../../api/onboarding";
-import SuccessAndErrorPage from "../../components/successAndError/successAndError";
+import ErrorPasswordResetCode from "../../components/successAndError/errorOnResetCode";
 
 const enterPasswordResetCode = () => {
   const navigate = useNavigate();
@@ -22,11 +22,8 @@ const enterPasswordResetCode = () => {
   const [digit5, setDigit5] = useState("");
   const [digit6, setDigit6] = useState("");
   const [buttonIsLoading, setButtonIsLoading] = useState(false);
-  const [heading, setHeading] = useState("");
-  const [message, setMessage] = useState("");
-  const [buttonAction, setButtonAction] = useState(null);
-  const [buttonText, setButtonText] = useState("");
-  const [displaySuccessOrError, setDisplaySuccessOrError] = useState(false);
+  const [isErrorOnResetCode, setIsErrorOnResetCode] = useState(false);
+  const [resetCodeErrorText, setResetCodeErrorText] = useState("");
 
   useEffect(() => {
     const ac = new AbortController();
@@ -94,31 +91,32 @@ const enterPasswordResetCode = () => {
         previousInput.focus();
       }
     } else if (e.key === "ArrowRight" || e.key === "Enter") {
-      const previousInputId = Number(id[id.length - 1]) + 1;
-      const previousInput = document.getElementById(`digit-${previousInputId}`);
-      if (previousInput !== null) {
-        previousInput.focus();
+      const nextInputId = Number(id[id.length - 1]) + 1;
+      const nextInput = document.getElementById(`digit-${nextInputId}`);
+      if (nextInput !== null) {
+        nextInput.focus();
       }
     }
   };
 
+  /** sets error on password reset code to false */
+  const setErrorToFalse = () => {
+    setIsErrorOnResetCode(false);
+  };
+
   /** handles enter password reset code submit button */
-  const handleEnterPasswordResetCode = (e) => {
+  const handleEnterPasswordResetCode = async (e) => {
     e.preventDefault();
     setButtonIsLoading(true);
     const passwordResetCode = `${digit1}${digit2}${digit3}${digit4}${digit5}${digit6}`;
     try {
-      const response = onboarding.EnterPasswordResetCode(passwordResetCode);
+      const response = await onboarding.EnterPasswordResetCode(
+        passwordResetCode
+      );
 
       if (response.status === 202) {
-        // navigate(NonAuthRoutes.login);
-        setDisplaySuccessOrError(true);
-        setHeading("Verification Successful");
-        setMessage(
-          "Your email address has been verified. You can start enjoying all the amazing features of Squazzle."
-        );
-        setButtonAction(navigate(NonAuthRoutes.login));
-        setButtonText("Proceed to sign in");
+        setButtonIsLoading(false);
+        navigate(NonAuthRoutes.login);
       }
     } catch (error) {
       setTimeout(() => {
@@ -126,137 +124,129 @@ const enterPasswordResetCode = () => {
       }, 2000);
       // console.error(error);
       const { message: errorMessage } = error.response.data;
-      setHeading("Let's try that again");
-      setMessage(errorMessage);
-      setButtonAction(navigate(NonAuthRoutes.login));
-      setButtonText("Resend Code");
+      setResetCodeErrorText(errorMessage);
+      setIsErrorOnResetCode(true);
     }
+  };
+
+  const PasswordResetCodePage = () => {
+    return (
+      <div className="bg-squazzle-background-white-color pt-[130px] pb-[600px] md:pb-[800px] lg:pb-80 max-[640px]:bg-white">
+        <div className="font-sans grid place-items-center h-full bg-squazzle-background-white-color max-[640px]:bg-white">
+          {alertPageNavigation()}
+          <div
+            className="grid place-items-center w-[610px] py-[22px] px-[4px] md:px-10 lg:px-10 box-border bg-white text-center"
+            style={{ width: "min(100vw, 609px)" }}
+          >
+            <h2 className="text-2xl lg:text-4xl font-bold text-squazzle-grey-text-color mb-7">
+              Password Reset
+            </h2>
+            <p className="font-normal text-smlg:text-lg  text-squazzle-text-deep-grey1-color">
+              Please enter the 6 - digit code sent to
+            </p>
+            <p className="font-normal text-sm lg:text-lg text-squazzle-button-bg-deep-green-color mb-[26px]">
+              {localStorage.getItem("email")}.
+            </p>
+            <form className="grid place-items-center">
+              <label htmlFor="6-digit-code">
+                <div className="flex gap-2 lg:gap-4 ">
+                  <input
+                    type="text"
+                    id="digit-1"
+                    value={digit1}
+                    className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border text-squazzle-text-deep-grey1-color border-squazzle-border-grey-color caret-squazzle-border-grey-color text-center focus:outline-none"
+                    maxLength="1"
+                    onChange={(e) => handleChangeForDigit1(e)}
+                    onKeyDown={(e) => handleKeyDown(e)}
+                  />
+                  <input
+                    type="text"
+                    id="digit-2"
+                    value={digit2}
+                    className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none "
+                    maxLength="1"
+                    onChange={(e) => handleChangeForDigit2(e)}
+                    onKeyDown={(e) => handleKeyDown(e)}
+                  />
+                  <input
+                    type="text"
+                    id="digit-3"
+                    value={digit3}
+                    className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
+                    maxLength="1"
+                    onChange={(e) => handleChangeForDigit3(e)}
+                    onKeyDown={(e) => handleKeyDown(e)}
+                  />
+                  <input
+                    type="text"
+                    id="digit-4"
+                    value={digit4}
+                    className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
+                    maxLength="1"
+                    onChange={(e) => handleChangeForDigit4(e)}
+                    onKeyDown={(e) => handleKeyDown(e)}
+                  />
+                  <input
+                    type="text"
+                    id="digit-5"
+                    value={digit5}
+                    className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
+                    maxLength="1"
+                    onChange={(e) => handleChangeForDigit5(e)}
+                    onKeyDown={(e) => handleKeyDown(e)}
+                  />
+                  <input
+                    type="text"
+                    id="digit-6"
+                    value={digit6}
+                    className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
+                    maxLength="1"
+                    onChange={(e) => handleChangeForDigit6(e)}
+                    onKeyDown={(e) => handleKeyDown(e)}
+                  />
+                </div>
+              </label>
+              <button
+                type="submit"
+                className="enabled flex align-middle justify-center text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color disabled:bg-squazzle-button-bg-light-green-color disabled:text-squazzle-button-font-deep-green-color py-[15px] w-[280px]  lg:py-5 lg:w-[420px] text-sm lg:text-xl font-bold rounded-xl cursor-pointer mt-[46px]"
+                onClick={(e) => handleEnterPasswordResetCode(e)}
+                disabled={
+                  !digit1 || !digit2 || !digit3 || !digit4 || !digit5 || !digit6
+                }
+              >
+                {buttonIsLoading ? (
+                  <LoadingIcon className="suspense-loading-icon mr-3 lg:mt-1" />
+                ) : null}
+                Continue
+              </button>
+            </form>
+            <div className="flex justify-center">
+              <button
+                type="button"
+                className="enabled flex align-middle justify-center bg-white text-sm lg:text-xl font-bold py-0 text-squazzle-button-font-deep-green-color cursor-pointer mt-[44px] disabled:opacity-60"
+                onClick={(e) => handleEnterPasswordResetCode(e)}
+                disabled={
+                  !digit1 || !digit2 || !digit3 || !digit4 || !digit5 || !digit6
+                }
+              >
+                Resend code
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
     <div>
-      {displaySuccessOrError ? (
-        <SuccessAndErrorPage
-          heading={heading}
-          message={message}
-          buttonAction={buttonAction}
-          buttonText={buttonText}
+      {isErrorOnResetCode ? (
+        <ErrorPasswordResetCode
+          errorText={resetCodeErrorText}
+          setErrorToFalse={setErrorToFalse}
         />
       ) : (
-        <div className="bg-squazzle-background-white-color pt-[130px] pb-[600px] md:pb-[800px] lg:pb-80 max-[640px]:bg-white">
-          <div className="font-sans grid place-items-center h-full bg-squazzle-background-white-color max-[640px]:bg-white">
-            {alertPageNavigation()}
-            <div
-              className="grid place-items-center w-[610px] py-[22px] px-[4px] md:px-10 lg:px-10 box-border bg-white text-center"
-              style={{ width: "min(100vw, 609px)" }}
-            >
-              <h2 className="text-2xl lg:text-4xl font-bold text-squazzle-grey-text-color mb-7">
-                Password Reset
-              </h2>
-              <p className="font-normal text-smlg:text-lg  text-squazzle-text-deep-grey1-color">
-                Please enter the 6 - digit code sent to
-              </p>
-              <p className="font-normal text-sm lg:text-lg text-squazzle-button-bg-deep-green-color mb-[26px]">
-                {localStorage.getItem("email")}.
-              </p>
-              <form className="grid place-items-center">
-                <label htmlFor="6-digit-code">
-                  <div className="flex gap-2 lg:gap-4 ">
-                    <input
-                      type="text"
-                      id="digit-1"
-                      value={digit1}
-                      className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border text-squazzle-text-deep-grey1-color border-squazzle-border-grey-color caret-squazzle-border-grey-color text-center focus:outline-none"
-                      maxLength="1"
-                      onChange={(e) => handleChangeForDigit1(e)}
-                      onKeyDown={(e) => handleKeyDown(e)}
-                    />
-                    <input
-                      type="text"
-                      id="digit-2"
-                      value={digit2}
-                      className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none "
-                      maxLength="1"
-                      onChange={(e) => handleChangeForDigit2(e)}
-                      onKeyDown={(e) => handleKeyDown(e)}
-                    />
-                    <input
-                      type="text"
-                      id="digit-3"
-                      value={digit3}
-                      className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
-                      maxLength="1"
-                      onChange={(e) => handleChangeForDigit3(e)}
-                      onKeyDown={(e) => handleKeyDown(e)}
-                    />
-                    <input
-                      type="text"
-                      id="digit-4"
-                      value={digit4}
-                      className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
-                      maxLength="1"
-                      onChange={(e) => handleChangeForDigit4(e)}
-                      onKeyDown={(e) => handleKeyDown(e)}
-                    />
-                    <input
-                      type="text"
-                      id="digit-5"
-                      value={digit5}
-                      className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
-                      maxLength="1"
-                      onChange={(e) => handleChangeForDigit5(e)}
-                      onKeyDown={(e) => handleKeyDown(e)}
-                    />
-                    <input
-                      type="text"
-                      id="digit-6"
-                      value={digit6}
-                      className="w-[38px] h-[38px] lg:w-[60px] lg:h-[60px] text-sm lg:text-lg  font-[600] items-center border border-squazzle-border-grey-color text-squazzle-text-deep-grey1-color caret-squazzle-border-grey-color text-center focus:outline-none"
-                      maxLength="1"
-                      onChange={(e) => handleChangeForDigit6(e)}
-                      onKeyDown={(e) => handleKeyDown(e)}
-                    />
-                  </div>
-                </label>
-                <button
-                  type="submit"
-                  className="enabled flex align-middle justify-center text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color disabled:bg-squazzle-button-bg-light-green-color disabled:text-squazzle-button-font-deep-green-color py-[15px] w-[280px]  lg:py-5 lg:w-[420px] text-sm lg:text-xl font-bold rounded-xl cursor-pointer mt-[46px]"
-                  onClick={(e) => handleEnterPasswordResetCode(e)}
-                  disabled={
-                    !digit1 ||
-                    !digit2 ||
-                    !digit3 ||
-                    !digit4 ||
-                    !digit5 ||
-                    !digit6
-                  }
-                >
-                  {buttonIsLoading ? (
-                    <LoadingIcon className="suspense-loading-icon mr-3 lg:mt-1" />
-                  ) : null}
-                  Continue
-                </button>
-              </form>
-              <div className="flex justify-center">
-                <button
-                  type="button"
-                  className="enabled flex align-middle justify-center bg-white text-sm lg:text-xl font-bold py-0 text-squazzle-button-font-deep-green-color cursor-pointer mt-[44px] disabled:opacity-60"
-                  onClick={(e) => handleEnterPasswordResetCode(e)}
-                  disabled={
-                    !digit1 ||
-                    !digit2 ||
-                    !digit3 ||
-                    !digit4 ||
-                    !digit5 ||
-                    !digit6
-                  }
-                >
-                  Resend code
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <PasswordResetCodePage />
       )}
     </div>
   );
