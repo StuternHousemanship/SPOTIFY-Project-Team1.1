@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthRoutes } from "../../url";
 import DashboardNavs from "../../components/navigation/dashboardNavs";
@@ -11,9 +11,11 @@ import { ReactComponent as GreaterThanIcon } from "../../assets/svg/greaterthan-
 import { ReactComponent as NotificationIcon } from "../../assets/svg/notification-icon.svg";
 import { ReactComponent as PaymentIcon } from "../../assets/svg/payment-icon.svg";
 import { ReactComponent as EditIcon } from "../../assets/svg/edit-icon.svg";
+import DeleteAccountModal from "../../components/modal/deleteAccount";
 
 const profile = () => {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const ac = new AbortController();
@@ -23,9 +25,13 @@ const profile = () => {
     };
   }, []);
 
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
-      <div className="hidden sm:block">
+      <div className="hidden sm:block relative">
         <DashboardNavs />
         <div className="bg-[#ffff]">
           <div>
@@ -189,7 +195,9 @@ const profile = () => {
               <hr className="text-[#D7D7D7] mt-6" />
               <ul>
                 <li className="font-sans text-[18px] leading-[26px] font-[600] text-[#8D173A] mt-6">
-                  <button type="button"> Delete Account</button>
+                  <button type="button" onClick={() => setIsOpen(true)}>
+                    Delete Account
+                  </button>
                 </li>
               </ul>
               <p className="font-sans text-[15px] leading-[24px] font-[400]  justify-items-start ">
@@ -199,6 +207,7 @@ const profile = () => {
           </div>
           <Footer />
         </div>
+        {isOpen ? <DeleteAccountModal closeModal={closeModal} /> : ""}
       </div>
 
       {/* MOBILE SCREEN */}

@@ -1,21 +1,25 @@
 /* eslint-disable import/no-cycle */
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { AuthRoutes } from "../../url";
 import DashboardNavs from "../../components/navigation/dashboardNavs";
 import Footer from "../../components/footer/footer";
+import DeleteAccountModal from "../../components/modal/deleteAccount";
+import PasswordSettingsModal from "../../components/modal/changePassword";
 import { ReactComponent as UserIcon } from "../../assets/svg/profile-icon.svg";
 import { ReactComponent as PersonalDetailsIcon } from "../../assets/svg/dashboard-personalDetails-icon.svg";
-import { ReactComponent as PaymentIcon } from "../../assets/svg/dashboard-payment-icon.svg";
+// import { ReactComponent as PaymentIcon } from "../../assets/svg/dashboard-payment-icon.svg";
 import { ReactComponent as DeleteAccountIcon } from "../../assets/svg/dashboard-deleteAccount-icon.svg";
 import { ReactComponent as MyListingIcon } from "../../assets/svg/dashboard-myListing-icon.svg";
-import { ReactComponent as NotificationIcon } from "../../assets/svg/dashboard-notification-icon.svg";
+// import { ReactComponent as NotificationIcon } from "../../assets/svg/dashboard-notification-icon.svg";
 import { ReactComponent as PasswordSettingsIcon } from "../../assets/svg/dashboard-passwordSettings-icon.svg";
 
 const dashboardManageAccount = () => {
   const navigate = useNavigate();
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
 
   useEffect(() => {
     const ac = new AbortController();
@@ -24,6 +28,14 @@ const dashboardManageAccount = () => {
       ac.abort();
     };
   }, []);
+
+  const closeDeleteModal = () => {
+    setIsDeleteModalOpen(false);
+  };
+
+  const closePasswordModal = () => {
+    setIsPasswordModalOpen(false);
+  };
 
   return (
     <>
@@ -69,7 +81,7 @@ const dashboardManageAccount = () => {
                     My Listing{" "}
                   </h1>{" "}
                 </button>
-                <button
+                {/* <button
                   type="button"
                   style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
                   className="flex flex-col flex-1 w-full items-center justify-center gap-y-4 p-4 bg-squazzle-profileCard-background-white-color h-[144px] rounded-lg"
@@ -78,20 +90,21 @@ const dashboardManageAccount = () => {
                   <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
                     Notification{" "}
                   </h1>{" "}
-                </button>{" "}
+                </button> */}
               </div>
               <div className="flex flex-row flex-1 w-full gap-x-3">
                 <button
                   type="button"
                   style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
                   className="flex flex-col flex-1 w-full items-center justify-center gap-y-4 p-4 bg-squazzle-profileCard-background-white-color h-[144px] rounded-lg"
+                  onClick={() => setIsPasswordModalOpen(true)}
                 >
                   <PasswordSettingsIcon className="w-[24px] h-[24px]" />
                   <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
-                    Password Settings{" "}
-                  </h1>{" "}
+                    Password Settings
+                  </h1>
                 </button>
-                <button
+                {/* <button
                   type="button"
                   style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
                   className="flex flex-col flex-1 w-full items-center justify-center gap-y-4 p-4 bg-squazzle-profileCard-background-white-color h-[144px] rounded-lg"
@@ -100,15 +113,16 @@ const dashboardManageAccount = () => {
                   <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
                     Payments and Payout{" "}
                   </h1>{" "}
-                </button>
+                </button> */}
                 <button
                   type="button"
                   style={{ boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)" }}
                   className="flex flex-col flex-1 w-full items-center justify-center gap-y-4 p-4 bg-squazzle-profileCard-background-white-color h-[144px] rounded-lg"
+                  onClick={() => setIsDeleteModalOpen(true)}
                 >
                   <DeleteAccountIcon className="w-[24px] h-[24px]" />
                   <h1 className="font-semibold text-[14px] text-squazzle-text-deep-grey1-color text-center">
-                    Delete Account{" "}
+                    Delete Account
                   </h1>{" "}
                 </button>{" "}
               </div>{" "}
@@ -168,7 +182,7 @@ const dashboardManageAccount = () => {
                     <PasswordSettingsIcon className="w-[20px] h-[20px]" />
                     <h2 className="font-normal text-sm">
                       {" "}
-                      Privacy Settings{" "}
+                      Password Settings{" "}
                     </h2>{" "}
                   </div>{" "}
                   <FontAwesomeIcon
@@ -177,7 +191,7 @@ const dashboardManageAccount = () => {
                   />
                 </li>{" "}
               </button>{" "}
-              <button type="button">
+              {/* <button type="button">
                 <li className="flex flex-row items-center justify-between w-full">
                   <div className="flex flex-row gap-x-4">
                     <NotificationIcon className="w-[20px] h-[20px]" />
@@ -191,8 +205,8 @@ const dashboardManageAccount = () => {
                     className="font-normal text-sm"
                   />
                 </li>{" "}
-              </button>{" "}
-              <button type="button">
+              </button>{" "} */}
+              {/* <button type="button">
                 <li className="flex flex-row items-center justify-between w-full">
                   <div className="flex flex-row gap-x-4">
                     <PaymentIcon className="w-[20px] h-[20px]" />
@@ -206,13 +220,23 @@ const dashboardManageAccount = () => {
                     className="font-normal text-sm"
                   />
                 </li>{" "}
-              </button>{" "}
+              </button>{" "} */}
             </ul>{" "}
           </div>{" "}
         </section>{" "}
       </main>
 
       <Footer />
+      {isDeleteModalOpen ? (
+        <DeleteAccountModal closeDeleteModal={closeDeleteModal} />
+      ) : (
+        ""
+      )}
+      {isPasswordModalOpen ? (
+        <PasswordSettingsModal closePasswordModal={closePasswordModal} />
+      ) : (
+        ""
+      )}
     </>
   );
 };

@@ -12,6 +12,8 @@ import { ReactComponent as SquazzleDesktopLogo } from "../../assets/svg/squazzle
 import { ReactComponent as SquazzleMobileLogo } from "../../assets/svg/squazzle-mobile-logo.svg";
 import { ReactComponent as MobileReturnButton } from "../../assets/svg/return-button.svg";
 import { ReactComponent as LoadingIcon } from "../../assets/svg/loading-light-icon.svg";
+import { ReactComponent as CautionIcon } from "../../assets/svg/caution-icon.svg";
+import { ReactComponent as CloseModalIcon } from "../../assets/svg/green-close-modal-icon.svg";
 import onboarding from "../../api/onboarding";
 import { NonAuthRoutes } from "../../url";
 import backgroundimage from "../../assets/img/squazzle-background.png";
@@ -46,6 +48,7 @@ const signUp = () => {
   const [buttonIsLoading, setButtonIsLoading] = useState(false);
   const [isErrorOnSignUp, setIsErrorOnSignUp] = useState(false);
   const [signUpErrorText, setSignUpErrorText] = useState("");
+  const [isAccountDeleted, setIsAccountDeleted] = useState(false);
 
   useEffect(() => {
     const ac = new AbortController();
@@ -282,6 +285,24 @@ const signUp = () => {
             <SquazzleMobileLogo className="my-2 ml-5 md:ml-20 lg:ml-20" />
           </button>
         </nav>
+        {isAccountDeleted ? (
+          <div
+            style={{ justifyContent: "space-between" }}
+            className="flex items-center mb-8 py-4 px-[17.67px] bg-squazzle-button-bg-light-green-color border border-squazzle-button-bg-deep-green-color rounded"
+          >
+            <div className="flex items-center gap-[13.67px]">
+              <CautionIcon />
+              <p className=" text-xs lg:text-lg font-bold text-squazzle-button-bg-deep-green-color">
+                Your account has been deleted
+              </p>
+            </div>
+            <button type="button" onClick={() => setIsAccountDeleted(false)}>
+              <CloseModalIcon className="text-squazzle-button-bg-deep-green-color" />
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
         <h1 className="text-base lg:text-2xl font-[600] lg:font-bold text-squazzle-text-deep-green-color mb-2">
           Create a squazzle profile
         </h1>
