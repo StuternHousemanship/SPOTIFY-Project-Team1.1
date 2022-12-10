@@ -2,13 +2,18 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { NonAuthRoutes } from "../../url";
 import { ReactComponent as SquazzleDesktopGreenLogo } from "../../assets/svg/squazzle-desktop-green-logo.svg";
+import { ReactComponent as BarIcon } from "../../assets/svg/bar-icon.svg";
+// import { ReactComponent as CloseModalIcon } from "../../assets/svg/close-modal-icon.svg";
 
-const landingPageNav = () => {
+const landingPageNav = ({ openModal }) => {
   const navigate = useNavigate();
 
   return (
     <div>
-      <nav className="hidden md:flex flex-row items-center justify-between h-[96px] bg-squazzle-profileCard-background-white-color border-b border-squazzle-background-white-color px-10 fixed top-0 w-full z-10">
+      <nav
+        className="hidden md:flex flex-row items-center justify-between h-[96px] bg-squazzle-profileCard-background-white-color px-10 fixed top-0 w-full z-10"
+        style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
+      >
         <div className="">
           <button type="button" onClick={() => navigate(NonAuthRoutes.login)}>
             <SquazzleDesktopGreenLogo className="w-[181px] h-[30px] md:h-[44px]" />
@@ -23,7 +28,7 @@ const landingPageNav = () => {
             <button type="button">FAQ</button>
           </li>
         </ul>
-        <ul className="flex-[0.1] flex flex-row items-center">
+        <ul className="flex flex-row items-center">
           <li>
             <button
               type="button"
@@ -34,6 +39,39 @@ const landingPageNav = () => {
             </button>
           </li>
         </ul>
+      </nav>
+      <nav
+        className="md:hidden flex flex-row  items-center justify-between h-[76px] bg-squazzle-profileCard-background-white-color px-10 fixed top-0 w-full z-10"
+        style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
+      >
+        <div className="">
+          <button type="button" onClick={() => navigate(NonAuthRoutes.login)}>
+            <SquazzleDesktopGreenLogo className="w-[181px] h-[30px] md:h-[44px] ml-[-40px]" />
+          </button>
+        </div>
+        <button type="button" onClick={openModal}>
+          <BarIcon />
+        </button>
+        {/* <ul className="absolute bg-white flex flex-col gap-6 font-normal text-base max-[1030px]:text-sm text-squazzle-text-deep-grey2-color w-screen left-0 right-0 px-5 mt-[1030px] pb-[20px]">
+          <div className="flex justify-end mt-6">
+            <CloseModalIcon />
+          </div>
+          <li className="mt-6">
+            <button type="button">About us</button>
+          </li>
+          <li>
+            <button type="button">FAQ</button>
+          </li>
+          <li className="mb-[900px]">
+            <button
+              type="button"
+              className="text-white bg-[#002C2D] text-base font-normal py-[6px] px-[17px] rounded-[6px]"
+              onClick={() => navigate(NonAuthRoutes.login)}
+            >
+              Sign in
+            </button>
+          </li>
+        </ul> */}
       </nav>
     </div>
   );

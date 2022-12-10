@@ -84,7 +84,7 @@ const footer = () => {
       <div className="flex justify-center items-center px-6 md:px-24 h-[180px] border-t-[1px] border-t-[#D7D7D7]">
         <footer className="flex flex-col md:flex-row items-start md:items-center justify-between gap-y-3 w-full bg-squazzle-white-background-color">
           <div className="flex-[0.3]">
-            <SquazzleDesktopGreenLogo className="w-[181px] h-[44px] max-[1050px]:h-[33px] max-[1050px]:w-[171px]" />
+            <SquazzleDesktopGreenLogo className="w-[181px] h-[44px] max-[1050px]:h-[33px] max-[1050px]:w-[171px] ml-[-25px]" />
           </div>
           <ul className="flex flex-[0.4] max-[1050px]:flex-[0.5] flex-col md:flex-row items-start md:items-center justify-between gap-y-3 font-normal text-sm text-squazzle-text-deep-grey2-color">
             <li>
