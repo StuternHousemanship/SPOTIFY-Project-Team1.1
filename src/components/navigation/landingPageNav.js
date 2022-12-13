@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { NonAuthRoutes } from "../../url";
 import { ReactComponent as SquazzleDesktopGreenLogo } from "../../assets/svg/squazzle-desktop-green-logo.svg";
 import { ReactComponent as BarIcon } from "../../assets/svg/bar-icon.svg";
-// import { ReactComponent as CloseModalIcon } from "../../assets/svg/close-modal-icon.svg";
 
 const landingPageNav = ({ openModal }) => {
   const navigate = useNavigate();
@@ -52,26 +51,6 @@ const landingPageNav = ({ openModal }) => {
         <button type="button" onClick={openModal}>
           <BarIcon />
         </button>
-        {/* <ul className="absolute bg-white flex flex-col gap-6 font-normal text-base max-[1030px]:text-sm text-squazzle-text-deep-grey2-color w-screen left-0 right-0 px-5 mt-[1030px] pb-[20px]">
-          <div className="flex justify-end mt-6">
-            <CloseModalIcon />
-          </div>
-          <li className="mt-6">
-            <button type="button">About us</button>
-          </li>
-          <li>
-            <button type="button">FAQ</button>
-          </li>
-          <li className="mb-[900px]">
-            <button
-              type="button"
-              className="text-white bg-[#002C2D] text-base font-normal py-[6px] px-[17px] rounded-[6px]"
-              onClick={() => navigate(NonAuthRoutes.login)}
-            >
-              Sign in
-            </button>
-          </li>
-        </ul> */}
       </nav>
     </div>
   );
