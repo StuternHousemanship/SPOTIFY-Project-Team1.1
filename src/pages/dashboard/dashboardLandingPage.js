@@ -10,7 +10,7 @@ const dashboardLandingPage = () => {
 
   useEffect(() => {
     const ac = new AbortController();
-    document.title = "Landing Page - Squazzle";
+    document.title = "Dashboard Page - Squazzle";
     return function cleanup() {
       ac.abort();
     };
@@ -57,6 +57,7 @@ const dashboardLandingPage = () => {
               <button
                 type="button"
                 className="py-5 w-[320px] text-white border-2 border-white font-bold bg-transparent rounded-xl"
+                onClick={() => navigate(AuthRoutes.browseAcccommodation)}
               >
                 Browse accomodation
               </button>

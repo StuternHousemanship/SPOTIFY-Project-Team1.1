@@ -59,6 +59,10 @@ const EditAccommodation = React.lazy(() =>
   import("./pages/dashboard/editAccommodation")
 );
 
+const BrowseAccommodation = React.lazy(() =>
+  import("./pages/dashboard/browseAccommodation")
+);
+
 function Routers() {
   return (
     <div>
@@ -130,6 +134,10 @@ function Routers() {
           <Route
             path={AuthRoutes.editAccommodation}
             element={<EditAccommodation />}
+          />
+          <Route
+            path={AuthRoutes.browseAcccommodation}
+            element={<BrowseAccommodation />}
           />
         </Routes>
       </Suspense>
