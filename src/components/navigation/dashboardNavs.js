@@ -34,7 +34,7 @@ const dashboardNavs = () => {
     removeProfileCard();
   };
   const goToAccommodationDetails = () => {
-    navigate(AuthRoutes.dashboardAccommodationDetails);
+    navigate(AuthRoutes.browseAcccommodation);
     removeProfileCard();
   };
   const goToManageAccount = () => {

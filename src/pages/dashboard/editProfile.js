@@ -98,7 +98,7 @@ function editProfile() {
 
   return (
     <>
-      <div className="hidden sm:block">
+      <div className="hidden md:block">
         <DashboardNavs />
         <div className="bg-[#ffff]">
           <div>
@@ -318,7 +318,7 @@ function editProfile() {
           <Footer />
         </div>
       </div>
-      <div className="sm:hidden font-sans px-5">
+      <div className="md:hidden font-sans px-5">
         <DashboardNavs />
         <div>
           <UserIcon className="w-[45px] h-[45px]  mt-6  cursor-pointer" />

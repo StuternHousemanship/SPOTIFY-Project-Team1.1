@@ -31,7 +31,7 @@ const profile = () => {
 
   return (
     <>
-      <div className="hidden sm:block relative">
+      <div className="hidden md:block relative">
         <DashboardNavs />
         <div className="bg-[#ffff]">
           <div>
@@ -211,7 +211,7 @@ const profile = () => {
       </div>
 
       {/* MOBILE SCREEN */}
-      <div className="sm:hidden font-sans px-5">
+      <div className="md:hidden font-sans px-5">
         <DashboardNavs />
         <div>
           <UserIcon className="w-[45px] h-[45px]  mt-6  cursor-pointer" />
