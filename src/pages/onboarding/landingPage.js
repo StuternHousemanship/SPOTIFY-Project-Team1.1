@@ -247,7 +247,7 @@ function App() {
                     type="button"
                     className="bg-squazzle-button-bg-deep-green-color text-squazzle-profileCard-background-white-color font-bold text-xl mx-auto w-full max-w-[154px] py-[16px] rounded-xl"
                   >
-                    Learn more
+                    Learn more 
                   </button>
                 </div>
               </div>
