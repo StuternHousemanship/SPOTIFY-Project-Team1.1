@@ -40,7 +40,7 @@ const landingPageNav = ({ openModal }) => {
         </ul>
       </nav>
       <nav
-        className="md:hidden flex flex-row  items-center justify-between h-[76px] bg-squazzle-profileCard-background-white-color px-10 fixed top-0 w-full z-10"
+        className="md:hidden flex flex-row items-center justify-between h-[76px] bg-squazzle-profileCard-background-white-color px-10 fixed top-0 w-full z-10"
         style={{ boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.06)" }}
       >
         <div className="">
