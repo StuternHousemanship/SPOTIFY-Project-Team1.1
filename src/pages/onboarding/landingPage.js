@@ -34,7 +34,7 @@ function App() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative font-sans">
       <LandingPageNav openModal={openModal} />
       <div className="hidden md:flex flex-col gap-y-20">
         <div
@@ -119,7 +119,7 @@ function App() {
       {/* MOBILE VIEW */}
       <div className="flex justify-center md:hidden mt-[141px] font-sans">
         <main className="">
-          <div className="flex flex-col items-start px-5">
+          <div className="flex flex-col items-center px-5">
             <h1 className="text-[36px] font-bold leading-[45px] max-w-[349px]">
               The easiest way to find the property of your choice
             </h1>
@@ -183,10 +183,10 @@ function App() {
           <section className="flex items-center justify-center min-h-screen ">
             <div className="flex flex-col items-center gap-5 px-5 py-8 w-[350px]">
               <div className="flex flex-col">
-                <h1 className="font-bold text-[32px] text-squazzle-text-black-color">
+                <h1 className="font-bold text-[32px] text-squazzle-text-black-color leading-[42px]">
                   The most trusted Real Estate website
                 </h1>
-                <p className="font-normal text- text-squazzle-terms-policy-grey-color">
+                <p className="font-normal text- text-squazzle-terms-policy-grey-color mt-5">
                   We ensure that what you see is what you get. Our displayed
                   property have been reviewed and verified
                 </p>
@@ -246,6 +246,7 @@ function App() {
                   <button
                     type="button"
                     className="bg-squazzle-button-bg-deep-green-color text-squazzle-profileCard-background-white-color font-bold text-xl mx-auto w-full max-w-[154px] py-[16px] rounded-xl"
+                    onClick={() => navigate(NonAuthRoutes.signUp)}
                   >
                     Learn more
                   </button>
