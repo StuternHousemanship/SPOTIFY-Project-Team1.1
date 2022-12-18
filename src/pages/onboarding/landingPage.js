@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { NonAuthRoutes } from "../../url";
 import { ReactComponent as ExploreNow } from "../../assets/svg/explore-now-icon.svg";
 import Footer from "../../components/footer/footer";
@@ -9,7 +11,12 @@ import landingPagePhoto2 from "../../assets/img/landing-page-photo2.png";
 import landingPagePhoto3 from "../../assets/img/landing-page-photo3.png";
 import landingPagePhoto4 from "../../assets/img/landing-page-photo4.png";
 import landingPagePhoto5 from "../../assets/img/landing-page-photo5.png";
+import landingPagePhoto6 from "../../assets/img/landing-page-photo6.png";
 import landingPageIcon1 from "../../assets/svg/landing-page-icon1.svg";
+import landingPageIcon2 from "../../assets/svg/landing-page-icon2.svg";
+import landingPageIcon3 from "../../assets/svg/landing-page-icon3.svg";
+import landingPageIcon4 from "../../assets/svg/landing-page-icon4.svg";
+import landingPageIcon5 from "../../assets/svg/landing-page-icon5.svg";
 
 import { ReactComponent as CloseModalIcon } from "../../assets/svg/close-modal-icon.svg";
 import "../../App.css";
@@ -114,6 +121,81 @@ function App() {
             </div>
           </div>
         </section>
+
+        <section className="flex flex-row items-center justify-between gap-x-6 w-full px-[60px] min-[1280px]:px-[80px] max-[908px]:px-[40px]">
+          <div className="flex flex-col w-full max-w-[600px] gap-y-6 flex-1">
+            <h1 className="font-bold text-[40px] text-squazzle-text-black-color leading-[42px]">
+              The most trusted Real Estate website
+            </h1>
+            <p className="font-normal text-[20px] text-squazzle-terms-policy-grey-color">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              vulputate libero et velit interdum, ac aliquet odio mattis.Lorem
+              ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate
+              libero et velit interdum, ac aliquet odio mattis.
+            </p>
+            <button
+              type="button"
+              onClick={() => navigate(NonAuthRoutes.signUp)}
+              className="bg-squazzle-button-bg-deep-green-color text-squazzle-profileCard-background-white-color font-bold text-xl w-full max-w-[178px] py-[16px] rounded-xl"
+            >
+              Explore Now
+            </button>
+          </div>
+          <div className="flex-1 flex flex-row gap-x-6">
+            <img
+              src={landingPagePhoto6}
+              alt="a nice apartment"
+              className="self-end h-[400px] flex-[0.05]"
+            />
+            <div
+              style={{
+                backgroundImage: `url(${landingPagePhoto3})`,
+                backgroundSize: "cover",
+                height: "571px",
+                width: "100%",
+                position: "relative",
+                flex: "1",
+              }}
+            >
+              <img
+                src={landingPageIcon1}
+                alt="testimonies"
+                className="absolute bottom-[20px] right-[-70px] max-[1115px]:right-[-60px] max-[940px]:right-[-40px] h-[78px]"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="flex flex-row h-[488px] px-[60px] min-[1280px]:px-[80px] max-[908px]:px-[40px]">
+          <div
+            className="rounded-tl-[8px] rounded-bl-[8px]"
+            style={{
+              backgroundImage: `url(${landingPagePhoto5})`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              height: "100%",
+              flex: "1",
+            }}
+          />
+          <div className="flex-1 flex items-center justify-center rounded-tr-[8px] rounded-br-[8px] bg-squazzle-text-deep-green-color px-10 py-5">
+            <div className="flex flex-col justify-start gap-4 text-squazzle-profileCard-background-white-color">
+              <h1 className="font-bold text-[40px]">
+                List your properties with us
+              </h1>
+              <p className="text-[20px] font-normal">
+                Space sharing earns you extra income and opens up new
+                opportunities
+              </p>
+              <button
+                type="button"
+                className="bg-squazzle-button-bg-deep-green-color text-squazzle-profileCard-background-white-color font-bold text-xl w-full max-w-[154px] py-[16px] rounded-xl"
+                onClick={() => navigate(NonAuthRoutes.signUp)}
+              >
+                Learn more
+              </button>
+            </div>
+          </div>
+        </section>
       </div>
 
       {/* MOBILE VIEW */}
@@ -186,7 +268,7 @@ function App() {
                 <h1 className="font-bold text-[32px] text-squazzle-text-black-color leading-[42px]">
                   The most trusted Real Estate website
                 </h1>
-                <p className="font-normal text- text-squazzle-terms-policy-grey-color mt-5">
+                <p className="font-normal text-base text-squazzle-terms-policy-grey-color mt-5">
                   We ensure that what you see is what you get. Our displayed
                   property have been reviewed and verified
                 </p>
@@ -222,7 +304,7 @@ function App() {
             </div>
           </section>
 
-          <section className="flex items-center justify-center min-h-screen px-5 w-full">
+          <section className="flex items-center justify-center min-h-[640px] px-5 w-full">
             <div className="flex flex-col w-full">
               <div
                 className="rounded-tl-[20px] rounded-tr-[20px]"
@@ -250,6 +332,123 @@ function App() {
                   >
                     Learn more
                   </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="flex items-center justify-center min-h-screen px-5 w-full">
+            <div className="flex flex-col gap-y-8 h-[1208px] w-full max-w-[361px]">
+              <div className="flex flex-col text-center w-full">
+                <h1 className="font-bold text-[28px] text-squazzle-text-black-color">
+                  Word from our customers
+                </h1>
+                <p className="font-normal text-base text-squazzle-terms-policy-grey-color mx-auto w-[334px]">
+                  Our users have plenty to say about our success with Squazzle!
+                </p>
+              </div>
+              <div className="flex flex-col gap-y-6">
+                <div
+                  style={{ boxShadow: "2px 2px 4px 2px rgba(0, 0, 0, 0.1)" }}
+                  className="flex flex-col justify-between bg-squazzle-profileCard-background-white-color h-[318px] w-full py-3 rounded-[4px]"
+                >
+                  <p className="font-normal text-base text-squazzle-text-deep-grey1-color mx-auto w-full max-w-[305px]">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nunc vulputate libero et velit interdum, ac aliquet odio
+                    mattis. Class aptent taciti sociosqu ad litora torquent per
+                    conubia nostra, per incept
+                  </p>
+                  <div className="flex flex-col gap-y-8">
+                    <div className="flex items-center justify-between w-full max-w-[282px] h-[34px] mx-auto">
+                      <h2>
+                        Julia
+                        <FontAwesomeIcon
+                          icon={faTwitter}
+                          className="text-squazzle-landingPage-twitter-blue-color align-middle ml-2"
+                        />
+                      </h2>
+                      <img
+                        src={landingPageIcon3}
+                        alt="avatar"
+                        className="w-[34px] h-[34px] self-end"
+                      />
+                    </div>
+                    <div className="w-full max-w-[282px] mx-auto">
+                      <img
+                        src={landingPageIcon2}
+                        alt="rating"
+                        className="w-[92px] h-[20px]"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  style={{ boxShadow: "2px 2px 4px 2px rgba(0, 0, 0, 0.1)" }}
+                  className="flex flex-col justify-between bg-squazzle-profileCard-background-white-color h-[318px] w-full py-3 rounded-[4px]"
+                >
+                  <p className="font-normal text-base text-squazzle-text-deep-grey1-color mx-auto w-full max-w-[305px]">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nunc vulputate libero et velit interdum, ac aliquet odio
+                    mattis. Class aptent taciti sociosqu ad litora torquent per
+                    conubia nostra, per incept
+                  </p>
+                  <div className="flex flex-col gap-y-8">
+                    <div className="flex items-center justify-between w-full max-w-[282px] h-[34px] mx-auto">
+                      <h2>
+                        Max
+                        <FontAwesomeIcon
+                          icon={faTwitter}
+                          className="text-squazzle-landingPage-twitter-blue-color align-middle ml-2"
+                        />
+                      </h2>
+                      <img
+                        src={landingPageIcon4}
+                        alt="avatar"
+                        className="w-[34px] h-[34px] self-end"
+                      />
+                    </div>
+                    <div className="w-full max-w-[282px] mx-auto">
+                      <img
+                        src={landingPageIcon2}
+                        alt="rating"
+                        className="w-[92px] h-[20px]"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  style={{ boxShadow: "2px 2px 4px 2px rgba(0, 0, 0, 0.1)" }}
+                  className="flex flex-col justify-between bg-squazzle-profileCard-background-white-color h-[318px] w-full py-3 rounded-[4px]"
+                >
+                  <p className="font-normal text-base text-squazzle-text-deep-grey1-color mx-auto w-full max-w-[305px]">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nunc vulputate libero et velit interdum, ac aliquet odio
+                    mattis. Class aptent taciti sociosqu ad litora torquent per
+                    conubia nostra, per incept
+                  </p>
+                  <div className="flex flex-col gap-y-8">
+                    <div className="flex items-center justify-between w-full max-w-[282px] h-[34px] mx-auto">
+                      <h2>
+                        Mike
+                        <FontAwesomeIcon
+                          icon={faTwitter}
+                          className="text-squazzle-landingPage-twitter-blue-color align-middle ml-2"
+                        />
+                      </h2>
+                      <img
+                        src={landingPageIcon5}
+                        alt="avatar"
+                        className="w-[34px] h-[34px] self-end"
+                      />
+                    </div>
+                    <div className="w-full max-w-[282px] mx-auto">
+                      <img
+                        src={landingPageIcon2}
+                        alt="rating"
+                        className="w-[92px] h-[20px]"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

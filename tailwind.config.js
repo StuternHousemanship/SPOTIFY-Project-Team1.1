@@ -35,6 +35,7 @@ module.exports = {
         "squazzle-password-light-grey-color": "#787878",
         "squazzle-landingPage-bar-orange-color": "#DB5E28",
         "squazzle-landingPage-bar-black-color": "#002C2D",
+        "squazzle-landingPage-twitter-blue-color": "#1DA1F2",
       },
       fontFamily: {
         sans: ['"Open Sans"', "sans-serif"],
