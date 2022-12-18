@@ -14,6 +14,8 @@ import landingPagePhoto5 from "../../assets/img/landing-page-photo5.png";
 import landingPagePhoto6 from "../../assets/img/landing-page-photo6.png";
 import landingPageIcon1 from "../../assets/svg/landing-page-icon1.svg";
 import landingPageIcon2 from "../../assets/svg/landing-page-icon2.svg";
+import landingPageIcon2Max from "../../assets/svg/landing-page-icon2Max.svg";
+import landingPageIcon2Mike from "../../assets/svg/landing-page-icon2Mike.svg";
 import landingPageIcon3 from "../../assets/svg/landing-page-icon3.svg";
 import landingPageIcon4 from "../../assets/svg/landing-page-icon4.svg";
 import landingPageIcon5 from "../../assets/svg/landing-page-icon5.svg";
@@ -88,7 +90,7 @@ function App() {
                 alt="a nice home"
                 className="h-[507px] w-[385px] mx-auto relative z-[1]"
               />
-              <div className="flex flex-col gap-8 absolute left-[-100px] top-[40%] max-[1030px]:top-[20%]">
+              <div className="flex flex-col gap-8 absolute left-[-100px] top-[40%] max-[1030px]:top-[25%]">
                 <div className="bg-squazzle-landingPage-bar-orange-color h-[42px] w-[400px] max-lg:w-[250px] -rotate-[40deg]" />
                 <div className="bg-squazzle-landingPage-bar-black-color h-[42px] w-[400px] max-lg:w-[250px] -rotate-[40deg]" />
               </div>
@@ -196,6 +198,121 @@ function App() {
             </div>
           </div>
         </section>
+
+        <section className="flex flex-col justify-around w-full max-w-[890px] h-[490px] mx-auto px-4">
+          <div className="flex flex-col items-center justify-center text-center">
+            <h1 className="font-bold text-[32px] text-squazzle-text-black-color">
+              Word from our customers
+            </h1>
+            <p className="font-normal text-[20px] text-squazzle-terms-policy-grey-color">
+              Our users have plenty to say about our success with Squazzle!
+            </p>
+          </div>
+          <div className="flex flex-row gap-x-6">
+            <div
+              style={{ boxShadow: "2px 2px 4px 2px rgba(0, 0, 0, 0.1)" }}
+              className="flex flex-col justify-between bg-squazzle-profileCard-background-white-color h-[318px] w-full p-4 rounded-[4px]"
+            >
+              <p className="font-normal text-base text-squazzle-text-deep-grey1-color mx-auto w-full max-w-[305px]">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra, per incept
+              </p>
+              <div className="flex flex-col gap-y-5">
+                <div className="flex items-center justify-between w-full max-w-[282px] h-[34px] mx-auto">
+                  <h2>
+                    Julia
+                    <FontAwesomeIcon
+                      icon={faTwitter}
+                      className="text-squazzle-landingPage-twitter-blue-color align-middle ml-2"
+                    />
+                  </h2>
+                  <img
+                    src={landingPageIcon3}
+                    alt="avatar"
+                    className="w-[34px] h-[34px] self-end"
+                  />
+                </div>
+                <div className="w-full max-w-[282px] mx-auto">
+                  <img
+                    src={landingPageIcon2}
+                    alt="rating"
+                    className="w-[92px] h-[20px]"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              style={{ boxShadow: "2px 2px 4px 2px rgba(0, 0, 0, 0.1)" }}
+              className="flex flex-col justify-between bg-squazzle-profileCard-background-white-color h-[318px] w-full p-4 rounded-[4px]"
+            >
+              <p className="font-normal text-base text-squazzle-text-deep-grey1-color mx-auto w-full max-w-[305px]">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra, per incept
+              </p>
+              <div className="flex flex-col gap-y-5">
+                <div className="flex items-center justify-between w-full max-w-[282px] h-[34px] mx-auto">
+                  <h2>
+                    Max
+                    <FontAwesomeIcon
+                      icon={faTwitter}
+                      className="text-squazzle-landingPage-twitter-blue-color align-middle ml-2"
+                    />
+                  </h2>
+                  <img
+                    src={landingPageIcon4}
+                    alt="avatar"
+                    className="w-[34px] h-[34px] self-end"
+                  />
+                </div>
+                <div className="w-full max-w-[282px] mx-auto">
+                  <img
+                    src={landingPageIcon2Max}
+                    alt="rating"
+                    className="w-[92px] h-[20px]"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              style={{ boxShadow: "2px 2px 4px 2px rgba(0, 0, 0, 0.1)" }}
+              className="flex flex-col justify-between bg-squazzle-profileCard-background-white-color h-[318px] w-full p-4 rounded-[4px]"
+            >
+              <p className="font-normal text-base text-squazzle-text-deep-grey1-color mx-auto w-full max-w-[305px]">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra, per incept
+              </p>
+              <div className="flex flex-col gap-y-5">
+                <div className="flex items-center justify-between w-full max-w-[282px] h-[34px] mx-auto">
+                  <h2>
+                    Mike
+                    <FontAwesomeIcon
+                      icon={faTwitter}
+                      className="text-squazzle-landingPage-twitter-blue-color align-middle ml-2"
+                    />
+                  </h2>
+                  <img
+                    src={landingPageIcon5}
+                    alt="avatar"
+                    className="w-[34px] h-[34px] self-end"
+                  />
+                </div>
+                <div className="w-full max-w-[282px] mx-auto">
+                  <img
+                    src={landingPageIcon2Mike}
+                    alt="rating"
+                    className="w-[92px] h-[20px]"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
 
       {/* MOBILE VIEW */}
@@ -262,7 +379,7 @@ function App() {
             </div>
           </section>
 
-          <section className="flex items-center justify-center min-h-screen ">
+          <section className="flex items-center justify-center min-h-screen">
             <div className="flex flex-col items-center gap-5 px-5 py-8 w-[350px]">
               <div className="flex flex-col">
                 <h1 className="font-bold text-[32px] text-squazzle-text-black-color leading-[42px]">
@@ -409,7 +526,7 @@ function App() {
                     </div>
                     <div className="w-full max-w-[282px] mx-auto">
                       <img
-                        src={landingPageIcon2}
+                        src={landingPageIcon2Max}
                         alt="rating"
                         className="w-[92px] h-[20px]"
                       />
@@ -443,7 +560,7 @@ function App() {
                     </div>
                     <div className="w-full max-w-[282px] mx-auto">
                       <img
-                        src={landingPageIcon2}
+                        src={landingPageIcon2Mike}
                         alt="rating"
                         className="w-[92px] h-[20px]"
                       />
