@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthRoutes } from "../../url";
@@ -154,7 +155,7 @@ const addNewListing = () => {
           <p>Overview</p>
         </div>
       </div>
-      {activeTab === "tab1" ? (
+      {/* {activeTab === "tab1" ? (
         <Overview1 handleSaveAndContinue={handleSaveAndContinueToTab2} />
       ) : (
         ""
@@ -179,7 +180,23 @@ const addNewListing = () => {
         <UploadImages handleBackToTab3={handleBackToTab3} />
       ) : (
         ""
-      )}
+      )} */}
+      {activeTab === "tab1" ? (
+        <Overview1 handleSaveAndContinue={handleSaveAndContinueToTab2} />
+      ) : activeTab === "tab2" ? (
+        <Overview2
+          handleSaveAndContinue={handleSaveAndContinueToTab3}
+          handleBackToTab1={handleBackToTab1}
+        />
+      ) : activeTab === "tab3" ? (
+        <Description
+          handleSaveAndContinue={handleSaveAndContinueToTab4}
+          handleBackToTab2={handleBackToTab2}
+        />
+      ) : activeTab === "tab4" ? (
+        <UploadImages handleBackToTab3={handleBackToTab3} />
+      ) : null}
+
       <Footer />
     </>
   );

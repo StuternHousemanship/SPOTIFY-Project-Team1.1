@@ -86,7 +86,7 @@ const login = () => {
     setButtonIsLoading(true);
     try {
       const response = await onboarding.Login(email, password);
-      if (response.status === 200) {
+      if (response.status === 202) {
         const accessToken = response.access_token;
         const refreshToken = response.refresh_token;
         Cookies.set("accessToken", accessToken);

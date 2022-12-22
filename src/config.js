@@ -9,7 +9,8 @@ import TokenValidate from "./tokenvalidate";
 // const apiUrl = "https://squazzle.beargaze.com/";
 
 /** Base Url for Images STAGING */
-const apiUrl = "https://squazzle.beargaze.com/api";
+// const apiUrl = "https://squazzle.beargaze.com/api";
+const apiUrl = "https://squazzle.up.railway.app/api/v1";
 
 /** creating an Axios Base Url for all Onboarding Request */
 const squazzleOnboarding = axios.create({

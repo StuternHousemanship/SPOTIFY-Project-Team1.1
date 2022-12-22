@@ -45,7 +45,7 @@ const browseAccommodation = () => {
                       className="py-5 px-12 max-[1098px]:py-4 max-[1098px]:px-11 bg-white placeholder:text-squazzle-password-light-grey-color text-squazzle-text-deep-grey2-color text-lg max-[1098px]:text-base font-normal border border-squazzle-border-grey-color rounded-lg focus:outline-none"
                     />
                   </label>
-                  <label htmlFor="search">
+                  <label htmlFor="check-in-check-out">
                     <input
                       type="text"
                       placeholder="Check in - Checkout"
@@ -74,7 +74,7 @@ const browseAccommodation = () => {
             </div>
           </section>
         </main>
-        <section className="py-16 px-20 grid grid-cols-4 gap-[44px] max-[1098px]:py-12 max-[1098px]:px-[40px]">
+        <section className="py-16 px-20 grid grid-cols-4  max-[966px]:grid-cols-3 gap-[44px] max-[1098px]:py-12 max-[1098px]:px-[40px]">
           <section
             className="p-4"
             style={{ boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.1)" }}
@@ -342,7 +342,7 @@ const browseAccommodation = () => {
             </div>
           </section>
         </main>
-        <section className="py-8 px-5 flex flex-col gap-8 items-center">
+        <section className="py-8 px-5 max-[678px]:flex max-[678px]:flex-col grid grid-cols-2 gap-8 items-center">
           <section
             className="p-4"
             style={{ boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.1)" }}
