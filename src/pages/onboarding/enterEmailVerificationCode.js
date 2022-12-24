@@ -114,9 +114,11 @@ const enterEmailVerificationCode = () => {
     e.preventDefault();
     setButtonIsLoading(true);
 
+    const verificationEmail = localStorage.getItem("email");
     const emailVerificationCode = `${digit1}${digit2}${digit3}${digit4}${digit5}${digit6}`;
     try {
       const response = await onboarding.EnterEmailVerificationCode(
+        verificationEmail,
         emailVerificationCode
       );
 
