@@ -15,7 +15,7 @@ import DeleteAccountModal from "../../components/modal/deleteAccount";
 
 const profile = () => {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   useEffect(() => {
     const ac = new AbortController();
@@ -25,8 +25,8 @@ const profile = () => {
     };
   }, []);
 
-  const closeModal = () => {
-    setIsOpen(false);
+  const closeDeleteModal = () => {
+    setIsDeleteModalOpen(false);
   };
 
   return (
@@ -195,7 +195,10 @@ const profile = () => {
               <hr className="text-[#D7D7D7] mt-6" />
               <ul>
                 <li className="font-sans text-[18px] leading-[26px] font-[600] text-[#8D173A] mt-6">
-                  <button type="button" onClick={() => setIsOpen(true)}>
+                  <button
+                    type="button"
+                    onClick={() => setIsDeleteModalOpen(true)}
+                  >
                     Delete Account
                   </button>
                 </li>
@@ -207,7 +210,11 @@ const profile = () => {
           </div>
           <Footer />
         </div>
-        {isOpen ? <DeleteAccountModal closeModal={closeModal} /> : ""}
+        {isDeleteModalOpen ? (
+          <DeleteAccountModal closeDeleteModal={closeDeleteModal} />
+        ) : (
+          ""
+        )}
       </div>
 
       {/* MOBILE SCREEN */}

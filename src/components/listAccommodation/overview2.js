@@ -1,6 +1,17 @@
 import React from "react";
 
-const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
+const overview2 = ({
+  handleSaveAndContinue,
+  handleBackToTab1,
+  availability,
+  accommodationPrice,
+  startDate,
+  endDate,
+  handleSetAvailability,
+  handleSetAccommodationPrice,
+  handleSetStartDate,
+  handleSetEndDate,
+}) => {
   return (
     <>
       <div className="hidden md:block">
@@ -22,6 +33,11 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                           type="radio"
                           id="available"
                           name="availability"
+                          value="Available"
+                          checked={availability === "Available"}
+                          onChange={(e) =>
+                            handleSetAvailability(e.target.value)
+                          }
                           className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                         />
                         <span className="text-squazzle-text-deep-grey1-color">
@@ -33,6 +49,11 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                           type="radio"
                           id="not-available"
                           name="availability"
+                          value="Not Available"
+                          checked={availability === "Not Available"}
+                          onChange={(e) =>
+                            handleSetAvailability(e.target.value)
+                          }
                           className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                         />
                         <span className="text-squazzle-text-deep-grey1-color">
@@ -51,6 +72,10 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                       type="text"
                       id="price"
                       placeholder="0.00NGN"
+                      value={accommodationPrice}
+                      onChange={(e) =>
+                        handleSetAccommodationPrice(e.target.value)
+                      }
                       className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-[694px] border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
                     />
                   </label>
@@ -67,6 +92,8 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                       type="date"
                       id="start-date"
                       placeholder="DD/MM/YY"
+                      value={startDate}
+                      onChange={(e) => handleSetStartDate(e.target.value)}
                       className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] mb-3 rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
                     />
                   </label>
@@ -78,6 +105,8 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                       type="date"
                       id="end-date"
                       placeholder="DD/MM/YY"
+                      value={endDate}
+                      onChange={(e) => handleSetEndDate(e.target.value)}
                       className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
                     />
                   </label>
@@ -120,6 +149,9 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                     type="radio"
                     id="available"
                     name="availability"
+                    value="Available"
+                    checked={availability === "Available"}
+                    onChange={(e) => handleSetAvailability(e.target.value)}
                     className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                   />
                   <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -131,6 +163,9 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                     type="radio"
                     id="not-available"
                     name="availability"
+                    value="Not Available"
+                    checked={availability === "Not Available"}
+                    onChange={(e) => handleSetAvailability(e.target.value)}
                     className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                   />
                   <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -149,6 +184,8 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                 type="text"
                 id="price"
                 placeholder="0.00NGN"
+                value={accommodationPrice}
+                onChange={(e) => handleSetAccommodationPrice(e.target.value)}
                 className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-[15px] px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
               />
             </label>
@@ -165,6 +202,8 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                 type="date"
                 id="start-date"
                 placeholder="DD/MM/YY"
+                value={startDate}
+                onChange={(e) => handleSetStartDate(e.target.value)}
                 className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-[15px] px-4 w-full border border-squazzle-border-grey-color mt-[6px] mb-3 rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
               />
             </label>
@@ -176,6 +215,8 @@ const overview2 = ({ handleSaveAndContinue, handleBackToTab1 }) => {
                 type="date"
                 id="end-date"
                 placeholder="DD/MM/YY"
+                value={endDate}
+                onChange={(e) => handleSetEndDate(e.target.value)}
                 className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-[15px] px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
               />
             </label>

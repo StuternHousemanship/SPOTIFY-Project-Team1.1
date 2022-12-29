@@ -2,7 +2,14 @@
 import React, { useState } from "react";
 import { ReactComponent as AddNewListingIcon } from "../../assets/svg/add-new-listing-icon.svg";
 
-const description = ({ handleSaveAndContinue, handleBackToTab2 }) => {
+const description = ({
+  handleSaveAndContinue,
+  handleBackToTab2,
+  accommodationDescription,
+  listingReason,
+  handleSetAccommodationDescription,
+  handleSetListingReason,
+}) => {
   const [rulesFields, setRulesFields] = useState([
     { name: "", description: "" },
   ]);
@@ -40,6 +47,10 @@ const description = ({ handleSaveAndContinue, handleBackToTab2 }) => {
                       id="about-this-accommodation"
                       rows="7"
                       placeholder="A brief description of the accommodation"
+                      value={accommodationDescription}
+                      onChange={(e) =>
+                        handleSetAccommodationDescription(e.target.value)
+                      }
                       className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
                     >
                       {}
@@ -56,6 +67,8 @@ const description = ({ handleSaveAndContinue, handleBackToTab2 }) => {
                       id="reason-for-listing"
                       rows="4"
                       placeholder="Why are you listing this accommodation?"
+                      value={listingReason}
+                      onChange={(e) => handleSetListingReason(e.target.value)}
                       className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
                     >
                       {}

@@ -2,7 +2,19 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthRoutes } from "../../url";
 
-const overview1 = ({ handleSaveAndContinue }) => {
+const overview1 = ({
+  handleSaveAndContinue,
+  accommodationName,
+  accommodationType,
+  accommodationAddress,
+  accommodationCity,
+  accommodationState,
+  handleSetAccommodationName,
+  handleSetAccommodationType,
+  handleSetAccommodationAddress,
+  handleSetAccommodationCity,
+  handleSetAccommodationState,
+}) => {
   const navigate = useNavigate();
   return (
     <>
@@ -20,6 +32,10 @@ const overview1 = ({ handleSaveAndContinue }) => {
                       type="text"
                       id="accommodation-name"
                       placeholder="Name"
+                      value={accommodationName}
+                      onChange={(e) =>
+                        handleSetAccommodationName(e.target.value)
+                      }
                       className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
                     />
                   </label>
@@ -39,6 +55,11 @@ const overview1 = ({ handleSaveAndContinue }) => {
                             type="radio"
                             id="duplex"
                             name="accommodation-type"
+                            value="Duplex"
+                            checked={accommodationType === "Duplex"}
+                            onChange={(e) =>
+                              handleSetAccommodationType(e.target.value)
+                            }
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -50,7 +71,12 @@ const overview1 = ({ handleSaveAndContinue }) => {
                             type="radio"
                             id="bungalow"
                             name="accommodation-type"
+                            value="Bungalow"
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
+                            checked={accommodationType === "Bungalow"}
+                            onChange={(e) =>
+                              handleSetAccommodationType(e.target.value)
+                            }
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
                             Bungalow
@@ -61,6 +87,11 @@ const overview1 = ({ handleSaveAndContinue }) => {
                             type="radio"
                             id="mansion"
                             name="accommodation-type"
+                            value="Mansion"
+                            checked={accommodationType === "Mansion"}
+                            onChange={(e) =>
+                              handleSetAccommodationType(e.target.value)
+                            }
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -74,6 +105,11 @@ const overview1 = ({ handleSaveAndContinue }) => {
                             type="radio"
                             id="apartment"
                             name="accommodation-type"
+                            value="Apartment"
+                            checked={accommodationType === "Apartment"}
+                            onChange={(e) =>
+                              handleSetAccommodationType(e.target.value)
+                            }
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -85,6 +121,11 @@ const overview1 = ({ handleSaveAndContinue }) => {
                             type="radio"
                             id="flat"
                             name="accommodation-type"
+                            value="Flat"
+                            checked={accommodationType === "Flat"}
+                            onChange={(e) =>
+                              handleSetAccommodationType(e.target.value)
+                            }
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -98,6 +139,11 @@ const overview1 = ({ handleSaveAndContinue }) => {
                             type="radio"
                             id="single-room"
                             name="accommodation-type"
+                            value="Single-Room"
+                            checked={accommodationType === "Single-Room"}
+                            onChange={(e) =>
+                              handleSetAccommodationType(e.target.value)
+                            }
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -109,6 +155,11 @@ const overview1 = ({ handleSaveAndContinue }) => {
                             type="radio"
                             id="studio"
                             name="accommodation-type"
+                            value="Studio"
+                            checked={accommodationType === "Studio"}
+                            onChange={(e) =>
+                              handleSetAccommodationType(e.target.value)
+                            }
                             className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                           />
                           <span className="text-squazzle-text-deep-grey1-color">
@@ -129,23 +180,16 @@ const overview1 = ({ handleSaveAndContinue }) => {
                       id="location"
                       rows="5"
                       placeholder="Location address"
+                      value={accommodationAddress}
+                      onChange={(e) =>
+                        handleSetAccommodationAddress(e.target.value)
+                      }
                       className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
                     >
                       {}
                     </textarea>
                   </label>
                   <div className="flex gap-6 mt-10">
-                    <label htmlFor="State">
-                      <span className="block font-normal text-[28px]">
-                        State
-                      </span>
-                      <input
-                        type="text"
-                        id="state"
-                        placeholder="State"
-                        className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-[335px] border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
-                      />
-                    </label>
                     <label htmlFor="city">
                       <span className="block font-normal text-[28px]">
                         City
@@ -154,6 +198,25 @@ const overview1 = ({ handleSaveAndContinue }) => {
                         type="text"
                         id="city"
                         placeholder="City"
+                        value={accommodationCity}
+                        onChange={(e) =>
+                          handleSetAccommodationCity(e.target.value)
+                        }
+                        className="font-normal text-lg text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-[335px] border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
+                      />
+                    </label>
+                    <label htmlFor="state">
+                      <span className="block font-normal text-[28px]">
+                        State
+                      </span>
+                      <input
+                        type="text"
+                        id="state"
+                        placeholder="State"
+                        value={accommodationState}
+                        onChange={(e) =>
+                          handleSetAccommodationState(e.target.value)
+                        }
                         className="font-normal text-lg ttext-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-5 px-4 w-[335px] border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
                       />
                     </label>
@@ -192,6 +255,8 @@ const overview1 = ({ handleSaveAndContinue }) => {
               <input
                 type="text"
                 id="accommodation-name"
+                value={accommodationName}
+                onChange={(e) => handleSetAccommodationName(e.target.value)}
                 placeholder="What is the title of your listing?"
                 className="font-normal text-sm ttext-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-[15px] px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
               />
@@ -212,6 +277,11 @@ const overview1 = ({ handleSaveAndContinue }) => {
                       type="radio"
                       id="duplex"
                       name="accommodation-type"
+                      value="Duplex"
+                      checked={accommodationType === "Duplex"}
+                      onChange={(e) =>
+                        handleSetAccommodationType(e.target.value)
+                      }
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -223,6 +293,11 @@ const overview1 = ({ handleSaveAndContinue }) => {
                       type="radio"
                       id="bungalow"
                       name="accommodation-type"
+                      value="Bungalow"
+                      checked={accommodationType === "Bungalow"}
+                      onChange={(e) =>
+                        handleSetAccommodationType(e.target.value)
+                      }
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -234,6 +309,11 @@ const overview1 = ({ handleSaveAndContinue }) => {
                       type="radio"
                       id="mansion"
                       name="accommodation-type"
+                      value="Mansion"
+                      checked={accommodationType === "Mansion"}
+                      onChange={(e) =>
+                        handleSetAccommodationType(e.target.value)
+                      }
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -245,6 +325,11 @@ const overview1 = ({ handleSaveAndContinue }) => {
                       type="radio"
                       id="apartment"
                       name="accommodation-type"
+                      value="Apartment"
+                      checked={accommodationType === "Apartment"}
+                      onChange={(e) =>
+                        handleSetAccommodationType(e.target.value)
+                      }
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -256,6 +341,11 @@ const overview1 = ({ handleSaveAndContinue }) => {
                       type="radio"
                       id="flat"
                       name="accommodation-type"
+                      value="Flat"
+                      checked={accommodationType === "Flat"}
+                      onChange={(e) =>
+                        handleSetAccommodationType(e.target.value)
+                      }
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -269,6 +359,11 @@ const overview1 = ({ handleSaveAndContinue }) => {
                       type="radio"
                       id="single-room"
                       name="accommodation-type"
+                      value="Single-Room"
+                      checked={accommodationType === "Single-Room"}
+                      onChange={(e) =>
+                        handleSetAccommodationType(e.target.value)
+                      }
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -280,6 +375,11 @@ const overview1 = ({ handleSaveAndContinue }) => {
                       type="radio"
                       id="studio"
                       name="accommodation-type"
+                      value="Studio"
+                      checked={accommodationType === "Studio"}
+                      onChange={(e) =>
+                        handleSetAccommodationType(e.target.value)
+                      }
                       className="accent-squazzle-text-deep-grey1-color mr-[10px]"
                     />
                     <span className="text-squazzle-text-deep-grey1-color text-sm">
@@ -299,15 +399,8 @@ const overview1 = ({ handleSaveAndContinue }) => {
                 type="text"
                 id="accommodation-address"
                 placeholder="Enter accommodation address"
-                className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-[15px] px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg mb-6 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
-              />
-            </label>
-            <label htmlFor="state">
-              <span className="block font-[600] text-sm">State</span>
-              <input
-                type="text"
-                id="state"
-                placeholder="State"
+                value={accommodationAddress}
+                onChange={(e) => handleSetAccommodationAddress(e.target.value)}
                 className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-[15px] px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg mb-6 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
               />
             </label>
@@ -317,6 +410,19 @@ const overview1 = ({ handleSaveAndContinue }) => {
                 type="text"
                 id="city"
                 placeholder="City"
+                value={accommodationCity}
+                onChange={(e) => handleSetAccommodationCity(e.target.value)}
+                className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-[15px] px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg mb-6 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
+              />
+            </label>
+            <label htmlFor="state">
+              <span className="block font-[600] text-sm">State</span>
+              <input
+                type="text"
+                id="state"
+                placeholder="State"
+                value={accommodationState}
+                onChange={(e) => handleSetAccommodationState(e.target.value)}
                 className="font-normal text-sm text-squazzle-text-deep-grey2-color placeholder:text-squazzle-border-grey-color py-[15px] px-4 w-full border border-squazzle-border-grey-color mt-[6px] rounded-lg hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color"
               />
             </label>
