@@ -34,6 +34,10 @@ const addNewListing = () => {
     };
   }, []);
 
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [progress]);
+
   const handleSetAccommodationName = (name) => {
     setAccommodationName(name);
   };

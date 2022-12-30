@@ -26,6 +26,10 @@ const editAccommodation = () => {
     };
   }, []);
 
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [activeTab]);
+
   const handleSaveAndContinueToTab2 = () => {
     setActiveTab("tab2");
   };

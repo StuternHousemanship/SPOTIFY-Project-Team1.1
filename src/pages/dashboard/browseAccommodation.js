@@ -66,32 +66,32 @@ const browseAccommodation = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              minHeight: "80vh",
+              minHeight: "70%",
             }}
           >
             <section className="flex items-center justify-center h-[442px]">
               <div className="flex gap-6 items-center">
-                <div className="flex gap-6 max-[1098px]:gap-5 items-center rounded-lg bg-[#f5f5f5]/60 p-8 max-[1098px]:p-7">
-                  <div className="flex gap-12 max-[1098px]:gap-11">
+                <div className="flex gap-6 max-[1098px]:gap-5 max-[990px]:gap-4 items-center rounded-lg bg-[#f5f5f5]/60 p-8 max-[1098px]:p-7 max-[990px]:p-6">
+                  <div className="flex gap-12 max-[1098px]:gap-11 max-[990px]:gap-6">
                     <label htmlFor="search" className="relative">
-                      <SearchIcon className="absolute top-[38%] left-[19px]" />
+                      <SearchIcon className="absolute top-[38%] left-[19px] max-[908px]:hidden" />
                       <input
                         type="text"
                         placeholder="Search by state or city"
-                        className="py-5 px-12 max-[1098px]:py-4 max-[1098px]:px-11 bg-white placeholder:text-squazzle-password-light-grey-color text-squazzle-text-deep-grey2-color text-lg max-[1098px]:text-base font-normal border border-squazzle-border-grey-color rounded-lg focus:outline-none"
+                        className="py-5 px-12 max-[990px]:py-3 max-[990px]:px-10 max-[908px]:px-6 max-[1098px]:py-4 max-[1098px]:px-11 bg-white placeholder:text-squazzle-password-light-grey-color text-squazzle-text-deep-grey2-color text-lg max-[1098px]:text-base font-normal border border-squazzle-border-grey-color rounded-lg focus:outline-none"
                       />
                     </label>
                     <label htmlFor="check-in-check-out">
                       <input
                         type="text"
                         placeholder="Check in - Checkout"
-                        className="py-5 px-4 max-[1098px]:py-4 max-[1098px]:px-13 bg-white placeholder:text-squazzle-password-light-grey-color text-squazzle-text-deep-grey2-color text-lg max-[1098px]:text-base font-normal border border-squazzle-border-grey-color rounded-lg focus:outline-none"
+                        className="py-5 px-4 max-[990px]:py-3 max-[1098px]:py-4 max-[990px]:px-2 max-[1098px]:px-3 bg-white placeholder:text-squazzle-password-light-grey-color text-squazzle-text-deep-grey2-color text-lg max-[1098px]:text-base font-normal border border-squazzle-border-grey-color rounded-lg focus:outline-none"
                       />
                     </label>
                   </div>
                   <button
                     type="button"
-                    className="text-xl max-[1098px]:text-lg font-bold py-5 px-14 max-[1098px]:py-4 max-[1098px]:px-[52px] text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color rounded-xl"
+                    className="text-xl max-[1098px]:text-lg font-bold py-5 px-14 max-[1098px]:py-4 max-[1098px]:px-[52px] max-[990px]:py-3 max-[990px]:px-[48px] max-[908px]:px-[36px] text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color rounded-xl"
                   >
                     Search
                   </button>
@@ -99,10 +99,10 @@ const browseAccommodation = () => {
                 <div>
                   <button
                     type="button"
-                    className="flex justify-center items-center gap-[11px] bg-[#F5F5F5] rounded-xl px-[57.5px] py-5 max-[1098px]:py-4 max-[1098px]:px-[53.5px]"
+                    className="flex justify-center items-center gap-[11px] bg-[#F5F5F5] rounded-xl px-[57.5px] py-5 max-[1098px]:py-4 max-[1098px]:px-[53.5px] max-[990px]:py-3 max-[990px]:px-[49.5px] max-[908px]:px-6"
                     onClick={toggleFilterOverlay}
                   >
-                    <FilterIcon />
+                    <FilterIcon className="max-[908px]:hidden" />
                     <p className="text-squazzle-button-bg-deep-green-color text-xl max-[1098px]:text-lg font-bold">
                       Filter
                     </p>
