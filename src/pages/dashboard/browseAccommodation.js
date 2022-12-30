@@ -1,10 +1,16 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 import DashboardNavs from "../../components/navigation/dashboardNavs";
 import Footer from "../../components/footer/footer";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search-icon.svg";
 import { ReactComponent as FilterIcon } from "../../assets/svg/filter-icon.svg";
 import { ReactComponent as RadioButtonCheckedIcon } from "../../assets/svg/radio_button_checked_icon.svg";
+import { ReactComponent as HouseIcon } from "../../assets/svg/filterHouseIcon.svg";
+// import { ReactComponent as SuitableIcon } from "../../assets/svg/filterSuitableIcon.svg";
+// import { ReactComponent as DatePostIcon } from "../../assets/svg/filterDatePostedIcon.svg";
+// import { ReactComponent as PriceIcon } from "../../assets/svg/filterPriceIcon.svg";
 import browseAccommodationBackgroundImage from "../../assets/img/browse-accommodation-background.png";
 import BrowsePhoto1 from "../../assets/img/browse-photo1.png";
 import BrowsePhoto2 from "../../assets/img/browse-photo2.png";
@@ -16,13 +22,41 @@ import BrowsePhoto7 from "../../assets/img/browse-photo7.png";
 import BrowsePhoto8 from "../../assets/img/browse-photo8.png";
 
 const browseAccommodation = () => {
+  const [filterOverLay, setFilterOverlay] = useState(false);
+  const toggleFilterOverlay = () => {
+    setFilterOverlay(true);
+  };
+
+  const removeFilterOverlay = () => {
+    setFilterOverlay(false);
+  };
+
+  const removeFilterOverlayOnScroll = () => {
+    window.addEventListener("scroll", () => {
+      if (
+        document.documentElement.scrollTop > 200 ||
+        document.body.scrollTop > 200
+      ) {
+        removeFilterOverlay();
+      }
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", removeFilterOverlay);
+    removeFilterOverlayOnScroll();
+  });
+
+  const applyFilter = () => {
+    removeFilterOverlay();
+  };
+
   return (
     <>
       <DashboardNavs />
       <div className="hidden md:block font-sans">
-        <main className="mt-[-25px] md:mt-[95px]">
-          <section
-            className="h-[442px]"
+        <main className="mt-[-25px] md:mt-[95px] relative">
+          <div
             style={{
               background: `linear-gradient(0deg, rgba(53, 53, 53, 0.2), rgba(53, 53, 53, 0.2)),url(${browseAccommodationBackgroundImage})`,
               backgroundSize: "cover",
@@ -32,48 +66,103 @@ const browseAccommodation = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              minHeight: "80vh",
             }}
           >
-            <div className="flex gap-6 items-center">
-              <div className="flex gap-6 max-[1098px]:gap-5 items-center rounded-lg bg-[#f5f5f5]/60 p-8 max-[1098px]:p-7">
-                <div className="flex gap-12 max-[1098px]:gap-11">
-                  <label htmlFor="search" className="relative">
-                    <SearchIcon className="absolute top-[38%] left-[19px]" />
-                    <input
-                      type="text"
-                      placeholder="Search by state or city"
-                      className="py-5 px-12 max-[1098px]:py-4 max-[1098px]:px-11 bg-white placeholder:text-squazzle-password-light-grey-color text-squazzle-text-deep-grey2-color text-lg max-[1098px]:text-base font-normal border border-squazzle-border-grey-color rounded-lg focus:outline-none"
-                    />
-                  </label>
-                  <label htmlFor="check-in-check-out">
-                    <input
-                      type="text"
-                      placeholder="Check in - Checkout"
-                      className="py-5 px-4 max-[1098px]:py-4 max-[1098px]:px-13 bg-white placeholder:text-squazzle-password-light-grey-color text-squazzle-text-deep-grey2-color text-lg max-[1098px]:text-base font-normal border border-squazzle-border-grey-color rounded-lg focus:outline-none"
-                    />
-                  </label>
+            <section className="flex items-center justify-center h-[442px]">
+              <div className="flex gap-6 items-center">
+                <div className="flex gap-6 max-[1098px]:gap-5 items-center rounded-lg bg-[#f5f5f5]/60 p-8 max-[1098px]:p-7">
+                  <div className="flex gap-12 max-[1098px]:gap-11">
+                    <label htmlFor="search" className="relative">
+                      <SearchIcon className="absolute top-[38%] left-[19px]" />
+                      <input
+                        type="text"
+                        placeholder="Search by state or city"
+                        className="py-5 px-12 max-[1098px]:py-4 max-[1098px]:px-11 bg-white placeholder:text-squazzle-password-light-grey-color text-squazzle-text-deep-grey2-color text-lg max-[1098px]:text-base font-normal border border-squazzle-border-grey-color rounded-lg focus:outline-none"
+                      />
+                    </label>
+                    <label htmlFor="check-in-check-out">
+                      <input
+                        type="text"
+                        placeholder="Check in - Checkout"
+                        className="py-5 px-4 max-[1098px]:py-4 max-[1098px]:px-13 bg-white placeholder:text-squazzle-password-light-grey-color text-squazzle-text-deep-grey2-color text-lg max-[1098px]:text-base font-normal border border-squazzle-border-grey-color rounded-lg focus:outline-none"
+                      />
+                    </label>
+                  </div>
+                  <button
+                    type="button"
+                    className="text-xl max-[1098px]:text-lg font-bold py-5 px-14 max-[1098px]:py-4 max-[1098px]:px-[52px] text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color rounded-xl"
+                  >
+                    Search
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  className="text-xl max-[1098px]:text-lg font-bold py-5 px-14 max-[1098px]:py-4 max-[1098px]:px-[52px] text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color rounded-xl"
-                >
-                  Search
-                </button>
+                <div>
+                  <button
+                    type="button"
+                    className="flex justify-center items-center gap-[11px] bg-[#F5F5F5] rounded-xl px-[57.5px] py-5 max-[1098px]:py-4 max-[1098px]:px-[53.5px]"
+                    onClick={toggleFilterOverlay}
+                  >
+                    <FilterIcon />
+                    <p className="text-squazzle-button-bg-deep-green-color text-xl max-[1098px]:text-lg font-bold">
+                      Filter
+                    </p>
+                  </button>
+                </div>
               </div>
-              <div>
-                <button
-                  type="button"
-                  className="flex justify-center items-center gap-[11px] bg-[#F5F5F5] rounded-xl px-[57.5px] py-5 max-[1098px]:py-4 max-[1098px]:px-[53.5px]"
-                >
-                  <FilterIcon />
-                  <p className="text-squazzle-button-bg-deep-green-color text-xl max-[1098px]:text-lg font-bold">
-                    Filter
-                  </p>
-                </button>
+            </section>
+          </div>
+        </main>
+
+        <section
+          className={
+            filterOverLay
+              ? "block absolute top-[90px] right-[20px] border bg-squazzle-profileCard-background-white-color w-full max-w-[552px] h-[590px] "
+              : "hidden"
+          }
+          style={{
+            boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <section className="h-full">
+            <div className="flex items-center justify-between font-normal text-lg w-full px-4 h-[75px]">
+              <h2>Filter</h2>
+              <button type="button" onClick={removeFilterOverlay}>
+                <FontAwesomeIcon icon={faClose} />
+              </button>
+            </div>
+            <hr className="border border-squazzle-background-white-color" />
+            <div className="flex flex-col gap-y-8 min-h-[420px] w-full px-4">
+              <div className="flex flex-col gap-y-4 w-full">
+                <div className="flex flex-row items-center gap-x-4 justify-start border-b-2 border-squazzle-background-white-color h-[42px] w-full">
+                  <HouseIcon />
+                  <h2 className="align-middle text-lg font-semibold">
+                    Property type
+                  </h2>
+                </div>
+                <div className="flex flex-col gap-y-5 w-full">
+                  <div className="flex items-center justify-between h-24px">
+                    <label htmlFor="duplex" id="duplex">
+                      Duplex
+                      <input type="checkbox" />
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
+            <hr className="border border-squazzle-background-white-color" />
+            <div className="flex items-center justify-end w-full h-[96px] px-4">
+              <button
+                type="button"
+                className="font-bold text-[20px] text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color rounded-xl py-4 w-full max-w-[160px]"
+                onClick={applyFilter}
+              >
+                Apply filter
+              </button>
+            </div>
           </section>
-        </main>
+        </section>
+
+        {/* ACCOMMODATIONS */}
         <section className="py-16 px-20 grid grid-cols-4  max-[966px]:grid-cols-3 gap-[44px] max-[1098px]:py-12 max-[1098px]:px-[40px]">
           <section
             className="p-4"
@@ -293,6 +382,7 @@ const browseAccommodation = () => {
           </section>
         </section>
       </div>
+
       {/* MOBILE SCREEN */}
       <div className="md:hidden font-sans">
         <main className="mt-[-25px]">
