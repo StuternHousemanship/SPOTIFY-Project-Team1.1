@@ -8,9 +8,9 @@ import { ReactComponent as SearchIcon } from "../../assets/svg/search-icon.svg";
 import { ReactComponent as FilterIcon } from "../../assets/svg/filter-icon.svg";
 import { ReactComponent as RadioButtonCheckedIcon } from "../../assets/svg/radio_button_checked_icon.svg";
 import { ReactComponent as HouseIcon } from "../../assets/svg/filterHouseIcon.svg";
-// import { ReactComponent as SuitableIcon } from "../../assets/svg/filterSuitableIcon.svg";
-// import { ReactComponent as DatePostIcon } from "../../assets/svg/filterDatePostedIcon.svg";
-// import { ReactComponent as PriceIcon } from "../../assets/svg/filterPriceIcon.svg";
+import { ReactComponent as DatePostIcon } from "../../assets/svg/filterDatePostedIcon.svg";
+import { ReactComponent as SuitableIcon } from "../../assets/svg/filterSuitableIcon.svg";
+import { ReactComponent as PriceIcon } from "../../assets/svg/filterPriceIcon.svg";
 import browseAccommodationBackgroundImage from "../../assets/img/browse-accommodation-background.png";
 import BrowsePhoto1 from "../../assets/img/browse-photo1.png";
 import BrowsePhoto2 from "../../assets/img/browse-photo2.png";
@@ -24,7 +24,7 @@ import BrowsePhoto8 from "../../assets/img/browse-photo8.png";
 const browseAccommodation = () => {
   const [filterOverLay, setFilterOverlay] = useState(false);
   const toggleFilterOverlay = () => {
-    setFilterOverlay(true);
+    setFilterOverlay(!filterOverLay);
   };
 
   const removeFilterOverlay = () => {
@@ -123,34 +123,279 @@ const browseAccommodation = () => {
             boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.1)",
           }}
         >
-          <section className="h-full">
-            <div className="flex items-center justify-between font-normal text-lg w-full px-4 h-[75px]">
+          <section className="relative flex flex-col w-full h-full">
+            <div className="flex items-center justify-between font-normal text-lg w-full p-4 h-[75px]">
               <h2>Filter</h2>
               <button type="button" onClick={removeFilterOverlay}>
                 <FontAwesomeIcon icon={faClose} />
               </button>
             </div>
+
             <hr className="border border-squazzle-background-white-color" />
-            <div className="flex flex-col gap-y-8 min-h-[420px] w-full px-4">
+
+            <div className="flex flex-col gap-y-8 min-h-[420px] w-full px-4 overflow-y-scroll">
               <div className="flex flex-col gap-y-4 w-full">
-                <div className="flex flex-row items-center gap-x-4 justify-start border-b-2 border-squazzle-background-white-color h-[42px] w-full">
+                <div className="flex flex-row items-center gap-x-5 justify-start border-b-2 border-squazzle-border-grey-color h-[42px] w-full">
                   <HouseIcon />
                   <h2 className="align-middle text-lg font-semibold">
                     Property type
                   </h2>
                 </div>
-                <div className="flex flex-col gap-y-5 w-full">
-                  <div className="flex items-center justify-between h-24px">
-                    <label htmlFor="duplex" id="duplex">
+                <div className="flex flex-col gap-y-4 w-full">
+                  <div className="flex items-center justify-between w-full h-24px">
+                    <label
+                      htmlFor="duplex"
+                      className="flex items-center justify-between text-sm font-normal w-full"
+                    >
                       Duplex
-                      <input type="checkbox" />
+                      <input
+                        type="checkbox"
+                        id="duplex"
+                        name="duplex"
+                        className="accent-transparent"
+                      />
+                    </label>
+                  </div>
+                  <div className="flex items-center justify-between w-full h-24px">
+                    <label
+                      htmlFor="flat"
+                      className="flex items-center justify-between text-sm font-normal w-full"
+                    >
+                      Flat
+                      <input
+                        type="checkbox"
+                        id="flat"
+                        name="flat"
+                        className="accent-transparent"
+                      />
+                    </label>
+                  </div>
+                  <div className="flex items-center justify-between w-full h-24px">
+                    <label
+                      htmlFor="bungalow"
+                      className="flex items-center justify-between text-sm font-normal w-full"
+                    >
+                      Bungalow
+                      <input
+                        type="checkbox"
+                        id="bungalow"
+                        name="bungalow"
+                        className="accent-transparent"
+                      />
+                    </label>
+                  </div>
+                  <div className="flex items-center justify-between w-full h-24px">
+                    <label
+                      htmlFor="selfContain"
+                      className="flex items-center justify-between text-sm font-normal w-full"
+                    >
+                      Self-contain
+                      <input
+                        type="checkbox"
+                        id="selfContain"
+                        name="selfContain"
+                        className="accent-transparent"
+                      />
+                    </label>
+                  </div>
+                  <div className="flex items-center justify-between w-full h-24px">
+                    <label
+                      htmlFor="apartment"
+                      className="flex items-center justify-between text-sm font-normal w-full"
+                    >
+                      Apartment
+                      <input
+                        type="checkbox"
+                        id="apartment"
+                        name="apartment"
+                        className="accent-transparent"
+                      />
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-y-4 w-full">
+                <div className="flex flex-row items-center gap-x-5 justify-start border-b-2 border-squazzle-border-grey-color h-[42px] w-full">
+                  <DatePostIcon />
+                  <h2 className="align-middle text-lg font-semibold">
+                    Date Posted
+                  </h2>
+                </div>
+                <div className="flex flex-col gap-y-4 w-full">
+                  <div className="flex items-center justify-between w-full h-24px">
+                    <label
+                      htmlFor="justNow"
+                      className="flex items-center justify-between text-sm font-normal w-full"
+                    >
+                      Just now
+                      <input
+                        type="checkbox"
+                        id="justNow"
+                        name="justNow"
+                        className="accent-transparent"
+                      />
+                    </label>
+                  </div>
+                  <div className="flex items-center justify-between w-full h-24px">
+                    <label
+                      htmlFor="lessThanAnHour"
+                      className="flex items-center justify-between text-sm font-normal w-full"
+                    >
+                      Less than an hour
+                      <input
+                        type="checkbox"
+                        id="lessThanAnHour"
+                        name="lessThanAnHour"
+                        className="accent-transparent"
+                      />
+                    </label>
+                  </div>
+                  <div className="flex items-center justify-between w-full h-24px">
+                    <label
+                      htmlFor="past24Hours"
+                      className="flex items-center justify-between text-sm font-normal w-full"
+                    >
+                      Past 24 hours
+                      <input
+                        type="checkbox"
+                        id="past24Hours"
+                        name="past24Hours"
+                        className="accent-transparent"
+                      />
+                    </label>
+                  </div>
+                  <div className="flex items-center justify-between w-full h-24px">
+                    <label
+                      htmlFor="pastWeek"
+                      className="flex items-center justify-between text-sm font-normal w-full"
+                    >
+                      Past week
+                      <input
+                        type="checkbox"
+                        id="pastWeek"
+                        name="pastWeek"
+                        className="accent-transparent"
+                      />
+                    </label>
+                  </div>
+                  <div className="flex items-center justify-between w-full h-24px">
+                    <label
+                      htmlFor="pastMonth"
+                      className="flex items-center justify-between text-sm font-normal w-full"
+                    >
+                      Past month
+                      <input
+                        type="checkbox"
+                        id="pastMonth"
+                        name="pastMonth"
+                        className="accent-transparent"
+                      />
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-y-4 w-full">
+                <div className="flex flex-row items-center gap-x-5 justify-start border-b-2 border-squazzle-border-grey-color h-[42px] w-full">
+                  <SuitableIcon />
+                  <h2 className="align-middle text-lg font-semibold">
+                    Suitable for
+                  </h2>
+                </div>
+                <div className="flex flex-col gap-y-4 w-full">
+                  <div className="flex items-center justify-between w-full h-24px">
+                    <label
+                      htmlFor="female"
+                      className="flex items-center justify-between text-sm font-normal w-full"
+                    >
+                      Female
+                      <input
+                        type="radio"
+                        id="female"
+                        name="gender"
+                        className="accent-squazzle-text-black-color"
+                      />
+                    </label>
+                  </div>
+                  <div className="flex items-center justify-between w-full h-24px">
+                    <label
+                      htmlFor="male"
+                      className="flex items-center justify-between text-sm font-normal w-full"
+                    >
+                      Male
+                      <input
+                        type="radio"
+                        id="male"
+                        name="gender"
+                        className="accent-squazzle-text-black-color"
+                      />
+                    </label>
+                  </div>
+                  <div className="flex items-center justify-between w-full h-24px">
+                    <label
+                      htmlFor="both"
+                      className="flex items-center justify-between text-sm font-normal w-full"
+                    >
+                      Both
+                      <input
+                        type="radio"
+                        id="both"
+                        name="gender"
+                        className="accent-squazzle-text-black-color"
+                      />
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-y-4 w-full">
+                <div className="flex flex-row items-center gap-x-5 justify-start border-b-2 border-squazzle-border-grey-color h-[42px] w-full">
+                  <PriceIcon />
+                  <h2 className="align-middle text-lg font-semibold">
+                    Price per night
+                  </h2>
+                </div>
+                <div className="grid grid-cols-2 gap-x-1 w-full">
+                  <div className="flex items-center justify-start w-full h-24px">
+                    <label
+                      htmlFor="minimum"
+                      className="flex flex-col items-start gap-y-2 w-full font-semibold text-sm"
+                    >
+                      Minimum
+                      <input
+                        type="number"
+                        min="0"
+                        id="minimum"
+                        name="minimum"
+                        placeholder="NGN 0"
+                        className="border border-squazzle-border-grey-color rounded-lg h-[64px] px-4 w-full"
+                      />
+                    </label>
+                  </div>
+                  <div className="flex items-center justify-start w-full h-24px">
+                    <label
+                      htmlFor="maximum"
+                      className="flex flex-col items-start gap-y-2 w-full font-semibold text-sm"
+                    >
+                      Maximum
+                      <input
+                        type="number"
+                        min="250000"
+                        id="maximum"
+                        name="maximum"
+                        placeholder="NGN 250,000+"
+                        className="border border-squazzle-border-grey-color rounded-lg h-[64px] px-4 w-full"
+                      />
                     </label>
                   </div>
                 </div>
               </div>
             </div>
+
             <hr className="border border-squazzle-background-white-color" />
-            <div className="flex items-center justify-end w-full h-[96px] px-4">
+
+            <div className="flex items-center justify-end w-full h-[96px] p-4">
               <button
                 type="button"
                 className="font-bold text-[20px] text-squazzle-button-bg-light-green-color bg-squazzle-button-bg-deep-green-color rounded-xl py-4 w-full max-w-[160px]"
