@@ -87,10 +87,11 @@ const login = () => {
     try {
       const response = await onboarding.Login(email, password);
       if (response.status === 202) {
-        const accessToken = response.access_token;
-        const refreshToken = response.refresh_token;
+        // console.log(response);
+        const { accessToken } = response.data;
+        const { refreshToken } = response.data;
         Cookies.set("accessToken", accessToken);
-        localStorage.setItem("token", refreshToken);
+        localStorage.setItem("refreshToken", refreshToken);
         setButtonIsLoading(false);
         navigate(AuthRoutes.dashboard);
       }

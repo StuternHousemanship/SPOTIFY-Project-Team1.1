@@ -9,7 +9,7 @@ function PrivateRoutes() {
   /** Defines if the token is authenticated or not */
   const isAuthenticated = () => {
     const accessToken = Cookies.get("accessToken");
-    const refreshToken = localStorage.getItem("token");
+    const refreshToken = localStorage.getItem("refreshToken");
     return !!(accessToken && refreshToken);
   };
 
