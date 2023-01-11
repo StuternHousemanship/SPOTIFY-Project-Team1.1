@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+// import dashboard from "../../api/dashboard";
 import { NonAuthRoutes, AuthRoutes } from "../../url";
 import { ReactComponent as SquazzleDesktopGreenLogo } from "../../assets/svg/squazzle-desktop-green-logo.svg";
 import { ReactComponent as BellIcon } from "../../assets/svg/bell-icon.svg";
@@ -23,9 +24,22 @@ const dashboardNavs = () => {
   window.addEventListener("scroll", removeProfileCard);
 
   const handleLogout = () => {
-    // navigates to login page
+    // const logOut = () => {
+    //   try {
+    //     dashboard.LogOut().then((response) => {
+    //       // if (response.status === 202) {
+    //       console.log("responseData:", response.data);
+    //       // }
+    //     });
+    //   } catch (error) {
+    //     console.error("error:", error);
+    //   }
+    // };
+
+    // logOut();
+
     navigate(NonAuthRoutes.login);
-    window.localStorage.clear();
+    localStorage.clear();
   };
 
   // nav button functions
@@ -34,7 +48,7 @@ const dashboardNavs = () => {
     removeProfileCard();
   };
   const goToAccommodationDetails = () => {
-    navigate(AuthRoutes.dashboardAccommodationDetails);
+    navigate(AuthRoutes.browseAcccommodation);
     removeProfileCard();
   };
   const goToManageAccount = () => {

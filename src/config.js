@@ -9,7 +9,8 @@ import TokenValidate from "./tokenvalidate";
 // const apiUrl = "https://squazzle.beargaze.com/";
 
 /** Base Url for Images STAGING */
-const apiUrl = "https://squazzle.beargaze.com/api";
+// const apiUrl = "https://squazzle.beargaze.com/api";
+const apiUrl = "https://squazzle.up.railway.app/api/v1";
 
 /** creating an Axios Base Url for all Onboarding Request */
 const squazzleOnboarding = axios.create({
@@ -25,11 +26,11 @@ const squazzleApi = axios.create({
 });
 squazzleApi.interceptors.request.use(
   async (config) => {
-    if (config.url.includes("/signIn")) return config;
+    if (config.url.includes("/login")) return config;
     if (config.url.includes("/refresh-token")) return config;
 
     TokenValidate();
-    config.headers.Authorization = `${Cookies.get("accessToken")}`;
+    config.headers.authorization = `Bearer ${Cookies.get("accessToken")}`;
     config.headers["Content-Type"] = "application/json";
     return config;
   },
@@ -38,4 +39,22 @@ squazzleApi.interceptors.request.use(
   }
 );
 
-export { squazzleOnboarding, squazzleApi };
+const squazzleUploadImageApi = axios.create({
+  baseURL: apiUrl,
+});
+squazzleUploadImageApi.interceptors.request.use(
+  async (config) => {
+    if (config.url.includes("/login")) return config;
+    if (config.url.includes("/refresh-token")) return config;
+
+    TokenValidate();
+    config.headers.Authorization = `Bearer ${Cookies.get("accessToken")}`;
+    config.headers["Content-Type"] = "multipart/form-data";
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+export { squazzleOnboarding, squazzleApi, squazzleUploadImageApi };

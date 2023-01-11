@@ -33,6 +33,9 @@ module.exports = {
         "squazzle-button-bg-light-green-color": "#CCE6E7",
         "squazzle-button-font-deep-green-color": "#002C2D",
         "squazzle-password-light-grey-color": "#787878",
+        "squazzle-landingPage-bar-orange-color": "#DB5E28",
+        "squazzle-landingPage-bar-black-color": "#002C2D",
+        "squazzle-landingPage-twitter-blue-color": "#1DA1F2",
       },
       fontFamily: {
         sans: ['"Open Sans"', "sans-serif"],

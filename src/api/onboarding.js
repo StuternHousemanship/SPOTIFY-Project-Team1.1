@@ -28,8 +28,9 @@ export default {
   },
 
   /** Send a POST request to verify users email verification code */
-  async EnterEmailVerificationCode(emailVerificationCode) {
+  async EnterEmailVerificationCode(verificationEmail, emailVerificationCode) {
     const data = {
+      email: verificationEmail,
       code: emailVerificationCode,
     };
     const stringifiedData = JSON.stringify(data);
@@ -50,7 +51,7 @@ export default {
     };
     const stringifiedData = JSON.stringify(data);
 
-    return squazzleOnboarding.post("/confirmOtp", stringifiedData);
+    return squazzleOnboarding.post("/resetPassword", stringifiedData);
   },
 
   /** Send a PATCH request to get users password reset code */

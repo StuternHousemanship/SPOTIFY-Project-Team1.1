@@ -108,9 +108,12 @@ const enterPasswordResetCode = () => {
   const handleEnterPasswordResetCode = async (e) => {
     e.preventDefault();
     setButtonIsLoading(true);
+
+    const email = localStorage.getItem("email");
     const passwordResetCode = `${digit1}${digit2}${digit3}${digit4}${digit5}${digit6}`;
     try {
       const response = await onboarding.EnterPasswordResetCode(
+        email,
         passwordResetCode
       );
 

@@ -9,6 +9,7 @@ const AuthRoutes = {
   listedAccommodations: "/listed-accommodations",
   addNewListing: "/add-new-listing",
   editAccommodation: "/edit-accommodation",
+  browseAcccommodation: "/browse-accommodation",
 };
 
 /** Non Authenticated URL Routes */

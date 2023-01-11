@@ -4,101 +4,91 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthRoutes } from "../../url";
+import dashboard from "../../api/dashboard";
+import { NonAuthRoutes, AuthRoutes } from "../../url";
 import DashboardNavs from "../../components/navigation/dashboardNavs";
-import countryCodeDropDown from "../../components/countryCode/countryCode";
 import Footer from "../../components/footer/footer";
 import { ReactComponent as UserIcon } from "../../assets/svg/profile-icon.svg";
 import { ReactComponent as GreaterThanIcon } from "../../assets/svg/greaterthan-icon.svg";
 import { ReactComponent as EditIcon } from "../../assets/svg/edit-icon.svg";
+import { ReactComponent as LoadingIcon } from "../../assets/svg/loading-light-icon.svg";
 
 function editProfile() {
   const navigate = useNavigate();
-  const [users, setUser] = useState([]);
-  const [firstName, setFirstName] = useState("Zhara");
-  const [lastName, setLastName] = useState("Doe");
-  const [email, setEmail] = useState("zharadoe@gmail.com");
-  const [mobile, setMobile] = useState("8123181961");
-  const [occupation, setOccupation] = useState("Real Estate Manager");
-  const [nin, setNin] = useState("75312208056610");
-  const [state, setState] = useState("Jos");
-  const [city, setCity] = useState("Plateau");
-  const [aboutYou, setAboutYou] = useState(
-    " Lorem ipsum is simply a dummy text of the printing and typesetting industry.lorem ipsum has been in the industry"
-  );
-  const [userId, setUserId] = useState(null);
+  const [userFirstName, setUserFirstName] = useState("");
+  const [userLastName, setUserLastName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userPhone, setUserPhone] = useState("");
+  const [userOccupation, setUserOccupation] = useState("");
+  const [userNin, setUserNin] = useState("");
+  const [userAddress, setUserAddress] = useState("");
+  const [userAboutYou, setUserAboutYou] = useState("");
+  const [buttonIsLoading, setButtonIsLoading] = useState(false);
+
+  const handleViewProfile = () => {
+    try {
+      dashboard.ViewProfile().then((response) => {
+        if (response.status === 200) {
+          const {
+            email,
+            firstName,
+            lastName,
+            phone,
+            occupation,
+            NIN,
+            description,
+            address,
+          } = response.data.profile;
+          setUserEmail(email);
+          setUserFirstName(firstName);
+          setUserLastName(lastName);
+          setUserPhone(phone);
+          setUserOccupation(occupation);
+          setUserNin(NIN);
+          setUserAddress(address);
+          setUserAboutYou(description);
+        }
+      });
+    } catch (error) {
+      navigate(NonAuthRoutes.login);
+    }
+  };
 
   useEffect(() => {
     const ac = new AbortController();
     document.title = "Edit Profile - Squazzle";
+
+    handleViewProfile();
+
+    window.scroll(0, 0);
+
     return function cleanup() {
       ac.abort();
     };
   }, []);
 
-  useEffect(() => {
-    getUsers();
-  }, []);
-  function getUsers() {
-    fetch("https://squazzle.beargaze.com/api/editProfile").then((result) => {
-      result.json().then((resp) => {
-        // console.warn(resp)
-        setUser(resp);
-        setFirstName(resp[0].firstName);
-        setLastName(resp[0].lastName);
-        setMobile(resp[0].mobile);
-        setEmail(resp[0].email);
-        setState(resp[0].state);
-        setOccupation(resp[0].occupation);
-        setCity(resp[0].city);
-        setUserId(resp[0].id);
-      });
-    });
-  }
+  const UserNinToNumber = Number(userNin);
 
-  function deleteUser(id) {
-    fetch(`https://squazzle.beargaze.com/api/editProfile${id}`, {
-      method: "DELETE",
-    }).then((result) => {
-      result.json().then((resp) => {
-        console.warn(resp);
-        getUsers();
+  const handleEditProfile = () => {
+    setButtonIsLoading(true);
+    try {
+      dashboard.EditProfile(userOccupation).then((response) => {
+        if (response.status === 202) {
+          setButtonIsLoading(false);
+          navigate(AuthRoutes.profile);
+        }
       });
-    });
-  }
-  function selectUser(id) {
-    const item = users[id - 1];
-    setFirstName(item.firstName);
-    setLastName(item.lastName);
-    setEmail(item.email);
-    setMobile(item.mobile);
-    setCity(item.city);
-    setState(item.state);
-    setOccupation(item.occupation);
-
-    setUserId(item.id);
-  }
-  function updateUser() {
-    const item = { firstName, lastName, mobile, email };
-    console.warn("item", item);
-    fetch(`https://squazzle.beargaze.com/api/editProfile${userId}`, {
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(item),
-    }).then((result) => {
-      result.json().then((resp) => {
-        console.warn(resp);
-        getUsers();
-      });
-    });
-  }
+    } catch (error) {
+      setTimeout(() => {
+        setButtonIsLoading(false);
+      }, 1000);
+      console.error("error:", error);
+    }
+  };
 
   return (
     <>
-      <div className="hidden sm:block">
+      <div className="hidden md:block">
         <DashboardNavs />
         <div className="bg-[#ffff]">
           <div>
@@ -116,11 +106,11 @@ function editProfile() {
             <div className="p-[1rem]  rounded  ">
               <div className="flex justify-center flex-col  gap-[0px] shadow rounded-lg border-[1px] border-solid border-[#F5F5F5] bg-[#ffffff]  box-border h-[469px] w-[305px] pt-[24px] pb-[40px] items-center mb-10 ">
                 <p className="font-[600] text-[28px] leading-[35px] mt-5">
-                  Zhara Doe
+                  {`${userFirstName} ${userLastName}`}
                 </p>
-                <div className="font-[400] gap-4 text-[20px] mt-4">
-                  <button type="button">zhara@gmail.com</button>
-                </div>
+                {/* <div className="font-[400] gap-4 text-[20px] mt-4">
+                  <button type="button">{userEmail}</button>
+                </div> */}
                 <ul className="flex-auto w-32  flex flex-col items-center justify-between ">
                   <li>
                     <UserIcon className="w-[86.67px] h-[86.67px] position-absolute mt-12 cursor-pointer" />
@@ -139,11 +129,11 @@ function editProfile() {
                     First Name
                   </span>
                   <input
-                    type="firstName"
+                    type="text"
                     name="firstName"
-                    value={firstName}
+                    value={userFirstName}
                     onChange={(e) => {
-                      setFirstName(e.target.value);
+                      setUserFirstName(e.target.value);
                     }}
                     className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none hover:bg-squazzle-button-bg-light-green-color focus:border-squazzle-button-bg-deep-green-color block h-16 w-full rounded-md text-sm  lg:text-xl mb-6"
                     placeholder="First Name"
@@ -156,11 +146,11 @@ function editProfile() {
                     Last Name
                   </span>
                   <input
-                    value={lastName}
+                    value={userLastName}
                     onChange={(e) => {
-                      setLastName(e.target.value);
+                      setUserLastName(e.target.value);
                     }}
-                    type="lastName"
+                    type="text"
                     name="lastName"
                     className="mt-1 px-3 py-2 bg-white border shadow-sm border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color  block h-16 w-full rounded-md text-sm  lg:text-xl mb-6"
                     placeholder="Last Name"
@@ -170,26 +160,15 @@ function editProfile() {
               <div>
                 <label className="block">
                   <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm ">
-                    Email Address
-                  </span>
-                  <input
-                    type="email"
-                    name="email"
-                    value={email}
-                    className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color block h-16 w-full rounded-md text-sm lg:text-xl mb-6"
-                    placeholder="Email"
-                  />
-                </label>
-              </div>
-              <div>
-                <label className="block">
-                  <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm ">
                     Occupation
                   </span>
                   <input
-                    type="occupation"
+                    type="text"
                     name="occupation"
-                    value={occupation}
+                    value={userOccupation}
+                    onChange={(e) => {
+                      setUserOccupation(e.target.value);
+                    }}
                     className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color  block h-16 w-full rounded-md text-sm  lg:text-xl  mb-6"
                     placeholder="Your Occupation"
                   />
@@ -211,32 +190,21 @@ function editProfile() {
                   </select>
                 </label>
               </div>
-              <div className="flex">
-                <label className="block">
-                  <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm ">
-                    State
-                  </span>
-                  <input
-                    type="state"
-                    name="state"
-                    value={state}
-                    className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color block h-16 w-[298px] rounded-md text-sm  lg:text-xl  mb-6 mr-4"
-                    placeholder="State"
-                  />
-                </label>
-                <label className="block">
-                  <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm ">
-                    City
-                  </span>
-                  <input
-                    type="city"
-                    name="city"
-                    value={city}
-                    className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color block w-[298px] h-16 rounded-md text-sm  lg:text-xl  mb-6"
-                    placeholder="City"
-                  />
-                </label>
-              </div>
+              <label className="block">
+                <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm ">
+                  Address
+                </span>
+                <input
+                  type="text"
+                  name="address"
+                  value={userAddress}
+                  onChange={(e) => {
+                    setUserAddress(e.target.value);
+                  }}
+                  className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color block h-16 w-full rounded-md text-sm  lg:text-xl  mb-6 mr-4"
+                  placeholder="Address"
+                />
+              </label>
               <div>
                 <label className="block">
                   <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm ">
@@ -245,7 +213,10 @@ function editProfile() {
                   <input
                     type="occupation"
                     name="occupation"
-                    value={nin}
+                    value={userNin}
+                    onChange={(e) => {
+                      setUserNin(e.target.value);
+                    }}
                     className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color block h-16 w-full rounded-md text-sm  lg:text-xl  mb-6"
                     placeholder="NIN"
                   />
@@ -260,24 +231,17 @@ function editProfile() {
                         *
                       </span>
                     </span>
-                    <div className="flex">
-                      <div>
-                        <select
-                          name="countryCode"
-                          id="country-code"
-                          pattern="+[0-9]{3}"
-                          className="w-[80px] pl-3 border border-y-squazzle-border-grey-color border-l-squazzle-border-grey-color border-r-white text-squazzle-text-deep-grey2-color text-sm  lg:text-xl font-[400] rounded-tl-lg rounded-bl-lg h-[62px] mt-[6px] focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
-                        >
-                          {countryCodeDropDown()}
-                        </select>
-                      </div>
+                    <div className="">
                       <input
                         id="phone-number"
                         type="tel"
-                        value={mobile}
+                        value={userPhone}
                         placeholder="Phone Number"
-                        pattern="[0-9]{10}"
-                        className="block bg-white border border-squazzle-border-grey-color rounded-tr-lg rounded-br-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-xl px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color after:content-[''] after:top-0 mb-6"
+                        pattern="[0-9]{13}"
+                        onChange={(e) => {
+                          setUserPhone(e.target.value);
+                        }}
+                        className="block bg-white border border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 text-sm lg:text-xl px-3 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color after:content-[''] after:top-0 mb-6"
                       />
                     </div>
                   </label>
@@ -291,7 +255,10 @@ function editProfile() {
                 <textarea
                   type="text"
                   name="occupation"
-                  value={aboutYou}
+                  value={userAboutYou}
+                  onChange={(e) => {
+                    setUserAboutYou(e.target.value);
+                  }}
                   rows="5"
                   className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color focus:ring-sky-500 block h-[219px] w-full rounded-md text-sm  lg:text-xl mb-6 placeholder:mb-[500px]"
                   placeholder="Describe Yourself "
@@ -307,9 +274,12 @@ function editProfile() {
                 </button>
                 <button
                   type="button"
-                  className="py-[15px] w-[160px] h-[64px] text-squazzle-button-bg-light-green-color font-bold bg-squazzle-button-bg-deep-green-color rounded-xl "
-                  onClick={updateUser}
+                  className="flex items-center justify-center py-[15px] w-[160px] h-[64px] text-squazzle-button-bg-light-green-color font-bold bg-squazzle-button-bg-deep-green-color rounded-xl "
+                  onClick={() => handleEditProfile()}
                 >
+                  {buttonIsLoading ? (
+                    <LoadingIcon className="suspense-loading-icon mt-0 mr-3" />
+                  ) : null}
                   Save
                 </button>
               </div>
@@ -318,17 +288,17 @@ function editProfile() {
           <Footer />
         </div>
       </div>
-      <div className="sm:hidden font-sans px-5">
+      <div className="md:hidden font-sans px-5">
         <DashboardNavs />
         <div>
           <UserIcon className="w-[45px] h-[45px]  mt-6  cursor-pointer" />
         </div>
         <h1 className="font-[600] text-[24px] mt-5 text-[#232323]">
-          Zhara Doe
+          {`${userFirstName} ${userLastName}`}
         </h1>
-        <p className="font-[400] text-sm mt-[8px] text-[#353535]">
-          zhardoe@gmail.com
-        </p>
+        {/* <p className="font-[400] text-sm mt-[8px] text-[#353535]">
+          {userEmail}
+        </p> */}
         <div className=" flex  flex-row gap-2 mt-4 ">
           <button type="button" className="font-[400] text-sm">
             Edit profile
@@ -343,11 +313,11 @@ function editProfile() {
               First Name
             </span>
             <input
-              type="firstName"
+              type="text"
               name="firstName"
-              value={firstName}
+              value={userFirstName}
               onChange={(e) => {
-                setFirstName(e.target.value);
+                setUserFirstName(e.target.value);
               }}
               className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color block h-12 w-full rounded-md sm:text-sm mb-6"
               placeholder="First Name"
@@ -360,32 +330,17 @@ function editProfile() {
               Last Name
             </span>
             <input
-              type="lastName"
+              type="text"
               name="lastName"
-              value={lastName}
+              value={userLastName}
               onChange={(e) => {
-                setLastName(e.target.value);
+                setUserLastName(e.target.value);
               }}
               className="mt-1 px-3 py-2 bg-white border  border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color block h-12 w-full rounded-md sm:text-sm  mb-6"
               placeholder="First Name"
             />
           </label>
         </section>
-        <label className="block">
-          <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm  ">
-            Email
-          </span>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            className="mt-1 px-3 py-2 bg-white border  border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color  block h-12 w-full rounded-md sm:text-sm mb-6"
-            placeholder="First Name"
-          />
-        </label>
         <section className="mt-6">
           <label className="block">
             <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm ">
@@ -405,34 +360,17 @@ function editProfile() {
         <section className="mt-6">
           <label className="block">
             <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm ">
-              City
+              Address
             </span>
             <input
-              type="city"
-              name="city"
-              value={city}
+              type="text"
+              name="address"
+              value={userAddress}
               onChange={(e) => {
-                setCity(e.target.value);
+                setUserAddress(e.target.value);
               }}
               className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color  block h-12 w-full rounded-md sm:text-sm  mb-6 mr-4"
-              placeholder="State"
-            />
-          </label>
-        </section>
-        <section className="mt-6">
-          <label className="block">
-            <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm ">
-              State
-            </span>
-            <input
-              type="state"
-              name="state"
-              value={state}
-              onChange={(e) => {
-                setState(e.target.value);
-              }}
-              className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color  block h-12 w-full rounded-md sm:text-sm  mb-6 mr-4"
-              placeholder="State"
+              placeholder="Address"
             />
           </label>
         </section>
@@ -446,24 +384,17 @@ function editProfile() {
                     *
                   </span>
                 </span>
-                <div className="flex">
-                  <div>
-                    <select
-                      name="countryCode"
-                      id="country-code"
-                      pattern="+[0-9]{3}"
-                      className="w-[91px] pl-3 border border-y-squazzle-border-grey-color border-l-squazzle-border-grey-color border-r-white text-squazzle-text-deep-grey2-color sm:text-sm  font-[400] rounded-tl-lg rounded-bl-lg h-[48px] mt-[6px] focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color"
-                    >
-                      {countryCodeDropDown()}
-                    </select>
-                  </div>
+                <div className="">
                   <input
                     id="phone-number"
                     type="tel"
                     placeholder="Phone Number"
-                    value={mobile}
-                    pattern="[0-9]{10}"
-                    className="block bg-white border border-squazzle-border-grey-color rounded-tr-lg rounded-br-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-[259px] py-4 sm:text-sm px-3 h-12 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color after:content-[''] after:top-0 mb-6"
+                    value={userPhone}
+                    onChange={(e) => {
+                      setUserPhone(e.target.value);
+                    }}
+                    pattern="[0-9]{13}"
+                    className="block bg-white border border-squazzle-border-grey-color rounded-lg text-squazzle-text-deep-grey2-color font-[400] placeholder:text-squazzle-placeholder-grey-color mt-[6px] w-full py-4 sm:text-sm px-3 h-12 hover:bg-squazzle-button-bg-light-green-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color invalid:border-squazzle-text-error-red-color after:content-[''] after:top-0 mb-6"
                   />
                 </div>
               </label>
@@ -478,7 +409,10 @@ function editProfile() {
             <input
               type="text"
               name="occupation"
-              value={nin}
+              value={userNin}
+              onChange={(e) => {
+                setUserNin(e.target.value);
+              }}
               className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color  block h-12 w-full rounded-md sm:text-sm  mb-6"
               placeholder="NIN"
             />
@@ -493,7 +427,10 @@ function editProfile() {
               type="text"
               name="occupation"
               rows="5"
-              value={aboutYou}
+              value={userAboutYou}
+              onChange={(e) => {
+                setUserAboutYou(e.target.value);
+              }}
               className="mt-1 px-3 py-2 bg-white border border-squazzle-border-grey-color text-squazzle-text-deep-grey2-color  placeholder:text-squazzle-placeholder-grey-color focus:outline-none focus:border-squazzle-button-bg-deep-green-color hover:bg-squazzle-button-bg-light-green-color  block h-[219px] w-full rounded-md sm:text-sm  mb-6 placeholder:mb-[500px]"
               placeholder="Describe Yourself"
             />
@@ -504,7 +441,7 @@ function editProfile() {
             <button
               type="button"
               className="py-[15px] w-full h-[48px] text-squazzle-button-bg-light-green-color font-bold bg-squazzle-button-bg-deep-green-color  rounded-xl "
-              onClick={updateUser}
+              onClick={() => handleEditProfile()}
             >
               Save
             </button>

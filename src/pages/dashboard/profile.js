@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+/* eslint-disable import/no-cycle */
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthRoutes } from "../../url";
+import { AuthRoutes, NonAuthRoutes } from "../../url";
+import dashboard from "../../api/dashboard";
 import DashboardNavs from "../../components/navigation/dashboardNavs";
 import Footer from "../../components/footer/footer";
 import { ReactComponent as UserIcon } from "../../assets/svg/profile-icon.svg";
@@ -11,21 +13,69 @@ import { ReactComponent as GreaterThanIcon } from "../../assets/svg/greaterthan-
 import { ReactComponent as NotificationIcon } from "../../assets/svg/notification-icon.svg";
 import { ReactComponent as PaymentIcon } from "../../assets/svg/payment-icon.svg";
 import { ReactComponent as EditIcon } from "../../assets/svg/edit-icon.svg";
+import DeleteAccountModal from "../../components/modal/deleteAccount";
 
 const profile = () => {
   const navigate = useNavigate();
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
+  const [userFirstName, setUserFirstName] = useState("");
+  const [userLastName, setUserLastName] = useState("");
+  const [userPhone, setUserPhone] = useState("");
+  const [userOccupation, setUserOccupation] = useState("");
+  const [userNin, setUserNin] = useState("");
+  const [userAddress, setUserAddress] = useState("");
+  const [userAboutYou, setUserAboutYou] = useState("");
+
+  const handleViewProfile = () => {
+    try {
+      dashboard.ViewProfile().then((response) => {
+        if (response.status === 200) {
+          const {
+            email,
+            firstName,
+            lastName,
+            phone,
+            occupation,
+            NIN,
+            description,
+            address,
+          } = response.data.profile;
+          setUserEmail(email);
+          setUserFirstName(firstName);
+          setUserLastName(lastName);
+          setUserPhone(phone);
+          setUserOccupation(occupation);
+          setUserNin(NIN);
+          setUserAddress(address);
+          setUserAboutYou(description);
+        }
+      });
+    } catch (error) {
+      navigate(NonAuthRoutes.login);
+    }
+  };
 
   useEffect(() => {
     const ac = new AbortController();
     document.title = "User Profile - Squazzle";
+
+    handleViewProfile();
+
+    window.scroll(0, 0);
+
     return function cleanup() {
       ac.abort();
     };
   }, []);
 
+  const closeDeleteModal = () => {
+    setIsDeleteModalOpen(false);
+  };
+
   return (
     <>
-      <div className="hidden sm:block">
+      <div className="hidden md:block relative">
         <DashboardNavs />
         <div className="bg-[#ffff]">
           <div>
@@ -43,11 +93,11 @@ const profile = () => {
             <div className="p-[1rem]  rounded  ">
               <div className="flex justify-center flex-col  gap-[10px] shadow rounded-lg border-[1px] border-solid border-[#F5F5F5] bg-[#ffffff]  box-border h-[293px] w-[305px] pt-[24px] pb-[40px] items-center mb-10 ">
                 <p className="font-[600] text-[28px] leading-[35px] mt-5">
-                  Zhara Doe
+                  {`${userFirstName} ${userLastName}`}
                 </p>
-                <div className="font-[400] gap-4 text-[20px]">
-                  <button type="button">zhara@gmail.com</button>
-                </div>
+                {/* <div className="font-[400] gap-4 text-[20px]">
+                  <button type="button">{userEmail}</button>
+                </div> */}
                 <ul className="flex-auto w-32  flex flex-col items-center justify-between ">
                   <li>
                     <UserIcon className="w-[86.67px] h-[86.67px] position-absolute mt-5 cursor-pointer" />
@@ -121,7 +171,7 @@ const profile = () => {
                   Name
                 </p>
                 <p className="font-sans text-[15px]  font-[400]  text-[#353535]">
-                  Zhara Doe
+                  {`${userFirstName} ${userLastName}`}
                 </p>
               </div>
               <div>
@@ -130,7 +180,7 @@ const profile = () => {
                 </p>
                 <div className="flex gap-[12px] flex-row">
                   <p className="font-sans text-[15px] leading-[24px] font-[400]  text-[#353535]">
-                    zharadoe@gmail.com
+                    {userEmail}
                   </p>
                   <p className="text-[#DEF2E4] grid place-items-center  font-[400] px-[4px] text-sm bg-[#3d7d50] rounded">
                     Verified
@@ -142,7 +192,7 @@ const profile = () => {
                   Occupation
                 </p>
                 <p className="font-sans text-[15px] leading-[24px] font-[400]  text-[#353535]">
-                  Real Estate Manager
+                  {userOccupation}
                 </p>
               </div>
               <div>
@@ -158,7 +208,7 @@ const profile = () => {
                   Address
                 </p>
                 <p className="font-sans text-[15px] leading-[24px] font-[400] text-[#353535]">
-                  No 49 East-End, Jos, Plateau State, Nigeria.
+                  {userAddress}
                 </p>
               </div>
               <div>
@@ -166,7 +216,7 @@ const profile = () => {
                   Phone number
                 </p>
                 <p className="font-sans text-[15px] leading-[24px] font-[400] text-[#353535]">
-                  08123181961
+                  {userPhone}
                 </p>
               </div>
               <div>
@@ -174,7 +224,7 @@ const profile = () => {
                   NIN
                 </p>
                 <p className="font-sans text-[15px] leading-[24px] font-[400] text-[#353535]">
-                  75312208056610
+                  {userNin}
                 </p>
               </div>
               <div>
@@ -182,14 +232,18 @@ const profile = () => {
                   About me
                 </p>
                 <p className="font-sans text-[15px] leading-[24px] font-[400]  text-[#353535]">
-                  Lorem ipsum is simply a dummy text of the printing and
-                  typesetting industry.lorem ipsum has been in the industry
+                  {userAboutYou}
                 </p>
               </div>
               <hr className="text-[#D7D7D7] mt-6" />
               <ul>
                 <li className="font-sans text-[18px] leading-[26px] font-[600] text-[#8D173A] mt-6">
-                  <button type="button"> Delete Account</button>
+                  <button
+                    type="button"
+                    onClick={() => setIsDeleteModalOpen(true)}
+                  >
+                    Delete Account
+                  </button>
                 </li>
               </ul>
               <p className="font-sans text-[15px] leading-[24px] font-[400]  justify-items-start ">
@@ -199,19 +253,24 @@ const profile = () => {
           </div>
           <Footer />
         </div>
+        {isDeleteModalOpen ? (
+          <DeleteAccountModal closeDeleteModal={closeDeleteModal} />
+        ) : (
+          ""
+        )}
       </div>
 
       {/* MOBILE SCREEN */}
-      <div className="sm:hidden font-sans px-5">
+      <div className="md:hidden font-sans px-5">
         <DashboardNavs />
         <div>
           <UserIcon className="w-[45px] h-[45px]  mt-6  cursor-pointer" />
         </div>
         <h1 className="font-[600] text-[24px] mt-5 text-[#232323]">
-          Zhara Doe
+          {`${userFirstName} ${userLastName}`}
         </h1>
         <p className="font-[400] text-sm mt-[8px] text-[#353535]">
-          zhardoe@gmail.com
+          {userEmail}
         </p>
         <div className=" flex  flex-row gap-2 mt-4 ">
           <button
@@ -230,14 +289,14 @@ const profile = () => {
         </div>
         <section className="mt-8">
           <p className="font-[600] text-lg text-[#232323]">Name</p>
-          <p className="font-[400] text-sm text-[#353535]">Zhara Doe</p>
+          <p className="font-[400] text-sm text-[#353535]">
+            {`${userFirstName} ${userLastName}`}
+          </p>
         </section>
         <section className="mt-6">
           <p className="font-[600] text-lg text-[#232323]">Email</p>
           <div className="flex flex-row gap-4">
-            <p className="font-[400] text-sm text-[#353535]">
-              Zharadoe@gmail.com
-            </p>
+            <p className="font-[400] text-sm text-[#353535]">{userEmail}</p>
             <p className="text-[#DEF2E4] grid place-items-center px-[4px] text-xs bg-[#3d7d50] rounded">
               Verified
             </p>
@@ -245,9 +304,7 @@ const profile = () => {
         </section>
         <section className="mt-6">
           <p className="font-[600] text-lg text-[#232323]">Occupation</p>
-          <p className="font-[400] text-sm text-[#353535]">
-            Real Estate Manager
-          </p>
+          <p className="font-[400] text-sm text-[#353535]">{userOccupation}</p>
         </section>
         <section className="mt-6">
           <p className="font-[600] text-lg text-[#232323]">Gender</p>
@@ -255,24 +312,19 @@ const profile = () => {
         </section>
         <section className="mt-6">
           <p className="font-[600] text-lg text-[#232323]">Address</p>
-          <p className="font-[400] text-sm text-[#353535]">
-            No 49 East-End, Jos, Plateau State, Nigeria.
-          </p>
+          <p className="font-[400] text-sm text-[#353535]">{userAddress}</p>
         </section>
         <section className="mt-6">
           <p className="font-[600] text-lg text-[#232323]">Phone Number</p>
-          <p className="font-[400] text-sm text-[#353535]">08094580713</p>
+          <p className="font-[400] text-sm text-[#353535]">{userPhone}</p>
         </section>
         <section className="mt-6">
           <p className="font-[600] text-lg text-[#232323]">NIN</p>
-          <p className="font-[400] text-sm text-[#353535]">273294580713</p>
+          <p className="font-[400] text-sm text-[#353535]">{userNin}</p>
         </section>
         <section className="mt-6 mb-6">
           <p className="font-[600] text-lg text-[#232323]">About Me</p>
-          <p className="font-[400] text-sm text-[#353535]">
-            Lorem ipsum is simply a dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry.
-          </p>
+          <p className="font-[400] text-sm text-[#353535]">{userAboutYou}</p>
         </section>
         <section className="border border-transparent border-t-[#D7D7D7] pt-6 pb-16 ">
           <p className="text-squazzle-profileCard-logout-red-color font-[600] text-lg">
