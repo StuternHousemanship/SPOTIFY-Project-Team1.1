@@ -47,7 +47,7 @@ function App() {
       <LandingPageNav openModal={openModal} />
       <div className="hidden md:flex flex-col gap-y-20">
         <div
-          className="min-h-screen flex font-sans"
+          className="flex font-sans"
           style={{ justifyContent: "space-between" }}
         >
           <section className="px-[60px] mt-[168px] min-[1280px]:mt-[208px] min-[1280px]:px-[80px] max-[908px]:px-[40px]">

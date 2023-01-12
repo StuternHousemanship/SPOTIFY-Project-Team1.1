@@ -72,7 +72,9 @@ function Routers() {
     <div>
       {location.pathname === NonAuthRoutes.landingPage ||
       location.pathname === NonAuthRoutes.signUp ||
-      location.pathname === NonAuthRoutes.login ? (
+      location.pathname === NonAuthRoutes.login ||
+      location.pathname.includes(NonAuthRoutes.enterEmailVerificationCode) ||
+      location.pathname.includes(NonAuthRoutes.enterPasswordResetCode) ? (
         <div>
           <Suspense
             fallback={
@@ -88,6 +90,14 @@ function Routers() {
               />
               <Route path={NonAuthRoutes.signUp} element={<SignUp />} />
               <Route path={NonAuthRoutes.login} element={<Login />} />
+              <Route
+                path={`${NonAuthRoutes.enterEmailVerificationCode}/:verificationCode`}
+                element={<EnterEmailVerificationCode />}
+              />
+              <Route
+                path={`${NonAuthRoutes.enterPasswordResetCode}/:resetCode`}
+                element={<EnterPasswordResetCode />}
+              />
             </Routes>
           </Suspense>
         </div>
@@ -117,14 +127,6 @@ function Routers() {
                 <Route
                   path={NonAuthRoutes.alertResetPassword}
                   element={<AlertResetPassword />}
-                />
-                <Route
-                  path={`${NonAuthRoutes.enterEmailVerificationCode}/:verificationCode`}
-                  element={<EnterEmailVerificationCode />}
-                />
-                <Route
-                  path={`${NonAuthRoutes.enterPasswordResetCode}/:resetCode`}
-                  element={<EnterPasswordResetCode />}
                 />
                 <Route
                   path={NonAuthRoutes.alertVerifyEmail}
